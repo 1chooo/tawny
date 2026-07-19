@@ -1,74 +1,71 @@
+import Link from 'next/link'
+
+const links = {
+  Product: [
+    { label: 'Designs', href: '/designs' },
+    { label: 'Components', href: '/components' },
+    { label: 'Pricing', href: '/pricing' },
+    { label: 'Changelog', href: '#' },
+  ],
+  Resources: [
+    { label: 'Documentation', href: '#' },
+    { label: 'Figma Files', href: '#' },
+    { label: 'License', href: '#' },
+    { label: 'FAQ', href: '#' },
+  ],
+  Connect: [
+    { label: 'Twitter / X', href: '#' },
+    { label: 'GitHub', href: '#' },
+    { label: 'Dribbble', href: '#' },
+    { label: 'Email', href: '#' },
+  ],
+}
+
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background px-6 py-12">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between gap-10">
+    <footer className="border-t border-white/8 bg-background px-6 py-12">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           {/* Brand */}
           <div className="max-w-xs">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="inline-flex items-center justify-center w-7 h-7 rounded-md bg-foreground">
-                <span className="text-background text-xs font-bold tracking-tight">DC</span>
+            <div className="mb-4 flex items-center gap-2">
+              <span className="inline-flex items-center justify-center w-6 h-6 rounded-[5px] bg-foreground">
+                <span className="text-background text-[11px] font-bold tracking-tight">DC</span>
               </span>
-              <span className="font-semibold text-foreground tracking-tight">DesignCraft</span>
+              <span className="text-sm font-medium text-foreground tracking-tight">DesignCraft</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Handcrafted web designs and UI components for developers and designers who care about quality.
             </p>
           </div>
 
-          {/* Links */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
-            <div>
-              <p className="text-xs font-semibold text-foreground uppercase tracking-widest mb-3">Product</p>
-              <ul className="flex flex-col gap-2">
-                {['Designs', 'Components', 'Bundle', 'Changelog'].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="text-xs font-semibold text-foreground uppercase tracking-widest mb-3">Resources</p>
-              <ul className="flex flex-col gap-2">
-                {['Documentation', 'Figma Files', 'License', 'FAQ'].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="text-xs font-semibold text-foreground uppercase tracking-widest mb-3">Connect</p>
-              <ul className="flex flex-col gap-2">
-                {['Twitter / X', 'GitHub', 'Dribbble', 'Email'].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Link columns */}
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+            {Object.entries(links).map(([group, items]) => (
+              <div key={group}>
+                <p className="mb-3 text-xs font-medium text-foreground uppercase tracking-widest">{group}</p>
+                <ul className="flex flex-col gap-2">
+                  {items.map((item) => (
+                    <li key={item.label}>
+                      <Link href={item.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/8 pt-6 sm:flex-row">
           <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} DesignCraft. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
-              Terms of Service
-            </a>
+            <Link href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
+            <Link href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
