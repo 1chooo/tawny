@@ -2,19 +2,20 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navLinks = [
-  { label: 'Designs', href: '#designs' },
-  { label: 'Components', href: '#components' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'About', href: '#about' },
+  { label: 'Designs', href: '/designs' },
+  { label: 'Components', href: '/components' },
+  { label: 'Pricing', href: '/pricing' },
 ]
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 16)
@@ -22,77 +23,91 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Close mobile menu on route change
+  useEffect(() => setMobileOpen(false), [pathname])
+
   return (
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         scrolled
-          ? 'bg-background/90 backdrop-blur-md border-b border-border shadow-sm'
+          ? 'bg-background/80 backdrop-blur-xl border-b border-white/8 shadow-[0_1px_0_rgba(255,255,255,0.04)]'
           : 'bg-transparent'
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="mx-auto max-w-7xl px-6 h-14 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <span className="inline-flex items-center justify-center w-7 h-7 rounded-md bg-foreground">
-            <span className="text-background text-xs font-bold tracking-tight">DC</span>
+        <Link href="/" className="flex items-center gap-2 group" aria-label="DesignCraft home">
+          <span className="inline-flex items-center justify-center w-6 h-6 rounded-[5px] bg-foreground group-hover:opacity-80 transition-opacity">
+            <span className="text-background text-[11px] font-bold tracking-tight">DC</span>
           </span>
-          <span className="font-semibold text-foreground tracking-tight">DesignCraft</span>
+          <span className="font-medium text-sm text-foreground tracking-tight">DesignCraft</span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
+        <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className={cn(
+                'px-3 py-1.5 rounded-md text-sm transition-colors',
+                pathname === link.href
+                  ? 'text-foreground bg-white/8'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-white/5'
+              )}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <a
-            href="#designs"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-brand text-brand-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+          <Link
+            href="/pricing"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-foreground text-background text-sm font-medium hover:opacity-85 transition-opacity"
           >
-            Browse All
-          </a>
+            Get access
+          </Link>
         </div>
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden p-2 rounded-md text-foreground hover:bg-muted transition-colors"
+          className="md:hidden p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors"
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((v) => !v)}
         >
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          {mobileOpen ? <X size={18} /> : <Menu size={18} />}
         </button>
       </div>
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-background border-b border-border px-6 pb-5 pt-2 flex flex-col gap-4">
+        <div className="md:hidden bg-background/95 backdrop-blur-xl border-b border-white/8 px-6 pb-5 pt-2 flex flex-col gap-1">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              onClick={() => setMobileOpen(false)}
+              className={cn(
+                'px-3 py-2 rounded-md text-sm transition-colors',
+                pathname === link.href
+                  ? 'text-foreground bg-white/8'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-white/5'
+              )}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#designs"
-            className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-brand text-brand-foreground text-sm font-medium hover:opacity-90 transition-opacity"
-            onClick={() => setMobileOpen(false)}
-          >
-            Browse All
-          </a>
+          <div className="mt-2 pt-3 border-t border-white/8">
+            <Link
+              href="/pricing"
+              className="flex items-center justify-center px-4 py-2 rounded-full bg-foreground text-background text-sm font-medium hover:opacity-85 transition-opacity"
+            >
+              Get access
+            </Link>
+          </div>
         </div>
       )}
     </header>
