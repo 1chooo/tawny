@@ -22,8 +22,8 @@ export default function ComponentsPage() {
               Headers and building blocks
             </h1>
             <p className="mt-3 max-w-lg text-pretty leading-relaxed text-muted-foreground">
-              Live demos of navigation patterns and motion primitives used across
-              Tawny and the Art / Dev showcases.
+              Live demos of navigation patterns and motion primitives. Open any
+              card to preview and copy the source.
             </p>
           </div>
         </BlurFade>

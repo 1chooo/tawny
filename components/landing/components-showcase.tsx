@@ -21,8 +21,8 @@ export function ComponentsShowcase() {
                 Headers and building blocks
               </h2>
               <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">
-                Real navigation patterns and motion primitives — rendered live in
-                the page, not static thumbnails.
+                Real navigation patterns and motion primitives — click any card
+                to open the source and copy the code.
               </p>
             </div>
             <Link

@@ -17,6 +17,8 @@ export type ComponentDemo = {
   contentClassName?: string
   /** Featured on the landing teaser */
   featured?: boolean
+  /** Repo-relative source files shown on the detail page for copy */
+  sourceFiles: string[]
   render: () => ReactNode
 }
 
@@ -32,6 +34,7 @@ export const componentDemos: ComponentDemo[] = [
     category: 'Navigation',
     frameTitle: 'components/navbar',
     featured: true,
+    sourceFiles: ['components/navbar.tsx', 'components/logo.tsx'],
     render: () => <TawnyHeaderDemo />,
   },
   {
@@ -43,6 +46,11 @@ export const componentDemos: ComponentDemo[] = [
     frameTitle: 'components/art/site-header',
     contentClassName: 'bg-art-bento-bg',
     featured: true,
+    sourceFiles: [
+      'components/art/site-header.tsx',
+      'components/art/nav-links.tsx',
+      'components/art/locale-switcher.tsx',
+    ],
     render: () => <ArtHeaderDemo />,
   },
   {
@@ -54,6 +62,7 @@ export const componentDemos: ComponentDemo[] = [
     frameTitle: 'components/dev/site-header',
     contentClassName: 'bg-[#09090b]',
     featured: true,
+    sourceFiles: ['components/dev/site-header.tsx'],
     render: () => <DevHeaderDemo />,
   },
   {
@@ -63,6 +72,10 @@ export const componentDemos: ComponentDemo[] = [
     category: 'Motion',
     frameTitle: 'components/ui/motion',
     featured: true,
+    sourceFiles: [
+      'components/ui/word-rotate.tsx',
+      'components/ui/shimmer-button.tsx',
+    ],
     render: () => <MotionPrimitivesDemo />,
   },
   {
@@ -73,6 +86,11 @@ export const componentDemos: ComponentDemo[] = [
     category: 'Effects',
     frameTitle: 'components/ui/effects',
     featured: true,
+    sourceFiles: [
+      'components/ui/border-beam.tsx',
+      'components/ui/animated-gradient-text.tsx',
+      'components/ui/number-ticker.tsx',
+    ],
     render: () => <EffectsDemo />,
   },
   {
@@ -81,8 +99,13 @@ export const componentDemos: ComponentDemo[] = [
     description: 'SVG dotted world map with markers for location moments.',
     category: 'Maps',
     frameTitle: 'components/ui/dotted-map',
+    sourceFiles: ['components/ui/dotted-map.tsx'],
     render: () => <DottedMapDemo />,
   },
 ]
 
 export const featuredComponentDemos = componentDemos.filter((d) => d.featured)
+
+export function getComponentDemo(id: string) {
+  return componentDemos.find((d) => d.id === id)
+}
