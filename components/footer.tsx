@@ -29,7 +29,7 @@ export function Footer() {
       {/* Oversized brand watermark */}
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-[28%] select-none text-center font-serif text-[24vw] italic leading-[0.8] tracking-tight text-foreground/[0.04]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-[28%] select-none text-center font-serif text-[24vw] italic leading-[0.8] tracking-tight text-tawny/25"
       >
         Tawny
       </span>
