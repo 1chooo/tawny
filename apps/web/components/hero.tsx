@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
-import { Logo } from '@/components/logo'
 import { BlurFade } from '@tawny/ui/components/blur-fade'
 import { ShimmerButton } from '@tawny/ui/components/shimmer-button'
 import { WordRotate } from '@tawny/ui/components/word-rotate'
@@ -66,16 +65,7 @@ export function Hero() {
 
             {/* Text column */}
             <div className="relative z-10 flex w-full flex-col justify-center px-6 py-14 sm:px-10 md:px-12 lg:w-[56%] lg:px-14 lg:py-0">
-              <BlurFade delay={0.1} duration={0.5}>
-                <div className="mb-8 flex items-center gap-2.5">
-                  <Logo className="h-7 w-7 rounded-full" />
-                  <span className="font-serif text-2xl italic tracking-tight text-foreground">
-                    Tawny
-                  </span>
-                </div>
-              </BlurFade>
-
-              <BlurFade delay={0.2} duration={0.55}>
+              <BlurFade delay={0.1} duration={0.55}>
                 <h1 className="text-balance font-serif text-4xl leading-[1.08] tracking-[-0.01em] text-foreground sm:text-5xl md:text-6xl lg:text-4xl xl:text-5xl">
                   Designs that make
                   <br />
@@ -89,14 +79,14 @@ export function Hero() {
                 </h1>
               </BlurFade>
 
-              <BlurFade delay={0.32} duration={0.5}>
+              <BlurFade delay={0.22} duration={0.5}>
                 <p className="mt-6 max-w-md text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                   A curated collection of premium web templates and reusable UI
                   components. Free to explore, ready to ship.
                 </p>
               </BlurFade>
 
-              <BlurFade delay={0.44} duration={0.5}>
+              <BlurFade delay={0.34} duration={0.5}>
                 <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
                   <ShimmerButton
                     background="var(--tawny)"
