@@ -1,6 +1,6 @@
 ---
 description: How to add a new web design — live /designs/<id> demo plus landing showcase preview
-globs: app/designs/**/*,components/landing/**/*,lib/data.ts,app/page.tsx,app/designs/page.tsx
+globs: apps/web/app/designs/**/*,apps/web/components/landing/**/*,apps/web/lib/data.ts,apps/web/app/page.tsx,apps/web/app/designs/page.tsx
 alwaysApply: false
 ---
 
@@ -12,7 +12,7 @@ Reference implementation: **Art** (`id: art`).
 
 ## 1. Catalog entry
 
-Add to `designs` in [`lib/data.ts`](lib/data.ts):
+Add to `designs` in [`apps/web/lib/data.ts`](apps/web/lib/data.ts):
 
 - `id` — kebab-case slug (e.g. `art`)
 - `demoPath` — always `/designs/<id>`
@@ -24,14 +24,14 @@ Mirror Art’s host pattern:
 
 | Piece | Path |
 |-------|------|
-| Showcase shell | `app/designs/<id>/layout.tsx` |
-| App routes | `app/designs/<id>/…` (pages, nested layouts) |
-| Design UI | `components/<id>/…` |
-| Design tokens / CSS | e.g. `app/designs/<id>/<id>.css` (import from globals if needed) |
+| Showcase shell | `apps/web/app/designs/<id>/layout.tsx` |
+| App routes | `apps/web/app/designs/<id>/…` (pages, nested layouts) |
+| Design UI | `apps/web/components/<id>/…` |
+| Design tokens / CSS | e.g. `apps/web/app/designs/<id>/<id>.css` (import from globals if needed) |
 
 Requirements:
 
-- Wrap the design in [`ProductFrame`](components/product-frame.tsx) (window chrome + title like `designs/<id>`)
+- Wrap the design in [`ProductFrame`](apps/web/components/product-frame.tsx) (window chrome + title like `designs/<id>`)
 - Real navigation and interaction inside the frame
 - Keep the design self-contained (own fonts/tokens under a root class, e.g. `art-root`)
 - Do **not** iframe the live app on the landing page
@@ -40,18 +40,18 @@ Requirements:
 
 Every design needs an inert mock used on **both** the landing showcase and the `/designs` catalog:
 
-1. **Inert mock** — `components/landing/<id>-preview-mock.tsx`
+1. **Inert mock** — `apps/web/components/landing/<id>-preview-mock.tsx`
    - Visually match the live home (header + main composition)
    - Hardcoded sample copy; no design routing, i18n providers, or data fetches
    - Autoplay / CSS motion OK; **clicks must do nothing** (`inert` / no real links)
    - `role="img"` + accessible name (e.g. “Art design preview”)
-2. **Wire into `DesignPreview`** — extend [`components/landing/design-preview.tsx`](components/landing/design-preview.tsx) so fonts + mock render for the new `id`
-3. **Landing showcase** — [`DesignsShowcase`](components/landing/designs-showcase.tsx):
+2. **Wire into `DesignPreview`** — extend [`apps/web/components/landing/design-preview.tsx`](apps/web/components/landing/design-preview.tsx) so fonts + mock render for the new `id`
+3. **Landing showcase** — [`DesignsShowcase`](apps/web/components/landing/designs-showcase.tsx):
    - Independent **Web Designs** section header (not an eyebrow on the first design row)
    - Up to **3** `featured` designs; more designs live on `/designs` (“View all designs”)
    - Rows alternate by index on `lg+`: even = describe | demo, odd = demo | describe; mobile always stacks describe then demo
    - Copy from `lib/data.ts`; preview is `DesignPreview` inside `ProductFrame`
-4. **Catalog** — [`/designs`](app/designs/page.tsx) cards use `DesignPreview` (clipped), not static images
+4. **Catalog** — [`/designs`](apps/web/app/designs/page.tsx) cards use `DesignPreview` (clipped), not static images
 
 Only row CTAs (landing “Open live demo”) and the catalog card’s outer link navigate (`demoPath`).
 
@@ -71,8 +71,8 @@ Only row CTAs (landing “Open live demo”) and the catalog card’s outer link
 
 ## Checklist for a new design
 
-- [ ] `lib/data.ts` entry with `demoPath: '/designs/<id>'`
-- [ ] `app/designs/<id>/` live demo + `ProductFrame`
-- [ ] `components/landing/<id>-preview-mock.tsx` (inert)
+- [ ] `apps/web/lib/data.ts` entry with `demoPath: '/designs/<id>'`
+- [ ] `apps/web/app/designs/<id>/` live demo + `ProductFrame`
+- [ ] `apps/web/components/landing/<id>-preview-mock.tsx` (inert)
 - [ ] Wire into `DesignPreview` (+ `featured: true` only if it should appear in the landing top 3)
 - [ ] `/designs` catalog card shows `DesignPreview` + links to `demoPath`
