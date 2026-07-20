@@ -76,6 +76,7 @@ export function runCreateNextApp(templatePath, projectName, cwd) {
       templatePath,
       "--yes",
       "--disable-git",
+      "--skip-install",
     ];
     const child = spawn("npx", args, {
       cwd,

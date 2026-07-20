@@ -1,6 +1,6 @@
 {
   "name": "create-tawny",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Scaffold a Tawny design template (dev blog, bento journal, ...) with Next.js and MDX",
   "license": "MIT",
   "type": "module",
