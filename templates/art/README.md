@@ -10,8 +10,8 @@ Design by [Hugo Lin](https://1chooo.com).
 
 ```bash
 npx create-next-app@latest my-journal \
-  --example "https://github.com/1chooo/art" \
-  --example-path "templates/journal"
+  --example "https://github.com/1chooo/tawny" \
+  --example-path "templates/art"
 ```
 
 ### Option B — create-bento-journal CLI (interactive prompts)

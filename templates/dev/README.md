@@ -6,8 +6,18 @@ Design by [Hugo Lin](https://1chooo.com).
 
 ## Quick start
 
+### Option A — create-next-app (recommended)
+
 ```bash
-npx create-dev-blog@latest my-blog
+npx create-next-app@latest my-blog \
+  --example "https://github.com/1chooo/tawny" \
+  --example-path "templates/dev"
+```
+
+### Option B — create-tawny-dev-blog CLI (interactive prompts)
+
+```bash
+npx create-tawny-dev-blog@latest my-blog
 ```
 
 Then:

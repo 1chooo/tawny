@@ -48,7 +48,7 @@ export const designs: Design[] = [
     tags: ['Next.js', 'MDX', 'Mono', 'Demos'],
     featured: true,
     demoPath: '/designs/dev',
-    packageName: 'create-dev-blog',
+    packageName: 'create-tawny-dev-blog',
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
   },
 ]
