@@ -11,6 +11,7 @@ import {
 import { ProductFrame } from '@/components/product-frame'
 import { BlurFade } from '@/components/ui/blur-fade'
 import { NoiseTexture } from '@/components/ui/noise-texture'
+import { highlightCode, languageFromPath } from '@/lib/highlight-code'
 import { cn } from '@/lib/utils'
 
 type PageProps = {
@@ -41,10 +42,12 @@ export default async function ComponentDetailPage({ params }: PageProps) {
   if (!demo) notFound()
 
   const sources = await Promise.all(
-    demo.sourceFiles.map(async (file) => ({
-      file,
-      code: await readSourceFile(file),
-    })),
+    demo.sourceFiles.map(async (file) => {
+      const code = await readSourceFile(file)
+      const language = languageFromPath(file)
+      const html = await highlightCode(code, language)
+      return { file, code, html, language }
+    }),
   )
 
   return (
@@ -90,8 +93,14 @@ export default async function ComponentDetailPage({ params }: PageProps) {
           </p>
 
           <div className="mt-6 flex flex-col gap-5">
-            {sources.map(({ file, code }) => (
-              <CopyCodeBlock key={file} title={file} code={code} />
+            {sources.map(({ file, code, html, language }) => (
+              <CopyCodeBlock
+                key={file}
+                title={file}
+                code={code}
+                html={html}
+                language={language}
+              />
             ))}
           </div>
         </BlurFade>

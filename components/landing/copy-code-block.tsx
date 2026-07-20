@@ -5,17 +5,21 @@ import { Check, Copy } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 type CopyCodeBlockProps = {
+  /** Plain source used for clipboard copy */
   code: string
+  /** Shiki-highlighted HTML (`codeToHtml` output) */
+  html: string
   title?: string
   language?: string
   className?: string
 }
 
 /**
- * Tawny-styled code panel with one-click clipboard copy.
+ * Tawny-styled code panel with Shiki syntax colors and one-click copy.
  */
 export function CopyCodeBlock({
   code,
+  html,
   title,
   language = 'tsx',
   className,
@@ -35,7 +39,7 @@ export function CopyCodeBlock({
   return (
     <div
       className={cn(
-        'overflow-hidden rounded-xl border border-white/8 bg-white/3',
+        'overflow-hidden rounded-xl border border-white/8 bg-[#0d1117]',
         className,
       )}
     >
@@ -62,9 +66,14 @@ export function CopyCodeBlock({
           )}
         </button>
       </div>
-      <pre className="overflow-x-auto p-4 font-mono text-[13px] leading-relaxed text-foreground/85">
-        <code>{code.trim()}</code>
-      </pre>
+      <div
+        className={cn(
+          'overflow-x-auto p-4 text-[13px] leading-relaxed',
+          '[&_pre]:m-0! [&_pre]:bg-transparent! [&_pre]:p-0!',
+          '[&_code]:font-mono [&_code]:text-[13px] [&_code]:leading-relaxed',
+        )}
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
     </div>
   )
 }
