@@ -10,6 +10,22 @@ import {
 } from "./src/scaffold.mjs";
 import { getTemplate, templateList } from "./src/templates.mjs";
 
+function detectPackageManager() {
+  const ua = process.env.npm_config_user_agent || "";
+  if (ua.startsWith("yarn")) return "yarn";
+  if (ua.startsWith("pnpm")) return "pnpm";
+  if (ua.startsWith("bun")) return "bun";
+  return "npm";
+}
+
+function installCommand(pm) {
+  return pm === "yarn" ? "yarn" : `${pm} install`;
+}
+
+function runCommand(pm, script) {
+  return pm === "npm" ? `npm run ${script}` : `${pm} ${script}`;
+}
+
 async function resolveTemplate(templateArg) {
   if (templateArg) {
     const template = getTemplate(templateArg);
@@ -138,12 +154,16 @@ async function main() {
 
   s.stop("Project created.");
 
+  const pm = detectPackageManager();
+  const install = installCommand(pm);
+  const dev = runCommand(pm, "dev");
+
   p.note(
-    ["cd " + projectName, "pnpm install", "pnpm dev", "", ...template.nextSteps].join("\n"),
+    ["cd " + projectName, install, dev, "", ...template.nextSteps].join("\n"),
     "Next steps",
   );
 
-  p.outro("Done! Open http://localhost:3000 after pnpm dev");
+  p.outro(`Done! Open http://localhost:3000 after ${dev}`);
 }
 
 main().catch((err) => {
