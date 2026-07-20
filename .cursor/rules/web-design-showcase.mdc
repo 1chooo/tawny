@@ -46,22 +46,27 @@ Every design needs an inert mock used on **both** the landing showcase and the `
    - Autoplay / CSS motion OK; **clicks must do nothing** (`inert` / no real links)
    - `role="img"` + accessible name (e.g. “Art design preview”)
 2. **Wire into `DesignPreview`** — extend [`components/landing/design-preview.tsx`](components/landing/design-preview.tsx) so fonts + mock render for the new `id`
-3. **Landing showcase** — [`DesignsShowcase`](components/landing/designs-showcase.tsx) left column from `lib/data.ts`, right column renders `DesignPreview` inside `ProductFrame`
+3. **Landing showcase** — [`DesignsShowcase`](components/landing/designs-showcase.tsx):
+   - Independent **Web Designs** section header (not an eyebrow on the first design row)
+   - Up to **3** `featured` designs; more designs live on `/designs` (“View all designs”)
+   - Rows alternate by index on `lg+`: even = describe | demo, odd = demo | describe; mobile always stacks describe then demo
+   - Copy from `lib/data.ts`; preview is `DesignPreview` inside `ProductFrame`
 4. **Catalog** — [`/designs`](app/designs/page.tsx) cards use `DesignPreview` (clipped), not static images
 
-Only left-column CTAs (landing) and the catalog card’s outer link navigate (`demoPath`).
+Only row CTAs (landing “Open live demo”) and the catalog card’s outer link navigate (`demoPath`).
 
 ## 4. Do / don’t
 
 ```text
 ✅ Live app at /designs/<id> inside ProductFrame
-✅ Landing: copy + inert mock preview
+✅ Landing: Web Designs section header + copy + inert mock preview (max 3 featured)
 ✅ Catalog /designs cards use the same inert DesignPreview mocks
 
 ❌ Landing or catalog OG/static cards as the only “showcase”
 ❌ Embedding the live route via iframe on the home page
 ❌ Importing live HomeBento / SiteHeader (or equivalents) into the landing mock
 ❌ Clickable navigation inside the landing / catalog preview
+❌ Putting “Web Designs” as an eyebrow on an individual design row
 ```
 
 ## Checklist for a new design
@@ -69,5 +74,5 @@ Only left-column CTAs (landing) and the catalog card’s outer link navigate (`d
 - [ ] `lib/data.ts` entry with `demoPath: '/designs/<id>'`
 - [ ] `app/designs/<id>/` live demo + `ProductFrame`
 - [ ] `components/landing/<id>-preview-mock.tsx` (inert)
-- [ ] Wire into `DesignPreview` (+ landing showcase if featured)
+- [ ] Wire into `DesignPreview` (+ `featured: true` only if it should appear in the landing top 3)
 - [ ] `/designs` catalog card shows `DesignPreview` + links to `demoPath`

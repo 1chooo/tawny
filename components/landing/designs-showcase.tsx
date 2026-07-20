@@ -1,114 +1,57 @@
 import Link from 'next/link'
-import { ArrowUpRight, Lock } from 'lucide-react'
-import {
-  DesignPreview,
-  designPreviewBg,
-} from '@/components/landing/design-preview'
-import { ProductFrame } from '@/components/product-frame'
+import { ArrowUpRight } from 'lucide-react'
+import { DesignShowcaseRow } from '@/components/landing/design-showcase-row'
 import { BlurFade } from '@/components/ui/blur-fade'
-import { designs, type Design } from '@/lib/data'
-import { cn } from '@/lib/utils'
+import { designs } from '@/lib/data'
 
-const featuredDesigns = designs.filter((d) => d.featured)
-
-function PriceBadge({ price }: { price: number | 'free' }) {
-  if (price === 'free') {
-    return (
-      <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] font-medium text-white/60">
-        Free
-      </span>
-    )
-  }
-  return (
-    <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] font-medium text-white/60">
-      <Lock size={8} />
-      ${price}
-    </span>
-  )
-}
-
-function FeaturedDesignRow({
-  design,
-  index,
-}: {
-  design: Design
-  index: number
-}) {
-  return (
-    <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
-      <BlurFade delay={0.05 + index * 0.04} inView className="lg:col-span-4">
-        <div className="max-w-md lg:max-w-none">
-          {index === 0 ? (
-            <p className="mb-2 text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
-              Web Designs
-            </p>
-          ) : null}
-          <h2 className="text-balance text-3xl font-semibold tracking-[-0.03em] text-foreground md:text-4xl">
-            {design.title}
-          </h2>
-          <p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground md:text-base">
-            {design.description}
-          </p>
-
-          <div className="mt-5 flex flex-wrap items-center gap-2">
-            <PriceBadge price={design.price} />
-            {design.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-white/8 bg-white/3 px-2.5 py-0.5 text-[11px] text-white/50"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Link
-              href={design.demoPath}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-opacity hover:opacity-85"
-            >
-              Open live demo
-              <ArrowUpRight size={14} aria-hidden="true" />
-            </Link>
-            <Link
-              href="/designs"
-              className="inline-flex items-center justify-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              View all designs
-              <ArrowUpRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-      </BlurFade>
-
-      <BlurFade delay={0.12 + index * 0.04} inView className="lg:col-span-8">
-        <ProductFrame
-          title={`designs/${design.id}`}
-          fade
-          contentClassName={cn(
-            'aspect-video overflow-hidden md:aspect-auto md:h-[min(520px,70vh)]',
-            designPreviewBg(design.id),
-          )}
-        >
-          <DesignPreview id={design.id} />
-        </ProductFrame>
-      </BlurFade>
-    </div>
-  )
-}
+const MAX_FEATURED = 3
+const featuredDesigns = designs.filter((d) => d.featured).slice(0, MAX_FEATURED)
 
 /**
- * Landing “Web Designs” teaser — stacked 1/3 intro + 2/3 inert product previews.
+ * Landing “Web Designs” teaser — section header + up to 3 alternating
+ * describe/demo rows with inert product previews.
  */
 export function DesignsShowcase() {
   if (featuredDesigns.length === 0) return null
 
   return (
     <section className="relative px-6 py-20">
-      <div className="relative z-10 mx-auto flex max-w-7xl flex-col gap-20">
-        {featuredDesigns.map((design, index) => (
-          <FeaturedDesignRow key={design.id} design={design} index={index} />
-        ))}
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <BlurFade delay={0.05} inView>
+          <div className="mb-14 flex items-end justify-between">
+            <div>
+              <p className="mb-2 text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
+                Web Designs
+              </p>
+              <h2 className="text-balance text-3xl font-semibold tracking-[-0.03em] text-foreground">
+                Design showcases
+              </h2>
+            </div>
+            <Link
+              href="/designs"
+              className="hidden shrink-0 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
+            >
+              View all designs
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </Link>
+          </div>
+        </BlurFade>
+
+        <div className="flex flex-col gap-20">
+          {featuredDesigns.map((design, index) => (
+            <DesignShowcaseRow key={design.id} design={design} index={index} />
+          ))}
+        </div>
+
+        <BlurFade delay={0.1} inView className="mt-10 sm:hidden">
+          <Link
+            href="/designs"
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            View all designs
+            <ArrowUpRight size={14} aria-hidden="true" />
+          </Link>
+        </BlurFade>
       </div>
     </section>
   )
