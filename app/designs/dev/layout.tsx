@@ -2,9 +2,14 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { JetBrains_Mono } from 'next/font/google'
+import {
+  DesignCopyPageAction,
+  DesignTemplateDocs,
+} from '@/components/landing/design-template-docs'
 import { ProductFrame } from '@/components/product-frame'
 import { SiteHeader } from '@/components/dev/site-header'
 import { SiteFooter } from '@/components/dev/site-footer'
+import { getDesign } from '@/lib/data'
 
 const mono = JetBrains_Mono({
   subsets: ['latin'],
@@ -12,13 +17,14 @@ const mono = JetBrains_Mono({
   display: 'swap',
 })
 
+const design = getDesign('dev')!
+
 export const metadata: Metadata = {
   title: 'Dev — Live Design Demo',
-  description:
-    'Interactive showcase of the Dev mono blog design, hosted inside Tawny.',
+  description: design.description,
 }
 
-export default function DevShowcaseLayout({
+export default async function DevShowcaseLayout({
   children,
 }: {
   children: React.ReactNode
@@ -32,20 +38,23 @@ export default function DevShowcaseLayout({
               Live design demo
             </p>
             <h1 className="text-balance text-3xl font-semibold tracking-[-0.03em] text-foreground md:text-4xl">
-              Dev
+              {design.title}
             </h1>
             <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground md:text-base">
-              A minimal mono developer blog with MDX essays and interactive
-              demos. Navigate inside the frame — you are still on Tawny.
+              {design.description} Navigate inside the frame — you are still on
+              Tawny.
             </p>
           </div>
-          <Link
-            href="/designs"
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Back to Designs
-            <ArrowUpRight size={14} aria-hidden="true" />
-          </Link>
+          <div className="flex shrink-0 flex-wrap items-center gap-3">
+            <DesignCopyPageAction design={design} />
+            <Link
+              href="/designs"
+              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Back to Designs
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
 
         <ProductFrame
@@ -62,6 +71,8 @@ export default function DevShowcaseLayout({
             </div>
           </div>
         </ProductFrame>
+
+        <DesignTemplateDocs design={design} />
       </div>
     </div>
   )

@@ -2,7 +2,12 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { DM_Sans, JetBrains_Mono, Playfair_Display } from 'next/font/google'
+import {
+  DesignCopyPageAction,
+  DesignTemplateDocs,
+} from '@/components/landing/design-template-docs'
 import { ProductFrame } from '@/components/product-frame'
+import { getDesign } from '@/lib/data'
 
 const display = Playfair_Display({
   subsets: ['latin'],
@@ -19,13 +24,14 @@ const mono = JetBrains_Mono({
   variable: '--font-art-mono',
 })
 
+const design = getDesign('art')!
+
 export const metadata: Metadata = {
   title: 'Art — Live Design Demo',
-  description:
-    'Interactive showcase of the Art bento journal design, hosted inside Tawny.',
+  description: design.description,
 }
 
-export default function ArtShowcaseLayout({
+export default async function ArtShowcaseLayout({
   children,
 }: {
   children: React.ReactNode
@@ -39,20 +45,23 @@ export default function ArtShowcaseLayout({
               Live design demo
             </p>
             <h1 className="text-balance text-3xl font-semibold tracking-[-0.03em] text-foreground md:text-4xl">
-              Art
+              {design.title}
             </h1>
             <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground md:text-base">
-              A bilingual bento journal with MDX notes and projects. Navigate
-              inside the frame — you are still on Tawny.
+              {design.description} Navigate inside the frame — you are still on
+              Tawny.
             </p>
           </div>
-          <Link
-            href="/designs"
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Back to Designs
-            <ArrowUpRight size={14} aria-hidden="true" />
-          </Link>
+          <div className="flex shrink-0 flex-wrap items-center gap-3">
+            <DesignCopyPageAction design={design} />
+            <Link
+              href="/designs"
+              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Back to Designs
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
 
         <ProductFrame
@@ -65,6 +74,8 @@ export default function ArtShowcaseLayout({
             {children}
           </div>
         </ProductFrame>
+
+        <DesignTemplateDocs design={design} />
       </div>
     </div>
   )
