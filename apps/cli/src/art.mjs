@@ -3,7 +3,7 @@ import { join } from "path";
 import * as p from "@clack/prompts";
 import { fileExists } from "./scaffold.mjs";
 
-async function stripZhLocale(projectDir) {
+export async function stripZhLocale(projectDir) {
   const zhJson = join(projectDir, "messages", "zh.json");
   if (await fileExists(zhJson)) await rm(zhJson);
 
