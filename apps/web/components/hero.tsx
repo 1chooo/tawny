@@ -54,7 +54,7 @@ export function Hero() {
           {/* Main row: text column, with the owl graphic as an atmospheric layer */}
           <div className="relative z-10 flex flex-1">
             {/* Owl-head progression graphic — behind the copy on mobile, right column on desktop */}
-            <div className="absolute inset-0 opacity-20 lg:inset-y-0 lg:left-auto lg:right-0 lg:w-[44%] lg:px-6 lg:py-8 lg:opacity-100">
+            <div className="absolute inset-0 opacity-20 lg:inset-y-0 lg:left-auto lg:right-0 lg:w-[48%] lg:px-2 lg:py-4 lg:opacity-100">
               <Image
                 src="/images/hero-owl-progression.png"
                 alt="Four owl-head silhouettes rendered in increasing abstraction, from a solid shape to a dot pattern, wireframe mesh, and scattered particles"
