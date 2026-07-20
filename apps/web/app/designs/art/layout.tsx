@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { ArtRootShell } from '@/components/art/art-root-shell'
+import { GenerateScreenshotButton } from '@/components/landing/generate-screenshot-button'
 import {
   DesignCopyPageAction,
   DesignTemplateDocs,
@@ -40,6 +41,13 @@ export default async function ArtShowcaseLayout({
           </div>
           <div className="flex shrink-0 flex-wrap items-center gap-3">
             <DesignCopyPageAction design={design} />
+            {process.env.NODE_ENV !== 'production' ? (
+              <GenerateScreenshotButton
+                kind="design"
+                id={design.id}
+                path={design.screenshotPath ?? design.viewPath}
+              />
+            ) : null}
             <Link
               href={design.viewPath}
               target="_blank"

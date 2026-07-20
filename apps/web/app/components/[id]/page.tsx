@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 import { CopyCodeBlock } from '@/components/landing/copy-code-block'
+import { GenerateScreenshotButton } from '@/components/landing/generate-screenshot-button'
 import {
   componentDemos,
   getComponentDemo,
@@ -74,15 +75,28 @@ export default async function ComponentDetailPage({ params }: PageProps) {
           <p className="mt-3 max-w-2xl text-pretty leading-relaxed text-muted-foreground">
             {demo.description}
           </p>
+
+          {process.env.NODE_ENV !== 'production' ? (
+            <div className="mt-4">
+              <GenerateScreenshotButton
+                kind="component"
+                id={demo.id}
+                path={`/components/${demo.id}`}
+                selector={`#thumbnail-capture-${demo.id}`}
+              />
+            </div>
+          ) : null}
         </BlurFade>
 
         <BlurFade delay={0.1} className="mt-10">
-          <ProductFrame
-            title={demo.frameTitle}
-            contentClassName={cn('overflow-hidden', demo.contentClassName)}
-          >
-            {demo.render()}
-          </ProductFrame>
+          <div id={`thumbnail-capture-${demo.id}`}>
+            <ProductFrame
+              title={demo.frameTitle}
+              contentClassName={cn('overflow-hidden', demo.contentClassName)}
+            >
+              {demo.render()}
+            </ProductFrame>
+          </div>
         </BlurFade>
 
         <BlurFade delay={0.15} className="mt-12">
