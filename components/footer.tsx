@@ -25,8 +25,16 @@ const links = {
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/8 bg-background px-6 py-12">
-      <div className="mx-auto max-w-7xl">
+    <footer className="relative overflow-hidden border-t border-white/8 bg-background px-6 py-12">
+      {/* Oversized brand watermark */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-[28%] select-none text-center font-serif text-[24vw] italic leading-[0.8] tracking-tight text-foreground/[0.04]"
+      >
+        Tawny
+      </span>
+
+      <div className="relative mx-auto max-w-7xl">
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           {/* Brand */}
           <div className="max-w-xs">
