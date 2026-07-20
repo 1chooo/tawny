@@ -24,15 +24,21 @@ export function Hero() {
         className="relative w-full lg:mx-auto lg:max-w-6xl lg:rounded-[28px] lg:bg-cover lg:bg-center lg:p-5 lg:shadow-[0_40px_100px_-30px_rgba(0,0,0,0.7)]"
         style={{ backgroundImage: "url('/images/paper-texture.png')" }}
       >
-        <div className="relative flex min-h-svh w-full flex-col overflow-hidden bg-black/75 lg:h-[640px] lg:min-h-0 lg:rounded-[20px] lg:bg-black">
-          {/* Layered dark background gradient, warmed with a tawny glow */}
+        <div className="relative flex min-h-svh w-full flex-col overflow-hidden bg-black/55 lg:h-[640px] lg:min-h-0 lg:rounded-[20px] lg:bg-black">
+          {/* Layered dark background gradient, warmed with a stronger tawny glow on mobile */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                'radial-gradient(ellipse 70% 60% at 12% 8%, rgba(198,144,92,0.16) 0%, transparent 70%), radial-gradient(ellipse 60% 50% at 92% 75%, rgba(198,144,92,0.10) 0%, transparent 60%)',
+                'radial-gradient(ellipse 80% 70% at 15% 10%, rgba(198,144,92,0.32) 0%, transparent 65%), radial-gradient(ellipse 70% 55% at 88% 78%, rgba(198,144,92,0.22) 0%, transparent 55%), radial-gradient(ellipse 50% 40% at 50% 50%, rgba(198,144,92,0.08) 0%, transparent 70%)',
             }}
+          />
+
+          {/* Text legibility scrim — darkest behind copy on mobile; muted on desktop */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/25 via-black/65 to-black/80 lg:from-transparent lg:via-transparent lg:to-transparent"
           />
 
           {/* Subtle grid lines */}
