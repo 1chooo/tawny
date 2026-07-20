@@ -9,7 +9,7 @@ const links = {
     { label: 'Changelog', href: '#' },
   ],
   Resources: [
-    { label: 'Documentation', href: '#' },
+    { label: 'Documentation', href: '/docs' },
     { label: 'Figma Files', href: '#' },
     { label: 'Logos & Marks', href: '/logos-marks' },
     { label: 'License', href: '#' },
