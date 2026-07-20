@@ -29,7 +29,7 @@ export default async function ArtLocaleLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider key={locale} locale={locale} messages={messages}>
-      <div className="flex min-h-[70vh] flex-col">
+      <div className="flex min-h-0 flex-1 flex-col">
         <SiteHeader />
         <main className="flex flex-1 flex-col">{children}</main>
       </div>

@@ -6,6 +6,7 @@ describe('getDesign', () => {
     const art = getDesign('art')
     expect(art?.id).toBe('art')
     expect(art?.demoPath).toBe('/designs/art')
+    expect(art?.viewPath).toBe('/view/art')
     expect(art?.packageName).toBe('create-tawny')
   })
 
@@ -16,6 +17,7 @@ describe('getDesign', () => {
   it('covers every catalog entry by id', () => {
     for (const design of designs) {
       expect(getDesign(design.id)).toBe(design)
+      expect(design.viewPath).toBe(`/view/${design.id}`)
     }
   })
 })

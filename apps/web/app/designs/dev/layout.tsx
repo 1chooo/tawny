@@ -1,21 +1,14 @@
-import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { JetBrains_Mono } from 'next/font/google'
+import { DevRootShell } from '@/components/dev/dev-root-shell'
 import {
   DesignCopyPageAction,
   DesignTemplateDocs,
 } from '@/components/landing/design-template-docs'
 import { ProductFrame } from '@/components/product-frame'
-import { SiteHeader } from '@/components/dev/site-header'
-import { SiteFooter } from '@/components/dev/site-footer'
 import { getDesign } from '@/lib/data'
-
-const mono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-dev-mono',
-  display: 'swap',
-})
+import type { Metadata } from 'next'
 
 const design = getDesign('dev')!
 
@@ -27,7 +20,7 @@ export const metadata: Metadata = {
 export default async function DevShowcaseLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   return (
     <div className="relative min-h-screen px-6 pt-28 pb-24">
@@ -48,6 +41,15 @@ export default async function DevShowcaseLayout({
           <div className="flex shrink-0 flex-wrap items-center gap-3">
             <DesignCopyPageAction design={design} />
             <Link
+              href={design.viewPath}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 px-3.5 py-1.5 text-sm text-foreground/80 transition-colors hover:border-white/25 hover:text-foreground"
+            >
+              Open in new tab
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </Link>
+            <Link
               href="/designs"
               className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
@@ -59,17 +61,11 @@ export default async function DevShowcaseLayout({
 
         <ProductFrame
           title="designs/dev"
-          contentClassName="max-h-[calc(100dvh-8rem)] min-h-[70vh] overflow-y-auto"
+          contentClassName="flex max-h-[calc(100dvh-8rem)] min-h-[70vh] flex-col overflow-y-auto"
         >
-          <div
-            className={`dev-root ${mono.variable} ${mono.className} min-h-[70vh] bg-[var(--background)] font-mono text-[var(--foreground)] antialiased`}
-          >
-            <div className="mx-auto max-w-2xl px-6 py-8 md:py-12">
-              <SiteHeader />
-              <main className="mt-8">{children}</main>
-              <SiteFooter />
-            </div>
-          </div>
+          <DevRootShell className="flex min-h-[70vh] flex-1 flex-col">
+            {children}
+          </DevRootShell>
         </ProductFrame>
 
         <DesignTemplateDocs design={design} />

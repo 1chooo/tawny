@@ -1,28 +1,14 @@
-import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { DM_Sans, JetBrains_Mono, Playfair_Display } from 'next/font/google'
+import { ArtRootShell } from '@/components/art/art-root-shell'
 import {
   DesignCopyPageAction,
   DesignTemplateDocs,
 } from '@/components/landing/design-template-docs'
 import { ProductFrame } from '@/components/product-frame'
 import { getDesign } from '@/lib/data'
-
-const display = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-art-serif-display',
-})
-
-const sans = DM_Sans({
-  subsets: ['latin'],
-  variable: '--font-art-sans-body',
-})
-
-const mono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-art-mono',
-})
+import type { Metadata } from 'next'
 
 const design = getDesign('art')!
 
@@ -34,7 +20,7 @@ export const metadata: Metadata = {
 export default async function ArtShowcaseLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   return (
     <div className="relative min-h-screen px-6 pt-28 pb-24">
@@ -55,6 +41,15 @@ export default async function ArtShowcaseLayout({
           <div className="flex shrink-0 flex-wrap items-center gap-3">
             <DesignCopyPageAction design={design} />
             <Link
+              href={design.viewPath}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 px-3.5 py-1.5 text-sm text-foreground/80 transition-colors hover:border-white/25 hover:text-foreground"
+            >
+              Open in new tab
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </Link>
+            <Link
               href="/designs"
               className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
@@ -66,13 +61,11 @@ export default async function ArtShowcaseLayout({
 
         <ProductFrame
           title="designs/art"
-          contentClassName="max-h-[calc(100dvh-8rem)] min-h-[70vh] overflow-y-auto"
+          contentClassName="flex max-h-[calc(100dvh-8rem)] min-h-[70vh] flex-col overflow-y-auto"
         >
-          <div
-            className={`art-root ${display.variable} ${sans.variable} ${mono.variable} ${sans.className} bg-black text-art-bento-ink min-h-[70vh] font-(family-name:--font-art-sans-body) antialiased`}
-          >
+          <ArtRootShell className="flex min-h-[70vh] flex-1 flex-col">
             {children}
-          </div>
+          </ArtRootShell>
         </ProductFrame>
 
         <DesignTemplateDocs design={design} />

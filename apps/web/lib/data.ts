@@ -8,8 +8,10 @@ export interface Design {
   price: number | 'free'
   tags: string[]
   featured?: boolean
-  /** Live demo path inside Tawny */
+  /** Live demo path inside Tawny (ProductFrame + docs) */
   demoPath: string
+  /** Full-site preview path (new tab, no Tawny chrome) */
+  viewPath: string
   /** npm create package name (may be mock / unpublished) */
   packageName: string
   /** Paths relative to templates/<id>/ shown in the source viewer */
@@ -31,6 +33,7 @@ export const designs: Design[] = [
     tags: ['Next.js', 'MDX', 'Bento', 'i18n'],
     featured: true,
     demoPath: '/designs/art',
+    viewPath: '/view/art',
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'app/[locale]/page.tsx'],
   },
@@ -48,6 +51,7 @@ export const designs: Design[] = [
     tags: ['Next.js', 'MDX', 'Mono', 'Demos'],
     featured: true,
     demoPath: '/designs/dev',
+    viewPath: '/view/dev',
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
   },
