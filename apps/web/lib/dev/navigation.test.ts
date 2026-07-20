@@ -6,7 +6,7 @@ vi.mock('next/navigation', () => ({
   useRouter: () => ({}),
 }))
 
-import { DEV_BASE } from './routing'
+import { DEV_BASE, DEV_VIEW_BASE } from './routing'
 import { devHref, stripDevPrefix } from './navigation'
 
 describe('devHref', () => {
@@ -17,6 +17,11 @@ describe('devHref', () => {
 
   it('treats root as the demo home', () => {
     expect(devHref('/')).toBe(DEV_BASE)
+  })
+
+  it('supports the view mount base', () => {
+    expect(devHref('/blog', DEV_VIEW_BASE)).toBe(`${DEV_VIEW_BASE}/blog`)
+    expect(devHref('/', DEV_VIEW_BASE)).toBe(DEV_VIEW_BASE)
   })
 
   it('leaves absolute and hash urls alone', () => {
@@ -31,6 +36,11 @@ describe('stripDevPrefix', () => {
     expect(stripDevPrefix(`${DEV_BASE}/posts`)).toBe('/posts')
     expect(stripDevPrefix(DEV_BASE)).toBe('/')
     expect(stripDevPrefix(`${DEV_BASE}/`)).toBe('/')
+  })
+
+  it('strips the view mount base', () => {
+    expect(stripDevPrefix(`${DEV_VIEW_BASE}/blog`)).toBe('/blog')
+    expect(stripDevPrefix(DEV_VIEW_BASE)).toBe('/')
   })
 
   it('returns unrelated paths unchanged', () => {

@@ -6,31 +6,42 @@ import {
   useRouter as useNextRouter,
 } from 'next/navigation'
 import { forwardRef, type ComponentProps } from 'react'
-import { DEV_BASE } from '@/lib/dev/routing'
+import {
+  DEV_BASE,
+  DEV_MOUNTS,
+  devBaseFromPathname,
+} from '@/lib/dev/routing'
 
 type LinkProps = Omit<ComponentProps<typeof NextLink>, 'href'> & {
   href: string
 }
 
-export function devHref(href: string): string {
-  if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('#')) {
+export function devHref(href: string, base: string = DEV_BASE): string {
+  if (
+    href.startsWith('http://') ||
+    href.startsWith('https://') ||
+    href.startsWith('#')
+  ) {
     return href
   }
   const path = href === '/' ? '' : href.startsWith('/') ? href : `/${href}`
-  return `${DEV_BASE}${path}`
+  return `${base}${path}`
 }
 
 export function stripDevPrefix(pathname: string): string {
-  if (pathname === DEV_BASE || pathname === `${DEV_BASE}/`) return '/'
-  if (pathname.startsWith(`${DEV_BASE}/`)) {
-    return pathname.slice(DEV_BASE.length) || '/'
+  for (const base of DEV_MOUNTS) {
+    if (pathname === base || pathname === `${base}/`) return '/'
+    if (pathname.startsWith(`${base}/`)) {
+      return pathname.slice(base.length) || '/'
+    }
   }
   return pathname
 }
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
   function DevLink({ href, ...rest }, ref) {
-    return <NextLink ref={ref} href={devHref(href)} {...rest} />
+    const base = devBaseFromPathname(useNextPathname())
+    return <NextLink ref={ref} href={devHref(href, base)} {...rest} />
   },
 )
 
@@ -40,16 +51,17 @@ export function usePathname(): string {
 
 export function useRouter() {
   const router = useNextRouter()
+  const base = devBaseFromPathname(useNextPathname())
 
   return {
     push(href: string) {
-      router.push(devHref(href))
+      router.push(devHref(href, base))
     },
     replace(href: string) {
-      router.replace(devHref(href))
+      router.replace(devHref(href, base))
     },
     prefetch(href: string) {
-      router.prefetch(devHref(href))
+      router.prefetch(devHref(href, base))
     },
     back: router.back.bind(router),
     forward: router.forward.bind(router),

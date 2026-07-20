@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest'
-import { isArtLocale, ART_BASE } from './routing'
+import {
+  isArtLocale,
+  ART_BASE,
+  ART_VIEW_BASE,
+  artBaseFromPathname,
+} from './routing'
 import { postPath, projectPath } from './path'
 
 describe('isArtLocale', () => {
@@ -20,7 +25,14 @@ describe('art path helpers', () => {
     expect(projectPath('portfolio')).toBe('/projects/portfolio')
   })
 
-  it('exposes the art showcase base', () => {
+  it('exposes the art showcase and view bases', () => {
     expect(ART_BASE).toBe('/designs/art')
+    expect(ART_VIEW_BASE).toBe('/view/art')
+  })
+
+  it('resolves the mount from the pathname', () => {
+    expect(artBaseFromPathname('/view/art/en/notes')).toBe(ART_VIEW_BASE)
+    expect(artBaseFromPathname('/designs/art/en')).toBe(ART_BASE)
+    expect(artBaseFromPathname('/')).toBe(ART_BASE)
   })
 })
