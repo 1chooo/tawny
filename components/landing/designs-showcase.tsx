@@ -1,31 +1,13 @@
 import Link from 'next/link'
 import { ArrowUpRight, Lock } from 'lucide-react'
-import { DM_Sans, JetBrains_Mono, Playfair_Display } from 'next/font/google'
-import { ArtPreviewMock } from '@/components/landing/art-preview-mock'
-import { DevPreviewMock } from '@/components/landing/dev-preview-mock'
+import {
+  DesignPreview,
+  designPreviewBg,
+} from '@/components/landing/design-preview'
 import { ProductFrame } from '@/components/product-frame'
 import { BlurFade } from '@/components/ui/blur-fade'
 import { designs, type Design } from '@/lib/data'
-
-const artDisplay = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-art-serif-display',
-})
-
-const artSans = DM_Sans({
-  subsets: ['latin'],
-  variable: '--font-art-sans-body',
-})
-
-const artMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-art-mono',
-})
-
-const devMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-dev-mono',
-})
+import { cn } from '@/lib/utils'
 
 const featuredDesigns = designs.filter((d) => d.featured)
 
@@ -52,9 +34,6 @@ function FeaturedDesignRow({
   design: Design
   index: number
 }) {
-  const isArt = design.id === 'art'
-  const isDev = design.id === 'dev'
-
   return (
     <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
       <BlurFade delay={0.05 + index * 0.04} inView className="lg:col-span-4">
@@ -106,25 +85,12 @@ function FeaturedDesignRow({
         <ProductFrame
           title={`designs/${design.id}`}
           fade
-          contentClassName={
-            isArt
-              ? 'aspect-video overflow-hidden bg-black md:aspect-auto md:h-[min(520px,70vh)]'
-              : 'aspect-video overflow-hidden bg-white md:aspect-auto md:h-[min(520px,70vh)] dark:bg-zinc-950'
-          }
+          contentClassName={cn(
+            'aspect-video overflow-hidden md:aspect-auto md:h-[min(520px,70vh)]',
+            designPreviewBg(design.id),
+          )}
         >
-          {isArt ? (
-            <div
-              className={`${artDisplay.variable} ${artSans.variable} ${artMono.variable} ${artSans.className} h-full font-(family-name:--font-art-sans-body)`}
-            >
-              <ArtPreviewMock className="h-full" />
-            </div>
-          ) : isDev ? (
-            <div
-              className={`${devMono.variable} ${devMono.className} h-full font-mono`}
-            >
-              <DevPreviewMock className="h-full" />
-            </div>
-          ) : null}
+          <DesignPreview id={design.id} />
         </ProductFrame>
       </BlurFade>
     </div>

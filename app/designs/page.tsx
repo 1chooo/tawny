@@ -1,11 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { LayoutGrid, List, Columns2, ArrowUpRight, Lock } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { designs, designCategories, type Design } from '@/lib/data'
+import {
+  DesignPreview,
+  designPreviewBg,
+} from '@/components/landing/design-preview'
 import { BlurFade } from '@/components/ui/blur-fade'
 import { BorderBeam } from '@/components/ui/border-beam'
 import { NoiseTexture } from '@/components/ui/noise-texture'
@@ -42,8 +45,13 @@ function DesignCard({ design, layout, index }: { design: Design; layout: LayoutM
       <BlurFade delay={index * 0.05} inView>
         <Link href={design.demoPath} className="block">
           <article className="group relative flex gap-5 items-start p-4 rounded-xl border border-white/8 bg-white/[0.03] hover:border-white/15 hover:bg-white/[0.05] transition-all duration-200">
-            <div className="relative shrink-0 w-32 h-20 rounded-lg overflow-hidden bg-white/5">
-              <Image src={design.image} alt={design.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
+            <div
+              className={cn(
+                'relative h-20 w-32 shrink-0 overflow-hidden rounded-lg',
+                designPreviewBg(design.id),
+              )}
+            >
+              <DesignPreview id={design.id} className="h-full" />
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-3">
@@ -76,15 +84,22 @@ function DesignCard({ design, layout, index }: { design: Design; layout: LayoutM
       <Link href={design.demoPath} className="block">
         <article className={cn('group relative rounded-xl overflow-hidden border border-white/8 bg-white/[0.03] hover:border-white/15 transition-all duration-200', isFeatured && 'border-white/12')}>
           {isFeatured && <BorderBeam size={140} duration={12} colorFrom="rgba(255,255,255,0.4)" colorTo="transparent" />}
-          <div className="relative w-full aspect-[16/10] bg-white/5 overflow-hidden">
-            <Image src={design.image} alt={design.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-            <div className="absolute inset-0 bg-foreground/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-black/80 backdrop-blur-sm text-white text-xs font-medium border border-white/10">
+          <div
+            className={cn(
+              'relative aspect-[16/10] w-full overflow-hidden',
+              designPreviewBg(design.id),
+            )}
+          >
+            <div className="h-full transition-transform duration-500 group-hover:scale-[1.03]">
+              <DesignPreview id={design.id} className="h-full" />
+            </div>
+            <div className="absolute inset-0 flex items-center justify-center bg-foreground/0 transition-colors duration-300 group-hover:bg-black/20">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/80 px-4 py-2 text-xs font-medium text-white opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100">
                 Open live demo <ArrowUpRight size={12} />
               </span>
             </div>
             {isFeatured && (
-              <span className="absolute top-3 left-3 px-2 py-0.5 text-[10px] font-semibold tracking-wider uppercase rounded-md bg-white text-black">
+              <span className="absolute top-3 left-3 rounded-md bg-white px-2 py-0.5 text-[10px] font-semibold tracking-wider text-black uppercase">
                 Featured
               </span>
             )}

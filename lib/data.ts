@@ -3,7 +3,6 @@ export interface Design {
   title: string
   description: string
   category: string
-  image: string
   price: number | 'free'
   tags: string[]
   featured?: boolean
@@ -28,7 +27,6 @@ export const designs: Design[] = [
     description:
       'A bilingual bento journal with MDX notes, projects, and interactive demos — open the live showcase.',
     category: 'Journal',
-    image: '/art-opengraph-image.png',
     price: 'free',
     tags: ['Next.js', 'MDX', 'Bento', 'i18n'],
     featured: true,
@@ -40,7 +38,6 @@ export const designs: Design[] = [
     description:
       'A minimal mono developer blog with MDX essays and interactive CS demos — open the live showcase.',
     category: 'Blog',
-    image: '/dev-opengraph-image.svg',
     price: 'free',
     tags: ['Next.js', 'MDX', 'Mono', 'Demos'],
     featured: true,
