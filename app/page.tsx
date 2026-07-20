@@ -8,10 +8,10 @@ import { DottedMap } from '@/components/ui/dotted-map'
 import { designs, uiComponents } from '@/lib/data'
 
 const ctaMarkers = [
-  { lat: 37.7749, lng: -122.4194, size: 0.45 }, // San Francisco
-  { lat: 40.7128, lng: -74.006, size: 0.45 }, // New York
-  { lat: 51.5074, lng: -0.1278, size: 0.4 }, // London
-  { lat: 35.6762, lng: 139.6503, size: 0.4 }, // Tokyo
+  { lat: 37.7749, lng: -122.4194, size: 0.7 }, // San Francisco
+  { lat: 40.7128, lng: -74.006, size: 0.7 }, // New York
+  { lat: 51.5074, lng: -0.1278, size: 0.65 }, // London
+  { lat: 35.6762, lng: 139.6503, size: 0.65 }, // Tokyo
 ]
 
 const featuredDesigns = designs
@@ -147,12 +147,13 @@ export default function HomePage() {
       <section className="relative overflow-hidden px-6 py-20 border-t border-white/8">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.35] mask-[radial-gradient(ellipse_70%_60%_at_50%_50%,black,transparent)]"
+          className="pointer-events-none absolute inset-0 opacity-80 mask-[radial-gradient(ellipse_85%_75%_at_50%_45%,black_35%,transparent)]"
         >
           <DottedMap
-            className="h-full w-full text-white/40"
-            dotRadius={0.15}
-            markerColor="rgba(198,144,92,0.9)"
+            className="h-full w-full"
+            dotColor="var(--tawny)"
+            dotRadius={0.28}
+            markerColor="var(--tawny)"
             pulse
             markers={ctaMarkers}
           />
@@ -160,7 +161,7 @@ export default function HomePage() {
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0"
-          style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 100%, rgba(255,255,255,0.04) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 100%, rgba(211,160,108,0.06) 0%, transparent 70%)' }}
         />
         <BlurFade delay={0.1} inView>
           <div className="relative z-10 mx-auto max-w-3xl text-center">
