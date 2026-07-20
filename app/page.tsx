@@ -5,15 +5,7 @@ import { Hero } from '@/components/hero'
 import { DesignsShowcase } from '@/components/landing/designs-showcase'
 import { BlurFade } from '@/components/ui/blur-fade'
 import { BorderBeam } from '@/components/ui/border-beam'
-import { DottedMap } from '@/components/ui/dotted-map'
 import { uiComponents } from '@/lib/data'
-
-const ctaMarkers = [
-  { lat: 37.7749, lng: -122.4194, size: 0.7 }, // San Francisco
-  { lat: 40.7128, lng: -74.006, size: 0.7 }, // New York
-  { lat: 51.5074, lng: -0.1278, size: 0.65 }, // London
-  { lat: 35.6762, lng: 139.6503, size: 0.65 }, // Tokyo
-]
 
 const featuredComponents = uiComponents.slice(0, 4)
 
@@ -86,31 +78,9 @@ export default function HomePage() {
       </section>
 
       {/* ── CTA band ────────────────────────────────────────── */}
-      <section className="relative overflow-hidden px-6 py-24 border-t border-white/8">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-70"
-        >
-          <DottedMap
-            className="w-full min-w-full shrink-0"
-            style={{ width: '100%', height: 'auto' }}
-            dotColor="var(--tawny)"
-            dotRadius={0.28}
-            markerColor="var(--tawny)"
-            pulse
-            markers={ctaMarkers}
-          />
-        </div>
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse 60% 65% at 50% 50%, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.45) 42%, transparent 72%)',
-          }}
-        />
+      <section className="relative px-6 py-24 border-t border-white/8">
         <BlurFade delay={0.1} inView>
-          <div className="relative z-10 mx-auto max-w-3xl text-center">
+          <div className="relative mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-semibold tracking-[-0.03em] text-white md:text-4xl text-balance">
               Get the full bundle at one price
             </h2>
