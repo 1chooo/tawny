@@ -144,13 +144,14 @@ export default function HomePage() {
       </section>
 
       {/* ── CTA band ────────────────────────────────────────── */}
-      <section className="relative overflow-hidden px-6 py-20 border-t border-white/8">
+      <section className="relative overflow-hidden px-6 py-24 border-t border-white/8">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-80 mask-[radial-gradient(ellipse_85%_75%_at_50%_45%,black_35%,transparent)]"
+          className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-70"
         >
           <DottedMap
-            className="h-full w-full"
+            className="w-full min-w-full shrink-0"
+            style={{ width: '100%', height: 'auto' }}
             dotColor="var(--tawny)"
             dotRadius={0.28}
             markerColor="var(--tawny)"
@@ -161,26 +162,29 @@ export default function HomePage() {
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0"
-          style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 100%, rgba(211,160,108,0.06) 0%, transparent 70%)' }}
+          style={{
+            background:
+              'radial-gradient(ellipse 60% 65% at 50% 50%, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.45) 42%, transparent 72%)',
+          }}
         />
         <BlurFade delay={0.1} inView>
           <div className="relative z-10 mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-semibold tracking-[-0.03em] text-foreground md:text-4xl text-balance">
+            <h2 className="text-3xl font-semibold tracking-[-0.03em] text-white md:text-4xl text-balance">
               Get the full bundle at one price
             </h2>
-            <p className="mt-4 text-muted-foreground max-w-md mx-auto leading-relaxed">
+            <p className="mt-4 text-white/75 max-w-md mx-auto leading-relaxed">
               40+ designs, 120+ components, Figma files, commercial license, and lifetime updates — all for a one-time fee.
             </p>
             <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <Link
                 href="/pricing"
-                className="inline-flex items-center gap-2 rounded-full bg-foreground text-background px-7 py-3 text-sm font-medium hover:opacity-85 transition-opacity"
+                className="inline-flex items-center gap-2 rounded-full bg-white text-black px-7 py-3 text-sm font-medium hover:opacity-85 transition-opacity"
               >
                 View pricing <ArrowUpRight size={14} />
               </Link>
               <Link
                 href="/designs"
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 px-6 py-3 text-sm font-medium text-foreground/70 hover:text-foreground hover:border-white/20 transition-all"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-white/80 hover:text-white hover:border-white/35 transition-all"
               >
                 Browse designs
               </Link>
