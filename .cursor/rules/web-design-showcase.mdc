@@ -1,0 +1,75 @@
+---
+description: How to add a new web design — live /designs/<id> demo plus landing showcase preview
+globs: app/designs/**/*,components/landing/**/*,lib/data.ts,app/page.tsx,app/designs/page.tsx
+alwaysApply: false
+---
+
+# Web design showcase pattern
+
+Every new design must ship **both** a live interactive demo and a landing-page preview. Do not ship OG/static thumbnail-only cards on the home page.
+
+Reference implementation: **Art** (`id: art`).
+
+## 1. Catalog entry
+
+Add to `designs` in [`lib/data.ts`](lib/data.ts):
+
+- `id` — kebab-case slug (e.g. `art`)
+- `demoPath` — always `/designs/<id>`
+- `image` — still used on `/designs` catalog cards
+- `title`, `description`, `tags`, `price`, `category`, optional `featured`
+
+## 2. Live demo at `/designs/<id>`
+
+Mirror Art’s host pattern:
+
+| Piece | Path |
+|-------|------|
+| Showcase shell | `app/designs/<id>/layout.tsx` |
+| App routes | `app/designs/<id>/…` (pages, nested layouts) |
+| Design UI | `components/<id>/…` |
+| Design tokens / CSS | e.g. `app/designs/<id>/<id>.css` (import from globals if needed) |
+
+Requirements:
+
+- Wrap the design in [`ProductFrame`](components/product-frame.tsx) (window chrome + title like `designs/<id>`)
+- Real navigation and interaction inside the frame
+- Keep the design self-contained (own fonts/tokens under a root class, e.g. `art-root`)
+- Do **not** iframe the live app on the landing page
+
+## 3. Landing showcase + inert preview
+
+Home Web Designs section is a **1/3 intro + 2/3 ProductFrame preview** ([`components/landing/designs-showcase.tsx`](components/landing/designs-showcase.tsx)), not an OG card grid.
+
+For each featured design:
+
+1. **Inert mock** — `components/landing/<id>-preview-mock.tsx`
+   - Visually match the live home (header + main composition)
+   - Hardcoded sample copy; no design routing, i18n providers, or data fetches
+   - Autoplay / CSS motion OK; **clicks must do nothing** (`inert` / no real links)
+   - `role="img"` + accessible name (e.g. “Art design preview”)
+2. **Wire into showcase** — extend `DesignsShowcase` (or a shared multi-design section) so the left column reads from `lib/data.ts` and the right column renders the mock inside `ProductFrame`
+3. Load that design’s fonts on the preview wrapper the same way the live layout does
+
+Only left-column CTAs navigate (`Open live demo` → `demoPath`, `View all` → `/designs`).
+
+## 4. Do / don’t
+
+```text
+✅ Live app at /designs/<id> inside ProductFrame
+✅ Landing: copy + inert mock preview
+✅ Catalog /designs may keep static image cards
+
+❌ Landing OG/static cards as the only “showcase”
+❌ Embedding the live route via iframe on the home page
+❌ Importing live HomeBento / SiteHeader (or equivalents) into the landing mock
+❌ Clickable navigation inside the landing preview
+```
+
+## Checklist for a new design
+
+- [ ] `lib/data.ts` entry with `demoPath: '/designs/<id>'`
+- [ ] `app/designs/<id>/` live demo + `ProductFrame`
+- [ ] `components/landing/<id>-preview-mock.tsx` (inert)
+- [ ] Landing showcase shows intro + preview (not OG-only)
+- [ ] `/designs` catalog card still works with `image` + `demoPath`
