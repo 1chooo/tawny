@@ -14,7 +14,7 @@ const _instrumentSerif = Instrument_Serif({
 })
 
 export const metadata: Metadata = {
-  title: 'DesignCraft — Web Designs & UI Components',
+  title: 'Tawny — Web Designs & UI Components',
   description:
     'Beautiful, ready-to-use web designs and UI components crafted for your next project. Free and premium templates available.',
   generator: 'v0.app',

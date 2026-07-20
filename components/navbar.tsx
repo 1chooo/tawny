@@ -37,11 +37,11 @@ export function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-6 h-14 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group" aria-label="DesignCraft home">
+        <Link href="/" className="flex items-center gap-2 group" aria-label="Tawny home">
           <span className="inline-flex items-center justify-center w-6 h-6 rounded-[5px] bg-foreground group-hover:opacity-80 transition-opacity">
-            <span className="text-background text-[11px] font-bold tracking-tight">DC</span>
+            <span className="text-background text-[11px] font-bold tracking-tight">T</span>
           </span>
-          <span className="font-medium text-sm text-foreground tracking-tight">DesignCraft</span>
+          <span className="font-medium text-sm text-foreground tracking-tight">Tawny</span>
         </Link>
 
         {/* Desktop nav */}

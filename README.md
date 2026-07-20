@@ -1,6 +1,6 @@
-# designs
+# Tawny
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+Handcrafted web designs and UI components. Built with [Next.js](https://nextjs.org).
 
 ## Built with v0
 

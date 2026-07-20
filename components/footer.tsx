@@ -30,9 +30,9 @@ export function Footer() {
           <div className="max-w-xs">
             <div className="mb-4 flex items-center gap-2">
               <span className="inline-flex items-center justify-center w-6 h-6 rounded-[5px] bg-foreground">
-                <span className="text-background text-[11px] font-bold tracking-tight">DC</span>
+                <span className="text-background text-[11px] font-bold tracking-tight">T</span>
               </span>
-              <span className="text-sm font-medium text-foreground tracking-tight">DesignCraft</span>
+              <span className="text-sm font-medium text-foreground tracking-tight">Tawny</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Handcrafted web designs and UI components for developers and designers who care about quality.
@@ -61,7 +61,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/8 pt-6 sm:flex-row">
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} DesignCraft. All rights reserved.
+            &copy; {new Date().getFullYear()} Tawny. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <Link href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
