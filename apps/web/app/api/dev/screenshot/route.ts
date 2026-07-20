@@ -16,6 +16,7 @@ type ScreenshotBody = {
   id: string
   path: string
   selector?: string
+  viewport?: { width?: number; height?: number }
 }
 
 function isValidId(id: string) {
@@ -57,7 +58,7 @@ export async function POST(request: NextRequest) {
   }
 
   const body = (await request.json()) as ScreenshotBody
-  const { kind, id, path: targetPath, selector } = body
+  const { kind, id, path: targetPath, selector, viewport } = body
 
   if (kind !== 'design' && kind !== 'component') {
     return NextResponse.json({ error: 'Invalid kind' }, { status: 400 })
@@ -75,7 +76,10 @@ export async function POST(request: NextRequest) {
   try {
     browser = await chromium.launch()
     const page = await browser.newPage({
-      viewport: { width: 1440, height: 900 },
+      viewport: {
+        width: viewport?.width ?? 1440,
+        height: viewport?.height ?? 900,
+      },
       deviceScaleFactor: 1,
     })
 

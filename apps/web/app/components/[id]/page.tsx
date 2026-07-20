@@ -83,20 +83,19 @@ export default async function ComponentDetailPage({ params }: PageProps) {
                 id={demo.id}
                 path={`/components/${demo.id}`}
                 selector={`#thumbnail-capture-${demo.id}`}
+                viewport={{ width: 640 }}
               />
             </div>
           ) : null}
         </BlurFade>
 
         <BlurFade delay={0.1} className="mt-10">
-          <div id={`thumbnail-capture-${demo.id}`}>
-            <ProductFrame
-              title={demo.frameTitle}
-              contentClassName={cn('overflow-hidden', demo.contentClassName)}
-            >
-              {demo.render()}
-            </ProductFrame>
-          </div>
+          <ProductFrame
+            title={demo.frameTitle}
+            contentClassName={cn('overflow-hidden', demo.contentClassName)}
+          >
+            <div id={`thumbnail-capture-${demo.id}`}>{demo.render()}</div>
+          </ProductFrame>
         </BlurFade>
 
         <BlurFade delay={0.15} className="mt-12">
