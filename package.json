@@ -5,11 +5,16 @@
     "dev": "pnpm --filter web dev",
     "build": "pnpm --filter web build",
     "start": "pnpm --filter web start",
-    "lint": "pnpm -r lint"
+    "lint": "pnpm -r lint",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "pnpm": {
     "overrides": {
       "hono": "4.12.25"
     }
+  },
+  "devDependencies": {
+    "vitest": "^4.1.10"
   }
 }
