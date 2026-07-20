@@ -7,8 +7,7 @@ import { BorderBeam } from '@/components/ui/border-beam'
 import { NoiseTexture } from '@/components/ui/noise-texture'
 import { designs, uiComponents } from '@/lib/data'
 
-// Show only the first 3 featured/top designs on the landing page
-const featuredDesigns = designs.slice(0, 3)
+const featuredDesigns = designs
 const featuredComponents = uiComponents.slice(0, 4)
 
 function PriceBadge({ price }: { price: number | 'free' }) {
@@ -41,7 +40,7 @@ export default function HomePage() {
               <div>
                 <p className="text-xs text-muted-foreground font-medium uppercase tracking-[0.15em] mb-2">Web Designs</p>
                 <h2 className="text-3xl font-semibold tracking-[-0.03em] text-foreground text-balance">
-                  Ready-to-launch templates
+                  Live design showcases
                 </h2>
               </div>
               <Link
@@ -53,25 +52,32 @@ export default function HomePage() {
             </div>
           </BlurFade>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {featuredDesigns.map((design, i) => (
               <BlurFade key={design.id} delay={0.08 + i * 0.07} inView>
-                <article className={`group relative rounded-xl overflow-hidden border border-white/8 bg-white/[0.03] hover:border-white/15 transition-all duration-200 ${design.featured ? 'border-white/12' : ''}`}>
-                  {design.featured && <BorderBeam size={140} duration={12} colorFrom="rgba(255,255,255,0.4)" colorTo="transparent" />}
-                  <div className="relative w-full aspect-[16/10] bg-white/5 overflow-hidden">
-                    <Image src={design.image} alt={design.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                    {design.featured && (
-                      <span className="absolute top-3 left-3 px-2 py-0.5 text-[10px] font-semibold uppercase rounded-md bg-white text-black">Featured</span>
-                    )}
-                  </div>
-                  <div className="p-4">
-                    <div className="flex items-start justify-between gap-2 mb-1">
-                      <h3 className="font-medium text-sm text-foreground leading-tight">{design.title}</h3>
-                      <PriceBadge price={design.price} />
+                <Link href={design.demoPath} className="block">
+                  <article className={`group relative rounded-xl overflow-hidden border border-white/8 bg-white/[0.03] hover:border-white/15 transition-all duration-200 ${design.featured ? 'border-white/12' : ''}`}>
+                    {design.featured && <BorderBeam size={140} duration={12} colorFrom="rgba(255,255,255,0.4)" colorTo="transparent" />}
+                    <div className="relative w-full aspect-[16/10] bg-white/5 overflow-hidden">
+                      <Image src={design.image} alt={design.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                      {design.featured && (
+                        <span className="absolute top-3 left-3 px-2 py-0.5 text-[10px] font-semibold uppercase rounded-md bg-white text-black">Featured</span>
+                      )}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                        <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-black/80 text-white text-xs font-medium border border-white/10">
+                          Open live demo <ArrowUpRight size={12} />
+                        </span>
+                      </div>
                     </div>
-                    <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">{design.description}</p>
-                  </div>
-                </article>
+                    <div className="p-4">
+                      <div className="flex items-start justify-between gap-2 mb-1">
+                        <h3 className="font-medium text-sm text-foreground leading-tight">{design.title}</h3>
+                        <PriceBadge price={design.price} />
+                      </div>
+                      <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">{design.description}</p>
+                    </div>
+                  </article>
+                </Link>
               </BlurFade>
             ))}
           </div>

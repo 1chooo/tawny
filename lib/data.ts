@@ -7,6 +7,8 @@ export interface Design {
   price: number | 'free'
   tags: string[]
   featured?: boolean
+  /** Live demo path inside Tawny */
+  demoPath: string
 }
 
 export interface UIComponent {
@@ -21,60 +23,16 @@ export interface UIComponent {
 
 export const designs: Design[] = [
   {
-    id: 'saas-dashboard',
-    title: 'SaaS Dashboard',
-    description: 'A complete analytics dashboard with charts, metrics, and a sidebar navigation.',
-    category: 'Dashboard',
-    image: '/images/preview-saas.png',
-    price: 49,
-    tags: ['Next.js', 'Tailwind', 'Charts'],
-    featured: true,
-  },
-  {
-    id: 'ecommerce-store',
-    title: 'E-Commerce Store',
-    description: 'Modern product listing and detail pages with cart and checkout flow.',
-    category: 'E-Commerce',
-    image: '/images/preview-ecommerce.png',
-    price: 39,
-    tags: ['React', 'Tailwind'],
-  },
-  {
-    id: 'portfolio-site',
-    title: 'Creative Portfolio',
-    description: 'A bold, dark portfolio for creatives with project case studies.',
-    category: 'Portfolio',
-    image: '/images/preview-portfolio.png',
+    id: 'art',
+    title: 'Art',
+    description:
+      'A bilingual bento journal with MDX notes, projects, and interactive demos — open the live showcase.',
+    category: 'Journal',
+    image: '/art-opengraph-image.png',
     price: 'free',
-    tags: ['Next.js', 'Framer Motion'],
-  },
-  {
-    id: 'startup-landing',
-    title: 'Startup Landing Page',
-    description: 'Clean hero, feature grid, pricing, and FAQ sections.',
-    category: 'Landing Page',
-    image: '/images/preview-landing.png',
-    price: 'free',
-    tags: ['React', 'Tailwind'],
+    tags: ['Next.js', 'MDX', 'Bento', 'i18n'],
     featured: true,
-  },
-  {
-    id: 'editorial-blog',
-    title: 'Editorial Blog',
-    description: 'A beautiful reading experience with featured posts and category navigation.',
-    category: 'Blog',
-    image: '/images/preview-blog.png',
-    price: 29,
-    tags: ['Next.js', 'MDX'],
-  },
-  {
-    id: 'agency-site',
-    title: 'Creative Agency',
-    description: 'A dramatic, full-screen agency site with scroll animations.',
-    category: 'Agency',
-    image: '/images/preview-agency.png',
-    price: 59,
-    tags: ['Next.js', 'GSAP'],
+    demoPath: '/designs/art',
   },
 ]
 
@@ -117,5 +75,5 @@ export const uiComponents: UIComponent[] = [
   },
 ]
 
-export const designCategories = ['All', 'Dashboard', 'E-Commerce', 'Portfolio', 'Landing Page', 'Blog', 'Agency'] as const
+export const designCategories = ['All', 'Journal'] as const
 export const componentCategories = ['All', 'Navigation', 'Marketing', 'Layout', 'Content'] as const
