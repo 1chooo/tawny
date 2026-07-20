@@ -1,7 +1,7 @@
 {
   "name": "create-tawny",
-  "version": "0.1.4",
-  "description": "Scaffold a Tawny design template (dev or art) with Next.js and MDX",
+  "version": "0.1.5",
+  "description": "Scaffold a Tawny designs with Next.js and MDX",
   "license": "MIT",
   "type": "module",
   "bin": {
