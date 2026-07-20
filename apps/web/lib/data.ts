@@ -16,6 +16,10 @@ export interface Design {
   packageName: string
   /** Paths relative to templates/<id>/ shown in the source viewer */
   sourceFiles: string[]
+  /** Generated screenshot shown on catalog/landing cards instead of the inert mock, once captured */
+  thumbnail?: string
+  /** Route to screenshot when it differs from viewPath (e.g. a locale-prefixed route); falls back to viewPath */
+  screenshotPath?: string
 }
 
 export const designs: Design[] = [
@@ -34,8 +38,10 @@ export const designs: Design[] = [
     featured: true,
     demoPath: '/designs/art',
     viewPath: '/view/art',
+    screenshotPath: '/view/art/en',
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'app/[locale]/page.tsx'],
+    thumbnail: '/thumbnails/designs/art.webp',
   },
   {
     id: 'dev',
@@ -54,6 +60,7 @@ export const designs: Design[] = [
     viewPath: '/view/dev',
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
+    thumbnail: '/thumbnails/designs/dev.webp',
   },
 ]
 

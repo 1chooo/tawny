@@ -31,7 +31,16 @@ export function ComponentDemoCard({
             title={demo.frameTitle}
             contentClassName={cn('overflow-hidden', demo.contentClassName)}
           >
-            {demo.render()}
+            {demo.thumbnail ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={demo.thumbnail}
+                alt={`${demo.title} preview`}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              demo.render()
+            )}
           </ProductFrame>
         </div>
         <div className="flex items-start justify-between gap-3">

@@ -109,7 +109,16 @@ export function DesignShowcaseRow({
             designPreviewBg(design.id),
           )}
         >
-          <DesignPreview id={design.id} />
+          {design.thumbnail ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={design.thumbnail}
+              alt={`${design.title} design preview`}
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <DesignPreview id={design.id} />
+          )}
         </ProductFrame>
       </BlurFade>
     </div>
