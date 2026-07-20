@@ -108,12 +108,12 @@ export function ArtPreviewMock({ className }: ArtPreviewMockProps) {
         </div>
       </header>
 
-      {/* Force desktop 12-col bento so the landing preview always reads as the real home */}
+      {/* Same responsive bento as the live home — width of the frame drives the layout */}
       <div className="flex min-h-0 flex-1 flex-col bg-black p-art-bento-gap">
-        <div className="grid min-h-0 flex-1 grid-cols-12 grid-rows-[auto_1fr_auto] gap-art-bento-gap bg-black">
+        <div className="grid min-h-0 flex-1 grid-cols-1 gap-art-bento-gap bg-black md:grid-cols-12 md:grid-rows-[auto_1fr_auto]">
           {/* Copyright */}
           <section
-            className={`col-span-3 flex flex-col items-center justify-center p-4 text-center ${bentoCellGroup}`}
+            className={`order-1 flex flex-col items-center justify-center p-4 text-center md:order-0 md:col-span-3 ${bentoCellGroup}`}
           >
             <BentoLabel>Copyright</BentoLabel>
             <p className="font-(family-name:--font-serif-display) text-xl font-bold">
@@ -123,7 +123,7 @@ export function ArtPreviewMock({ className }: ArtPreviewMockProps) {
 
           {/* Tag — autoplay */}
           <section
-            className={`col-span-3 flex flex-col items-center justify-center p-4 text-center ${bentoCellGroup}`}
+            className={`order-7 flex flex-col items-center justify-center p-4 text-center md:order-0 md:col-span-3 ${bentoCellGroup}`}
           >
             <BentoLabel>Tag</BentoLabel>
             <p
@@ -136,7 +136,7 @@ export function ArtPreviewMock({ className }: ArtPreviewMockProps) {
           </section>
 
           {/* Upcoming */}
-          <section className="bg-art-bento-bg col-span-6 flex flex-col p-4 md:p-5">
+          <section className="bg-art-bento-bg order-2 flex flex-col p-4 md:order-0 md:col-span-6 md:p-5">
             <BentoLabel>Upcoming</BentoLabel>
             <div className="mt-auto flex flex-1 flex-col justify-center">
               <h3
@@ -161,7 +161,7 @@ export function ArtPreviewMock({ className }: ArtPreviewMockProps) {
           </section>
 
           {/* Hero image */}
-          <div className="bg-art-bento-bg relative col-span-6 row-start-2 min-h-[160px] overflow-hidden">
+          <div className="bg-art-bento-bg relative order-5 min-h-[160px] overflow-hidden md:order-0 md:col-span-6 md:row-start-2">
             <Image
               key={imageIndex}
               src={image.src}
@@ -191,7 +191,7 @@ export function ArtPreviewMock({ className }: ArtPreviewMockProps) {
           </div>
 
           {/* Project */}
-          <section className="bg-art-bento-bg col-span-3 row-start-2 flex flex-col p-4">
+          <section className="bg-art-bento-bg order-4 flex flex-col p-4 md:order-0 md:col-span-3 md:row-start-2">
             <BentoLabel>Project</BentoLabel>
             <div className="mt-auto flex flex-1 flex-col justify-center">
               <h3
@@ -208,7 +208,7 @@ export function ArtPreviewMock({ className }: ArtPreviewMockProps) {
           </section>
 
           {/* Author / social / weather */}
-          <div className="col-span-3 row-start-2 grid grid-cols-2 gap-art-bento-gap bg-black">
+          <div className="order-6 grid grid-cols-2 gap-art-bento-gap bg-black md:order-0 md:col-span-3 md:row-start-2">
             <div
               className={`col-span-2 flex flex-col items-center justify-center bg-art-bento-bg p-3 text-center ${bentoCellHover}`}
             >
@@ -239,7 +239,7 @@ export function ArtPreviewMock({ className }: ArtPreviewMockProps) {
 
           {/* Quote */}
           <section
-            className={`bg-art-bento-ink text-art-bento-bg col-span-6 row-start-3 flex items-center justify-center p-5 text-center md:p-6 ${bentoCellInvertedHover}`}
+            className={`bg-art-bento-ink text-art-bento-bg order-8 flex items-center justify-center p-5 text-center md:order-0 md:col-span-6 md:row-start-3 md:p-6 ${bentoCellInvertedHover}`}
           >
             <p className="font-(family-name:--font-serif-display) max-w-md text-base font-bold md:text-lg">
               Talk is cheap. Show me the code.
@@ -248,7 +248,7 @@ export function ArtPreviewMock({ className }: ArtPreviewMockProps) {
 
           {/* CTA cell — looks like a link, does nothing */}
           <section
-            className={`col-span-6 row-start-3 flex items-center justify-center p-5 text-center md:p-6 ${bentoCellGroup}`}
+            className={`order-3 flex items-center justify-center p-5 text-center md:order-0 md:col-span-6 md:row-start-3 md:p-6 ${bentoCellGroup}`}
           >
             <span className="font-(family-name:--font-serif-display) text-base font-bold md:text-xl">
               View the latest Article

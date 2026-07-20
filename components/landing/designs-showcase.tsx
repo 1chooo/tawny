@@ -108,8 +108,8 @@ function FeaturedDesignRow({
           fade
           contentClassName={
             isArt
-              ? 'h-[min(520px,70vh)] overflow-hidden bg-black'
-              : 'h-[min(520px,70vh)] overflow-hidden bg-white dark:bg-zinc-950'
+              ? 'aspect-video overflow-hidden bg-black md:aspect-auto md:h-[min(520px,70vh)]'
+              : 'aspect-video overflow-hidden bg-white md:aspect-auto md:h-[min(520px,70vh)] dark:bg-zinc-950'
           }
         >
           {isArt ? (
