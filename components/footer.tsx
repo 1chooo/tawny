@@ -30,9 +30,9 @@ export function Footer() {
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           {/* Brand */}
           <div className="max-w-xs">
-            <div className="mb-4 flex items-center gap-2">
-              <Logo className="size-6 rounded-[5px]" />
-              <span className="text-sm font-medium text-foreground tracking-tight">Tawny</span>
+            <div className="mb-4 flex items-center gap-2.5">
+              <Logo className="size-8 rounded-md" />
+              <span className="font-serif text-xl italic tracking-tight text-foreground">Tawny</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Handcrafted web designs and UI components for developers and designers who care about quality.

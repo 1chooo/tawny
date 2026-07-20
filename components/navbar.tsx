@@ -33,14 +33,16 @@ export function Navbar() {
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         scrolled
           ? 'bg-background/80 backdrop-blur-xl border-b border-white/8 shadow-[0_1px_0_rgba(255,255,255,0.04)]'
-          : 'bg-transparent'
+          : // Mobile always gets a subtle scrim so the logo/links stay readable over the hero;
+            // desktop stays fully transparent until scroll.
+            'bg-background/35 backdrop-blur-md border-b border-white/5 md:bg-transparent md:backdrop-blur-none md:border-transparent'
       )}
     >
       <div className="mx-auto max-w-7xl px-6 h-14 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group" aria-label="Tawny home">
-          <Logo className="size-6 rounded-[5px] group-hover:opacity-80 transition-opacity" />
-          <span className="font-medium text-sm text-foreground tracking-tight">Tawny</span>
+        <Link href="/" className="flex items-center gap-2.5 group" aria-label="Tawny home">
+          <Logo className="size-8 rounded-md group-hover:opacity-80 transition-opacity" />
+          <span className="font-serif text-xl italic tracking-tight text-foreground">Tawny</span>
         </Link>
 
         {/* Desktop nav */}
