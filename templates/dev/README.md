@@ -11,7 +11,7 @@ Design by [Hugo Lin](https://1chooo.com).
 ```bash
 npx create-next-app@latest my-blog \
   --example "https://github.com/1chooo/tawny" \
-  --example-path "apps/web/templates/dev"
+  --example-path "templates/dev"
 ```
 
 ### Option B — create-tawny CLI (interactive prompts)

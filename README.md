@@ -7,9 +7,10 @@ Handcrafted web designs and UI components. Built with [Next.js](https://nextjs.o
 ```
 apps/
   web/     # the Next.js site (Tawny)
-  cli/     # create-tawny — scaffolds the templates in apps/web/templates
+  cli/     # create-tawny — scaffolds the templates in templates/
 packages/
   ui/      # @tawny/ui — shared UI primitives used by apps/web
+templates/ # dev / art starter templates, scaffolded by apps/cli and browsed on /designs/<id>
 ```
 
 Managed as a [pnpm workspace](https://pnpm.io/workspaces) (see `pnpm-workspace.yaml`). Run everything from the repo root — `pnpm install` links all three packages together.

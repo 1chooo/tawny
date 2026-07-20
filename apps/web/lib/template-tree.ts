@@ -87,7 +87,7 @@ function flattenFilePaths(nodes: TemplateFileNode[]): string[] {
 export async function loadTemplateExplorer(
   designId: string,
 ): Promise<TemplateExplorerData> {
-  const root = path.join(process.cwd(), 'templates', designId)
+  const root = path.join(process.cwd(), '..', '..', 'templates', designId)
   const tree = await walkDir(root, '')
   const filePaths = flattenFilePaths(tree)
 

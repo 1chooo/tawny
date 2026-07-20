@@ -6,7 +6,7 @@ export const dev = {
   id: "dev",
   label: "Dev — minimal mono developer blog",
   hint: "MDX essays + interactive CS demos",
-  path: "apps/web/templates/dev",
+  path: "templates/dev",
   defaultProjectName: "my-blog",
   extraPrompts: async () => ({}),
   postProcess: async () => {},

@@ -35,7 +35,7 @@ export const art = {
   id: "art",
   label: "Art — bilingual bento journal",
   hint: "MDX notes, projects, and interactive bento tiles",
-  path: "apps/web/templates/art",
+  path: "templates/art",
   defaultProjectName: "my-journal",
   async extraPrompts() {
     const locales = await p.select({

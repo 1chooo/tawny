@@ -16,10 +16,10 @@ Available templates:
 
 | id    | Description                                            | Source                                     |
 | ----- | -------------------------------------------------------| ------------------------------------------- |
-| `dev` | Minimal mono developer blog — MDX essays + demos        | [`templates/dev`](../web/templates/dev)     |
-| `art` | Bilingual bento journal — MDX notes, projects, i18n     | [`templates/art`](../web/templates/art)     |
+| `dev` | Minimal mono developer blog — MDX essays + demos        | [`templates/dev`](../../templates/dev)     |
+| `art` | Bilingual bento journal — MDX notes, projects, i18n     | [`templates/art`](../../templates/art)     |
 
-Under the hood it shells out to `create-next-app --example https://github.com/1chooo/tawny --example-path apps/web/templates/<id>`, then replaces the `{{AUTHOR_NAME}}` / `{{AUTHOR_EMAIL}}` / `{{GITHUB_USERNAME}}` / `{{CITY_NAME}}` placeholders and runs any template-specific setup (e.g. `art` strips the Chinese locale and seeds `.env` when you opt into English-only).
+Under the hood it shells out to `create-next-app --example https://github.com/1chooo/tawny --example-path templates/<id>`, then replaces the `{{AUTHOR_NAME}}` / `{{AUTHOR_EMAIL}}` / `{{GITHUB_USERNAME}}` / `{{CITY_NAME}}` placeholders and runs any template-specific setup (e.g. `art` strips the Chinese locale and seeds `.env` when you opt into English-only).
 
 ## Development
 
@@ -30,7 +30,7 @@ node apps/cli/bin.mjs dev my-test-blog
 
 ## Publishing
 
-This package is **not yet published**. The `create-tawny@latest` command on the Tawny site's "Get the template" tabs will 404 until it is. To publish:
+Published as [`create-tawny`](https://www.npmjs.com/package/create-tawny) on npm. To ship a new version:
 
 ```bash
 npm login

@@ -104,7 +104,7 @@ export async function DesignCopyPageAction({
   const sources = await Promise.all(
     design.sourceFiles.map(async (file) => {
       const code = await readFile(
-        path.join(process.cwd(), 'templates', design.id, file),
+        path.join(process.cwd(), '..', '..', 'templates', design.id, file),
         'utf8',
       )
       return {
