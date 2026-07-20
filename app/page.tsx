@@ -4,8 +4,15 @@ import { ArrowUpRight, Lock } from 'lucide-react'
 import { Hero } from '@/components/hero'
 import { BlurFade } from '@/components/ui/blur-fade'
 import { BorderBeam } from '@/components/ui/border-beam'
-import { NoiseTexture } from '@/components/ui/noise-texture'
+import { DottedMap } from '@/components/ui/dotted-map'
 import { designs, uiComponents } from '@/lib/data'
+
+const ctaMarkers = [
+  { lat: 37.7749, lng: -122.4194, size: 0.45 }, // San Francisco
+  { lat: 40.7128, lng: -74.006, size: 0.45 }, // New York
+  { lat: 51.5074, lng: -0.1278, size: 0.4 }, // London
+  { lat: 35.6762, lng: 139.6503, size: 0.4 }, // Tokyo
+]
 
 const featuredDesigns = designs
 const featuredComponents = uiComponents.slice(0, 4)
@@ -33,7 +40,6 @@ export default function HomePage() {
 
       {/* ── Designs teaser ─────────────────────────────────── */}
       <section className="relative px-6 py-20">
-        <NoiseTexture opacity={0.02} />
         <div className="relative z-10 mx-auto max-w-7xl">
           <BlurFade delay={0.05} inView>
             <div className="mb-10 flex items-end justify-between">
@@ -94,7 +100,6 @@ export default function HomePage() {
 
       {/* ── Components teaser ───────────────────────────────── */}
       <section className="relative px-6 py-20 border-t border-white/8">
-        <NoiseTexture opacity={0.02} />
         <div className="relative z-10 mx-auto max-w-7xl">
           <BlurFade delay={0.05} inView>
             <div className="mb-10 flex items-end justify-between">
@@ -139,8 +144,19 @@ export default function HomePage() {
       </section>
 
       {/* ── CTA band ────────────────────────────────────────── */}
-      <section className="relative px-6 py-20 border-t border-white/8">
-        <NoiseTexture opacity={0.03} />
+      <section className="relative overflow-hidden px-6 py-20 border-t border-white/8">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.35] mask-[radial-gradient(ellipse_70%_60%_at_50%_50%,black,transparent)]"
+        >
+          <DottedMap
+            className="h-full w-full text-white/40"
+            dotRadius={0.15}
+            markerColor="rgba(198,144,92,0.9)"
+            pulse
+            markers={ctaMarkers}
+          />
+        </div>
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0"

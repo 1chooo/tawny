@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { Logo } from '@/components/logo'
-import { NoiseTexture } from '@/components/ui/noise-texture'
 import { BlurFade } from '@/components/ui/blur-fade'
 import { ShimmerButton } from '@/components/ui/shimmer-button'
 import { WordRotate } from '@/components/ui/word-rotate'
@@ -51,9 +50,6 @@ export function Hero() {
               backgroundSize: '48px 48px',
             }}
           />
-
-          {/* Noise texture overlay */}
-          <NoiseTexture opacity={0.035} />
 
           {/* Main row: text column, with the owl graphic as an atmospheric layer */}
           <div className="relative z-10 flex flex-1">
