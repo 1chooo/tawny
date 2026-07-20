@@ -1,8 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
-import { Navbar } from '@/components/navbar'
-import { Footer } from '@/components/footer'
+import { SiteChrome } from '@/components/site-chrome'
 import './globals.css'
 
 const _geistSans = Geist({ subsets: ['latin'] })
@@ -35,9 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-background dark">
       <body className="antialiased font-sans min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
