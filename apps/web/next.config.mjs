@@ -19,6 +19,15 @@ const nextConfig = {
     unoptimized: true,
   },
   transpilePackages: ['@tawny/ui'],
+  async redirects() {
+    return [
+      {
+        source: '/npm',
+        destination: 'https://www.npmjs.com/package/create-tawny',
+        permanent: false,
+      },
+    ]
+  },
 }
 
 export default withNextIntl(withMDX(nextConfig))
