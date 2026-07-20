@@ -13,6 +13,10 @@ const navLinks = [
   { label: 'Pricing', href: '/pricing' },
 ]
 
+function isNavActive(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`)
+}
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -53,7 +57,7 @@ export function Navbar() {
               href={link.href}
               className={cn(
                 'px-3 py-1.5 rounded-md text-sm transition-colors',
-                pathname === link.href
+                isNavActive(pathname, link.href)
                   ? 'text-foreground bg-white/8'
                   : 'text-muted-foreground hover:text-foreground hover:bg-white/5'
               )}
@@ -93,7 +97,7 @@ export function Navbar() {
               href={link.href}
               className={cn(
                 'px-3 py-2 rounded-md text-sm transition-colors',
-                pathname === link.href
+                isNavActive(pathname, link.href)
                   ? 'text-foreground bg-white/8'
                   : 'text-muted-foreground hover:text-foreground hover:bg-white/5'
               )}
