@@ -100,7 +100,7 @@ export default function LogosMarksPage() {
           <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {MARKS.map((mark, i) => (
               <BlurFade key={mark.key} delay={0.1 + i * 0.07} inView>
-                <figure className="flex flex-col items-center gap-6 rounded-xl border border-white/8 bg-white/[0.03] p-8">
+                <figure className="flex flex-col items-center gap-6 rounded-xl border border-white/8 bg-white/3 p-8">
                   {/* eslint-disable-next-line @next/next/no-img-element -- brand asset preview, not content imagery */}
                   <img src={mark.src} alt={mark.alt} className="size-24 md:size-28" />
                   <figcaption className="text-xs uppercase tracking-widest text-muted-foreground">

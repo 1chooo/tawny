@@ -63,9 +63,9 @@ export default function HomePage() {
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {featuredComponents.map((comp, i) => (
               <BlurFade key={comp.id} delay={0.08 + i * 0.06} inView>
-                <article className="group relative rounded-xl overflow-hidden border border-white/8 bg-white/[0.03] hover:border-white/15 transition-all duration-200">
+                <article className="group relative rounded-xl overflow-hidden border border-white/8 bg-white/3 hover:border-white/15 transition-all duration-200">
                   {comp.price !== 'free' && <BorderBeam size={100} duration={14} delay={i * 1.5} colorFrom="rgba(255,255,255,0.3)" colorTo="transparent" />}
-                  <div className="relative w-full aspect-[16/9] bg-white/5 overflow-hidden">
+                  <div className="relative w-full aspect-video bg-white/5 overflow-hidden">
                     <Image src={comp.image} alt={comp.title} fill className="object-cover group-hover:scale-[1.03] transition-transform duration-500" />
                     <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-sm text-[11px] text-white/60 border border-white/10">
                       {comp.count} variants
