@@ -1,6 +1,6 @@
 ---
-description: How to add a new web design — live /designs/<id> demo plus landing showcase preview
-globs: apps/web/app/designs/**/*,apps/web/components/landing/**/*,apps/web/lib/data.ts,apps/web/app/page.tsx,apps/web/app/designs/page.tsx
+description: How to add a new web design — live /designs/<id> demo, /view/<id> full preview, plus landing showcase
+globs: apps/web/app/designs/**/*,apps/web/app/view/**/*,apps/web/components/landing/**/*,apps/web/lib/data.ts,apps/web/app/page.tsx,apps/web/app/designs/page.tsx
 alwaysApply: false
 ---
 
@@ -15,7 +15,8 @@ Reference implementation: **Art** (`id: art`).
 Add to `designs` in [`apps/web/lib/data.ts`](apps/web/lib/data.ts):
 
 - `id` — kebab-case slug (e.g. `art`)
-- `demoPath` — always `/designs/<id>`
+- `demoPath` — always `/designs/<id>` (ProductFrame + docs)
+- `viewPath` — always `/view/<id>` (full-site new-tab preview, no Tawny chrome)
 - `title`, `description`, `tags`, `price`, `category`, optional `featured`
 
 ## 2. Live demo at `/designs/<id>`
@@ -28,15 +29,26 @@ Mirror Art’s host pattern:
 | App routes | `apps/web/app/designs/<id>/…` (pages, nested layouts) |
 | Design UI | `apps/web/components/<id>/…` |
 | Design tokens / CSS | e.g. `apps/web/app/designs/<id>/<id>.css` (import from globals if needed) |
+| Root shell | Shared `*RootShell` used by showcase + `/view` |
 
 Requirements:
 
 - Wrap the design in [`ProductFrame`](apps/web/components/product-frame.tsx) (window chrome + title like `designs/<id>`)
 - Real navigation and interaction inside the frame
 - Keep the design self-contained (own fonts/tokens under a root class, e.g. `art-root`)
+- Include an **Open in new tab** link to `viewPath` (`target="_blank"`)
 - Do **not** iframe the live app on the landing page
 
-## 3. Inert preview mock
+## 3. Full-site preview at `/view/<id>`
+
+Mirror the design routes under `apps/web/app/view/<id>/` (thin re-exports of design pages preferred). Requirements:
+
+- No Tawny Navbar/Footer ([`SiteChrome`](apps/web/components/site-chrome.tsx) skips `/view/*`)
+- No ProductFrame — edge-to-edge design via the shared root shell
+- Navigation helpers must resolve the mount from the pathname (`/designs/<id>` vs `/view/<id>`)
+- Optional discreet “Back to Tawny” link to `demoPath`
+
+## 4. Inert preview mock
 
 Every design needs an inert mock used on **both** the landing showcase and the `/designs` catalog:
 
@@ -55,10 +67,11 @@ Every design needs an inert mock used on **both** the landing showcase and the `
 
 Only row CTAs (landing “Open live demo”) and the catalog card’s outer link navigate (`demoPath`).
 
-## 4. Do / don’t
+## 5. Do / don’t
 
 ```text
-✅ Live app at /designs/<id> inside ProductFrame
+✅ Live app at /designs/<id> inside ProductFrame + Open in new tab → /view/<id>
+✅ Full-site /view/<id> without Tawny chrome
 ✅ Landing: Web Designs section header + copy + inert mock preview (max 3 featured)
 ✅ Catalog /designs cards use the same inert DesignPreview mocks
 
@@ -71,8 +84,10 @@ Only row CTAs (landing “Open live demo”) and the catalog card’s outer link
 
 ## Checklist for a new design
 
-- [ ] `apps/web/lib/data.ts` entry with `demoPath: '/designs/<id>'`
-- [ ] `apps/web/app/designs/<id>/` live demo + `ProductFrame`
+- [ ] `apps/web/lib/data.ts` entry with `demoPath: '/designs/<id>'` and `viewPath: '/view/<id>'`
+- [ ] `apps/web/app/designs/<id>/` live demo + `ProductFrame` + Open in new tab
+- [ ] `apps/web/app/view/<id>/` full-site preview (re-exports OK)
+- [ ] Navigation mount-aware (`/designs` vs `/view`)
 - [ ] `apps/web/components/landing/<id>-preview-mock.tsx` (inert)
 - [ ] Wire into `DesignPreview` (+ `featured: true` only if it should appear in the landing top 3)
 - [ ] `/designs` catalog card shows `DesignPreview` + links to `demoPath`
