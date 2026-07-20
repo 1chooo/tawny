@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Logo } from '@/components/logo'
 
 const links = {
   Product: [
@@ -10,6 +11,7 @@ const links = {
   Resources: [
     { label: 'Documentation', href: '#' },
     { label: 'Figma Files', href: '#' },
+    { label: 'Logos & Marks', href: '/logos-marks' },
     { label: 'License', href: '#' },
     { label: 'FAQ', href: '#' },
   ],
@@ -29,9 +31,7 @@ export function Footer() {
           {/* Brand */}
           <div className="max-w-xs">
             <div className="mb-4 flex items-center gap-2">
-              <span className="inline-flex items-center justify-center w-6 h-6 rounded-[5px] bg-foreground">
-                <span className="text-background text-[11px] font-bold tracking-tight">T</span>
-              </span>
+              <Logo className="size-6 rounded-[5px]" />
               <span className="text-sm font-medium text-foreground tracking-tight">Tawny</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">

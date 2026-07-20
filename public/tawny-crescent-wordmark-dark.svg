@@ -1,0 +1,6 @@
+<svg width="800" height="240" viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="240" fill="#241812"/>
+<path d="M146 96 A40 40 0 0 1 146 176 A50 50 0 0 0 146 96 Z" fill="#E8A868"/>
+<path d="M146 96 A40 40 0 0 0 146 176 A50 50 0 0 1 146 96 Z" fill="#E8A868" opacity="0.4"/>
+<text x="220" y="152" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="64" fill="#FBF3E8">tawny</text>
+</svg>
