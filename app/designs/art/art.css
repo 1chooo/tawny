@@ -1,0 +1,48 @@
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-art-paper: oklch(0.985 0.008 85);
+  --color-art-ink: oklch(0.22 0.02 270);
+  --color-art-ink-muted: oklch(0.45 0.02 270);
+  --color-art-accent: oklch(0.42 0.14 265);
+  --color-art-accent-soft: oklch(0.92 0.04 265);
+  --color-art-border: oklch(0.88 0.02 85);
+  --color-art-surface: oklch(0.97 0.015 85);
+  --color-art-bento-bg: oklch(0.97 0.02 95);
+  --color-art-bento-ink: oklch(0.12 0 0);
+  --spacing-art-bento-gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .art-root {
+    --spacing-art-bento-gap: 16px;
+  }
+}
+
+@keyframes art-bento-tag-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.art-root {
+  scroll-behavior: smooth;
+  --font-serif-display: var(--font-art-serif-display);
+  --font-sans-body: var(--font-art-sans-body);
+  --font-mono: var(--font-art-mono);
+}
+
+@utility prose-art-blog {
+  @apply prose prose-neutral max-w-none;
+  @apply prose-headings:font-normal prose-headings:tracking-tight;
+  @apply prose-p:text-art-ink prose-p:leading-relaxed;
+  @apply prose-a:text-art-accent prose-a:no-underline hover:prose-a:underline;
+  @apply prose-strong:text-art-ink prose-blockquote:border-art-border prose-blockquote:text-art-ink-muted;
+  @apply prose-code:text-art-ink prose-code:bg-art-surface prose-code:px-1 prose-code:py-0.5 prose-code:rounded;
+  @apply prose-code:font-mono;
+}

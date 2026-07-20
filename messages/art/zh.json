@@ -1,0 +1,113 @@
+{
+  "metadata": {
+    "title": "Hugo Lin · 筆記",
+    "description": "筆記、專案與實驗。"
+  },
+  "brand": "Hugo Lin",
+  "nav": {
+    "notes": "筆記",
+    "projects": "專案",
+    "code": "程式碼",
+    "about": "關於"
+  },
+  "about": {
+    "title": "關於",
+    "description": "軟體開發者、寫作者與攝影師。",
+    "lead": "我是林 Hugo（Lin Hugo）—— 一位軟體開發者與寫作者，目前在 USC Viterbi 攻讀電腦科學。平日我設計並架構可擴展的軟體系統；週末則用相機捕捉轉瞬即逝的人間溫度。",
+    "philosophy": "你太專注於未來，卻沒有意識到，今天正是你多年前所祈求的樣子。",
+    "backgroundHeading": "背景",
+    "background": "我在台灣中央大學主修大氣科學，副修程式設計。從天氣系統走向軟體，與其說是轉彎，不如說是自然延伸——兩者都在建模複雜系統並從中找出規律。我現正於 USC Viterbi 攻讀電腦科學碩士，專注於網頁開發與大型軟體系統的交會處。",
+    "workHeading": "工作經歷",
+    "work": "實習起於和碩（PEGATRON）擔任 AI 工程師，打造大型語言模型概念驗證並向 CTO 簡報。之後成為 AWS Campus Ambassador，為 700 多位開發者舉辦技術工作坊。在 eCloudvalley 帶領五人團隊，以 AWS Bedrock 無伺服器架構推出分類準確率達 95% 的解決方案。最近在 Futurenest 負責 Django REST API（100% 測試覆蓋率）與 Next.js 聊天介面的後端整合。",
+    "beyondHeading": "程式之外",
+    "beyond": "我盡可能地拍攝底片與數位攝影——多半是街頭與旅行。單一畫面的紀律，會磨礪你看世界的方式；我把同樣的敏銳帶進寫作與工程裡。",
+    "projectsHeading": "專案",
+    "projects": "我做過的一些作品：",
+    "project1chooo": "以 Next.js、Tailwind CSS 與 MDX 打造的個人網站",
+    "projectArt": "這本筆記——粗獷主義 Bento 版面與 MDX 文章",
+    "projectVCard": "開源作品集模板（300+ stars）",
+    "connect": "想合作或聊聊？歡迎到"
+  },
+  "footer": {
+    "note": "使用 Next.js 與 MDX 構建。"
+  },
+  "home": {
+    "copyrightLabel": "版權",
+    "tagLabel": "標籤",
+    "tagFallback": "程式",
+    "upcomingLabel": "即將推出",
+    "projectLabel": "專案",
+    "projectFallbackTitle": "專案",
+    "projectFallbackDesc": "瀏覽精選作品與實驗。",
+    "authorLabel": "作者",
+    "quickLinks": {
+      "location": "舊金山",
+      "github": "GitHub",
+      "email": "hugo@1chooo.com"
+    },
+    "weatherLabel": "天氣",
+    "weatherLine": "{temp}°C · {condition}",
+    "weatherUnavailable": "—",
+    "weatherConditions": {
+      "clear": "晴",
+      "mainlyClear": "大致晴朗",
+      "partlyCloudy": "多雲",
+      "overcast": "陰天",
+      "fog": "有霧",
+      "drizzle": "毛毛雨",
+      "rain": "雨",
+      "snow": "雪",
+      "showers": "陣雨",
+      "thunderstorm": "雷雨"
+    },
+    "quote": "說說很簡單，程式碼拿出來看看。",
+    "cta": "閱讀最新文章",
+    "upcomingFallbackTitle": "如何在 MANNG 工作？",
+    "upcomingFallbackDesc": "在瀏覽器搜尋「How to print helloworld」。",
+    "carouselPrev": "上一張",
+    "carouselNext": "下一張"
+  },
+  "post": {
+    "back": "← 回到筆記",
+    "readInLocale": "閱讀{locale, select, en {英文版} zh {中文版} other {其他語言}}"
+  },
+  "projects": {
+    "title": "專案",
+    "description": "我做過的一些作品——從個人網站、開源模板到週末實驗。",
+    "readMore": "閱讀更多 →",
+    "miniHeading": "其他小型專案（完整列表見 GitHub）：",
+    "empty": "尚無專案。"
+  },
+  "project": {
+    "back": "← 專案",
+    "readInLocale": "閱讀{locale, select, en {英文版} zh {中文版} other {其他語言}}",
+    "visitSite": "造訪網站",
+    "viewRepo": "查看原始碼"
+  },
+  "notes": {
+    "title": "所有筆記",
+    "description": "瀏覽全部筆記、依標籤篩選或搜尋。",
+    "count": "共 {count} 篇",
+    "searchPlaceholder": "搜尋文章…",
+    "tagsHeading": "標籤",
+    "allTags": "全部",
+    "empty": "沒有符合條件的文章。",
+    "clearFilters": "清除篩選"
+  },
+  "location": {
+    "title": "我在哪裡",
+    "description": "現居舊金山——先前曾住在台北與洛杉磯。",
+    "back": "← 首頁",
+    "currentBadge": "現在",
+    "cities": {
+      "sf": "舊金山",
+      "taipei": "台北",
+      "la": "洛杉磯"
+    },
+    "cityNotes": {
+      "sf": "目前定居灣區。",
+      "taipei": "在台灣成長與求學。",
+      "la": "曾住在南加州。"
+    }
+  }
+}
