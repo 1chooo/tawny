@@ -17,10 +17,37 @@ type ScreenshotBody = {
   path: string
   selector?: string
   viewport?: { width?: number; height?: number }
+  /** Optical zoom applied after capture — crops the centered 1/zoom region, then scales it back up. */
+  zoom?: number
 }
 
 function isValidId(id: string) {
   return /^[a-z0-9-]+$/.test(id)
+}
+
+/**
+ * Crop a `1 / zoom` region of the image, then let the caller's resize scale it
+ * back up — an optical zoom. Anchored to the top (not centered) so page
+ * headers stay in frame; only centered horizontally.
+ */
+async function applyZoom(input: Buffer, zoom: number) {
+  if (!zoom || zoom <= 1) return input
+
+  const sharp = (await import('sharp')).default
+  const { width, height } = await sharp(input).metadata()
+  if (!width || !height) return input
+
+  const cropWidth = Math.round(width / zoom)
+  const cropHeight = Math.round(height / zoom)
+
+  return sharp(input)
+    .extract({
+      left: Math.round((width - cropWidth) / 2),
+      top: 0,
+      width: cropWidth,
+      height: cropHeight,
+    })
+    .toBuffer()
 }
 
 async function compressUnderBudget(input: Buffer) {
@@ -58,7 +85,7 @@ export async function POST(request: NextRequest) {
   }
 
   const body = (await request.json()) as ScreenshotBody
-  const { kind, id, path: targetPath, selector, viewport } = body
+  const { kind, id, path: targetPath, selector, viewport, zoom } = body
 
   if (kind !== 'design' && kind !== 'component') {
     return NextResponse.json({ error: 'Invalid kind' }, { status: 400 })
@@ -90,7 +117,8 @@ export async function POST(request: NextRequest) {
       ? await page.locator(selector).screenshot()
       : await page.screenshot()
 
-    const compressed = await compressUnderBudget(raw)
+    const zoomed = await applyZoom(raw, zoom ?? 1)
+    const compressed = await compressUnderBudget(zoomed)
 
     const dir = path.join(
       process.cwd(),

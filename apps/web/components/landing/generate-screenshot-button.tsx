@@ -11,6 +11,8 @@ type GenerateScreenshotButtonProps = {
   selector?: string
   /** Override the capture viewport — e.g. to match the narrower gallery card width. */
   viewport?: { width?: number; height?: number }
+  /** Optical zoom applied after capture (e.g. 1.33 crops in ~33% tighter). */
+  zoom?: number
   className?: string
 }
 
@@ -30,6 +32,7 @@ export function GenerateScreenshotButton({
   path,
   selector,
   viewport,
+  zoom,
   className,
 }: GenerateScreenshotButtonProps) {
   const [status, setStatus] = useState<Status>({ state: 'idle' })
@@ -40,7 +43,7 @@ export function GenerateScreenshotButton({
       const res = await fetch('/api/dev/screenshot', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ kind, id, path, selector, viewport }),
+        body: JSON.stringify({ kind, id, path, selector, viewport, zoom }),
       })
       const data = await res.json()
       if (!res.ok || !data.ok) {

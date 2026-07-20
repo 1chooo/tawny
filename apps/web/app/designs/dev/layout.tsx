@@ -46,6 +46,7 @@ export default async function DevShowcaseLayout({
                 kind="design"
                 id={design.id}
                 path={design.screenshotPath ?? design.viewPath}
+                zoom={1.33}
               />
             ) : null}
             <Link
