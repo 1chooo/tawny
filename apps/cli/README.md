@@ -1,6 +1,6 @@
 # create-tawny
 
-Interactive CLI to scaffold a [Tawny](https://github.com/1chooo/tawny) design template with Next.js and MDX. Consolidates what used to be two separate, unpublished packages (`create-tawny-dev-blog`, `create-bento-journal`) into one.
+Interactive CLI to scaffold a [Tawny](https://github.com/1chooo/tawny) design template with Next.js and MDX.
 
 ## Usage
 
