@@ -67,6 +67,15 @@ Every design needs an inert mock used on **both** the landing showcase and the `
 
 Only row CTAs (landing “Open live demo”) and the catalog card’s outer link navigate (`demoPath`).
 
+### Optional thumbnail image layer
+
+The inert mock is still required as the fallback for every design and component card. Once a real screenshot is generated, it renders **on top of** the mock — it never replaces the requirement to ship a live demo + mock:
+
+- Generate via the dev-only **Generate screenshot** button next to “Copy page” on `apps/web/app/designs/<id>/layout.tsx` (and on `apps/web/app/components/[id]/page.tsx` for component cards). It posts to `apps/web/app/api/dev/screenshot/route.ts`, which is disabled in production.
+- The route captures the live `/view/<id>` (or a component’s `ProductFrame` via selector) with Playwright, compresses it under 500KB with `sharp`, and writes it to `apps/web/public/thumbnails/{designs,components}/<id>.webp`.
+- Set `Design.thumbnail` (and `ComponentDemo.thumbnail`) to that path once generated. [`DesignShowcaseRow`](apps/web/components/landing/design-showcase-row.tsx) and [`ComponentDemoCard`](apps/web/components/landing/showcases/component-demo-card.tsx) render the `<img>` (with `object-cover`, so it adapts to the frame at any size) when `thumbnail` is set, and fall back to the mock/live render otherwise.
+- If a design’s `viewPath` needs a locale segment to load directly (e.g. Art), set `Design.screenshotPath` to the concrete route to capture.
+
 ## 5. Do / don’t
 
 ```text
@@ -74,8 +83,9 @@ Only row CTAs (landing “Open live demo”) and the catalog card’s outer link
 ✅ Full-site /view/<id> without Tawny chrome
 ✅ Landing: Web Designs section header + copy + inert mock preview (max 3 featured)
 ✅ Catalog /designs cards use the same inert DesignPreview mocks
+✅ Optional generated `thumbnail` screenshot layered on top of the mock (dev-only tool, <500KB, object-cover)
 
-❌ Landing or catalog OG/static cards as the only “showcase”
+❌ Landing or catalog OG/static cards as the only “showcase” (a live demo + mock must still exist)
 ❌ Embedding the live route via iframe on the home page
 ❌ Importing live HomeBento / SiteHeader (or equivalents) into the landing mock
 ❌ Clickable navigation inside the landing / catalog preview
