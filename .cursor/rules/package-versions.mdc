@@ -1,0 +1,23 @@
+---
+description: Keep all workspace package.json versions in sync
+globs: "**/package.json"
+alwaysApply: false
+---
+
+# Package versions stay aligned
+
+All workspace packages share one version. Current: **0.1.2**.
+
+When bumping a version (release, publish, or new package), update **every** `package.json` `version` field in the monorepo to the same value:
+
+| Package | Path |
+|---------|------|
+| CLI (`create-tawny`) | `apps/cli/package.json` |
+| Web app | `apps/web/package.json` |
+| UI package | `packages/ui/package.json` |
+| Art template | `templates/art/package.json` |
+| Dev template | `templates/dev/package.json` |
+
+Do not leave packages on older versions (e.g. `0.1.0` / `0.0.0`) after a bump. The root `package.json` has no `version` (private workspace) — leave it without one.
+
+New packages under `apps/`, `packages/`, or `templates/` must start at the current shared version, not `0.0.0` or `0.1.0`.
