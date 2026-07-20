@@ -1,0 +1,84 @@
+.dev-root {
+  color-scheme: light dark;
+  --dev-background: #ffffff;
+  --dev-foreground: #18181b;
+  --dev-muted: #71717a;
+  --dev-link: #3f3f46;
+  --dev-link-hover: #18181b;
+  --dev-border: #f4f4f5;
+  --dev-code-bg: #fafafa;
+  --background: var(--dev-background);
+  --foreground: var(--dev-foreground);
+  --muted: var(--dev-muted);
+  --link: var(--dev-link);
+  --link-hover: var(--dev-link-hover);
+  --border: var(--dev-border);
+  --code-bg: var(--dev-code-bg);
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  line-height: 1.625;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  .dev-root {
+    --dev-background: #09090b;
+    --dev-foreground: #e4e4e7;
+    --dev-muted: #a1a1aa;
+    --dev-link: #d4d4d8;
+    --dev-link-hover: #fafafa;
+    --dev-border: #27272a;
+    --dev-code-bg: #18181b;
+  }
+
+  .dev-root pre code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+  }
+}
+
+.dev-root ::selection {
+  background: color-mix(in srgb, var(--foreground) 15%, transparent);
+}
+
+@keyframes terminal-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.dev-root .terminal-cursor {
+  animation: terminal-blink 1s step-end infinite;
+}
+
+.dev-root .prose-layout {
+  color: var(--muted);
+}
+
+.dev-root .prose-layout h1,
+.dev-root .prose-layout h2,
+.dev-root .prose-layout h3,
+.dev-root .prose-layout strong {
+  color: var(--foreground);
+}
+
+.dev-root .prose-layout a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--muted) 60%, transparent);
+  text-underline-offset: 2px;
+  transition:
+    text-decoration-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.dev-root .prose-layout a:hover {
+  color: var(--foreground);
+  text-decoration-color: var(--foreground);
+}

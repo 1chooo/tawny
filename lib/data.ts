@@ -34,6 +34,18 @@ export const designs: Design[] = [
     featured: true,
     demoPath: '/designs/art',
   },
+  {
+    id: 'dev',
+    title: 'Dev',
+    description:
+      'A minimal mono developer blog with MDX essays and interactive CS demos — open the live showcase.',
+    category: 'Blog',
+    image: '/dev-opengraph-image.svg',
+    price: 'free',
+    tags: ['Next.js', 'MDX', 'Mono', 'Demos'],
+    featured: true,
+    demoPath: '/designs/dev',
+  },
 ]
 
 export const uiComponents: UIComponent[] = [
@@ -75,5 +87,5 @@ export const uiComponents: UIComponent[] = [
   },
 ]
 
-export const designCategories = ['All', 'Journal'] as const
+export const designCategories = ['All', 'Journal', 'Blog'] as const
 export const componentCategories = ['All', 'Navigation', 'Marketing', 'Layout', 'Content'] as const

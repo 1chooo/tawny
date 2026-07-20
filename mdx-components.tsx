@@ -9,6 +9,12 @@ import { InlineCode, inlineCodeClass } from '@/components/art/mdx/inline-code'
 import { StackCards } from '@/components/art/mdx/stack-cards'
 import { Step, Steps } from '@/components/art/mdx/steps'
 import { TagDemoWrapper } from '@/components/art/mdx/tag-demo-wrapper'
+import { DomTreeExplorer } from '@/components/dev/demos/dom-tree-explorer'
+import { EventPropagationDemo } from '@/components/dev/demos/event-propagation-demo'
+import { CssLayoutDemo } from '@/components/dev/demos/css-layout-demo'
+import { BellCurveDemo } from '@/components/dev/demos/bell-curve-demo'
+import { TcpDemo } from '@/components/dev/demos/tcp-demo'
+import { RestApiDemo } from '@/components/dev/demos/rest-api-demo'
 
 function MdxLink({
   href,
@@ -52,6 +58,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Step,
     Steps,
     TagDemo: TagDemoWrapper,
+    DomTreeExplorer,
+    EventPropagationDemo,
+    CssLayoutDemo,
+    BellCurveDemo,
+    TcpDemo,
+    RestApiDemo,
     h1: (props) => (
       <h1
         {...props}

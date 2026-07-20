@@ -2,6 +2,7 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 @import './designs/art/art.css';
+@import './designs/dev/dev.css';
 
 @custom-variant dark (&:is(.dark *));
 
