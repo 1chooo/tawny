@@ -1,6 +1,6 @@
 {
   "name": "create-tawny",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Scaffold a Tawny design template (dev or art) with Next.js and MDX",
   "license": "MIT",
   "type": "module",
@@ -15,7 +15,8 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@clack/prompts": "^0.10.1"
+    "@clack/prompts": "^0.10.1",
+    "tar": "^7.5.20"
   },
   "keywords": [
     "nextjs",

@@ -2,7 +2,12 @@
 
 import { join } from "path";
 import * as p from "@clack/prompts";
-import { fileExists, replacePlaceholders, runCreateNextApp } from "./src/scaffold.mjs";
+import {
+  fileExists,
+  replacePlaceholders,
+  downloadTemplate,
+  setProjectName,
+} from "./src/scaffold.mjs";
 import { getTemplate, templateList } from "./src/templates.mjs";
 
 async function resolveTemplate(templateArg) {
@@ -114,10 +119,10 @@ async function main() {
   }
 
   const s = p.spinner();
-  s.start("Scaffolding with create-next-app…");
+  s.start("Downloading template…");
 
   try {
-    await runCreateNextApp(template.path, projectName, cwd);
+    await downloadTemplate(template.path, projectDir);
   } catch (err) {
     s.stop("Scaffold failed.");
     p.log.error(String(err));
@@ -125,6 +130,7 @@ async function main() {
   }
 
   s.message("Replacing placeholders…");
+  await setProjectName(projectDir, projectName);
   await replacePlaceholders(projectDir, answers);
 
   s.message("Running template setup…");

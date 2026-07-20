@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Package versions stay aligned
 
-All workspace packages share one version. Current: **0.1.3**.
+All workspace packages share one version. Current: **0.1.4**.
 
 When bumping a version (release, publish, or new package), update **every** `package.json` `version` field in the monorepo to the same value:
 
