@@ -105,7 +105,7 @@ export function DesignShowcaseRow({
           title={`designs/${design.id}`}
           fade
           contentClassName={cn(
-            'aspect-video overflow-hidden md:aspect-auto md:h-[min(520px,70vh)]',
+            'aspect-[1440/900] overflow-hidden md:aspect-auto md:h-[min(520px,70vh)]',
             designPreviewBg(design.id),
           )}
         >
