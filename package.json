@@ -9,14 +9,6 @@
     "test": "vitest run",
     "test:watch": "vitest"
   },
-  "pnpm": {
-    "overrides": {
-      "hono": "4.12.25"
-    },
-    "onlyBuiltDependencies": [
-      "sharp"
-    ]
-  },
   "devDependencies": {
     "vitest": "^4.1.10"
   }
