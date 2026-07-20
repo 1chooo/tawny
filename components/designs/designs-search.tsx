@@ -70,7 +70,7 @@ export function DesignsSearch({ initialQuery }: DesignsSearchProps) {
         placeholder="Search designs…"
         autoComplete="off"
         spellCheck={false}
-        className="w-full rounded-full border border-white/8 bg-white/3 py-2 pr-3 pl-9 text-sm text-foreground outline-none placeholder:text-muted-foreground focus:border-white/20"
+        className="w-full rounded-full border border-white/8 bg-white/3 py-2 pr-3 pl-9 text-sm text-foreground outline-none"
       />
     </label>
   )

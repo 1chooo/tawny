@@ -18,7 +18,7 @@ export function DevHeaderDemo({ className }: { className?: string }) {
         role="img"
         aria-label="Dev navigation header preview"
         inert
-        className="dev-root select-none bg-[var(--dev-background,#09090b)] px-5 py-4 text-[var(--dev-foreground,#e4e4e7)] antialiased"
+        className="dev-root select-none bg-(--dev-background,#09090b) px-5 py-4 text-(--dev-foreground,#e4e4e7) antialiased"
       >
         <nav>
           <div className="flex items-center justify-between font-extrabold">
@@ -33,13 +33,13 @@ export function DevHeaderDemo({ className }: { className?: string }) {
             </span>
           </div>
           <div className="mt-1.5 flex gap-4 text-lg">
-            <span className="font-extrabold text-[var(--dev-foreground,#e4e4e7)]">
+            <span className="font-extrabold text-(--dev-foreground,#e4e4e7)">
               about
             </span>
-            <span className="font-normal text-[var(--dev-muted,#a1a1aa)]">
+            <span className="font-normal text-(--dev-muted,#a1a1aa)">
               blog
             </span>
-            <span className="font-normal text-[var(--dev-muted,#a1a1aa)]">
+            <span className="font-normal text-(--dev-muted,#a1a1aa)">
               projects
             </span>
           </div>
