@@ -46,6 +46,7 @@ export function DesignsSearch({ initialQuery }: DesignsSearchProps) {
       const trimmed = value.trim()
       if (trimmed) next.set('q', trimmed)
       else next.delete('q')
+      next.delete('page')
       const qs = next.toString()
       startTransition(() => {
         router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false })

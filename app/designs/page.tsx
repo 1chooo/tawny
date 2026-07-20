@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Suspense } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { DesignShowcaseRow } from '@/components/landing/design-showcase-row'
 import { DesignsSearch } from '@/components/designs/designs-search'
 import { BlurFade } from '@/components/ui/blur-fade'
@@ -7,14 +8,25 @@ import { NoiseTexture } from '@/components/ui/noise-texture'
 import { designs, designCategories } from '@/lib/data'
 import { cn } from '@/lib/utils'
 
-type SearchParams = Promise<{ category?: string; q?: string }>
+const PAGE_SIZE = 3
 
-function designsQueryString(parts: { category?: string; q?: string }) {
+type SearchParams = Promise<{
+  category?: string
+  q?: string
+  page?: string
+}>
+
+function designsQueryString(parts: {
+  category?: string
+  q?: string
+  page?: number
+}) {
   const p = new URLSearchParams()
   if (parts.category && parts.category !== 'All') {
     p.set('category', parts.category)
   }
   if (parts.q?.trim()) p.set('q', parts.q.trim())
+  if (parts.page && parts.page > 1) p.set('page', String(parts.page))
   const s = p.toString()
   return s ? `?${s}` : ''
 }
@@ -26,6 +38,7 @@ export default async function DesignsPage(props: {
   const categoryParam =
     typeof sp.category === 'string' ? sp.category : undefined
   const qParam = typeof sp.q === 'string' ? sp.q : undefined
+  const pageParam = typeof sp.page === 'string' ? sp.page : undefined
 
   const activeCategory =
     categoryParam &&
@@ -48,6 +61,18 @@ export default async function DesignsPage(props: {
   })
 
   const currentQ = qParam?.trim() ?? ''
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
+  const requestedPage = Math.max(1, Number.parseInt(pageParam ?? '1', 10) || 1)
+  const page = Math.min(requestedPage, totalPages)
+  const pageItems = filtered.slice(
+    (page - 1) * PAGE_SIZE,
+    page * PAGE_SIZE,
+  )
+
+  const filterBase = {
+    category: activeCategory === 'All' ? undefined : activeCategory,
+    q: currentQ || undefined,
+  }
 
   return (
     <div className="relative min-h-screen px-6 pt-28 pb-24">
@@ -134,15 +159,89 @@ export default async function DesignsPage(props: {
             </Link>
           </p>
         ) : (
-          <div className="flex flex-col gap-20">
-            {filtered.map((design, index) => (
-              <DesignShowcaseRow
-                key={design.id}
-                design={design}
-                index={index}
-              />
-            ))}
-          </div>
+          <>
+            <div className="flex flex-col gap-20">
+              {pageItems.map((design, index) => (
+                <DesignShowcaseRow
+                  key={design.id}
+                  design={design}
+                  index={index}
+                />
+              ))}
+            </div>
+
+            {totalPages > 1 ? (
+              <nav
+                className="mt-16 flex flex-col items-center gap-4 sm:flex-row sm:justify-between"
+                aria-label="Designs pagination"
+              >
+                <p className="text-sm text-muted-foreground">
+                  Page {page} of {totalPages}
+                  <span className="mx-1.5 text-white/20">·</span>
+                  {filtered.length} design{filtered.length === 1 ? '' : 's'}
+                </p>
+
+                <div className="flex items-center gap-1">
+                  <Link
+                    href={`/designs${designsQueryString({
+                      ...filterBase,
+                      page: page - 1,
+                    })}`}
+                    aria-disabled={page <= 1}
+                    tabIndex={page <= 1 ? -1 : undefined}
+                    className={cn(
+                      'inline-flex size-9 items-center justify-center rounded-full border border-white/8 text-muted-foreground transition-colors',
+                      page <= 1
+                        ? 'pointer-events-none opacity-40'
+                        : 'hover:border-white/15 hover:text-foreground',
+                    )}
+                    aria-label="Previous page"
+                  >
+                    <ChevronLeft size={16} aria-hidden="true" />
+                  </Link>
+
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                    (n) => (
+                      <Link
+                        key={n}
+                        href={`/designs${designsQueryString({
+                          ...filterBase,
+                          page: n,
+                        })}`}
+                        aria-current={n === page ? 'page' : undefined}
+                        className={cn(
+                          'inline-flex size-9 items-center justify-center rounded-full text-sm font-medium transition-colors',
+                          n === page
+                            ? 'bg-foreground text-background'
+                            : 'border border-white/8 text-muted-foreground hover:border-white/15 hover:text-foreground',
+                        )}
+                      >
+                        {n}
+                      </Link>
+                    ),
+                  )}
+
+                  <Link
+                    href={`/designs${designsQueryString({
+                      ...filterBase,
+                      page: page + 1,
+                    })}`}
+                    aria-disabled={page >= totalPages}
+                    tabIndex={page >= totalPages ? -1 : undefined}
+                    className={cn(
+                      'inline-flex size-9 items-center justify-center rounded-full border border-white/8 text-muted-foreground transition-colors',
+                      page >= totalPages
+                        ? 'pointer-events-none opacity-40'
+                        : 'hover:border-white/15 hover:text-foreground',
+                    )}
+                    aria-label="Next page"
+                  >
+                    <ChevronRight size={16} aria-hidden="true" />
+                  </Link>
+                </div>
+              </nav>
+            ) : null}
+          </>
         )}
       </div>
     </div>
