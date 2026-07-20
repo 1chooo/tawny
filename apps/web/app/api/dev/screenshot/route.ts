@@ -17,37 +17,17 @@ type ScreenshotBody = {
   path: string
   selector?: string
   viewport?: { width?: number; height?: number }
-  /** Optical zoom applied after capture — crops the centered 1/zoom region, then scales it back up. */
+  /**
+   * Optical zoom, applied by shrinking the capture viewport by this factor
+   * instead of cropping after the fact — pages pinning header/footer to the
+   * viewport edges (min-h-screen layouts) keep both in frame, just with less
+   * empty middle space, rather than losing whichever edge a crop would trim.
+   */
   zoom?: number
 }
 
 function isValidId(id: string) {
   return /^[a-z0-9-]+$/.test(id)
-}
-
-/**
- * Crop a `1 / zoom` region of the image, then let the caller's resize scale it
- * back up — an optical zoom. Anchored to the top (not centered) so page
- * headers stay in frame; only centered horizontally.
- */
-async function applyZoom(input: Buffer, zoom: number) {
-  if (!zoom || zoom <= 1) return input
-
-  const sharp = (await import('sharp')).default
-  const { width, height } = await sharp(input).metadata()
-  if (!width || !height) return input
-
-  const cropWidth = Math.round(width / zoom)
-  const cropHeight = Math.round(height / zoom)
-
-  return sharp(input)
-    .extract({
-      left: Math.round((width - cropWidth) / 2),
-      top: 0,
-      width: cropWidth,
-      height: cropHeight,
-    })
-    .toBuffer()
 }
 
 async function compressUnderBudget(input: Buffer) {
@@ -99,13 +79,15 @@ export async function POST(request: NextRequest) {
 
   const { chromium } = await import('playwright')
 
+  const zoomFactor = zoom && zoom > 1 ? zoom : 1
+
   let browser
   try {
     browser = await chromium.launch()
     const page = await browser.newPage({
       viewport: {
-        width: viewport?.width ?? 1440,
-        height: viewport?.height ?? 900,
+        width: Math.round((viewport?.width ?? 1440) / zoomFactor),
+        height: Math.round((viewport?.height ?? 900) / zoomFactor),
       },
       deviceScaleFactor: 1,
     })
@@ -117,8 +99,7 @@ export async function POST(request: NextRequest) {
       ? await page.locator(selector).screenshot()
       : await page.screenshot()
 
-    const zoomed = await applyZoom(raw, zoom ?? 1)
-    const compressed = await compressUnderBudget(zoomed)
+    const compressed = await compressUnderBudget(raw)
 
     const dir = path.join(
       process.cwd(),
