@@ -1,14 +1,15 @@
 {
-  "name": "create-tawny-dev-blog",
+  "name": "create-tawny",
   "version": "0.1.0",
-  "description": "Scaffold a minimal mono developer blog with Next.js and MDX",
+  "description": "Scaffold a Tawny design template (dev blog, bento journal, ...) with Next.js and MDX",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "create-tawny-dev-blog": "./index.mjs"
+    "create-tawny": "./bin.mjs"
   },
   "files": [
-    "index.mjs"
+    "bin.mjs",
+    "src"
   ],
   "engines": {
     "node": ">=18"
@@ -20,12 +21,13 @@
     "nextjs",
     "mdx",
     "blog",
+    "journal",
     "template",
     "create-app"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/1chooo/tawny.git",
-    "directory": "packages/create-tawny-dev-blog"
+    "directory": "apps/cli"
   }
 }

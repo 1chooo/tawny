@@ -1,0 +1,146 @@
+#!/usr/bin/env node
+
+import { join } from "path";
+import * as p from "@clack/prompts";
+import { fileExists, replacePlaceholders, runCreateNextApp } from "./src/scaffold.mjs";
+import { getTemplate, templateList } from "./src/templates.mjs";
+
+async function resolveTemplate(templateArg) {
+  if (templateArg) {
+    const template = getTemplate(templateArg);
+    if (!template) {
+      p.log.error(
+        `Unknown template "${templateArg}". Available: ${templateList.map((t) => t.id).join(", ")}`,
+      );
+      process.exit(1);
+    }
+    return template;
+  }
+
+  const picked = await p.select({
+    message: "Which template would you like to scaffold?",
+    options: templateList.map((t) => ({
+      value: t.id,
+      label: t.label,
+      hint: t.hint,
+    })),
+  });
+  if (p.isCancel(picked)) {
+    p.cancel("Cancelled.");
+    process.exit(0);
+  }
+  return getTemplate(picked);
+}
+
+async function main() {
+  p.intro("create-tawny");
+
+  const [templateArg, projectNameArg] = process.argv.slice(2);
+
+  const template = await resolveTemplate(templateArg);
+
+  const projectName = projectNameArg
+    ? projectNameArg
+    : await p.text({
+        message: "Project name",
+        placeholder: template.defaultProjectName,
+        defaultValue: template.defaultProjectName,
+        validate: (v) => {
+          if (!v?.trim()) return "Project name is required";
+          if (!/^[a-z0-9-_]+$/i.test(v)) {
+            return "Use letters, numbers, hyphens, and underscores only";
+          }
+        },
+      });
+  if (p.isCancel(projectName)) {
+    p.cancel("Cancelled.");
+    process.exit(0);
+  }
+
+  const authorName = await p.text({
+    message: "Your name (brand)",
+    placeholder: "Alex Chen",
+    validate: (v) => (v?.trim() ? undefined : "Name is required"),
+  });
+  if (p.isCancel(authorName)) {
+    p.cancel("Cancelled.");
+    process.exit(0);
+  }
+
+  const authorEmail = await p.text({
+    message: "Email",
+    placeholder: "hello@example.com",
+    validate: (v) => (v?.includes("@") ? undefined : "Enter a valid email address"),
+  });
+  if (p.isCancel(authorEmail)) {
+    p.cancel("Cancelled.");
+    process.exit(0);
+  }
+
+  const githubUsername = await p.text({
+    message: "GitHub username",
+    placeholder: "your-username",
+    validate: (v) => (v?.trim() ? undefined : "GitHub username is required"),
+  });
+  if (p.isCancel(githubUsername)) {
+    p.cancel("Cancelled.");
+    process.exit(0);
+  }
+
+  const cityName = await p.text({
+    message: "Location (shown in the footer)",
+    placeholder: "San Francisco",
+    defaultValue: "San Francisco",
+  });
+  if (p.isCancel(cityName)) {
+    p.cancel("Cancelled.");
+    process.exit(0);
+  }
+
+  const answers = {
+    authorName,
+    authorEmail,
+    githubUsername,
+    cityName,
+    ...(await template.extraPrompts()),
+  };
+
+  const cwd = process.cwd();
+  const projectDir = join(cwd, projectName);
+
+  if (await fileExists(projectDir)) {
+    p.cancel(`Directory "${projectName}" already exists.`);
+    process.exit(1);
+  }
+
+  const s = p.spinner();
+  s.start("Scaffolding with create-next-app…");
+
+  try {
+    await runCreateNextApp(template.path, projectName, cwd);
+  } catch (err) {
+    s.stop("Scaffold failed.");
+    p.log.error(String(err));
+    process.exit(1);
+  }
+
+  s.message("Replacing placeholders…");
+  await replacePlaceholders(projectDir, answers);
+
+  s.message("Running template setup…");
+  await template.postProcess(projectDir, answers);
+
+  s.stop("Project created.");
+
+  p.note(
+    ["cd " + projectName, "pnpm install", "pnpm dev", "", ...template.nextSteps].join("\n"),
+    "Next steps",
+  );
+
+  p.outro("Done! Open http://localhost:3000 after pnpm dev");
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
