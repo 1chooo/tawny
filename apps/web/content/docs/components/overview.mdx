@@ -1,0 +1,46 @@
+---
+title: Components overview
+description: Browse Tawny UI components and copy source from the gallery.
+---
+
+# Components overview
+
+The components gallery demos navigation patterns and motion primitives from `@tawny/ui` and the marketing site.
+
+## Browse the gallery
+
+Open [/components](/components) to preview live demos. Each card links to a detail page where you can copy source.
+
+## What is included
+
+Typical building blocks:
+
+- Header / navigation demos (Tawny, Art, Dev)
+- Motion primitives (`BlurFade`, `BorderBeam`, `ShimmerButton`, …)
+- Shared utilities via `@tawny/ui`
+
+```tsx
+import { BlurFade } from '@tawny/ui/components/blur-fade'
+import { NoiseTexture } from '@tawny/ui/components/noise-texture'
+
+export function Example() {
+  return (
+    <div className="relative">
+      <NoiseTexture opacity={0.025} />
+      <BlurFade delay={0.05}>
+        <h1>Hello from Tawny</h1>
+      </BlurFade>
+    </div>
+  )
+}
+```
+
+<Callout type="tip" title="Tip">
+  Pair components with a full design — scaffold Art or Dev, then reuse primitives from `@tawny/ui` where it fits.
+</Callout>
+
+## Next steps
+
+- [Getting started](/docs/getting-started)
+- [create-tawny](/docs/create-tawny)
+- [Designs overview](/docs/designs/overview)
