@@ -1,13 +1,20 @@
-"use client";
+'use client'
 
-import { useLocale } from "next-intl";
-import { Link, usePathname } from "@/lib/art/navigation";
-import { artLocales } from "@/lib/art/routing";
-import clsx from "clsx";
+import NextLink from 'next/link'
+import { usePathname as useNextPathname } from 'next/navigation'
+import clsx from 'clsx'
+import { artHref, stripArtLocalePrefix } from '@/lib/art/navigation'
+import { artLocales, type ArtLocale } from '@/lib/art/routing'
+
+function localeFromPath(pathname: string): ArtLocale {
+  const match = pathname.match(/^\/designs\/art\/(en|zh)(?:\/|$)/)
+  return match?.[1] === 'zh' ? 'zh' : 'en'
+}
 
 export function LocaleSwitcher() {
-  const pathname = usePathname();
-  const locale = useLocale();
+  const fullPath = useNextPathname()
+  const pathname = stripArtLocalePrefix(fullPath)
+  const locale = localeFromPath(fullPath)
 
   return (
     <div
@@ -16,20 +23,20 @@ export function LocaleSwitcher() {
       aria-label="Language"
     >
       {artLocales.map((loc) => (
-        <Link
+        <NextLink
           key={loc}
-          href={pathname}
-          locale={loc}
+          href={artHref(loc, pathname)}
+          hrefLang={loc === 'zh' ? 'zh-Hant' : 'en'}
           className={clsx(
-            "px-2 py-1 transition-colors",
+            'px-2 py-1 transition-colors',
             locale === loc
-              ? "bg-art-bento-ink text-art-bento-bg"
-              : "hover:bg-art-bento-ink/10 text-art-bento-ink",
+              ? 'bg-art-bento-ink text-art-bento-bg'
+              : 'hover:bg-art-bento-ink/10 text-art-bento-ink',
           )}
         >
-          {loc === "zh" ? "中" : "EN"}
-        </Link>
+          {loc === 'zh' ? '中' : 'EN'}
+        </NextLink>
       ))}
     </div>
-  );
+  )
 }

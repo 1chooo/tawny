@@ -31,8 +31,12 @@ export function stripArtLocalePrefix(pathname: string): string {
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
   function ArtLink({ href, locale: localeProp, ...rest }, ref) {
-    const currentLocale = useLocale()
-    const locale = localeProp ?? currentLocale
+    const fullPath = useNextPathname()
+    const intlLocale = useLocale() as ArtLocale
+    const urlLocale = fullPath.match(/^\/designs\/art\/(en|zh)(?:\/|$)/)?.[1] as
+      | ArtLocale
+      | undefined
+    const locale = (localeProp as ArtLocale | undefined) ?? urlLocale ?? intlLocale
     return <NextLink ref={ref} href={artHref(locale, href)} {...rest} />
   },
 )
