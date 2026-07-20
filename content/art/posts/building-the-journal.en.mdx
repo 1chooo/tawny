@@ -1,0 +1,144 @@
+export const postMeta = {
+  title: "Building this journal",
+  date: "2026-06-06",
+  description:
+    "A hybrid guide — why this site exists, what it is built with, and how to recreate it step by step.",
+  tags: ["guide", "nextjs", "mdx", "build"],
+};
+
+This journal is a quiet place for longer thoughts — typography-first, bilingual, and deliberately split between two moods: a **brutalist bento home** and an **editorial reading experience** for posts.
+
+The home grid is loud with structure; the articles are calm with words. That contrast is intentional. This guide walks through both the why and the how.
+
+## Stack at a glance
+
+Click each card to read what it does in this project:
+
+<StackCards />
+
+<Callout variant="tip">
+  Everything runs on the App Router with React Server Components by default. Client components are used only where interactivity is needed — carousels, search, and the demos in this article.
+</Callout>
+
+## Project shape
+
+Expand folders to explore the layout:
+
+<FileTree
+  tree={[
+    {
+      name: "app/",
+      children: [
+        {
+          name: "[locale]/",
+          children: [
+            { name: "page.tsx — bento home" },
+            {
+              name: "posts/",
+              children: [
+                { name: "page.tsx — index + filters" },
+                { name: "[slug]/page.tsx — article" },
+              ],
+            },
+          ],
+        },
+        { name: "globals.css — design tokens" },
+      ],
+    },
+    {
+      name: "content/posts/",
+      children: [{ name: "*.mdx — articles + postMeta" }],
+    },
+    {
+      name: "components/",
+      children: [
+        { name: "bento/ — home grid" },
+        { name: "mdx/ — interactive article blocks" },
+      ],
+    },
+    { name: "lib/posts.ts — post registry" },
+    { name: "messages/ — UI translations (en, zh)" },
+    { name: "i18n/ — locale routing" },
+  ]}
+/>
+
+## Step-by-step build
+
+<Steps>
+  <Step title="Scaffold Next.js + Tailwind v4">
+    Start with <InlineCode>create-next-app</InlineCode> using the App Router and TypeScript. Add Tailwind v4 via <InlineCode>@tailwindcss/postcss</InlineCode> and define semantic color tokens in <InlineCode>globals.css</InlineCode> — <InlineCode>paper</InlineCode>, <InlineCode>ink</InlineCode>, <InlineCode>accent</InlineCode> for posts, and <InlineCode>bento-bg</InlineCode>, <InlineCode>bento-ink</InlineCode> for the home grid.
+  </Step>
+  <Step title="Wire MDX with remark-gfm">
+    Install <InlineCode>@next/mdx</InlineCode>, <InlineCode>@mdx-js/react</InlineCode>, and <InlineCode>remark-gfm</InlineCode>. Wrap your Next config with <InlineCode>{"createMDX({ options: { remarkPlugins: ['remark-gfm'] } })"}</InlineCode> and add <InlineCode>mdx</InlineCode> to <InlineCode>pageExtensions</InlineCode>. Style markdown elements globally in <InlineCode>mdx-components.tsx</InlineCode>.
+  </Step>
+  <Step title="Add next-intl for bilingual routing">
+    Configure locales (<InlineCode>en</InlineCode>, <InlineCode>zh</InlineCode>) with <InlineCode>localePrefix: 'always'</InlineCode> so every URL is prefixed. Put UI strings in <InlineCode>messages/en.json</InlineCode> and <InlineCode>messages/zh.json</InlineCode>. Use <InlineCode>@/i18n/navigation</InlineCode> for locale-aware links throughout the app.
+  </Step>
+  <Step title="Create a post (MDX + registry)">
+    Each article lives in <InlineCode>content/posts/</InlineCode>. Export a <InlineCode>postMeta</InlineCode> object with title, date, description, and optional tags. Register the import in <InlineCode>lib/posts.ts</InlineCode> — this manual registry keeps types tight and build output predictable.
+  </Step>
+  <Step title="Style with prose-blog and the bento grid">
+    Posts use the <InlineCode>@tailwindcss/typography</InlineCode> plugin via a custom <InlineCode>prose-blog</InlineCode> utility. The home page composes a 12-column bento grid with carousels for images, tags, and upcoming posts — all server-rendered except the carousel controls.
+  </Step>
+</Steps>
+
+## Try it yourself
+
+Here is the shape of a new post:
+
+<CodeBlock
+  title="content/posts/my-post.mdx"
+  language="mdx"
+  code={`export const postMeta = {
+  title: "My first note",
+  date: "2026-06-06",
+  description: "A short summary for listings and SEO.",
+  tags: ["journal"],
+};
+
+Your MDX content starts here.`}
+/>
+
+Register it in the post registry:
+
+<CodeBlock
+  title="lib/posts.ts"
+  language="typescript"
+  code={`import MyPost, { postMeta as metaMyPost } from "@/content/posts/my-post.mdx";
+
+const ENTRIES: PostEntry[] = [
+  {
+    slug: "my-post",
+    locales: { en: { meta: metaMyPost, MDXContent: MyPost } },
+  },
+  // ...existing entries
+];`}
+/>
+
+Then run the dev server:
+
+<CodeBlock
+  title="Terminal"
+  language="bash"
+  code="npm run dev"
+/>
+
+Visit <InlineCode>/en/notes/my-post</InlineCode> to see it live.
+
+## Tags and discovery
+
+Tags are optional strings on each post's <InlineCode>postMeta</InlineCode>. They power three things: filter pills on the [notes index](/notes), clickable tags on article headers, and the rotating tag carousel on the home bento grid.
+
+Try the filter below — it uses real posts from this site:
+
+<TagDemo />
+
+<Callout variant="note">
+  Posts can have locale-specific content under the same slug. This guide exists in both English and Chinese; older notes fall back to English for both locales until translated.
+</Callout>
+
+## What is next
+
+Wander the [full notes index](/notes), read [Hello, world](/notes/hello-world) for the site's tone, or fork the repo and make the grid your own.
+
+The best journals are built in small steps — one post, one tag, one quiet page at a time.
