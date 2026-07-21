@@ -1,0 +1,54 @@
+.link-root {
+  --link-sans-variation: 'opsz' 32;
+  --font-features: 'cpsp' 1, 'cv01', 'cv03', 'cv04', 'calt', 'ss03', 'liga',
+    'ordn';
+  --radius: 0.5rem;
+
+  --link-rurikon-200: #b3b9c1;
+  --link-rurikon-300: #8c95a1;
+  --link-rurikon-500: #4a515b;
+  --link-rurikon-600: #3b4149;
+  --link-rurikon-700: #2b3035;
+
+  --link-background: #fcfcfc;
+  --link-foreground: #1e2125;
+  --link-card: #fcfcfc;
+  --link-card-foreground: #1e2125;
+  --link-primary: #2b3035;
+  --link-primary-foreground: #ebedef;
+  --link-secondary: #ebedef;
+  --link-secondary-foreground: #2b3035;
+  --link-muted: #ebedef;
+  --link-muted-foreground: #697381;
+  --link-border: #d8dbdfb3;
+
+  color-scheme: only light;
+  min-height: inherit;
+  background-color: var(--link-background);
+  color: var(--link-rurikon-500);
+  font-synthesis: none;
+  font-feature-settings: var(--font-features);
+  font-variation-settings: 'wght' 440, var(--link-sans-variation);
+  font-variant: common-ligatures contextual;
+  text-decoration-skip-ink: auto;
+  font-optical-sizing: auto;
+  letter-spacing: 0.0085em;
+  word-spacing: -0.04em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+.link-root ::selection {
+  background: #95a5ac40;
+  color: #485a74;
+}
+
+.link-root .font-link-serif {
+  font-family: var(--font-link-serif), Baskerville, Georgia, Cambria,
+    'Times New Roman', Times, serif;
+  font-style: italic;
+  font-optical-sizing: auto;
+  font-variation-settings: 'wght' 480;
+  font-variant-ligatures: contextual;
+  letter-spacing: -0.006em;
+}

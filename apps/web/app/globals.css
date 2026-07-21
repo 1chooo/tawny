@@ -3,6 +3,7 @@
 @import 'shadcn/tailwind.css';
 @import './designs/art/art.css';
 @import './designs/dev/dev.css';
+@import './designs/link/link.css';
 
 @custom-variant dark (&:is(.dark *));
 
