@@ -7,6 +7,7 @@ Interactive CLI to scaffold a [Tawny](https://github.com/1chooo/tawny) design te
 ```bash
 npx create-tawny@latest dev my-blog
 npx create-tawny@latest art my-journal
+npx create-tawny@latest link my-links
 
 # or omit the template / name to get interactive prompts
 npx create-tawny@latest
@@ -18,6 +19,7 @@ Available templates:
 | ----- | -------------------------------------------------------| ------------------------------------------- |
 | `dev` | Minimal mono developer blog — MDX essays + demos        | [`templates/dev`](../../templates/dev)     |
 | `art` | Bilingual bento journal — MDX notes, projects, i18n     | [`templates/art`](../../templates/art)     |
+| `link` | Personal link-in-bio page — profile + social links      | [`templates/link`](../../templates/link)   |
 
 Under the hood it downloads the `templates/<id>` subdirectory straight from the [`1chooo/tawny`](https://github.com/1chooo/tawny) GitHub tarball (no `create-next-app`/`npx` involved, so there's no interactive "ok to install" prompt to hang on), sets the `package.json` name, replaces the `{{AUTHOR_NAME}}` / `{{AUTHOR_EMAIL}}` / `{{GITHUB_USERNAME}}` / `{{CITY_NAME}}` placeholders, and runs any template-specific setup (e.g. `art` strips the Chinese locale and seeds `.env` when you opt into English-only).
 
