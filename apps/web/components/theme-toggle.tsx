@@ -20,16 +20,17 @@ export function ThemeToggle({ className }: { className?: string }) {
       type="button"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       className={cn(
-        'inline-flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground',
+        'inline-flex h-8 items-center gap-1.5 rounded-full border border-border bg-muted/40 px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground',
         className,
       )}
       aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
     >
       {isDark ? (
-        <Sun size={16} aria-hidden="true" />
+        <Sun size={14} aria-hidden="true" />
       ) : (
-        <Moon size={16} aria-hidden="true" />
+        <Moon size={14} aria-hidden="true" />
       )}
+      <span>{isDark ? 'Light' : 'Dark'}</span>
     </button>
   )
 }
