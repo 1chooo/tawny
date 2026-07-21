@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+:root {
+  --sans-variation: "opsz" 32;
+  --font-features: "cpsp" 1, "cv01", "cv03", "cv04", "calt", "ss03", "liga",
+    "ordn";
+  --radius: 0.5rem;
+}
+
+@theme {
+  --font-sans: var(--font-link-sans), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  --font-serif: var(--font-link-serif), Baskerville, Georgia, Cambria,
+    "Times New Roman", Times, serif;
+
+  --color-rurikon-200: #b3b9c1;
+  --color-rurikon-300: #8c95a1;
+  --color-rurikon-500: #4a515b;
+  --color-rurikon-600: #3b4149;
+  --color-rurikon-700: #2b3035;
+
+  --color-background: #fcfcfc;
+  --color-foreground: #1e2125;
+  --color-card: #fcfcfc;
+  --color-card-foreground: #1e2125;
+  --color-primary: #2b3035;
+  --color-primary-foreground: #ebedef;
+  --color-secondary: #ebedef;
+  --color-secondary-foreground: #2b3035;
+  --color-muted: #ebedef;
+  --color-muted-foreground: #697381;
+  --color-border: #d8dbdfb3;
+}
+
+@layer base {
+  html {
+    color-scheme: only light;
+  }
+
+  body {
+    min-height: 100vh;
+    font-synthesis: none;
+    font-family: var(--font-sans);
+    font-feature-settings: var(--font-features);
+    font-variation-settings: "wght" 440, var(--sans-variation);
+    font-variant: common-ligatures contextual;
+    text-decoration-skip-ink: auto;
+    font-optical-sizing: auto;
+    letter-spacing: 0.0085em;
+    word-spacing: -0.04em;
+    background-color: var(--color-background);
+    color: var(--color-rurikon-500);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  *::selection {
+    background: #95a5ac40;
+    color: #485a74;
+  }
+}
+
+@utility font-link-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-optical-sizing: auto;
+  font-variation-settings: "wght" 480;
+  font-variant-ligatures: contextual;
+  letter-spacing: -0.006em;
+}
