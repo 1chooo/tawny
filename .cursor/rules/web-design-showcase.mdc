@@ -46,7 +46,7 @@ Mirror the design routes under `apps/web/app/view/<id>/` (thin re-exports of des
 - No Tawny Navbar/Footer ([`SiteChrome`](apps/web/components/site-chrome.tsx) skips `/view/*`)
 - No ProductFrame — edge-to-edge design via the shared root shell
 - Navigation helpers must resolve the mount from the pathname (`/designs/<id>` vs `/view/<id>`)
-- Optional discreet “Back to Tawny” link to `demoPath`
+- Discreet “Back to Tawny” link to `demoPath` in production only (hidden in development so screenshot captures stay chrome-free)
 
 ## 4. Inert preview mock
 

@@ -2,8 +2,13 @@ import Link from 'next/link'
 
 /**
  * Discreet control on /view pages to return to the framed Tawny showcase.
+ * Hidden in development so screenshot captures stay chrome-free.
  */
 export function ViewBackLink({ href }: { href: string }) {
+  if (process.env.NODE_ENV !== 'production') {
+    return null
+  }
+
   return (
     <Link
       href={href}
