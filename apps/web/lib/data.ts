@@ -65,9 +65,28 @@ export const designs: Design[] = [
     thumbnail: '/thumbnails/designs/dev.webp',
     hasThemeSwitch: true,
   },
+  {
+    id: 'link',
+    title: 'Link',
+    description:
+      'A minimal personal link-in-bio page with profile, social links, and a short tagline — open the live showcase.',
+    longDescription: [
+      'Link is a single-page link-in-bio template inspired by classic personal link pages. It ships with a profile avatar popup, serif link buttons, and a short italic tagline — ready to customize with your own name, bio, and URLs.',
+      'Use the live demo above to try the interactions inside Tawny. When you are ready to start from the same foundation, scaffold a copy with the create command below, then swap in your links and profile details.',
+    ],
+    category: 'Links',
+    price: 'free',
+    tags: ['Next.js', 'Linktree', 'Minimal'],
+    featured: true,
+    demoPath: '/designs/link',
+    viewPath: '/view/link',
+    packageName: 'create-tawny',
+    sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
+    thumbnail: '/thumbnails/designs/link.webp',
+  },
 ]
 
-export const designCategories = ['All', 'Journal', 'Blog'] as const
+export const designCategories = ['All', 'Journal', 'Blog', 'Links'] as const
 
 export function getDesign(id: string) {
   return designs.find((d) => d.id === id)

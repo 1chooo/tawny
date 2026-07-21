@@ -10,6 +10,13 @@ describe('getDesign', () => {
     expect(art?.packageName).toBe('create-tawny')
   })
 
+  it('includes the link design', () => {
+    const link = getDesign('link')
+    expect(link?.demoPath).toBe('/designs/link')
+    expect(link?.viewPath).toBe('/view/link')
+    expect(link?.category).toBe('Links')
+  })
+
   it('returns undefined for unknown ids', () => {
     expect(getDesign('missing')).toBeUndefined()
   })

@@ -10,7 +10,7 @@ apps/
   cli/     # create-tawny — scaffolds the templates in templates/
 packages/
   ui/      # @tawny/ui — shared UI primitives used by apps/web
-templates/ # dev / art starter templates, scaffolded by apps/cli and browsed on /designs/<id>
+templates/ # art / dev / link starter templates, scaffolded by apps/cli and browsed on /designs/<id>
 ```
 
 Managed as a [pnpm workspace](https://pnpm.io/workspaces) (see `pnpm-workspace.yaml`). Run everything from the repo root — `pnpm install` links all three packages together.
