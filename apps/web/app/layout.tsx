@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
 import { SiteChrome } from '@/components/site-chrome'
+import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
 
 const _geistSans = Geist({ subsets: ['latin'] })
@@ -32,10 +33,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="bg-background dark">
+    <html lang="en" className="bg-background" suppressHydrationWarning>
       <body className="antialiased font-sans min-h-screen flex flex-col">
-        <SiteChrome>{children}</SiteChrome>
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <ThemeProvider>
+          <SiteChrome>{children}</SiteChrome>
+          {process.env.NODE_ENV === 'production' && <Analytics />}
+        </ThemeProvider>
       </body>
     </html>
   )
