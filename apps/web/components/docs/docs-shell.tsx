@@ -39,7 +39,7 @@ export function DocsShell({
         <div className="mb-6 flex items-center gap-3">
           <button
             type="button"
-            className="inline-flex size-8 items-center justify-center rounded-md border border-white/8 text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground lg:hidden"
+            className="inline-flex size-8 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground lg:hidden"
             aria-label={mobileOpen ? 'Close docs navigation' : 'Open docs navigation'}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
@@ -56,7 +56,7 @@ export function DocsShell({
         {mobileOpen ? (
           <div
             className={cn(
-              'mb-6 rounded-xl border border-white/8 bg-white/3 p-4 lg:hidden',
+              'mb-6 rounded-xl border border-border bg-muted/40 p-4 lg:hidden',
             )}
           >
             <DocsSidebarNav

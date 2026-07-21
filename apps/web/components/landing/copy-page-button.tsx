@@ -98,7 +98,7 @@ export function CopyPageButton({
       type="button"
       onClick={handleCopy}
       className={cn(
-        'inline-flex shrink-0 items-center gap-1.5 rounded-full border border-white/8 bg-white/3 px-3.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-white/15 hover:text-foreground',
+        'inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border bg-muted/40 px-3.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-border hover:bg-muted hover:text-foreground',
         className,
       )}
       aria-label={copied ? 'Copied page as markdown' : 'Copy page as markdown'}

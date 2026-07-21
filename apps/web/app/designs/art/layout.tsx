@@ -52,7 +52,7 @@ export default async function ArtShowcaseLayout({
               href={design.viewPath}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 px-3.5 py-1.5 text-sm text-foreground/80 transition-colors hover:border-white/25 hover:text-foreground"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-3.5 py-1.5 text-sm text-foreground/80 transition-colors hover:border-border hover:bg-muted hover:text-foreground"
             >
               Open in new tab
               <ArrowUpRight size={14} aria-hidden="true" />

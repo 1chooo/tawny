@@ -64,14 +64,14 @@ export function DocsSearch({ entries }: { entries: DocsSearchEntry[] }) {
         type="button"
         onClick={() => setOpen(true)}
         className={cn(
-          'inline-flex h-8 w-full min-w-0 max-w-md items-center gap-2 rounded-md border border-white/8 bg-white/3 px-3 text-sm text-muted-foreground transition-colors',
-          'hover:border-white/15 hover:bg-white/5 hover:text-foreground sm:min-w-56 md:min-w-72',
+          'inline-flex h-8 w-full min-w-0 max-w-md items-center gap-2 rounded-md border border-border bg-muted/40 px-3 text-sm text-muted-foreground transition-colors',
+          'hover:border-border hover:bg-muted hover:text-foreground sm:min-w-56 md:min-w-72',
         )}
         aria-label="Search docs"
       >
         <Search className="size-3.5 shrink-0" aria-hidden />
         <span className="min-w-0 flex-1 truncate text-left">Search docs…</span>
-        <kbd className="pointer-events-none hidden h-5 shrink-0 items-center rounded border border-white/10 bg-white/5 px-1.5 font-mono text-[0.65rem] font-medium text-muted-foreground sm:inline-flex">
+        <kbd className="pointer-events-none hidden h-5 shrink-0 items-center rounded border border-border bg-muted px-1.5 font-mono text-[0.65rem] font-medium text-muted-foreground sm:inline-flex">
           {shortcutLabel}
         </kbd>
       </button>
@@ -88,7 +88,7 @@ export function DocsSearch({ entries }: { entries: DocsSearchEntry[] }) {
             role="dialog"
             aria-modal="true"
             aria-label="Search documentation"
-            className="relative z-10 w-full max-w-lg overflow-hidden rounded-xl border border-white/10 bg-background shadow-2xl"
+            className="relative z-10 w-full max-w-lg overflow-hidden rounded-xl border border-border bg-background shadow-2xl"
           >
             <Command
               className="flex flex-col"
@@ -99,7 +99,7 @@ export function DocsSearch({ entries }: { entries: DocsSearchEntry[] }) {
                   : 0
               }}
             >
-              <div className="flex items-center gap-2 border-b border-white/8 px-3">
+              <div className="flex items-center gap-2 border-b border-border px-3">
                 <Search
                   className="size-4 shrink-0 text-muted-foreground"
                   aria-hidden
@@ -112,7 +112,7 @@ export function DocsSearch({ entries }: { entries: DocsSearchEntry[] }) {
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="rounded-md p-1 text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+                  className="rounded-md p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                   aria-label="Close"
                 >
                   <X className="size-4" aria-hidden />
@@ -132,7 +132,7 @@ export function DocsSearch({ entries }: { entries: DocsSearchEntry[] }) {
                         key={entry.id}
                         value={`${entry.title} ${entry.keywords}`}
                         onSelect={() => goTo(entry.href)}
-                        className="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm text-muted-foreground outline-none data-[selected=true]:bg-white/8 data-[selected=true]:text-foreground"
+                        className="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm text-muted-foreground outline-none data-[selected=true]:bg-muted data-[selected=true]:text-foreground"
                       >
                         <FileText className="size-4 shrink-0" aria-hidden />
                         <div className="flex min-w-0 flex-col gap-0.5">
@@ -157,7 +157,7 @@ export function DocsSearch({ entries }: { entries: DocsSearchEntry[] }) {
                         key={entry.id}
                         value={`${entry.title} ${entry.keywords}`}
                         onSelect={() => goTo(entry.href)}
-                        className="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm text-muted-foreground outline-none data-[selected=true]:bg-white/8 data-[selected=true]:text-foreground"
+                        className="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm text-muted-foreground outline-none data-[selected=true]:bg-muted data-[selected=true]:text-foreground"
                       >
                         <Hash className="size-4 shrink-0" aria-hidden />
                         <div className="flex min-w-0 flex-col gap-0.5">

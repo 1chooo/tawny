@@ -72,7 +72,7 @@ export async function DesignTemplateDocs({ design }: DesignTemplateDocsProps) {
           </h2>
           <p className="mt-1 text-sm text-muted-foreground">
             Browse every file in{' '}
-            <code className="rounded bg-white/5 px-1.5 py-0.5 font-mono text-[12px] text-foreground/80">
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[12px] text-foreground/80">
               templates/{design.id}
             </code>
             .

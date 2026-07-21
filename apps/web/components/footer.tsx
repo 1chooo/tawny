@@ -25,7 +25,7 @@ const links = {
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-white/8 bg-background px-6 py-12">
+    <footer className="relative overflow-hidden border-t border-border bg-background px-6 py-12">
       {/* Oversized brand watermark */}
       <span
         aria-hidden
@@ -67,7 +67,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/8 pt-6 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 sm:flex-row">
           <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} Tawny. All rights reserved.
           </p>

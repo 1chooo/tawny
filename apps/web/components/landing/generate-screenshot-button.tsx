@@ -68,7 +68,7 @@ export function GenerateScreenshotButton({
       onClick={handleGenerate}
       disabled={isLoading}
       className={cn(
-        'inline-flex shrink-0 items-center gap-1.5 rounded-full border border-white/8 bg-white/3 px-3.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-white/15 hover:text-foreground disabled:opacity-60',
+        'inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border bg-muted/40 px-3.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-border hover:bg-muted hover:text-foreground disabled:opacity-60',
         className,
       )}
       aria-label="Generate thumbnail screenshot"

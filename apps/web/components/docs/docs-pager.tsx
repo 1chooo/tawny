@@ -18,12 +18,12 @@ export function DocsPager({
   return (
     <nav
       aria-label="Docs pagination"
-      className="mt-16 flex flex-col gap-4 border-t border-white/8 pt-8 sm:flex-row sm:justify-between"
+      className="mt-16 flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:justify-between"
     >
       {prev ? (
         <Link
           href={prev.href}
-          className="group flex min-w-0 flex-1 flex-col gap-1 rounded-lg border border-white/8 bg-white/3 px-4 py-3 transition-colors hover:border-white/15 hover:bg-white/5"
+          className="group flex min-w-0 flex-1 flex-col gap-1 rounded-lg border border-border bg-muted/40 px-4 py-3 transition-colors hover:border-border hover:bg-muted"
         >
           <span className="flex items-center gap-1 text-xs text-muted-foreground">
             <ChevronLeft className="size-3.5" aria-hidden />
@@ -39,7 +39,7 @@ export function DocsPager({
       {next ? (
         <Link
           href={next.href}
-          className="group flex min-w-0 flex-1 flex-col gap-1 rounded-lg border border-white/8 bg-white/3 px-4 py-3 text-right transition-colors hover:border-white/15 hover:bg-white/5 sm:items-end"
+          className="group flex min-w-0 flex-1 flex-col gap-1 rounded-lg border border-border bg-muted/40 px-4 py-3 text-right transition-colors hover:border-border hover:bg-muted sm:items-end"
         >
           <span className="flex items-center gap-1 text-xs text-muted-foreground">
             {nextLabel}
