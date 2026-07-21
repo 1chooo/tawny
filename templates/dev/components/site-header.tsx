@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
   const pathname = usePathname();
@@ -36,6 +37,7 @@ export function SiteHeader() {
             _
           </span>
         </Link>
+        <ThemeToggle />
       </div>
       <div className="mt-1.5 flex gap-4">
         <NavLink href="/">about</NavLink>
