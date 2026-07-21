@@ -22,7 +22,14 @@ export function Hero() {
         className="relative w-full lg:mx-auto lg:max-w-6xl lg:rounded-[28px] lg:bg-cover lg:bg-center lg:p-5 lg:shadow-[0_40px_100px_-30px_rgba(0,0,0,0.25)] dark:lg:shadow-[0_40px_100px_-30px_rgba(0,0,0,0.7)]"
         style={{ backgroundImage: "url('/images/paper-texture.png')" }}
       >
-        <div className="relative flex min-h-svh w-full flex-col overflow-hidden bg-background/90 lg:h-[640px] lg:min-h-0 lg:rounded-[20px] lg:bg-background dark:bg-black/55 dark:lg:bg-black">
+        <div className="relative flex min-h-svh w-full flex-col overflow-hidden bg-background/45 lg:h-[640px] lg:min-h-0 lg:rounded-[20px] lg:bg-background dark:bg-black/55 dark:lg:bg-black">
+          {/* Paper grain on the card — light mobile only, so texture stays visible through the wash */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-60 mix-blend-multiply dark:hidden lg:hidden"
+            style={{ backgroundImage: "url('/images/paper-texture.png')" }}
+          />
+
           {/* Layered background glow, warmed with tawny */}
           <div
             aria-hidden="true"
@@ -33,10 +40,10 @@ export function Hero() {
             }}
           />
 
-          {/* Text legibility scrim — soft in light, darkest behind copy on mobile dark */}
+          {/* Text legibility scrim — lighter wash in light so paper shows; dark keeps stronger contrast */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-linear-to-b from-background/30 via-background/70 to-background/90 dark:from-black/25 dark:via-black/65 dark:to-black/80 lg:from-transparent lg:via-transparent lg:to-transparent"
+            className="pointer-events-none absolute inset-0 bg-linear-to-b from-background/10 via-background/35 to-background/55 dark:from-black/25 dark:via-black/65 dark:to-black/80 lg:from-transparent lg:via-transparent lg:to-transparent"
           />
 
           {/* Subtle grid lines */}
