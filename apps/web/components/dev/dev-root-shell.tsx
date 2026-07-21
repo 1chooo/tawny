@@ -1,7 +1,15 @@
+'use client'
+
+'use client'
+
 import type { ReactNode } from 'react'
 import { JetBrains_Mono } from 'next/font/google'
 import { SiteFooter } from '@/components/dev/site-footer'
 import { SiteHeader } from '@/components/dev/site-header'
+import {
+  DevThemeProvider,
+  useDevTheme,
+} from '@/components/dev/dev-theme-provider'
 import { cn } from '@tawny/ui/lib/utils'
 
 const mono = JetBrains_Mono({
@@ -10,18 +18,18 @@ const mono = JetBrains_Mono({
   display: 'swap',
 })
 
-/**
- * Dev design root — fonts, header, and footer. Used by ProductFrame showcase and /view.
- */
-export function DevRootShell({
+function DevRootInner({
   children,
   className,
 }: {
   children: ReactNode
   className?: string
 }) {
+  const { theme } = useDevTheme()
+
   return (
     <div
+      data-theme={theme}
       className={cn(
         'dev-root',
         mono.variable,
@@ -36,5 +44,23 @@ export function DevRootShell({
         <SiteFooter />
       </div>
     </div>
+  )
+}
+
+/**
+ * Dev design root — fonts, header, footer, and independent theme.
+ * Used by ProductFrame showcase and /view.
+ */
+export function DevRootShell({
+  children,
+  className,
+}: {
+  children: ReactNode
+  className?: string
+}) {
+  return (
+    <DevThemeProvider>
+      <DevRootInner className={className}>{children}</DevRootInner>
+    </DevThemeProvider>
   )
 }

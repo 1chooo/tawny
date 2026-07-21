@@ -1,5 +1,5 @@
 .dev-root {
-  color-scheme: light dark;
+  color-scheme: light;
   --dev-background: #ffffff;
   --dev-foreground: #18181b;
   --dev-muted: #71717a;
@@ -21,21 +21,20 @@
   -webkit-font-smoothing: antialiased;
 }
 
-@media (prefers-color-scheme: dark) {
-  .dev-root {
-    --dev-background: #09090b;
-    --dev-foreground: #e4e4e7;
-    --dev-muted: #a1a1aa;
-    --dev-link: #d4d4d8;
-    --dev-link-hover: #fafafa;
-    --dev-border: #27272a;
-    --dev-code-bg: #18181b;
-  }
+.dev-root[data-theme='dark'] {
+  color-scheme: dark;
+  --dev-background: #09090b;
+  --dev-foreground: #e4e4e7;
+  --dev-muted: #a1a1aa;
+  --dev-link: #d4d4d8;
+  --dev-link-hover: #fafafa;
+  --dev-border: #27272a;
+  --dev-code-bg: #18181b;
+}
 
-  .dev-root pre code span {
-    color: var(--shiki-dark) !important;
-    background-color: var(--shiki-dark-bg) !important;
-  }
+.dev-root[data-theme='dark'] pre code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
 }
 
 .dev-root ::selection {

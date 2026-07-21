@@ -14,7 +14,10 @@ export function DevPreviewMock({ className }: DevPreviewMockProps) {
       inert
       className={className}
     >
-      <div className="dev-root h-full bg-[var(--background)] font-mono text-[var(--foreground)] antialiased">
+      <div
+        className="dev-root h-full bg-[var(--background)] font-mono text-[var(--foreground)] antialiased"
+        data-theme="dark"
+      >
         <div className="mx-auto max-w-2xl px-6 py-8 md:py-10">
           <nav>
             <div className="flex items-center font-extrabold">

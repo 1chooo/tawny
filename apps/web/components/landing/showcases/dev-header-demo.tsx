@@ -19,6 +19,7 @@ export function DevHeaderDemo({ className }: { className?: string }) {
         aria-label="Dev navigation header preview"
         inert
         className="dev-root select-none bg-(--dev-background,#09090b) px-5 py-4 text-(--dev-foreground,#e4e4e7) antialiased"
+        data-theme="dark"
       >
         <nav>
           <div className="flex items-center justify-between font-extrabold">

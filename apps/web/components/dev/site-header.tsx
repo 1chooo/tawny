@@ -1,6 +1,7 @@
 'use client'
 
 import { Link, usePathname } from '@/lib/dev/navigation'
+import { DevThemeToggle } from '@/components/dev/dev-theme-toggle'
 import clsx from 'clsx'
 
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
@@ -38,6 +39,7 @@ export function SiteHeader() {
             _
           </span>
         </Link>
+        <DevThemeToggle />
       </div>
       <div className="mt-1.5 flex gap-4">
         <NavLink href="/">about</NavLink>
