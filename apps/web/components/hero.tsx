@@ -19,33 +19,33 @@ export function Hero() {
 
       {/* Aged-paper mat framing the card on larger screens, like a matted print */}
       <div
-        className="relative w-full lg:mx-auto lg:max-w-6xl lg:rounded-[28px] lg:bg-cover lg:bg-center lg:p-5 lg:shadow-[0_40px_100px_-30px_rgba(0,0,0,0.7)]"
+        className="relative w-full lg:mx-auto lg:max-w-6xl lg:rounded-[28px] lg:bg-cover lg:bg-center lg:p-5 lg:shadow-[0_40px_100px_-30px_rgba(0,0,0,0.25)] dark:lg:shadow-[0_40px_100px_-30px_rgba(0,0,0,0.7)]"
         style={{ backgroundImage: "url('/images/paper-texture.png')" }}
       >
-        <div className="relative flex min-h-svh w-full flex-col overflow-hidden bg-black/55 lg:h-[640px] lg:min-h-0 lg:rounded-[20px] lg:bg-black">
-          {/* Layered dark background gradient, warmed with a stronger tawny glow on mobile */}
+        <div className="relative flex min-h-svh w-full flex-col overflow-hidden bg-background/90 lg:h-[640px] lg:min-h-0 lg:rounded-[20px] lg:bg-background dark:bg-black/55 dark:lg:bg-black">
+          {/* Layered background glow, warmed with tawny */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0"
+            className="pointer-events-none absolute inset-0 opacity-70 dark:opacity-100"
             style={{
               background:
                 'radial-gradient(ellipse 80% 70% at 15% 10%, rgba(198,144,92,0.32) 0%, transparent 65%), radial-gradient(ellipse 70% 55% at 88% 78%, rgba(198,144,92,0.22) 0%, transparent 55%), radial-gradient(ellipse 50% 40% at 50% 50%, rgba(198,144,92,0.08) 0%, transparent 70%)',
             }}
           />
 
-          {/* Text legibility scrim — darkest behind copy on mobile; muted on desktop */}
+          {/* Text legibility scrim — soft in light, darkest behind copy on mobile dark */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/25 via-black/65 to-black/80 lg:from-transparent lg:via-transparent lg:to-transparent"
+            className="pointer-events-none absolute inset-0 bg-linear-to-b from-background/30 via-background/70 to-background/90 dark:from-black/25 dark:via-black/65 dark:to-black/80 lg:from-transparent lg:via-transparent lg:to-transparent"
           />
 
           {/* Subtle grid lines */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 opacity-[0.025]"
+            className="pointer-events-none absolute inset-0 opacity-[0.04] dark:opacity-[0.025]"
             style={{
               backgroundImage:
-                'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
+                'linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)',
               backgroundSize: '48px 48px',
             }}
           />
@@ -53,7 +53,7 @@ export function Hero() {
           {/* Main row: text column, with the owl graphic as an atmospheric layer */}
           <div className="relative z-10 flex flex-1">
             {/* Owl-head progression graphic — behind the copy on mobile, right column on desktop */}
-            <div className="absolute inset-0 opacity-20 lg:inset-y-0 lg:left-auto lg:right-0 lg:w-[48%] lg:px-2 lg:py-4 lg:opacity-100">
+            <div className="absolute inset-0 opacity-15 dark:opacity-20 lg:inset-y-0 lg:left-auto lg:right-0 lg:w-[48%] lg:px-2 lg:py-4 lg:opacity-90 dark:lg:opacity-100">
               <Image
                 src="/images/hero-owl-progression.png"
                 alt="Four owl-head silhouettes rendered in increasing abstraction, from a solid shape to a dot pattern, wireframe mesh, and scattered particles"
@@ -99,7 +99,7 @@ export function Hero() {
                   </ShimmerButton>
                   <Link
                     href="/components"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/10 px-6 py-3 text-sm font-medium text-foreground/80 transition-colors hover:border-tawny/40 hover:text-foreground"
+                    className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground/80 transition-colors hover:border-tawny/40 hover:text-foreground"
                   >
                     View Components
                   </Link>
