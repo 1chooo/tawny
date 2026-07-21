@@ -20,6 +20,8 @@ export interface Design {
   thumbnail?: string
   /** Route to screenshot when it differs from viewPath (e.g. a locale-prefixed route); falls back to viewPath */
   screenshotPath?: string
+  /** Design ships its own in-demo theme toggle, independent of Tawny's global theme */
+  hasThemeSwitch?: boolean
 }
 
 export const designs: Design[] = [
@@ -61,6 +63,7 @@ export const designs: Design[] = [
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
     thumbnail: '/thumbnails/designs/dev.webp',
+    hasThemeSwitch: true,
   },
 ]
 

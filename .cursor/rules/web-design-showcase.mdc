@@ -18,6 +18,7 @@ Add to `designs` in [`apps/web/lib/data.ts`](apps/web/lib/data.ts):
 - `demoPath` — always `/designs/<id>` (ProductFrame + docs)
 - `viewPath` — always `/view/<id>` (full-site new-tab preview, no Tawny chrome)
 - `title`, `description`, `tags`, `price`, `category`, optional `featured`
+- optional `hasThemeSwitch: true` when the design has its own in-demo theme toggle (independent of Tawny)
 
 ## 2. Live demo at `/designs/<id>`
 
@@ -47,6 +48,7 @@ Mirror the design routes under `apps/web/app/view/<id>/` (thin re-exports of des
 - No ProductFrame — edge-to-edge design via the shared root shell
 - Navigation helpers must resolve the mount from the pathname (`/designs/<id>` vs `/view/<id>`)
 - Discreet “Back to Tawny” link to `demoPath` in production only (hidden in development so screenshot captures stay chrome-free)
+- If the design has its own theme (`hasThemeSwitch: true` in `lib/data.ts`), expose an in-demo toggle and isolate via root `data-theme` (not `html.dark`). ProductFrame chrome always follows Tawny’s global theme; demo content may diverge.
 
 ## 4. Inert preview mock
 
@@ -98,6 +100,7 @@ The inert mock is still required as the fallback for every design and component 
 - [ ] `apps/web/app/designs/<id>/` live demo + `ProductFrame` + Open in new tab
 - [ ] `apps/web/app/view/<id>/` full-site preview (re-exports OK)
 - [ ] Navigation mount-aware (`/designs` vs `/view`)
+- [ ] If themed: in-demo toggle + root `data-theme` isolation (`hasThemeSwitch: true`); ProductFrame follows Tawny
 - [ ] `apps/web/components/landing/<id>-preview-mock.tsx` (inert)
 - [ ] Wire into `DesignPreview` (+ `featured: true` only if it should appear in the landing top 3)
 - [ ] `/designs` catalog card shows `DesignPreview` + links to `demoPath`

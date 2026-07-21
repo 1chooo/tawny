@@ -20,4 +20,9 @@ describe('getDesign', () => {
       expect(design.viewPath).toBe(`/view/${design.id}`)
     }
   })
+
+  it('marks Dev as having an independent theme switch', () => {
+    expect(getDesign('dev')?.hasThemeSwitch).toBe(true)
+    expect(getDesign('art')?.hasThemeSwitch).toBeUndefined()
+  })
 })
