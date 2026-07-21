@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Package versions stay aligned
 
-All workspace packages share one version. Current: **0.1.5**.
+All workspace packages share one version. Current: **0.1.6**.
 
 When bumping a version (release, publish, or new package), update **every** `package.json` `version` field in the monorepo to the same value:
 
@@ -17,6 +17,7 @@ When bumping a version (release, publish, or new package), update **every** `pac
 | UI package | `packages/ui/package.json` |
 | Art template | `templates/art/package.json` |
 | Dev template | `templates/dev/package.json` |
+| Link template | `templates/link/package.json` |
 
 Do not leave packages on older versions (e.g. `0.1.0` / `0.0.0`) after a bump. The root `package.json` has no `version` (private workspace) — leave it without one.
 

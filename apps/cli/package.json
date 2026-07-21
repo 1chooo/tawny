@@ -1,6 +1,6 @@
 {
   "name": "create-tawny",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Scaffold a Tawny designs with Next.js and MDX",
   "license": "MIT",
   "type": "module",
