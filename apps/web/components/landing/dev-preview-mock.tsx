@@ -22,7 +22,7 @@ export function DevPreviewMock({ className }: DevPreviewMockProps) {
     >
       <ScaledDesignCanvas>
         <div
-          className="dev-root h-full bg-[var(--background)] font-mono text-[var(--foreground)] antialiased"
+          className="dev-root h-full bg-background font-mono text-foreground antialiased"
           data-theme="dark"
         >
           <div className="mx-auto flex h-full max-w-2xl flex-col px-10 py-14">
@@ -43,10 +43,10 @@ export function DevPreviewMock({ className }: DevPreviewMockProps) {
                   <span
                     key={label}
                     className={cn(
-                      'cursor-default text-lg transition-colors hover:text-[var(--foreground)]',
+                      'cursor-default text-lg transition-colors hover:text-foreground',
                       i === 0
-                        ? 'font-extrabold text-[var(--foreground)]'
-                        : 'font-normal text-[var(--muted)]',
+                        ? 'font-extrabold text-foreground'
+                        : 'font-normal text-muted',
                     )}
                   >
                     {label}
@@ -73,13 +73,13 @@ export function DevPreviewMock({ className }: DevPreviewMockProps) {
               </div>
             </article>
 
-            <footer className="mt-auto border-t border-[var(--border)] pt-4">
-              <div className="flex items-center justify-between gap-4 text-sm text-[var(--muted)]">
+            <footer className="mt-auto border-t border-border pt-4">
+              <div className="flex items-center justify-between gap-4 text-sm text-muted">
                 <div className="flex items-center gap-4 whitespace-nowrap">
                   {['twitter', 'github', 'linkedin'].map((label) => (
                     <span
                       key={label}
-                      className="cursor-default transition-colors hover:text-[var(--foreground)]"
+                      className="cursor-default transition-colors hover:text-foreground"
                     >
                       {label}
                     </span>
