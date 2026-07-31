@@ -20,7 +20,7 @@ const links = {
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-border bg-background px-6 py-12">
+    <footer className="relative overflow-hidden border-t border-border bg-background py-12">
       {/* Oversized brand watermark */}
       <span
         aria-hidden
@@ -29,7 +29,7 @@ export function Footer() {
         Tawny
       </span>
 
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative mx-auto w-full max-w-340 px-6">
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           {/* Brand */}
           <div className="max-w-xs">

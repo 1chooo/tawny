@@ -75,10 +75,10 @@ export default async function DesignsPage(props: {
   }
 
   return (
-    <div className="relative min-h-screen px-6 pt-28 pb-24">
+    <div className="relative min-h-screen pt-28 pb-24">
       <NoiseTexture opacity={0.025} />
 
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="relative z-10 mx-auto w-full max-w-340 px-6">
         <BlurFade delay={0.05}>
           <div className="mb-10">
             <p className="mb-3 text-xs font-medium tracking-[0.15em] text-muted-foreground uppercase">

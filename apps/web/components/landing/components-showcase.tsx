@@ -9,8 +9,8 @@ import { BlurFade } from '@tawny/ui/components/blur-fade'
  */
 export function ComponentsShowcase() {
   return (
-    <section className="relative border-t border-border px-6 py-20">
-      <div className="relative z-10 mx-auto max-w-340">
+    <section className="relative border-t border-border py-20">
+      <div className="relative z-10 mx-auto w-full max-w-340 px-6">
         <BlurFade delay={0.05} inView>
           <div className="mb-10 flex items-end justify-between">
             <div>
