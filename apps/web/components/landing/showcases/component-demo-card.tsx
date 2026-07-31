@@ -14,6 +14,7 @@ type ComponentDemoCardProps = {
 /**
  * Shared ProductFrame card used by the landing teaser and /components gallery.
  * Links to the component detail page for live preview + copyable source.
+ * Preview uses a true 16:9 crop so ScaledDesignCanvas preserves desktop ratios.
  */
 export function ComponentDemoCard({
   demo,
@@ -29,18 +30,12 @@ export function ComponentDemoCard({
         <div className="rounded-xl ring-1 ring-transparent transition-[box-shadow,ring-color] duration-200 group-hover:ring-white/15">
           <ProductFrame
             title={demo.frameTitle}
-            contentClassName={cn('overflow-hidden', demo.contentClassName)}
-          >
-            {demo.thumbnail ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={demo.thumbnail}
-                alt={`${demo.title} preview`}
-                className="h-full w-full object-cover"
-              />
-            ) : (
-              demo.render()
+            contentClassName={cn(
+              'aspect-video overflow-hidden',
+              demo.contentClassName,
             )}
+          >
+            {demo.render()}
           </ProductFrame>
         </div>
         <div className="flex items-start justify-between gap-3">

@@ -92,9 +92,14 @@ export default async function ComponentDetailPage({ params }: PageProps) {
         <BlurFade delay={0.1} className="mt-10">
           <ProductFrame
             title={demo.frameTitle}
-            contentClassName={cn('overflow-hidden', demo.contentClassName)}
+            contentClassName={cn(
+              'aspect-video overflow-hidden',
+              demo.contentClassName,
+            )}
           >
-            <div id={`thumbnail-capture-${demo.id}`}>{demo.render()}</div>
+            <div id={`thumbnail-capture-${demo.id}`} className="h-full">
+              {demo.render()}
+            </div>
           </ProductFrame>
         </BlurFade>
 

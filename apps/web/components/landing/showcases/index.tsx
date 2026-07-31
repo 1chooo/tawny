@@ -19,13 +19,12 @@ export type ComponentDemo = {
   featured?: boolean
   /** Repo-relative source files shown on the detail page for copy */
   sourceFiles: string[]
-  /** Generated screenshot shown on gallery cards instead of the live render, once captured */
-  thumbnail?: string
   render: () => ReactNode
 }
 
 /**
  * Shared live component demos for the landing and /components gallery.
+ * Each render uses ScaledDesignCanvas so cards preserve real desktop ratios.
  */
 export const componentDemos: ComponentDemo[] = [
   {
@@ -37,7 +36,6 @@ export const componentDemos: ComponentDemo[] = [
     frameTitle: 'components/navbar',
     featured: true,
     sourceFiles: ['apps/web/components/navbar.tsx', 'apps/web/components/logo.tsx'],
-    thumbnail: '/thumbnails/components/tawny-header.webp',
     render: () => <TawnyHeaderDemo />,
   },
   {
