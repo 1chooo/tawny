@@ -65,7 +65,7 @@ Every design needs a scaled mock used on **both** the landing showcase and the `
 3. **Landing showcase** — [`DesignsShowcase`](apps/web/components/landing/designs-showcase.tsx):
    - Independent **Web Designs** section header (not an eyebrow on the first design row)
    - Up to **3** `featured` designs; more designs live on `/designs` (“View all designs”)
-   - Each row is a JustHold Holdings/Chat–style **feature band** ([`DesignShowcaseRow`](apps/web/components/landing/design-showcase-row.tsx)): bordered `md:aspect-16/10` card, 1/3 copy + 2/3 noise panel, scaled `DemoWindow` + `DesignPreview`
+   - Each row is a JustHold Holdings/Chat–style **feature band** ([`DesignShowcaseRow`](apps/web/components/landing/design-showcase-row.tsx)): bordered `md:aspect-16/10` card, 1/3 copy + 2/3 paper panel, scaled `DemoWindow` + `DesignPreview`
    - Even index = Holdings (copy left, oversized window crop right); odd = Chat mirror (window left height-fit, copy right); mobile always stacks copy then window
    - Copy from `lib/data.ts`; no thumbnail images on these rows
 4. **Catalog** — [`/designs`](apps/web/app/designs/page.tsx) uses the same feature-band `DesignShowcaseRow`

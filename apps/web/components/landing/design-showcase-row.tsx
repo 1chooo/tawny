@@ -5,7 +5,6 @@ import {
   designPreviewBg,
 } from '@/components/landing/design-preview'
 import { DemoWindow } from '@/components/landing/demo-window'
-import { NoiseTexture } from '@tawny/ui/components/noise-texture'
 import type { Design } from '@/lib/data'
 
 function PriceBadge({ price }: { price: number | 'free' }) {
@@ -24,6 +23,31 @@ function PriceBadge({ price }: { price: number | 'free' }) {
   )
 }
 
+/** Warm paper panel behind the demo window — matches the hero material language. */
+function PaperPanelBackdrop() {
+  return (
+    <>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-muted/50"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-[0.55] mix-blend-multiply dark:opacity-30 dark:mix-blend-soft-light"
+        style={{ backgroundImage: "url('/images/paper-texture.png')" }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-60 dark:opacity-40"
+        style={{
+          background:
+            'radial-gradient(ellipse 70% 60% at 30% 20%, rgba(198,144,92,0.14) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 80%, rgba(198,144,92,0.08) 0%, transparent 55%)',
+        }}
+      />
+    </>
+  )
+}
+
 type DesignShowcaseRowProps = {
   design: Design
   index: number
@@ -37,7 +61,7 @@ type DesignShowcaseRowProps = {
 }
 
 /**
- * JustHold Holdings/Chat–style feature band: 1/3 copy + 2/3 noise panel
+ * JustHold Holdings/Chat–style feature band: 1/3 copy + 2/3 paper panel
  * with a scaled design window. Shared by landing and `/designs`.
  */
 export function DesignShowcaseRow({
@@ -114,7 +138,7 @@ export function DesignShowcaseRow({
               {copy}
             </div>
             <div className="relative flex min-h-72 flex-1 items-center justify-center overflow-hidden border-t border-border p-5 sm:p-6 md:col-span-2 md:col-start-1 md:row-start-1 md:h-full md:min-h-0 md:border-t-0 md:border-r md:p-8">
-              <NoiseTexture opacity={0.45} className="absolute inset-0" />
+              <PaperPanelBackdrop />
               {/*
                 Always keep a true 16:9 box. Prefer full width; cap with max-h so a tall
                 panel never stretches the frame (md:h-full + max-w-full was breaking
@@ -132,7 +156,7 @@ export function DesignShowcaseRow({
               {copy}
             </div>
             <div className="relative min-h-72 flex-1 overflow-hidden border-t border-border md:col-span-2 md:min-h-0 md:border-t-0 md:border-l">
-              <NoiseTexture opacity={0.45} className="absolute inset-0" />
+              <PaperPanelBackdrop />
               <div className="absolute top-[8%] left-[8%] aspect-video w-[118%] shadow-2xl md:top-1/2 md:left-[6%] md:w-[125%] md:-translate-y-1/2">
                 {window}
               </div>
