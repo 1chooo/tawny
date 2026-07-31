@@ -8,7 +8,7 @@ type DevPreviewMockProps = {
 }
 
 /**
- * Desktop-fidelity Dev about mock — fixed 1440×900 canvas scaled into the frame.
+ * Desktop-fidelity Dev about mock — scaled into the frame.
  * Hover affordances only; no navigation.
  */
 export function DevPreviewMock({ className }: DevPreviewMockProps) {

@@ -115,8 +115,12 @@ export function DesignShowcaseRow({
             </div>
             <div className="relative flex min-h-72 flex-1 items-center justify-center overflow-hidden border-t border-border p-5 sm:p-6 md:col-span-2 md:col-start-1 md:row-start-1 md:h-full md:min-h-0 md:border-t-0 md:border-r md:p-8">
               <NoiseTexture opacity={0.45} className="absolute inset-0" />
-              {/* Mobile: width-driven 16:9. md+: height-fit so the whole window stays visible. */}
-              <div className="relative z-10 aspect-video w-full shadow-2xl md:h-full md:w-auto md:max-w-full">
+              {/*
+                Always keep a true 16:9 box. Prefer full width; cap with max-h so a tall
+                panel never stretches the frame (md:h-full + max-w-full was breaking
+                aspect-ratio and leaving a white gap under the scaled canvas).
+              */}
+              <div className="relative z-10 aspect-video h-auto max-h-full w-full shadow-2xl">
                 {window}
               </div>
             </div>
