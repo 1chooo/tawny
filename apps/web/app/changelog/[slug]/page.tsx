@@ -9,7 +9,6 @@ import {
   getChangelogEntry,
   getChangelogStaticParams,
 } from '@/lib/changelog'
-import { formatChangelogDate } from '@/lib/changelog-date'
 import { docsMdxComponents } from '@/lib/mdx/docs-components'
 import { renderMdx } from '@/lib/mdx/render'
 import { NoiseTexture } from '@tawny/ui/components/noise-texture'
@@ -51,11 +50,7 @@ export default async function ChangelogEntryPage({ params }: PageProps) {
       <NoiseTexture opacity={0.025} />
 
       <div className="relative z-10">
-        <ChangelogShell
-          date={formatChangelogDate(entry.date)}
-          category={entry.category}
-          toc={toc}
-        >
+        <ChangelogShell toc={toc}>
           <ChangelogHeader entry={entry} />
           {content}
           <DocsPager prev={newer} next={older} prevLabel="Newer" nextLabel="Older" />
