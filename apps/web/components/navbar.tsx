@@ -76,10 +76,10 @@ export function Navbar() {
         <div className="relative z-10 hidden md:flex items-center gap-2">
           <ThemeToggle />
           <Link
-            href="/pricing"
+            href="/designs"
             className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-foreground text-background text-sm font-medium hover:opacity-85 transition-opacity"
           >
-            Get access
+            Browse designs
           </Link>
         </div>
 
@@ -116,10 +116,10 @@ export function Navbar() {
           ))}
           <div className="mt-2 pt-3 border-t border-border">
             <Link
-              href="/pricing"
+              href="/designs"
               className="flex items-center justify-center px-4 py-2 rounded-full bg-foreground text-background text-sm font-medium hover:opacity-85 transition-opacity"
             >
-              Get access
+              Browse designs
             </Link>
           </div>
         </div>

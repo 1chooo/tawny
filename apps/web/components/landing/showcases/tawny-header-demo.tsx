@@ -43,7 +43,7 @@ export function TawnyHeaderDemo({ className }: { className?: string }) {
                 ))}
               </nav>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-1.5 text-sm font-medium text-background">
-                Get access
+                Browse designs
               </span>
             </div>
           </header>

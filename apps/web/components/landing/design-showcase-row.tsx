@@ -1,27 +1,11 @@
 import Link from 'next/link'
-import { ArrowRight, Lock } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import {
   DesignPreview,
   designPreviewBg,
 } from '@/components/landing/design-preview'
 import { DemoWindow } from '@/components/landing/demo-window'
 import type { Design } from '@/lib/data'
-
-function PriceBadge({ price }: { price: number | 'free' }) {
-  if (price === 'free') {
-    return (
-      <span className="inline-flex items-center rounded-full border border-border bg-muted/40 px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
-        Free
-      </span>
-    )
-  }
-  return (
-    <span className="inline-flex items-center gap-1 rounded-full border border-border bg-muted/40 px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
-      <Lock size={8} />
-      ${price}
-    </span>
-  )
-}
 
 type DesignShowcaseRowProps = {
   design: Design
@@ -60,7 +44,6 @@ export function DesignShowcaseRow({
       </p>
 
       <div className="flex flex-wrap items-center gap-2">
-        <PriceBadge price={design.price} />
         {design.tags.map((tag) => (
           <span
             key={tag}
