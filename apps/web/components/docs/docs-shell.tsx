@@ -3,7 +3,10 @@
 import { useState, type ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
-import { DocsSearch } from '@/components/docs/docs-search'
+import {
+  DocsSearchProvider,
+  DocsSearchTrigger,
+} from '@/components/docs/docs-search'
 import { DocsSidebar } from '@/components/docs/docs-sidebar'
 import { DocsSidebarNav } from '@/components/docs/docs-sidebar-nav'
 import type { DocsSidebarGroup } from '@/lib/docs/load'
@@ -34,46 +37,56 @@ export function DocsShell({
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <div className="relative min-h-screen px-6 pb-8 pt-28">
-      <NoiseTexture opacity={0.025} />
+    <DocsSearchProvider entries={searchEntries}>
+      <div className="relative min-h-screen px-6 pb-8 pt-20">
+        <NoiseTexture opacity={0.025} />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl">
-        <div className="mb-6 flex items-center gap-3">
-          <button
-            type="button"
-            className="inline-flex size-8 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground lg:hidden"
-            aria-label={mobileOpen ? 'Close docs navigation' : 'Open docs navigation'}
-            aria-expanded={mobileOpen}
-            onClick={() => setMobileOpen((v) => !v)}
-          >
-            {mobileOpen ? (
-              <X className="size-4" aria-hidden />
-            ) : (
-              <Menu className="size-4" aria-hidden />
-            )}
-          </button>
-          <DocsSearch entries={searchEntries} />
-        </div>
+        <div className="relative z-10 mx-auto w-full max-w-7xl">
+          <div className="sticky top-14 z-40 -mx-6 mb-4 border-b border-border/60 bg-background/80 px-6 py-3 backdrop-blur-xl lg:hidden">
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-white/8 bg-white/3 text-muted-foreground transition-colors hover:border-white/15 hover:bg-white/5 hover:text-foreground"
+                aria-label={
+                  mobileOpen ? 'Close docs navigation' : 'Open docs navigation'
+                }
+                aria-expanded={mobileOpen}
+                onClick={() => setMobileOpen((v) => !v)}
+              >
+                {mobileOpen ? (
+                  <X className="size-4" aria-hidden />
+                ) : (
+                  <Menu className="size-4" aria-hidden />
+                )}
+              </button>
+              <DocsSearchTrigger variant="toolbar" />
+            </div>
+          </div>
 
-        {mobileOpen ? (
-          <div
-            className={cn(
-              'mb-6 rounded-xl border border-border bg-muted/40 p-4 lg:hidden',
-            )}
-          >
-            <DocsSidebarNav
+          {mobileOpen ? (
+            <div
+              className={cn(
+                'mb-6 rounded-xl border border-border bg-muted/40 p-4 lg:hidden',
+              )}
+            >
+              <DocsSidebarNav
+                groups={groups}
+                activeSlug={activeSlug}
+                onNavigate={() => setMobileOpen(false)}
+              />
+            </div>
+          ) : null}
+
+          <div className="flex gap-2">
+            <DocsSidebar
               groups={groups}
               activeSlug={activeSlug}
-              onNavigate={() => setMobileOpen(false)}
+              search={<DocsSearchTrigger variant="sidebar" />}
             />
+            {children}
           </div>
-        ) : null}
-
-        <div className="flex gap-2">
-          <DocsSidebar groups={groups} activeSlug={activeSlug} />
-          {children}
         </div>
       </div>
-    </div>
+    </DocsSearchProvider>
   )
 }

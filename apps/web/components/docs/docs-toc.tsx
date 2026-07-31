@@ -49,7 +49,7 @@ export function DocsToc({
 
   return (
     <aside className="hidden w-48 shrink-0 xl:block">
-      <div className="sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto py-2 pl-4">
+      <div className="sticky top-16 max-h-[calc(100vh-5rem)] overflow-y-auto py-2 pl-4">
         <p className="mb-3 text-[0.65rem] font-medium uppercase tracking-[0.15em] text-muted-foreground">
           {label}
         </p>

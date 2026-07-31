@@ -1,13 +1,41 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from 'react'
 import { useRouter } from 'next/navigation'
 import { Command } from 'cmdk'
 import { FileText, Hash, Search, X } from 'lucide-react'
 import type { DocsSearchEntry } from '@/lib/docs/search'
 import { cn } from '@tawny/ui/lib/utils'
 
-export function DocsSearch({ entries }: { entries: DocsSearchEntry[] }) {
+type DocsSearchContextValue = {
+  setOpen: (open: boolean) => void
+  shortcutLabel: string
+}
+
+const DocsSearchContext = createContext<DocsSearchContextValue | null>(null)
+
+function useDocsSearchContext() {
+  const ctx = useContext(DocsSearchContext)
+  if (!ctx) {
+    throw new Error('DocsSearchTrigger must be used within DocsSearchProvider')
+  }
+  return ctx
+}
+
+export function DocsSearchProvider({
+  entries,
+  children,
+}: {
+  entries: DocsSearchEntry[]
+  children: ReactNode
+}) {
   const router = useRouter()
   const [open, setOpen] = useState(false)
   const [isMac, setIsMac] = useState(false)
@@ -59,25 +87,10 @@ export function DocsSearch({ entries }: { entries: DocsSearchEntry[] }) {
   }
 
   return (
-    <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className={cn(
-          'inline-flex h-8 w-full min-w-0 max-w-md items-center gap-2 rounded-md border border-border bg-muted/40 px-3 text-sm text-muted-foreground transition-colors',
-          'hover:border-border hover:bg-muted hover:text-foreground sm:min-w-56 md:min-w-72',
-        )}
-        aria-label="Search docs"
-      >
-        <Search className="size-3.5 shrink-0" aria-hidden />
-        <span className="min-w-0 flex-1 truncate text-left">Search docs…</span>
-        <kbd className="pointer-events-none hidden h-5 shrink-0 items-center rounded border border-border bg-muted px-1.5 font-mono text-[0.65rem] font-medium text-muted-foreground sm:inline-flex">
-          {shortcutLabel}
-        </kbd>
-      </button>
-
+    <DocsSearchContext.Provider value={{ setOpen, shortcutLabel }}>
+      {children}
       {open ? (
-        <div className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-[15vh]">
+        <div className="fixed inset-0 z-60 flex items-start justify-center px-4 pt-[15vh]">
           <button
             type="button"
             className="absolute inset-0 bg-background/80 backdrop-blur-sm"
@@ -175,6 +188,34 @@ export function DocsSearch({ entries }: { entries: DocsSearchEntry[] }) {
           </div>
         </div>
       ) : null}
-    </>
+    </DocsSearchContext.Provider>
+  )
+}
+
+export function DocsSearchTrigger({
+  variant = 'sidebar',
+}: {
+  variant?: 'sidebar' | 'toolbar'
+}) {
+  const { setOpen, shortcutLabel } = useDocsSearchContext()
+
+  return (
+    <button
+      type="button"
+      onClick={() => setOpen(true)}
+      className={cn(
+        'inline-flex min-w-0 items-center gap-2 border border-white/8 bg-white/3 text-sm text-muted-foreground transition-colors',
+        'hover:border-white/15 hover:bg-white/5 hover:text-foreground',
+        variant === 'sidebar' && 'h-10 w-full rounded-lg px-3',
+        variant === 'toolbar' && 'h-9 min-w-0 flex-1 rounded-lg px-3',
+      )}
+      aria-label="Search docs"
+    >
+      <Search className="size-3.5 shrink-0" aria-hidden />
+      <span className="min-w-0 flex-1 truncate text-left">Search docs…</span>
+      <kbd className="pointer-events-none hidden h-5 shrink-0 items-center rounded border border-white/10 bg-white/5 px-1.5 font-mono text-[0.65rem] font-medium text-muted-foreground sm:inline-flex">
+        {shortcutLabel}
+      </kbd>
+    </button>
   )
 }
