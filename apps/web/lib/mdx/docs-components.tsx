@@ -1,6 +1,7 @@
 import type { MDXComponents } from 'mdx/types'
 import type { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react'
 import Link from 'next/link'
+import { ChangelogPreview } from '@/components/changelog/changelog-preview'
 import { Callout } from '@/components/docs/callout'
 import { slugifyHeading } from '@/lib/docs/toc'
 import { highlightCode } from '@/lib/highlight-code'
@@ -200,4 +201,5 @@ export const docsMdxComponents: MDXComponents = {
     />
   ),
   Callout,
+  ChangelogPreview,
 }
