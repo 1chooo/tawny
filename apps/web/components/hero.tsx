@@ -22,7 +22,7 @@ export function Hero() {
         className="relative w-full lg:mx-auto lg:max-w-6xl lg:rounded-[28px] lg:bg-cover lg:bg-center lg:p-5 lg:shadow-[0_40px_100px_-30px_rgba(0,0,0,0.25)] dark:lg:shadow-[0_40px_100px_-30px_rgba(0,0,0,0.7)]"
         style={{ backgroundImage: "url('/images/paper-texture.png')" }}
       >
-        <div className="relative flex min-h-svh w-full flex-col overflow-hidden bg-background/45 lg:h-[640px] lg:min-h-0 lg:rounded-[20px] lg:bg-background dark:bg-background/55 dark:lg:bg-background">
+        <div className="relative flex min-h-svh w-full flex-col overflow-hidden bg-background/45 lg:h-160 lg:min-h-0 lg:rounded-[20px] lg:bg-background dark:bg-background/55 dark:lg:bg-background">
           {/* Paper grain on the card — light mobile only, so texture stays visible through the wash */}
           <div
             aria-hidden="true"
