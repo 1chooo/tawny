@@ -1,4 +1,5 @@
 import { DM_Sans, JetBrains_Mono, Playfair_Display } from 'next/font/google'
+import { ScaledDesignCanvas } from '@/components/landing/scaled-design-canvas'
 import { cn } from '@tawny/ui/lib/utils'
 
 const artDisplay = Playfair_Display({
@@ -17,7 +18,8 @@ const artMono = JetBrains_Mono({
 })
 
 /**
- * Inert visual twin of the Art site header — marketing preview only.
+ * Desktop-fidelity Art header twin — fixed canvas scaled into the frame.
+ * Inert visual twin; no navigation.
  */
 export function ArtHeaderDemo({ className }: { className?: string }) {
   return (
@@ -27,7 +29,7 @@ export function ArtHeaderDemo({ className }: { className?: string }) {
         artSans.variable,
         artMono.variable,
         artSans.className,
-        'font-(family-name:--font-art-sans-body)',
+        'h-full font-(family-name:--font-art-sans-body)',
         className,
       )}
     >
@@ -35,29 +37,34 @@ export function ArtHeaderDemo({ className }: { className?: string }) {
         role="img"
         aria-label="Art navigation header preview"
         inert
-        className="art-root select-none bg-art-bento-bg text-art-bento-ink antialiased"
+        className="h-full select-none"
       >
-        <header className="pt-3">
-          <div className="relative flex items-center justify-between gap-4 px-4 pb-3 md:px-5">
-            <span className="text-base font-bold tracking-tight md:text-lg">
-              Hugo Lin
-            </span>
-            <nav className="flex flex-wrap items-center justify-end gap-3 md:gap-5">
-              <ul className="flex items-center gap-3 text-sm font-bold md:gap-5">
-                {['Notes', 'Projects', 'About'].map((label) => (
-                  <li key={label}>
-                    <span className="opacity-90">{label}</span>
-                  </li>
-                ))}
-              </ul>
-              <span className="font-mono text-xs font-bold tracking-wide">
-                <span>EN</span>
-                <span className="mx-1 opacity-40">|</span>
-                <span className="opacity-40">中</span>
-              </span>
-            </nav>
+        <ScaledDesignCanvas>
+          <div className="art-root flex h-full flex-col overflow-hidden bg-black text-art-bento-ink antialiased">
+            <header className="shrink-0 bg-art-bento-bg pt-3">
+              <div className="relative flex items-center justify-between gap-4 px-6 pb-3">
+                <span className="text-lg font-bold tracking-tight text-art-bento-ink">
+                  Hugo Lin
+                </span>
+                <nav className="flex flex-wrap items-center justify-end gap-5">
+                  <ul className="flex items-center gap-5 text-sm font-bold">
+                    {['Notes', 'Projects', 'About'].map((label) => (
+                      <li key={label}>
+                        <span className="opacity-90">{label}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <span className="font-mono text-xs font-bold tracking-wide">
+                    <span>EN</span>
+                    <span className="mx-1 opacity-40">|</span>
+                    <span className="opacity-40">中</span>
+                  </span>
+                </nav>
+              </div>
+            </header>
+            <div aria-hidden="true" className="min-h-0 flex-1 bg-black" />
           </div>
-        </header>
+        </ScaledDesignCanvas>
       </div>
     </div>
   )
