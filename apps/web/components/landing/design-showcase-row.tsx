@@ -23,16 +23,6 @@ function PriceBadge({ price }: { price: number | 'free' }) {
   )
 }
 
-/** Soft muted wash behind the demo window — theme-aware, no texture. */
-function PanelBackdrop() {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 bg-muted/60 dark:bg-muted/40"
-    />
-  )
-}
-
 type DesignShowcaseRowProps = {
   design: Design
   index: number
@@ -122,8 +112,8 @@ export function DesignShowcaseRow({
             <div className="flex flex-col justify-center gap-4 p-8 md:col-span-1 md:col-start-3 md:row-start-1 md:p-10 lg:p-12">
               {copy}
             </div>
-            <div className="relative flex min-h-72 flex-1 items-center justify-center overflow-hidden border-t border-border p-5 sm:p-6 md:col-span-2 md:col-start-1 md:row-start-1 md:h-full md:min-h-0 md:border-t-0 md:border-r md:p-8">
-              <PanelBackdrop />
+            {/* browser bg — muted panel behind the window (between page + browser) */}
+            <div className="relative flex min-h-72 flex-1 items-center justify-center overflow-hidden border-t border-border bg-muted p-5 sm:p-6 md:col-span-2 md:col-start-1 md:row-start-1 md:h-full md:min-h-0 md:border-t-0 md:border-r md:p-8">
               {/*
                 Always keep a true 16:9 box. Prefer full width; cap with max-h so a tall
                 panel never stretches the frame (md:h-full + max-w-full was breaking
@@ -140,8 +130,8 @@ export function DesignShowcaseRow({
             <div className="flex flex-col justify-center gap-4 p-8 md:col-span-1 md:p-10 lg:p-12">
               {copy}
             </div>
-            <div className="relative min-h-72 flex-1 overflow-hidden border-t border-border md:col-span-2 md:min-h-0 md:border-t-0 md:border-l">
-              <PanelBackdrop />
+            {/* browser bg — muted panel behind the window (between page + browser) */}
+            <div className="relative min-h-72 flex-1 overflow-hidden border-t border-border bg-muted md:col-span-2 md:min-h-0 md:border-t-0 md:border-l">
               <div className="absolute top-[8%] left-[8%] aspect-video w-[118%] shadow-2xl md:top-1/2 md:left-[6%] md:w-[125%] md:-translate-y-1/2">
                 {window}
               </div>

@@ -102,9 +102,14 @@ export function DesignPreview({ id, className }: DesignPreviewProps) {
   return null
 }
 
-/** Frame background for a design preview (art is black, others light). */
+/**
+ * Browser content fill behind the scaled mock.
+ * Matches each design’s own canvas — not the Tawny page background —
+ * so letterboxing doesn’t flash a fourth color between panel and mock.
+ */
 export function designPreviewBg(id: string) {
   if (id === 'art') return 'bg-black'
+  if (id === 'dev') return 'bg-(--dev-background,#09090b)'
   if (id === 'link') return 'bg-[#fcfcfc]'
-  return 'bg-white dark:bg-zinc-950'
+  return 'bg-background'
 }

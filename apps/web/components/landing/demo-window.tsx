@@ -23,7 +23,7 @@ export function DemoWindow({
   return (
     <div
       className={cn(
-        'flex min-h-0 flex-col overflow-hidden rounded-xl border bg-card/95 shadow-2xl backdrop-blur-md transition-[box-shadow,border-color,ring-color]',
+        'flex min-h-0 flex-col overflow-hidden rounded-xl border bg-card shadow-2xl transition-[box-shadow,border-color,ring-color]',
         active
           ? 'border-border ring-1 ring-tawny/25'
           : 'border-border/80',
@@ -31,7 +31,7 @@ export function DemoWindow({
       )}
       style={style}
     >
-      <div className="relative flex shrink-0 items-center px-3 py-2">
+      <div className="relative flex shrink-0 items-center bg-card px-3 py-2">
         <div className="flex items-center gap-1.5" aria-hidden="true">
           <span className="size-2.5 rounded-full bg-border" />
           <span className="size-2.5 rounded-full bg-border" />
@@ -43,7 +43,7 @@ export function DemoWindow({
       </div>
       <div
         className={cn(
-          'min-h-0 flex-1 overflow-hidden border-t border-border/60 bg-background',
+          'min-h-0 flex-1 overflow-hidden border-t border-border/60',
           contentClassName,
         )}
       >
