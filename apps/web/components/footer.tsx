@@ -8,8 +8,6 @@ const links = {
     { label: 'Changelog', href: '#' },
   ],
   Resources: [
-    { label: 'Documentation', href: '/components' },
-    { label: 'Figma Files', href: '#' },
     { label: 'Logos & Marks', href: '/logos-marks' },
     { label: 'License', href: '#' },
     { label: 'FAQ', href: '#' },
