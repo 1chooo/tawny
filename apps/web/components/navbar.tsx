@@ -43,7 +43,7 @@ export function Navbar() {
             'bg-background/35 backdrop-blur-md border-b border-border/60 md:bg-transparent md:backdrop-blur-none md:border-transparent'
       )}
     >
-      <div className="relative mx-auto max-w-7xl px-6 h-14 flex items-center justify-between">
+      <div className="relative mx-auto max-w-340 px-6 h-14 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="relative z-10 flex items-center gap-2.5 group" aria-label="Tawny home">
           <Logo className="size-8 rounded-md group-hover:opacity-80 transition-opacity" />
