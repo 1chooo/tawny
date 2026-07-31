@@ -1,8 +1,9 @@
 import 'server-only'
 
-import { docsNavigation } from '@/content/docs/navigation'
+import { docsNavigation } from '@/content/components/navigation'
 import { docsHref, getAllDocSlugs, loadDoc } from '@/lib/docs/load'
 import { extractToc } from '@/lib/docs/toc'
+import { componentDemos } from '@/components/landing/showcases'
 
 export type DocsSearchEntry = {
   id: string
@@ -31,7 +32,8 @@ function groupTitleForSlug(slug: string): string {
 }
 
 /**
- * Build a client-safe search index (pages + heading deep links).
+ * Build a client-safe search index (MDX guide pages + heading deep links,
+ * plus one entry per live component demo).
  */
 export function getDocsSearchIndex(): DocsSearchEntry[] {
   const entries: DocsSearchEntry[] = []
@@ -71,6 +73,19 @@ export function getDocsSearchIndex(): DocsSearchEntry[] {
         kind: 'heading',
       })
     }
+  }
+
+  for (const demo of componentDemos) {
+    entries.push({
+      id: `page:${demo.id}`,
+      slug: demo.id,
+      href: `/components/${demo.id}`,
+      title: demo.title,
+      description: demo.description,
+      groupTitle: 'Components',
+      keywords: [demo.title, demo.description, demo.category].join(' '),
+      kind: 'page',
+    })
   }
 
   return entries

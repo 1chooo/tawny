@@ -7,7 +7,8 @@ import {
   docsHref,
   docsNavigation,
   getAllDocSlugs,
-} from '@/content/docs/navigation'
+} from '@/content/components/navigation'
+import { componentDemos } from '@/components/landing/showcases'
 
 export type DocFrontmatter = {
   title: string
@@ -37,7 +38,11 @@ export type DocsPagerLink = {
   title: string
 }
 
-const CONTENT_ROOT = path.join(process.cwd(), 'content/docs')
+const CONTENT_ROOT = path.join(process.cwd(), 'content/components')
+
+/** Sidebar group id that lists live component demos instead of MDX pages. */
+const COMPONENTS_GROUP_ID = 'components'
+const COMPONENTS_GROUP_TITLE = 'Components'
 
 function docFilePath(slug: string): string {
   const relative = slug === '' ? 'index.mdx' : `${slug}.mdx`
@@ -67,9 +72,20 @@ export function loadDoc(slug: string): DocPage | null {
   }
 }
 
-/** Sidebar groups with titles resolved from frontmatter. */
+/** Sidebar item for a single live component demo. */
+function componentDemoSidebarItem(
+  demo: (typeof componentDemos)[number],
+): DocsSidebarItem {
+  return { slug: demo.id, href: `/components/${demo.id}`, title: demo.title }
+}
+
+/**
+ * Sidebar groups — MDX guide groups from `docsNavigation`, plus a
+ * "Components" group built from `componentDemos` so every live demo shows
+ * up as a clickable entry automatically.
+ */
 export function getDocsSidebar(): DocsSidebarGroup[] {
-  return docsNavigation.map((group) => ({
+  const mdxGroups = docsNavigation.map((group) => ({
     id: group.id,
     title: group.title,
     items: group.items.map((slug) => {
@@ -81,15 +97,32 @@ export function getDocsSidebar(): DocsSidebarGroup[] {
       }
     }),
   }))
+
+  return [
+    ...mdxGroups,
+    {
+      id: COMPONENTS_GROUP_ID,
+      title: COMPONENTS_GROUP_TITLE,
+      items: componentDemos.map(componentDemoSidebarItem),
+    },
+  ]
 }
 
-/** Flat ordered pages for prev/next. */
+/** Flat ordered pages for prev/next — MDX guides followed by component demos. */
 export function getDocsFlatNav(): DocsPagerLink[] {
-  return getAllDocSlugs().flatMap((slug) => {
+  const mdxLinks = getAllDocSlugs().flatMap((slug) => {
     const doc = loadDoc(slug)
     if (!doc) return []
     return [{ slug, href: docsHref(slug), title: doc.title }]
   })
+
+  const demoLinks = componentDemos.map((demo) => ({
+    slug: demo.id,
+    href: `/components/${demo.id}`,
+    title: demo.title,
+  }))
+
+  return [...mdxLinks, ...demoLinks]
 }
 
 export function getAdjacentDocs(slug: string): {
@@ -105,7 +138,7 @@ export function getAdjacentDocs(slug: string): {
   }
 }
 
-/** Static params for nested docs (excluding index). */
+/** Static params for nested MDX guide pages (excluding index and demos). */
 export function getDocsStaticParams(): { slug: string[] }[] {
   return getAllDocSlugs()
     .filter((slug) => slug !== '')

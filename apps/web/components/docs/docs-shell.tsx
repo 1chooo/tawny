@@ -12,9 +12,11 @@ import { NoiseTexture } from '@tawny/ui/components/noise-texture'
 import { cn } from '@tawny/ui/lib/utils'
 
 function activeSlugFromPathname(pathname: string): string {
-  const docsIndex = pathname.indexOf('/docs')
+  const docsIndex = pathname.indexOf('/components')
   if (docsIndex === -1) return ''
-  const rest = pathname.slice(docsIndex + '/docs'.length).replace(/^\//, '')
+  const rest = pathname
+    .slice(docsIndex + '/components'.length)
+    .replace(/^\//, '')
   return rest
 }
 

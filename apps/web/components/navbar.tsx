@@ -11,7 +11,6 @@ import { cn } from '@tawny/ui/lib/utils'
 const navLinks = [
   { label: 'Designs', href: '/designs' },
   { label: 'Components', href: '/components' },
-  { label: 'Docs', href: '/docs' },
   { label: 'Pricing', href: '/pricing' },
 ]
 
