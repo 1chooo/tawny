@@ -37,7 +37,7 @@ export default async function ChangelogPage({ searchParams }: PageProps) {
     <div className="relative min-h-screen pb-16 pt-28">
       <NoiseTexture opacity={0.025} />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
+      <div className="relative z-10 mx-auto w-full max-w-340 px-6">
         <div className="relative">
           <h1 className="mx-auto mb-12 w-full max-w-2xl text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
             Changelog

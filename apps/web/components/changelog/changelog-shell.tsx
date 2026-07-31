@@ -4,7 +4,7 @@ import { DocsToc } from '@/components/docs/docs-toc'
 import type { TocItem } from '@/lib/docs/toc'
 
 /**
- * Changelog post chrome: same content width as Navbar (`max-w-7xl`);
+ * Changelog post chrome: same content width as Navbar (`max-w-340`);
  * date at the left content edge (logo-aligned). Article stays max-w-2xl
  * centered; TOC sits to the right of the article (xl+).
  */
@@ -20,7 +20,7 @@ export function ChangelogShell({
   children: ReactNode
 }) {
   return (
-    <div className="mx-auto w-full max-w-7xl px-6">
+    <div className="mx-auto w-full max-w-340 px-6">
       {/* Inner box = navbar content area; left-0 here = Tawny logo edge. */}
       <div className="relative">
         <aside className="absolute top-0 left-0 hidden w-52 xl:block">

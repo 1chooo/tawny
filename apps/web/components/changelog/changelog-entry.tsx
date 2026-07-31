@@ -15,7 +15,7 @@ export function ChangelogEntry({
   return (
     <article className="border-t border-border py-12 first:border-t-0 first:pt-0">
       <div className="relative">
-        <p className="absolute top-0 left-0 hidden text-lg text-muted-foreground xl:block">
+        <p className="absolute top-0 left-0 hidden w-52 text-left text-lg text-muted-foreground xl:block">
           <time dateTime={entry.date}>{dateLabel}</time>
         </p>
 
