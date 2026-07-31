@@ -34,21 +34,25 @@ export default async function ChangelogPage({ searchParams }: PageProps) {
   )
 
   return (
-    <div className="relative min-h-screen px-6 pb-16 pt-28">
+    <div className="relative min-h-screen pb-16 pt-28">
       <NoiseTexture opacity={0.025} />
 
-      <div className="relative z-10 mx-auto max-w-2xl">
-        <h1 className="mb-12 text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
-          Changelog
-        </h1>
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
+        <div className="relative">
+          <h1 className="mx-auto mb-12 w-full max-w-2xl text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
+            Changelog
+          </h1>
 
-        <div>
-          {rendered.map(({ entry, content }) => (
-            <ChangelogEntry key={entry.slug} entry={entry} content={content} />
-          ))}
+          <div>
+            {rendered.map(({ entry, content }) => (
+              <ChangelogEntry key={entry.slug} entry={entry} content={content} />
+            ))}
+          </div>
+
+          <div className="mx-auto w-full max-w-2xl">
+            <ChangelogPager currentPage={currentPage} totalPages={totalPages} />
+          </div>
         </div>
-
-        <ChangelogPager currentPage={currentPage} totalPages={totalPages} />
       </div>
     </div>
   )

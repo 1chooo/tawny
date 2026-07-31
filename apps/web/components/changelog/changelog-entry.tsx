@@ -10,21 +10,31 @@ export function ChangelogEntry({
   entry: ChangelogEntryData
   content: ReactNode
 }) {
+  const dateLabel = formatChangelogDate(entry.date)
+
   return (
     <article className="border-t border-border py-12 first:border-t-0 first:pt-0">
-      <p className="text-sm text-muted-foreground">
-        <time dateTime={entry.date}>{formatChangelogDate(entry.date)}</time>
-      </p>
+      <div className="relative">
+        <p className="absolute top-0 left-0 hidden text-lg text-muted-foreground xl:block">
+          <time dateTime={entry.date}>{dateLabel}</time>
+        </p>
 
-      <p className="mt-3 text-sm text-muted-foreground">{entry.category}</p>
+        <div className="relative mx-auto w-full min-w-0 max-w-2xl">
+          <p className="text-sm text-muted-foreground xl:hidden">
+            <time dateTime={entry.date}>{dateLabel}</time>
+          </p>
 
-      <Link href={`/changelog/${entry.slug}`} className="group">
-        <h2 className="mt-2 text-balance text-2xl font-semibold tracking-[-0.03em] text-foreground transition-colors group-hover:text-tawny md:text-3xl">
-          {entry.title}
-        </h2>
-      </Link>
+          <p className="mt-3 text-sm text-muted-foreground xl:mt-0">{entry.category}</p>
 
-      <div className="mt-6 max-w-2xl">{content}</div>
+          <Link href={`/changelog/${entry.slug}`} className="group">
+            <h2 className="mt-2 text-balance text-2xl font-semibold tracking-[-0.03em] text-foreground transition-colors group-hover:text-tawny md:text-3xl">
+              {entry.title}
+            </h2>
+          </Link>
+
+          <div className="mt-6">{content}</div>
+        </div>
+      </div>
     </article>
   )
 }
