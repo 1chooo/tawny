@@ -16,7 +16,7 @@ export function DesignsShowcase() {
 
   return (
     <section className="relative py-10 md:py-14">
-      <div className="relative z-10 mx-auto w-full max-w-340 px-4 sm:px-6 md:px-8 lg:px-10">
+      <div className="relative z-10 mx-auto w-full max-w-340 px-6">
         <BlurFade delay={0.05} inView>
           <div className="mb-10 flex items-end justify-between md:mb-12">
             <div>
