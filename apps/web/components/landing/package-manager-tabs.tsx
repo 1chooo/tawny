@@ -38,7 +38,7 @@ export function PackageManagerTabs({
   return (
     <div className={cn('flex flex-col gap-3', className)}>
       <div
-        className="flex flex-wrap gap-1 rounded-full border border-white/8 bg-white/3 p-1 w-fit"
+        className="flex flex-wrap gap-1 rounded-full border border-border bg-muted/40 p-1 w-fit"
         role="tablist"
         aria-label="Package manager"
       >

@@ -25,9 +25,9 @@ export function ComponentDemoCard({
     <BlurFade delay={0.06 + index * 0.05} inView className={className}>
       <Link
         href={`/components/${demo.id}`}
-        className="group flex h-full flex-col gap-3 rounded-xl outline-none transition-opacity focus-visible:ring-2 focus-visible:ring-white/30"
+        className="group flex h-full flex-col gap-3 rounded-xl outline-none transition-opacity focus-visible:ring-2 focus-visible:ring-tawny/40"
       >
-        <div className="rounded-xl ring-1 ring-transparent transition-[box-shadow,ring-color] duration-200 group-hover:ring-white/15">
+        <div className="rounded-xl ring-1 ring-transparent transition-[box-shadow,ring-color] duration-200 group-hover:ring-tawny/25">
           <ProductFrame
             title={demo.frameTitle}
             contentClassName={cn(
@@ -43,7 +43,7 @@ export function ComponentDemoCard({
             <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
               {demo.category}
             </p>
-            <h3 className="mt-1 text-sm font-medium text-foreground transition-colors group-hover:text-white">
+            <h3 className="mt-1 text-sm font-medium text-foreground transition-colors group-hover:text-tawny">
               {demo.title}
             </h3>
             <p className="mt-1 text-xs leading-relaxed text-muted-foreground">

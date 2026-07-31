@@ -25,9 +25,9 @@ export function MotionPrimitivesDemo({ className }: { className?: string }) {
             />
           </p>
           <ShimmerButton
-            background="rgba(255,255,255,1)"
-            shimmerColor="rgba(0,0,0,0.12)"
-            className="text-base text-black!"
+            background="var(--tawny)"
+            shimmerColor="rgba(255,255,255,0.35)"
+            className="text-base text-tawny-foreground!"
             type="button"
             tabIndex={-1}
           >
@@ -47,11 +47,11 @@ export function EffectsDemo({ className }: { className?: string }) {
     <div className={cn('h-full', className)}>
       <ScaledDesignCanvas>
         <div className="relative flex h-full items-center justify-center bg-background px-16">
-          <div className="relative w-full max-w-md overflow-hidden rounded-xl border border-white/10 bg-white/3 p-10">
+          <div className="relative w-full max-w-md overflow-hidden rounded-xl border border-border bg-muted/40 p-10">
             <BorderBeam
               size={160}
               duration={12}
-              colorFrom="rgba(211,160,108,0.7)"
+              colorFrom="color-mix(in oklab, var(--tawny) 70%, transparent)"
               colorTo="transparent"
             />
             <div className="relative z-10 flex flex-col items-center gap-5 text-center">
@@ -85,13 +85,13 @@ export function DottedMapDemo({ className }: { className?: string }) {
   return (
     <div className={cn('h-full', className)}>
       <ScaledDesignCanvas>
-        <div className="flex h-full items-center justify-center bg-background px-16 text-white/25">
+        <div className="flex h-full items-center justify-center bg-background px-16 text-muted-foreground/40">
           <DottedMap
             width={280}
             height={140}
             mapSamples={4000}
             markers={MAP_MARKERS}
-            markerColor="#d3a06c"
+            markerColor="var(--tawny)"
             className="h-auto w-full max-w-3xl"
           />
         </div>
