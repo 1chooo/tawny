@@ -1,3 +1,4 @@
+import { useId } from 'react'
 import { cn } from '../lib/utils'
 
 interface NoiseTextureProps {
@@ -11,6 +12,9 @@ interface NoiseTextureProps {
  * Place as an absolute child inside a `relative overflow-hidden` container.
  */
 export function NoiseTexture({ className, opacity = 0.15 }: NoiseTextureProps) {
+  const rawId = useId()
+  const filterId = `noise-filter-${rawId.replace(/:/g, '')}`
+
   return (
     <div
       aria-hidden="true"
@@ -23,7 +27,7 @@ export function NoiseTexture({ className, opacity = 0.15 }: NoiseTextureProps) {
         height="100%"
         className="h-full w-full"
       >
-        <filter id="noise-filter">
+        <filter id={filterId}>
           <feTurbulence
             type="fractalNoise"
             baseFrequency="0.65"
@@ -32,7 +36,7 @@ export function NoiseTexture({ className, opacity = 0.15 }: NoiseTextureProps) {
           />
           <feColorMatrix type="saturate" values="0" />
         </filter>
-        <rect width="100%" height="100%" filter="url(#noise-filter)" />
+        <rect width="100%" height="100%" filter={`url(#${filterId})`} />
       </svg>
     </div>
   )

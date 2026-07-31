@@ -8,17 +8,17 @@ const MAX_FEATURED = 3
 const featuredDesigns = designs.filter((d) => d.featured).slice(0, MAX_FEATURED)
 
 /**
- * Landing “Web Designs” teaser — section header + up to 3 alternating
- * describe/demo rows with inert product previews.
+ * Landing “Web Designs” teaser — section header + up to 3 Holdings/Chat–style
+ * feature bands with scaled design previews.
  */
 export function DesignsShowcase() {
   if (featuredDesigns.length === 0) return null
 
   return (
-    <section className="relative px-6 py-20">
-      <div className="relative z-10 mx-auto max-w-7xl">
+    <section className="relative py-10 md:py-14">
+      <div className="relative z-10 mx-auto w-full max-w-340 px-4 sm:px-6 md:px-8 lg:px-10">
         <BlurFade delay={0.05} inView>
-          <div className="mb-14 flex items-end justify-between">
+          <div className="mb-10 flex items-end justify-between md:mb-12">
             <div>
               <p className="mb-2 text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
                 Web Designs
@@ -37,9 +37,16 @@ export function DesignsShowcase() {
           </div>
         </BlurFade>
 
-        <div className="flex flex-col gap-20">
+        <div className="flex flex-col gap-10 md:gap-14">
           {featuredDesigns.map((design, index) => (
-            <DesignShowcaseRow key={design.id} design={design} index={index} />
+            <BlurFade
+              key={design.id}
+              delay={0.05 + index * 0.04}
+              inView
+              className="w-full"
+            >
+              <DesignShowcaseRow design={design} index={index} />
+            </BlurFade>
           ))}
         </div>
 

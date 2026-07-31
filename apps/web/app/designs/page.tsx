@@ -160,7 +160,7 @@ export default async function DesignsPage(props: {
           </p>
         ) : (
           <>
-            <div className="flex flex-col gap-20">
+            <div className="flex flex-col gap-10 md:gap-14">
               {pageItems.map((design, index) => (
                 <DesignShowcaseRow
                   key={design.id}

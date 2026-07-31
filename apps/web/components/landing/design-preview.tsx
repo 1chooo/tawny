@@ -47,7 +47,7 @@ type DesignPreviewProps = {
 }
 
 /**
- * Shared inert design preview — same mocks as the landing showcase.
+ * Shared scaled design preview — same mocks as the landing showcase.
  * Fonts are loaded here so catalog cards and landing stay in sync.
  */
 export function DesignPreview({ id, className }: DesignPreviewProps) {

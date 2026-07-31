@@ -50,32 +50,35 @@ Mirror the design routes under `apps/web/app/view/<id>/` (thin re-exports of des
 - Discreet “Back to Tawny” link to `demoPath` in production only (hidden in development so screenshot captures stay chrome-free)
 - If the design has its own theme (`hasThemeSwitch: true` in `lib/data.ts`), expose an in-demo toggle and isolate via root `data-theme` (not `html.dark`). ProductFrame chrome always follows Tawny’s global theme; demo content may diverge.
 
-## 4. Inert preview mock
+## 4. Scaled preview mock (interactive, unclickable)
 
-Every design needs an inert mock used on **both** the landing showcase and the `/designs` catalog:
+Every design needs a scaled mock used on **both** the landing showcase and the `/designs` catalog. Prefer live UI at real desktop ratio over screenshots.
 
-1. **Inert mock** — `apps/web/components/landing/<id>-preview-mock.tsx`
+1. **Scaled mock** — `apps/web/components/landing/<id>-preview-mock.tsx`
    - Visually match the live home (header + main composition)
+   - Layout at fixed desktop pixels inside [`ScaledDesignCanvas`](apps/web/components/landing/scaled-design-canvas.tsx) (`DESIGN_W × DESIGN_H` = 1120×630, 16:9 — matches JustHold Holdings / `aspect-video` window crop) so `scale(100cqw / DESIGN_W)` preserves real ratios
    - Hardcoded sample copy; no design routing, i18n providers, or data fetches
-   - Autoplay / CSS motion OK; **clicks must do nothing** (`inert` / no real links)
+   - **Interactive-but-unclickable:** hover styles + autoplay / CSS motion OK; no real links / navigation (prefer pointer gating over blanket `inert` when hover must work)
+   - Avoid product photos / remote images in the mock when a typed or CSS composition can stand in
    - `role="img"` + accessible name (e.g. “Art design preview”)
 2. **Wire into `DesignPreview`** — extend [`apps/web/components/landing/design-preview.tsx`](apps/web/components/landing/design-preview.tsx) so fonts + mock render for the new `id`
 3. **Landing showcase** — [`DesignsShowcase`](apps/web/components/landing/designs-showcase.tsx):
    - Independent **Web Designs** section header (not an eyebrow on the first design row)
    - Up to **3** `featured` designs; more designs live on `/designs` (“View all designs”)
-   - Rows alternate by index on `lg+`: even = describe | demo, odd = demo | describe; mobile always stacks describe then demo
-   - Copy from `lib/data.ts`; preview is `DesignPreview` inside `ProductFrame`
-4. **Catalog** — [`/designs`](apps/web/app/designs/page.tsx) cards use `DesignPreview` (clipped), not static images
+   - Each row is a JustHold Holdings/Chat–style **feature band** ([`DesignShowcaseRow`](apps/web/components/landing/design-showcase-row.tsx)): bordered `md:aspect-16/10` card, 1/3 copy + 2/3 noise panel, scaled `DemoWindow` + `DesignPreview`
+   - Even index = Holdings (copy left, oversized window crop right); odd = Chat mirror (window left height-fit, copy right); mobile always stacks copy then window
+   - Copy from `lib/data.ts`; no thumbnail images on these rows
+4. **Catalog** — [`/designs`](apps/web/app/designs/page.tsx) uses the same feature-band `DesignShowcaseRow`
 
 Only row CTAs (landing “Open live demo”) and the catalog card’s outer link navigate (`demoPath`).
 
 ### Optional thumbnail image layer
 
-The inert mock is still required as the fallback for every design and component card. Once a real screenshot is generated, it renders **on top of** the mock — it never replaces the requirement to ship a live demo + mock:
+Thumbnails are **not** used on design showcase rows. They remain optional for component cards and tooling:
 
 - Generate via the dev-only **Generate screenshot** button next to “Copy page” on `apps/web/app/designs/<id>/layout.tsx` (and on `apps/web/app/components/[id]/page.tsx` for component cards). It posts to `apps/web/app/api/dev/screenshot/route.ts`, which is disabled in production.
 - The route captures the live `/view/<id>` (or a component’s `ProductFrame` via selector) with Playwright, compresses it under 500KB with `sharp`, and writes it to `apps/web/public/thumbnails/{designs,components}/<id>.webp`.
-- Set `Design.thumbnail` (and `ComponentDemo.thumbnail`) to that path once generated. [`DesignShowcaseRow`](apps/web/components/landing/design-showcase-row.tsx) and [`ComponentDemoCard`](apps/web/components/landing/showcases/component-demo-card.tsx) render the `<img>` (with `object-cover`, so it adapts to the frame at any size) when `thumbnail` is set, and fall back to the mock/live render otherwise.
+- Set `ComponentDemo.thumbnail` when a component card should show a screenshot; [`ComponentDemoCard`](apps/web/components/landing/showcases/component-demo-card.tsx) layers it over the live render. Design rows always use the scaled mock.
 - If a design’s `viewPath` needs a locale segment to load directly (e.g. Art), set `Design.screenshotPath` to the concrete route to capture.
 
 ## 5. Do / don’t
@@ -83,10 +86,11 @@ The inert mock is still required as the fallback for every design and component 
 ```text
 ✅ Live app at /designs/<id> inside ProductFrame + Open in new tab → /view/<id>
 ✅ Full-site /view/<id> without Tawny chrome
-✅ Landing: Web Designs section header + copy + inert mock preview (max 3 featured)
-✅ Catalog /designs cards use the same inert DesignPreview mocks
-✅ Optional generated `thumbnail` screenshot layered on top of the mock (dev-only tool, <500KB, object-cover)
+✅ Landing: Web Designs section header + scaled DesignPreview mock (max 3 featured)
+✅ Catalog /designs cards use the same scaled DesignPreview mocks
+✅ Mocks use ScaledDesignCanvas (real desktop ratio); hover/autoplay OK, no in-preview nav
 
+❌ Preferring thumbnail screenshots over the scaled mock on design showcase rows
 ❌ Landing or catalog OG/static cards as the only “showcase” (a live demo + mock must still exist)
 ❌ Embedding the live route via iframe on the home page
 ❌ Importing live HomeBento / SiteHeader (or equivalents) into the landing mock
@@ -101,6 +105,6 @@ The inert mock is still required as the fallback for every design and component 
 - [ ] `apps/web/app/view/<id>/` full-site preview (re-exports OK)
 - [ ] Navigation mount-aware (`/designs` vs `/view`)
 - [ ] If themed: in-demo toggle + root `data-theme` isolation (`hasThemeSwitch: true`); ProductFrame follows Tawny
-- [ ] `apps/web/components/landing/<id>-preview-mock.tsx` (inert)
+- [ ] `apps/web/components/landing/<id>-preview-mock.tsx` (ScaledDesignCanvas, interactive-unclickable)
 - [ ] Wire into `DesignPreview` (+ `featured: true` only if it should appear in the landing top 3)
 - [ ] `/designs` catalog card shows `DesignPreview` + links to `demoPath`
