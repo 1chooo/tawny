@@ -11,7 +11,6 @@ import { cn } from '@tawny/ui/lib/utils'
 const navLinks = [
   { label: 'Designs', href: '/designs' },
   { label: 'Components', href: '/components' },
-  { label: 'Pricing', href: '/pricing' },
 ]
 
 function isNavActive(pathname: string, href: string) {
@@ -43,33 +42,38 @@ export function Navbar() {
             'bg-background/35 backdrop-blur-md border-b border-border/60 md:bg-transparent md:backdrop-blur-none md:border-transparent'
       )}
     >
-      <div className="mx-auto max-w-7xl px-6 h-14 flex items-center justify-between">
+      <div className="relative mx-auto max-w-7xl px-6 h-14 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group" aria-label="Tawny home">
+        <Link href="/" className="relative z-10 flex items-center gap-2.5 group" aria-label="Tawny home">
           <Logo className="size-8 rounded-md group-hover:opacity-80 transition-opacity" />
           <span className="font-serif text-xl italic tracking-tight text-foreground">Tawny</span>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                'px-3 py-1.5 rounded-md text-sm transition-colors',
-                isNavActive(pathname, link.href)
-                  ? 'text-foreground bg-muted'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
+        {/* Desktop nav — true viewport center, independent of logo/CTA width */}
+        <nav
+          className="pointer-events-none absolute inset-x-0 hidden md:flex items-center justify-center"
+          aria-label="Main navigation"
+        >
+          <div className="pointer-events-auto flex items-center gap-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  'px-3 py-1.5 rounded-md text-sm transition-colors',
+                  isNavActive(pathname, link.href)
+                    ? 'text-foreground bg-muted'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </nav>
 
         {/* CTA + theme */}
-        <div className="hidden md:flex items-center gap-2">
+        <div className="relative z-10 hidden md:flex items-center gap-2">
           <ThemeToggle />
           <Link
             href="/pricing"
@@ -80,7 +84,7 @@ export function Navbar() {
         </div>
 
         {/* Mobile controls */}
-        <div className="flex items-center gap-1 md:hidden">
+        <div className="relative z-10 flex items-center gap-1 md:hidden">
           <ThemeToggle />
           <button
             className="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
