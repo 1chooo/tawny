@@ -15,10 +15,8 @@ const links = {
     { label: 'FAQ', href: '#' },
   ],
   Connect: [
-    { label: 'Twitter / X', href: '#' },
-    { label: 'GitHub', href: '#' },
-    { label: 'Dribbble', href: '#' },
-    { label: 'Email', href: '#' },
+    { label: 'X', href: 'https://x.com/1chooo___' },
+    { label: 'GitHub', href: 'https://github.com/1chooo/tawny' },
   ],
 }
 
@@ -54,9 +52,20 @@ export function Footer() {
                 <ul className="flex flex-col gap-2">
                   {items.map((item) => (
                     <li key={item.label}>
-                      <Link href={item.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                        {item.label}
-                      </Link>
+                      {item.href.startsWith('http') ? (
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        >
+                          {item.label}
+                        </a>
+                      ) : (
+                        <Link href={item.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                          {item.label}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -71,8 +80,8 @@ export function Footer() {
             &copy; {new Date().getFullYear()} Tawny. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <Link href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
-            <Link href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Terms of Service</Link>
+            <Link href="#" className="text-xs text-muted-foreground transition-colors hover:text-foreground">Privacy Policy</Link>
+            <Link href="#" className="text-xs text-muted-foreground transition-colors hover:text-foreground">Terms of Service</Link>
           </div>
         </div>
       </div>
