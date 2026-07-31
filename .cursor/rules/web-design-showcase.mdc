@@ -65,7 +65,7 @@ Every design needs a scaled mock used on **both** the landing showcase and the `
 3. **Landing showcase** — [`DesignsShowcase`](apps/web/components/landing/designs-showcase.tsx):
    - Independent **Web Designs** section header (not an eyebrow on the first design row)
    - Up to **3** `featured` designs; more designs live on `/designs` (“View all designs”)
-   - Each row is a JustHold Holdings/Chat–style **feature band** ([`DesignShowcaseRow`](apps/web/components/landing/design-showcase-row.tsx)): bordered `md:aspect-16/10` card, 1/3 copy + 2/3 paper panel, scaled `DemoWindow` + `DesignPreview`
+   - Each row is a JustHold Holdings/Chat–style **feature band** ([`DesignShowcaseRow`](apps/web/components/landing/design-showcase-row.tsx)): bordered `md:aspect-16/10` card, 1/3 copy + 2/3 muted panel, scaled `DemoWindow` + `DesignPreview`
    - Even index = Holdings (copy left, oversized window crop right); odd = Chat mirror (window left height-fit, copy right); mobile always stacks copy then window
    - Copy from `lib/data.ts`; no thumbnail images on these rows
 4. **Catalog** — [`/designs`](apps/web/app/designs/page.tsx) uses the same feature-band `DesignShowcaseRow`
@@ -74,11 +74,11 @@ Only row CTAs (landing “Open live demo”) and the catalog card’s outer link
 
 ### Optional thumbnail image layer
 
-Thumbnails are **not** used on design showcase rows. They remain optional for component cards and tooling:
+Thumbnails are **not** used on design showcase rows or component gallery cards. Both use scaled live demos (`ScaledDesignCanvas` into an `aspect-video` crop). Screenshots remain optional tooling only:
 
-- Generate via the dev-only **Generate screenshot** button next to “Copy page” on `apps/web/app/designs/<id>/layout.tsx` (and on `apps/web/app/components/[id]/page.tsx` for component cards). It posts to `apps/web/app/api/dev/screenshot/route.ts`, which is disabled in production.
+- Generate via the dev-only **Generate screenshot** button next to “Copy page” on `apps/web/app/designs/<id>/layout.tsx` (and on `apps/web/app/components/[id]/page.tsx`). It posts to `apps/web/app/api/dev/screenshot/route.ts`, which is disabled in production.
 - The route captures the live `/view/<id>` (or a component’s `ProductFrame` via selector) with Playwright, compresses it under 500KB with `sharp`, and writes it to `apps/web/public/thumbnails/{designs,components}/<id>.webp`.
-- Set `ComponentDemo.thumbnail` when a component card should show a screenshot; [`ComponentDemoCard`](apps/web/components/landing/showcases/component-demo-card.tsx) layers it over the live render. Design rows always use the scaled mock.
+- Component cards ([`ComponentDemoCard`](apps/web/components/landing/showcases/component-demo-card.tsx)) always render the live scaled demo — never a screenshot overlay. Design rows always use the scaled mock.
 - If a design’s `viewPath` needs a locale segment to load directly (e.g. Art), set `Design.screenshotPath` to the concrete route to capture.
 
 ## 5. Do / don’t
