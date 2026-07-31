@@ -73,7 +73,7 @@ export function Hero() {
             {/* Text column */}
             <div className="relative z-10 flex w-full flex-col justify-center px-6 py-14 sm:px-10 md:px-12 lg:w-[56%] lg:px-14 lg:py-0">
               <BlurFade delay={0.1} duration={0.55}>
-                <h1 className="text-balance font-serif text-4xl leading-[1.08] tracking-[-0.01em] text-foreground sm:text-5xl md:text-6xl lg:text-4xl xl:text-5xl">
+                <h1 className="text-balance font-serif text-4xl leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-4xl xl:text-5xl">
                   Designs that make
                   <br />
                   your{' '}
@@ -87,28 +87,30 @@ export function Hero() {
               </BlurFade>
 
               <BlurFade delay={0.22} duration={0.5}>
-                <p className="mt-6 max-w-md text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+                <p className="mt-5 max-w-md text-pretty text-base leading-relaxed text-muted-foreground md:mt-6 md:text-lg">
                   A curated collection of premium web templates and reusable UI
                   components. Free to explore, ready to ship.
                 </p>
               </BlurFade>
 
               <BlurFade delay={0.34} duration={0.5}>
-                <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-                  <ShimmerButton
-                    background="var(--tawny)"
-                    shimmerColor="rgba(255,255,255,0.35)"
-                    className="px-7 py-3 text-sm font-medium text-tawny-foreground!"
-                    onClick={() => { window.location.href = '/designs' }}
-                  >
-                    Browse Designs
-                    <ArrowRight size={14} />
-                  </ShimmerButton>
+                <div className="mt-8 flex w-full flex-col items-start gap-3 sm:mt-10 sm:flex-row sm:items-center">
+                  <Link href="/designs" className="w-full max-w-xs sm:w-auto sm:max-w-none">
+                    <ShimmerButton
+                      background="var(--tawny)"
+                      shimmerColor="rgba(255,255,255,0.35)"
+                      className="w-full px-6 py-3 text-base font-medium text-tawny-foreground! sm:w-auto sm:px-5 sm:py-2.5 sm:text-sm"
+                    >
+                      Browse Designs
+                      <ArrowRight className="size-4 shrink-0" aria-hidden="true" />
+                    </ShimmerButton>
+                  </Link>
                   <Link
                     href="/components"
-                    className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground/80 transition-colors hover:border-tawny/40 hover:text-foreground"
+                    className="inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-base font-medium text-foreground transition-colors hover:border-tawny/50 sm:inline-flex sm:w-auto sm:max-w-none sm:px-5 sm:py-2.5 sm:text-sm"
                   >
                     View Components
+                    <ArrowRight className="size-4 shrink-0" aria-hidden="true" />
                   </Link>
                 </div>
               </BlurFade>
