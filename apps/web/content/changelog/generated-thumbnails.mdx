@@ -1,0 +1,18 @@
+---
+title: Generated thumbnails on every card
+date: 2026-07-20
+category: Components
+summary: Design and component cards now show a real screenshot instead of a placeholder.
+---
+
+Every design and component card in the catalog now renders a generated screenshot instead of a placeholder, captured directly from the live demo.
+
+## Sharper at every size
+
+Thumbnails are captured by shrinking the capture viewport rather than cropping afterward, with a slight optical zoom applied so cards read clearly even at small sizes.
+
+### Improvements
+
+- Added a dev-only screenshot generation API route and a `GenerateScreenshotButton`
+- Captured component thumbnails at card width, without frame chrome
+- Matched the mobile design card ratio to the captured screenshot
