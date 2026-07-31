@@ -38,18 +38,11 @@ export default async function ChangelogPage({ searchParams }: PageProps) {
       <NoiseTexture opacity={0.025} />
 
       <div className="relative z-10 mx-auto max-w-2xl">
-        <p className="mb-3 text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
+        <h1 className="mb-12 text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
           Changelog
-        </p>
-        <h1 className="text-balance text-4xl font-semibold tracking-[-0.03em] text-foreground md:text-5xl">
-          What's new in Tawny
         </h1>
-        <p className="mt-4 max-w-xl text-pretty leading-relaxed text-muted-foreground">
-          New designs, components, and platform improvements — shipped and
-          documented as they land.
-        </p>
 
-        <div className="mt-12">
+        <div>
           {rendered.map(({ entry, content }) => (
             <ChangelogEntry key={entry.slug} entry={entry} content={content} />
           ))}
