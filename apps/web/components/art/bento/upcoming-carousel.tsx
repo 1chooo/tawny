@@ -58,13 +58,12 @@ export function UpcomingCarousel({ slides, prevLabel, nextLabel, label }: Props)
       }}
     >
       {/* Top-right carousel controls – styled as grid cells */}
-      <div className="absolute top-0 right-0 z-10 flex gap-art-bento-gap bg-black">
+      <div className="absolute top-0 right-0 z-10 flex gap-art-bento-gap bg-black pl-art-bento-gap pb-art-bento-gap">
         <button
           type="button"
           onClick={() => setIndex((i) => i - 1)}
           aria-label={prevLabel}
-          className="border-art-bento-ink bg-art-bento-bg text-art-bento-ink hover:bg-art-bento-ink hover:text-art-bento-bg flex min-h-11 min-w-11 items-center justify-center p-2 transition-colors md:min-h-0 md:min-w-0 md:p-3"
-          style={{ borderLeftWidth: 'var(--spacing-art-bento-gap)', borderBottomWidth: 'var(--spacing-art-bento-gap)' }}
+          className="bg-art-bento-bg text-art-bento-ink hover:bg-art-bento-ink hover:text-art-bento-bg flex min-h-11 min-w-11 items-center justify-center p-2 transition-colors md:min-h-0 md:min-w-0 md:p-3"
         >
           <ChevronLeft className="size-5" strokeWidth={2.5} />
         </button>
@@ -72,8 +71,7 @@ export function UpcomingCarousel({ slides, prevLabel, nextLabel, label }: Props)
           type="button"
           onClick={() => setIndex((i) => i + 1)}
           aria-label={nextLabel}
-          className="border-art-bento-ink bg-art-bento-bg text-art-bento-ink hover:bg-art-bento-ink hover:text-art-bento-bg flex min-h-11 min-w-11 items-center justify-center p-2 transition-colors md:min-h-0 md:min-w-0 md:p-3"
-          style={{ borderBottomWidth: 'var(--spacing-art-bento-gap)' }}
+          className="bg-art-bento-bg text-art-bento-ink hover:bg-art-bento-ink hover:text-art-bento-bg flex min-h-11 min-w-11 items-center justify-center p-2 transition-colors md:min-h-0 md:min-w-0 md:p-3"
         >
           <ChevronRight className="size-5" strokeWidth={2.5} />
         </button>

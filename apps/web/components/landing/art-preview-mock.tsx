@@ -170,22 +170,11 @@ export function ArtPreviewMock({ className }: ArtPreviewMockProps) {
                   sizes="560px"
                   style={{ animation: 'art-bento-tag-in 0.35s ease-out' }}
                 />
-                <div className="absolute top-0 right-0 z-10 flex gap-art-bento-gap bg-black">
-                  <span
-                    className="flex size-9 items-center justify-center border-art-bento-ink bg-art-bento-bg text-art-bento-ink transition-colors hover:bg-art-bento-ink hover:text-art-bento-bg"
-                    style={{
-                      borderLeftWidth: 'var(--spacing-art-bento-gap)',
-                      borderBottomWidth: 'var(--spacing-art-bento-gap)',
-                    }}
-                  >
+                <div className="absolute top-0 right-0 z-10 flex gap-art-bento-gap bg-black pl-art-bento-gap pb-art-bento-gap">
+                  <span className="flex size-9 items-center justify-center bg-art-bento-bg text-art-bento-ink transition-colors hover:bg-art-bento-ink hover:text-art-bento-bg">
                     <ChevronLeft className="size-4" strokeWidth={2.5} />
                   </span>
-                  <span
-                    className="flex size-9 items-center justify-center border-art-bento-ink bg-art-bento-bg text-art-bento-ink transition-colors hover:bg-art-bento-ink hover:text-art-bento-bg"
-                    style={{
-                      borderBottomWidth: 'var(--spacing-art-bento-gap)',
-                    }}
-                  >
+                  <span className="flex size-9 items-center justify-center bg-art-bento-bg text-art-bento-ink transition-colors hover:bg-art-bento-ink hover:text-art-bento-bg">
                     <ChevronRight className="size-4" strokeWidth={2.5} />
                   </span>
                 </div>
