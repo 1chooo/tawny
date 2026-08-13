@@ -1,7 +1,10 @@
 import type { ReactNode } from 'react'
 import { ArtHeaderDemo } from '@/components/landing/showcases/art-header-demo'
 import { DevHeaderDemo } from '@/components/landing/showcases/dev-header-demo'
-import { EmbedCardDemo } from '@/components/landing/showcases/embed-card-demo'
+import {
+  EmbedCardDemo,
+  EmbedCardGalleryPreview,
+} from '@/components/landing/showcases/embed-card-demo'
 import {
   DottedMapDemo,
   EffectsDemo,
@@ -16,11 +19,15 @@ export type ComponentDemo = {
   category: 'Navigation' | 'Motion' | 'Effects' | 'Maps' | 'Embed'
   frameTitle: string
   contentClassName?: string
+  /** ProductFrame content classes on the detail page; defaults to aspect-video */
+  detailContentClassName?: string
   /** Featured on the landing teaser */
   featured?: boolean
   /** Repo-relative source files shown on the detail page for copy */
   sourceFiles: string[]
   render: () => ReactNode
+  /** Live preview on /components/<id>; defaults to render() */
+  detailRender?: () => ReactNode
 }
 
 /**
@@ -108,13 +115,15 @@ export const componentDemos: ComponentDemo[] = [
     id: 'embed-card',
     title: 'Embed Card',
     description:
-      'URL embed cards for YouTube, X, Reddit, Vimeo, Maps, and a link-preview fallback.',
+      'URL embed cards for YouTube, X, Instagram, Reddit, Maps, Vimeo, TikTok, and a link-preview fallback.',
     category: 'Embed',
     frameTitle: 'components/embed-card',
     sourceFiles: [
       'apps/web/components/landing/showcases/embed-card-demo.tsx',
     ],
-    render: () => <EmbedCardDemo />,
+    render: () => <EmbedCardGalleryPreview />,
+    detailRender: () => <EmbedCardDemo />,
+    detailContentClassName: 'overflow-hidden',
   },
 ]
 
