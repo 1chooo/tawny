@@ -19,6 +19,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "cobe": "^2.0.1",
+    "embed-card": "workspace:*",
     "gray-matter": "^4.0.3",
     "lucide-react": "^1.16.0",
     "motion": "^12.42.2",

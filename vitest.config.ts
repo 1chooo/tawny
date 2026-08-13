@@ -2,6 +2,6 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
-    projects: ['apps/web', 'apps/cli'],
+    projects: ['apps/web', 'apps/cli', 'packages/embed-card'],
   },
 })

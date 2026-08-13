@@ -18,7 +18,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  transpilePackages: ['@tawny/ui'],
+  transpilePackages: ['@tawny/ui', 'embed-card'],
   async redirects() {
     return [
       {

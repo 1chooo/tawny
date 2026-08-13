@@ -1,5 +1,6 @@
 {
   "name": "tawny",
+  "version": "0.1.6",
   "private": true,
   "scripts": {
     "dev": "pnpm --filter web dev",
@@ -7,7 +8,8 @@
     "start": "pnpm --filter web start",
     "lint": "pnpm -r lint",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "publish:embed-card": "pnpm --filter embed-card publish --access public"
   },
   "devDependencies": {
     "vitest": "^4.1.10"

@@ -56,6 +56,9 @@ importers:
       cobe:
         specifier: ^2.0.1
         version: 2.0.1
+      embed-card:
+        specifier: workspace:*
+        version: link:../../packages/embed-card
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
@@ -135,6 +138,22 @@ importers:
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
+
+  packages/embed-card:
+    dependencies:
+      react:
+        specifier: ^18.3.0 || ^19.0.0
+        version: 19.2.4
+    devDependencies:
+      '@types/react':
+        specifier: ^19
+        version: 19.2.14
+      next-themes:
+        specifier: ^0.4.6
+        version: 0.4.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       typescript:
         specifier: 5.7.3
         version: 5.7.3
@@ -5449,6 +5468,10 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.4
 
+  fdir@6.5.0(picomatch@4.0.5):
+    optionalDependencies:
+      picomatch: 4.0.5
+
   fetch-blob@3.2.0:
     dependencies:
       node-domexception: 1.0.0
@@ -7120,8 +7143,8 @@ snapshots:
 
   tinyglobby@0.2.17:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.4)
-      picomatch: 4.0.4
+      fdir: 6.5.0(picomatch@4.0.5)
+      picomatch: 4.0.5
 
   tinyrainbow@3.1.0: {}
 
