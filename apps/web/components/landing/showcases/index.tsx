@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { ArtHeaderDemo } from '@/components/landing/showcases/art-header-demo'
 import { DevHeaderDemo } from '@/components/landing/showcases/dev-header-demo'
+import { EmbedCardDemo } from '@/components/landing/showcases/embed-card-demo'
 import {
   DottedMapDemo,
   EffectsDemo,
@@ -12,7 +13,7 @@ export type ComponentDemo = {
   id: string
   title: string
   description: string
-  category: 'Navigation' | 'Motion' | 'Effects' | 'Maps'
+  category: 'Navigation' | 'Motion' | 'Effects' | 'Maps' | 'Embed'
   frameTitle: string
   contentClassName?: string
   /** Featured on the landing teaser */
@@ -102,6 +103,18 @@ export const componentDemos: ComponentDemo[] = [
     frameTitle: 'components/ui/dotted-map',
     sourceFiles: ['packages/ui/src/components/dotted-map.tsx'],
     render: () => <DottedMapDemo />,
+  },
+  {
+    id: 'embed-card',
+    title: 'Embed Card',
+    description:
+      'URL embed cards for YouTube, X, Reddit, Vimeo, Maps, and a link-preview fallback.',
+    category: 'Embed',
+    frameTitle: 'components/embed-card',
+    sourceFiles: [
+      'apps/web/components/landing/showcases/embed-card-demo.tsx',
+    ],
+    render: () => <EmbedCardDemo />,
   },
 ]
 
