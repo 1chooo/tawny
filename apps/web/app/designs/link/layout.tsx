@@ -35,9 +35,6 @@ export default async function LinkShowcaseLayout({
         </Link>
         <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-xl">
-            <p className="mb-2 text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
-              Live design demo
-            </p>
             <h1 className="text-balance text-3xl font-semibold tracking-[-0.03em] text-foreground md:text-4xl">
               {design.title}
             </h1>
