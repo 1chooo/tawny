@@ -1,0 +1,102 @@
+{
+  "name": "embed-card",
+  "version": "0.3.0",
+  "type": "module",
+  "private": false,
+  "description": "Framework-friendly embed cards for YouTube, X, Instagram, Reddit, Google Maps, Vimeo, TikTok, and custom providers.",
+  "license": "MIT",
+  "author": "Lin Hugo (@1chooo)",
+  "keywords": [
+    "embed",
+    "react",
+    "web-component",
+    "youtube",
+    "twitter",
+    "reddit",
+    "vimeo",
+    "google-maps",
+    "instagram",
+    "tiktok"
+  ],
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/1chooo/tawny/tree/main/packages/embed-card",
+  "bugs": {
+    "url": "https://github.com/1chooo/tawny/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1chooo/tawny.git",
+    "directory": "packages/embed-card"
+  },
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./manual": {
+      "types": "./src/manual.ts",
+      "default": "./src/manual.ts"
+    },
+    "./web-component": {
+      "types": "./src/web-component.ts",
+      "default": "./src/web-component.ts"
+    },
+    "./next-themes": {
+      "types": "./src/next-themes.tsx",
+      "default": "./src/next-themes.tsx"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prepublishOnly": "pnpm build"
+  },
+  "peerDependencies": {
+    "next-themes": "^0.3.0 || ^0.4.0",
+    "react": "^18.3.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "next-themes": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js"
+      },
+      "./manual": {
+        "types": "./dist/manual.d.ts",
+        "import": "./dist/manual.js"
+      },
+      "./web-component": {
+        "types": "./dist/web-component.d.ts",
+        "import": "./dist/web-component.js"
+      },
+      "./next-themes": {
+        "types": "./dist/next-themes.d.ts",
+        "import": "./dist/next-themes.js"
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "next-themes": "^0.4.6",
+    "typescript": "5.7.3"
+  }
+}
