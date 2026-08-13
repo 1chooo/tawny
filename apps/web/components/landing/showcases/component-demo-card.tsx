@@ -35,7 +35,8 @@ export function ComponentDemoCard({
               demo.contentClassName,
             )}
           >
-            {demo.render()}
+            {/* Gallery cards are links; keep previews inert so iframes cannot steal clicks. */}
+            <div className="pointer-events-none h-full">{demo.render()}</div>
           </ProductFrame>
         </div>
         <div className="flex items-start justify-between gap-3">
