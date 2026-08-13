@@ -8,6 +8,7 @@ export const link = {
   hint: "Profile, social links, and a short tagline",
   path: "templates/link",
   defaultProjectName: "my-links",
+  extraDefaults: {},
   extraPrompts: async () => ({}),
   postProcess: async () => {},
   nextSteps: [],

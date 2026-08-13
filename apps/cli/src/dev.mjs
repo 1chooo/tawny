@@ -8,6 +8,7 @@ export const dev = {
   hint: "MDX essays + interactive CS demos",
   path: "templates/dev",
   defaultProjectName: "my-blog",
+  extraDefaults: {},
   extraPrompts: async () => ({}),
   postProcess: async () => {},
   nextSteps: [],

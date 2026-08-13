@@ -37,6 +37,7 @@ export const art = {
   hint: "MDX notes, projects, and interactive bento tiles",
   path: "templates/art",
   defaultProjectName: "my-journal",
+  extraDefaults: { locales: "en,zh" },
   async extraPrompts() {
     const locales = await p.select({
       message: "Locales",

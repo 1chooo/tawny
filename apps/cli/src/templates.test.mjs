@@ -13,6 +13,12 @@ describe('templates registry', () => {
     expect(getTemplate('link')?.defaultProjectName).toBe('my-links')
   })
 
+  it('keeps bilingual locales as the Art --yes default', () => {
+    expect(getTemplate('art')?.extraDefaults).toEqual({ locales: 'en,zh' })
+    expect(getTemplate('dev')?.extraDefaults).toEqual({})
+    expect(getTemplate('link')?.extraDefaults).toEqual({})
+  })
+
   it('returns undefined for unknown ids', () => {
     expect(getTemplate('missing')).toBeUndefined()
   })

@@ -9,6 +9,7 @@ import {
   setProjectName,
 } from "./src/scaffold.mjs";
 import { getTemplate, templateList } from "./src/templates.mjs";
+import { parseArgs, YES_DEFAULTS } from "./src/args.mjs";
 
 function detectPackageManager() {
   const ua = process.env.npm_config_user_agent || "";
@@ -56,75 +57,89 @@ async function resolveTemplate(templateArg) {
 async function main() {
   p.intro("create-tawny");
 
-  const [templateArg, projectNameArg] = process.argv.slice(2);
+  const { yes, templateArg, projectNameArg } = parseArgs(process.argv.slice(2));
+
+  if (yes && !templateArg) {
+    p.log.error(
+      "Pass a template id with --yes, e.g. npx create-tawny@latest art my-journal --yes",
+    );
+    process.exit(1);
+  }
 
   const template = await resolveTemplate(templateArg);
 
   const projectName = projectNameArg
     ? projectNameArg
-    : await p.text({
-        message: "Project name",
-        placeholder: template.defaultProjectName,
-        defaultValue: template.defaultProjectName,
-        validate: (v) => {
-          if (!v?.trim()) return "Project name is required";
-          if (!/^[a-z0-9-_]+$/i.test(v)) {
-            return "Use letters, numbers, hyphens, and underscores only";
-          }
-        },
-      });
+    : yes
+      ? template.defaultProjectName
+      : await p.text({
+          message: "Project name",
+          placeholder: template.defaultProjectName,
+          defaultValue: template.defaultProjectName,
+          validate: (v) => {
+            if (!v?.trim()) return "Project name is required";
+            if (!/^[a-z0-9-_]+$/i.test(v)) {
+              return "Use letters, numbers, hyphens, and underscores only";
+            }
+          },
+        });
   if (p.isCancel(projectName)) {
     p.cancel("Cancelled.");
     process.exit(0);
   }
 
-  const authorName = await p.text({
-    message: "Your name (brand)",
-    placeholder: "Alex Chen",
-    validate: (v) => (v?.trim() ? undefined : "Name is required"),
-  });
-  if (p.isCancel(authorName)) {
-    p.cancel("Cancelled.");
-    process.exit(0);
-  }
+  let answers;
+  if (yes) {
+    answers = { ...YES_DEFAULTS, ...template.extraDefaults };
+  } else {
+    const authorName = await p.text({
+      message: "Your name (brand)",
+      placeholder: "Alex Chen",
+      validate: (v) => (v?.trim() ? undefined : "Name is required"),
+    });
+    if (p.isCancel(authorName)) {
+      p.cancel("Cancelled.");
+      process.exit(0);
+    }
 
-  const authorEmail = await p.text({
-    message: "Email",
-    placeholder: "hello@example.com",
-    validate: (v) => (v?.includes("@") ? undefined : "Enter a valid email address"),
-  });
-  if (p.isCancel(authorEmail)) {
-    p.cancel("Cancelled.");
-    process.exit(0);
-  }
+    const authorEmail = await p.text({
+      message: "Email",
+      placeholder: "hello@example.com",
+      validate: (v) => (v?.includes("@") ? undefined : "Enter a valid email address"),
+    });
+    if (p.isCancel(authorEmail)) {
+      p.cancel("Cancelled.");
+      process.exit(0);
+    }
 
-  const githubUsername = await p.text({
-    message: "GitHub username",
-    placeholder: "your-username",
-    validate: (v) => (v?.trim() ? undefined : "GitHub username is required"),
-  });
-  if (p.isCancel(githubUsername)) {
-    p.cancel("Cancelled.");
-    process.exit(0);
-  }
+    const githubUsername = await p.text({
+      message: "GitHub username",
+      placeholder: "your-username",
+      validate: (v) => (v?.trim() ? undefined : "GitHub username is required"),
+    });
+    if (p.isCancel(githubUsername)) {
+      p.cancel("Cancelled.");
+      process.exit(0);
+    }
 
-  const cityName = await p.text({
-    message: "Location (shown in the footer)",
-    placeholder: "San Francisco",
-    defaultValue: "San Francisco",
-  });
-  if (p.isCancel(cityName)) {
-    p.cancel("Cancelled.");
-    process.exit(0);
-  }
+    const cityName = await p.text({
+      message: "Location (shown in the footer)",
+      placeholder: "San Francisco",
+      defaultValue: "San Francisco",
+    });
+    if (p.isCancel(cityName)) {
+      p.cancel("Cancelled.");
+      process.exit(0);
+    }
 
-  const answers = {
-    authorName,
-    authorEmail,
-    githubUsername,
-    cityName,
-    ...(await template.extraPrompts()),
-  };
+    answers = {
+      authorName,
+      authorEmail,
+      githubUsername,
+      cityName,
+      ...(await template.extraPrompts()),
+    };
+  }
 
   const cwd = process.cwd();
   const projectDir = join(cwd, projectName);
