@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { CopyPageButton } from '@/components/landing/copy-page-button'
 import { PackageManagerTabs } from '@/components/landing/package-manager-tabs'
+import { SetupWithOnePromptButton } from '@/components/landing/setup-with-one-prompt-button'
 import { TemplateFileExplorer } from '@/components/landing/template-file-explorer'
 import { BlurFade } from '@tawny/ui/components/blur-fade'
 import type { Design } from '@/lib/data'
@@ -54,9 +55,14 @@ export async function DesignTemplateDocs({ design }: DesignTemplateDocsProps) {
             Get the template
           </h2>
           <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-            Scaffold a local copy with your preferred package manager.
+            Scaffold a local copy with your preferred package manager, or paste
+            a prompt into a coding agent.
           </p>
-          <div className="mt-5">
+          <div className="mt-5 flex flex-col gap-5">
+            <SetupWithOnePromptButton
+              designId={design.id}
+              title={design.title}
+            />
             <PackageManagerTabs
               commands={commands}
               highlightedHtml={highlightedHtml}
@@ -95,7 +101,7 @@ type DesignDemoHeaderActionsProps = {
 }
 
 /**
- * Loads source + install commands for the Copy page button (server → client).
+ * Loads source + install commands for header actions (setup prompt + Copy page).
  */
 export async function DesignCopyPageAction({
   design,
@@ -116,13 +122,16 @@ export async function DesignCopyPageAction({
   )
 
   return (
-    <CopyPageButton
-      title={design.title}
-      description={design.description}
-      longDescription={design.longDescription}
-      packageName={design.packageName}
-      installCommands={commands.map(({ label, code }) => ({ label, code }))}
-      sources={sources}
-    />
+    <>
+      <SetupWithOnePromptButton designId={design.id} title={design.title} />
+      <CopyPageButton
+        title={design.title}
+        description={design.description}
+        longDescription={design.longDescription}
+        packageName={design.packageName}
+        installCommands={commands.map(({ label, code }) => ({ label, code }))}
+        sources={sources}
+      />
+    </>
   )
 }
