@@ -1,6 +1,6 @@
 {
   "name": "tawny",
-  "version": "0.1.6",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "dev": "pnpm --filter web dev",

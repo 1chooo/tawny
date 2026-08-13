@@ -1,6 +1,6 @@
 {
   "name": "embed-card",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "type": "module",
   "private": false,
   "description": "Framework-friendly embed cards for YouTube, X, Instagram, Reddit, Google Maps, Vimeo, TikTok, and custom providers.",
