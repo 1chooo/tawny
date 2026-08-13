@@ -9,6 +9,9 @@ npx create-tawny@latest dev my-blog
 npx create-tawny@latest art my-journal
 npx create-tawny@latest link my-links
 
+# skip prompts (coding agents) — uses placeholder author details
+npx create-tawny@latest art my-journal --yes
+
 # or omit the template / name to get interactive prompts
 npx create-tawny@latest
 ```
