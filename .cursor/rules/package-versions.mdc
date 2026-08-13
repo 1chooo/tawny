@@ -22,3 +22,7 @@ When bumping a version (release, publish, or new package), update **every** `pac
 Do not leave packages on older versions (e.g. `0.1.0` / `0.0.0`) after a bump. The root `package.json` has no `version` (private workspace) — leave it without one.
 
 New packages under `apps/`, `packages/`, or `templates/` must start at the current shared version, not `0.0.0` or `0.1.0`.
+
+## Exception: published npm packages with their own public semver
+
+`packages/embed-card` (`embed-card` on npm) keeps an independent version — currently **0.3.0**. Do not reset it to the Tawny shared version (that would be a registry downgrade), and do not bump the rest of Tawny to match it. Bump `embed-card` only when publishing that package.
