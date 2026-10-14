@@ -18,7 +18,6 @@ const navLinks = [
   { label: 'Designs', href: '/designs' },
   { label: 'Components', href: '/components' },
   { label: 'Writeups', href: '/writeups' },
-  { label: 'Changelog', href: '/changelog' },
 ]
 
 /** Gap kept between side chrome and the centered nav band. */

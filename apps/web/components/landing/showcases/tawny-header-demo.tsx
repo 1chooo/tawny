@@ -35,7 +35,7 @@ export function TawnyHeaderDemo({ className }: { className?: string }) {
                 aria-hidden="true"
               >
                 <div className="flex items-center gap-1">
-                  {['Designs', 'Components', 'Writeups', 'Changelog'].map((label, i) => (
+                  {['Designs', 'Components', 'Writeups'].map((label, i) => (
                     <span
                       key={label}
                       className={cn(
