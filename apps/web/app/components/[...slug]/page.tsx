@@ -107,15 +107,12 @@ async function ComponentDemoDetail({
           <ProductFrame
             title={demo.frameTitle}
             contentClassName={cn(
-              demo.detailContentClassName ??
-                'aspect-video overflow-hidden',
+              'h-[36rem] overflow-auto',
+              demo.detailContentClassName,
               demo.detailRender ? undefined : demo.contentClassName,
             )}
           >
-            <div
-              id={`thumbnail-capture-${demo.id}`}
-              className={demo.detailRender ? undefined : 'h-full'}
-            >
+            <div id={`thumbnail-capture-${demo.id}`} className="h-full min-h-0">
               {(demo.detailRender ?? demo.render)()}
             </div>
           </ProductFrame>

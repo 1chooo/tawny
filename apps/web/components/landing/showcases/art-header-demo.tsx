@@ -39,7 +39,7 @@ export function ArtHeaderDemo({ className }: { className?: string }) {
         inert
         className="h-full select-none"
       >
-        <ScaledDesignCanvas>
+        <ScaledDesignCanvas height={240}>
           <div className="art-root flex h-full flex-col overflow-hidden bg-black text-art-bento-ink antialiased">
             <header className="shrink-0 bg-art-bento-bg pt-3">
               <div className="relative flex items-center justify-between gap-4 px-6 pb-3">
@@ -65,6 +65,41 @@ export function ArtHeaderDemo({ className }: { className?: string }) {
             <div aria-hidden="true" className="min-h-0 flex-1 bg-black" />
           </div>
         </ScaledDesignCanvas>
+      </div>
+    </div>
+  )
+}
+
+export function ArtHeaderDetail({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn(
+        artDisplay.variable,
+        artSans.variable,
+        artMono.variable,
+        artSans.className,
+        'flex h-full flex-col font-(family-name:--font-art-sans-body)',
+        className,
+      )}
+      inert
+    >
+      <div className="art-root flex h-full flex-col bg-black text-art-bento-ink">
+        <header className="shrink-0 bg-art-bento-bg pt-4">
+          <div className="flex items-center justify-between gap-4 px-8 pb-4">
+            <span className="text-2xl font-bold tracking-tight">Hugo Lin</span>
+            <nav className="flex items-center gap-6 text-base font-bold">
+              {['Notes', 'Projects', 'About'].map((label) => (
+                <span key={label}>{label}</span>
+              ))}
+              <span className="font-mono text-sm">
+                EN
+                <span className="mx-1 opacity-40">|</span>
+                <span className="opacity-40">中</span>
+              </span>
+            </nav>
+          </div>
+        </header>
+        <div className="min-h-0 flex-1 bg-black" />
       </div>
     </div>
   )

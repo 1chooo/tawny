@@ -1,20 +1,23 @@
 import type { ReactNode } from 'react'
-import { ArtHeaderDemo } from '@/components/landing/showcases/art-header-demo'
-import { DevHeaderDemo } from '@/components/landing/showcases/dev-header-demo'
+import { ArtHeaderDemo, ArtHeaderDetail } from '@/components/landing/showcases/art-header-demo'
+import { DevHeaderDemo, DevHeaderDetail } from '@/components/landing/showcases/dev-header-demo'
 import {
   EmbedCardDemo,
   EmbedCardGalleryPreview,
 } from '@/components/landing/showcases/embed-card-demo'
 import {
   DottedMapDemo,
+  DottedMapDetail,
   EffectsDemo,
+  EffectsDetail,
   MotionPrimitivesDemo,
+  MotionPrimitivesDetail,
 } from '@/components/landing/showcases/primitive-demos'
 import {
   IssueListDemo,
   IssueListDetail,
 } from '@/components/landing/showcases/issue-list-demo'
-import { TawnyHeaderDemo } from '@/components/landing/showcases/tawny-header-demo'
+import { TawnyHeaderDemo, TawnyHeaderDetail } from '@/components/landing/showcases/tawny-header-demo'
 
 export type ComponentDemo = {
   id: string
@@ -49,6 +52,7 @@ export const componentDemos: ComponentDemo[] = [
     featured: true,
     sourceFiles: ['apps/web/components/navbar.tsx', 'apps/web/components/logo.tsx'],
     render: () => <TawnyHeaderDemo />,
+    detailRender: () => <TawnyHeaderDetail />,
   },
   {
     id: 'art-header',
@@ -65,6 +69,7 @@ export const componentDemos: ComponentDemo[] = [
       'apps/web/components/art/locale-switcher.tsx',
     ],
     render: () => <ArtHeaderDemo />,
+    detailRender: () => <ArtHeaderDetail />,
   },
   {
     id: 'dev-header',
@@ -77,6 +82,7 @@ export const componentDemos: ComponentDemo[] = [
     featured: true,
     sourceFiles: ['apps/web/components/dev/site-header.tsx'],
     render: () => <DevHeaderDemo />,
+    detailRender: () => <DevHeaderDetail />,
   },
   {
     id: 'motion',
@@ -90,6 +96,7 @@ export const componentDemos: ComponentDemo[] = [
       'packages/ui/src/components/shimmer-button.tsx',
     ],
     render: () => <MotionPrimitivesDemo />,
+    detailRender: () => <MotionPrimitivesDetail />,
   },
   {
     id: 'effects',
@@ -105,6 +112,7 @@ export const componentDemos: ComponentDemo[] = [
       'packages/ui/src/components/number-ticker.tsx',
     ],
     render: () => <EffectsDemo />,
+    detailRender: () => <EffectsDetail />,
   },
   {
     id: 'dotted-map',
@@ -114,6 +122,7 @@ export const componentDemos: ComponentDemo[] = [
     frameTitle: 'components/ui/dotted-map',
     sourceFiles: ['packages/ui/src/components/dotted-map.tsx'],
     render: () => <DottedMapDemo />,
+    detailRender: () => <DottedMapDetail />,
   },
   {
     id: 'embed-card',

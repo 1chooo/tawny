@@ -14,7 +14,7 @@ export function TawnyHeaderDemo({ className }: { className?: string }) {
       inert
       className={cn('h-full select-none', className)}
     >
-      <ScaledDesignCanvas>
+        <ScaledDesignCanvas height={240}>
         <div className="flex h-full flex-col bg-background">
           <header className="shrink-0 border-b border-border bg-background/80 backdrop-blur-xl">
             {/*
@@ -66,6 +66,49 @@ export function TawnyHeaderDemo({ className }: { className?: string }) {
           />
         </div>
       </ScaledDesignCanvas>
+    </div>
+  )
+}
+
+/** Detail page: the bar at real size, with a page body under it. */
+export function TawnyHeaderDetail({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn('flex h-full select-none flex-col bg-background', className)}
+      inert
+    >
+      <header className="shrink-0 border-b border-border bg-background/80">
+        <div className="flex h-16 items-center justify-between gap-4 px-6">
+          <div className="flex items-center gap-2.5">
+            <Logo className="size-8 rounded-md" />
+            <span className="font-serif text-2xl italic tracking-tight text-foreground">
+              Tawny
+            </span>
+          </div>
+          <nav className="flex items-center gap-1" aria-hidden="true">
+            {['Designs', 'Components', 'Writeups'].map((label, i) => (
+              <span
+                key={label}
+                className={cn(
+                  'rounded-md px-3 py-1.5 text-sm',
+                  i === 0 ? 'bg-muted text-foreground' : 'text-muted-foreground',
+                )}
+              >
+                {label}
+              </span>
+            ))}
+          </nav>
+          <div className="flex items-center gap-2">
+            <span className="inline-flex h-8 items-center rounded-full border border-border bg-muted/40 px-3 text-sm font-medium text-muted-foreground">
+              Dark
+            </span>
+            <span className="inline-flex items-center rounded-full bg-foreground px-4 py-1.5 text-sm font-medium text-background">
+              Browse designs
+            </span>
+          </div>
+        </div>
+      </header>
+      <div className="min-h-0 flex-1 bg-linear-to-b from-muted/30 to-background" />
     </div>
   )
 }

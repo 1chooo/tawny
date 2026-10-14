@@ -27,7 +27,7 @@ export function DevHeaderDemo({ className }: { className?: string }) {
         inert
         className="h-full select-none"
       >
-        <ScaledDesignCanvas>
+        <ScaledDesignCanvas height={240}>
           <div
             className="dev-root flex h-full flex-col bg-(--dev-background,#09090b) text-(--dev-foreground,#e4e4e7) antialiased"
             data-theme="dark"
@@ -65,6 +65,48 @@ export function DevHeaderDemo({ className }: { className?: string }) {
             <div aria-hidden="true" className="min-h-0 flex-1" />
           </div>
         </ScaledDesignCanvas>
+      </div>
+    </div>
+  )
+}
+
+export function DevHeaderDetail({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn(
+        devMono.variable,
+        devMono.className,
+        'flex h-full flex-col font-mono',
+        className,
+      )}
+      inert
+    >
+      <div
+        className="dev-root flex h-full flex-col bg-(--dev-background,#09090b) text-(--dev-foreground,#e4e4e7)"
+        data-theme="dark"
+      >
+        <div className="mx-auto w-full max-w-2xl px-10 pt-16">
+          <div className="flex items-center text-4xl font-extrabold">
+            lin hugo
+            <span aria-hidden="true" className="ml-1 inline-block animate-pulse text-red-500">
+              _
+            </span>
+          </div>
+          <div className="mt-3 flex gap-6 text-xl">
+            {(['about', 'blog', 'projects'] as const).map((label, i) => (
+              <span
+                key={label}
+                className={
+                  i === 0
+                    ? 'font-extrabold text-(--dev-foreground,#e4e4e7)'
+                    : 'font-normal text-(--dev-muted,#a1a1aa)'
+                }
+              >
+                {label}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )

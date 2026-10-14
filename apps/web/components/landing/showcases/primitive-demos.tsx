@@ -15,7 +15,7 @@ import { cn } from '@tawny/ui/lib/utils'
 export function MotionPrimitivesDemo({ className }: { className?: string }) {
   return (
     <div className={cn('h-full', className)}>
-      <ScaledDesignCanvas>
+      <ScaledDesignCanvas width={720} height={405}>
         <div className="flex h-full flex-col items-center justify-center gap-8 bg-background px-16">
           <p className="text-center text-3xl text-foreground/90">
             Build with{' '}
@@ -45,7 +45,7 @@ export function MotionPrimitivesDemo({ className }: { className?: string }) {
 export function EffectsDemo({ className }: { className?: string }) {
   return (
     <div className={cn('h-full', className)}>
-      <ScaledDesignCanvas>
+      <ScaledDesignCanvas width={720} height={405}>
         <div className="relative flex h-full items-center justify-center bg-background px-16">
           <div className="relative w-full max-w-md overflow-hidden rounded-xl border border-border bg-muted/40 p-10">
             <BorderBeam
@@ -84,18 +84,94 @@ const MAP_MARKERS = [
 export function DottedMapDemo({ className }: { className?: string }) {
   return (
     <div className={cn('h-full', className)}>
-      <ScaledDesignCanvas>
-        <div className="flex h-full items-center justify-center bg-background px-16 text-muted-foreground/40">
+      <ScaledDesignCanvas width={720} height={405}>
+        <div className="flex h-full items-center justify-center bg-background px-10">
           <DottedMap
             width={280}
             height={140}
             mapSamples={4000}
             markers={MAP_MARKERS}
             markerColor="var(--tawny)"
-            className="h-auto w-full max-w-3xl"
+            className="h-auto w-full"
           />
         </div>
       </ScaledDesignCanvas>
+    </div>
+  )
+}
+
+export function MotionPrimitivesDetail({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn(
+        'flex h-full flex-col items-center justify-center gap-10 bg-background px-10',
+        className,
+      )}
+    >
+      <p className="text-center text-5xl text-foreground/90">
+        Build with{' '}
+        <WordRotate
+          words={['motion', 'clarity', 'craft', 'presence']}
+          className="font-semibold text-foreground"
+        />
+      </p>
+      <ShimmerButton
+        background="var(--tawny)"
+        shimmerColor="rgba(255,255,255,0.35)"
+        className="text-lg text-tawny-foreground!"
+        type="button"
+      >
+        Shimmer button
+      </ShimmerButton>
+    </div>
+  )
+}
+
+export function EffectsDetail({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn(
+        'flex h-full items-center justify-center bg-background px-10',
+        className,
+      )}
+    >
+      <div className="relative w-full max-w-lg overflow-hidden rounded-xl border border-border bg-muted/40 p-12">
+        <BorderBeam
+          size={160}
+          duration={12}
+          colorFrom="color-mix(in oklab, var(--tawny) 70%, transparent)"
+          colorTo="transparent"
+        />
+        <div className="relative z-10 flex flex-col items-center gap-6 text-center">
+          <AnimatedGradientText>New components</AnimatedGradientText>
+          <p className="text-6xl font-semibold tracking-tight text-foreground">
+            <NumberTicker value={2} /> designs
+          </p>
+          <p className="text-lg text-muted-foreground">
+            Headers, motion, and map primitives — rendered live at real size.
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function DottedMapDetail({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn(
+        'flex h-full items-center justify-center bg-background px-8',
+        className,
+      )}
+    >
+      <DottedMap
+        width={280}
+        height={140}
+        mapSamples={6000}
+        markers={MAP_MARKERS}
+        markerColor="var(--tawny)"
+        className="h-auto w-full"
+      />
     </div>
   )
 }
