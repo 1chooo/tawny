@@ -9,7 +9,7 @@ import { designs, designCategories } from '@/lib/data'
 import { cn } from '@tawny/ui/lib/utils'
 
 /** Large card, then the two compact slots. Independent of the homepage `featured` flag. */
-const PIN_IDS = ['art', 'ocean', 'link'] as const
+const PIN_IDS = ['art', 'ocean', 'board'] as const
 
 type SearchParams = Promise<{
   category?: string
