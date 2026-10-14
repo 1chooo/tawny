@@ -65,21 +65,6 @@ export default async function DesignsPage(props: {
       <NoiseTexture opacity={0.025} />
 
       <div className="relative z-10 mx-auto w-full max-w-340 px-6">
-        <BlurFade delay={0.05}>
-          <div className="mb-10">
-            <p className="mb-3 text-xs font-medium tracking-[0.15em] text-muted-foreground uppercase">
-              Web Designs
-            </p>
-            <h1 className="text-balance text-4xl font-semibold tracking-[-0.03em] text-foreground md:text-5xl">
-              Design showcases
-            </h1>
-            <p className="mt-3 max-w-lg text-pretty leading-relaxed text-muted-foreground">
-              Explore live design demos hosted inside Tawny — open a showcase and
-              navigate within it.
-            </p>
-          </div>
-        </BlurFade>
-
         <DesignPins designs={pinned} />
 
         <BlurFade delay={0.1}>
