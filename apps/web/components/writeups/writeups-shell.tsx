@@ -18,7 +18,7 @@ export function WriteupsShell({
   children: ReactNode
 }) {
   return (
-    <div className="mx-auto grid w-full max-w-340 items-start gap-x-8 px-6 xl:grid-cols-[11rem_minmax(0,52rem)_14rem] xl:justify-center">
+    <div className="mx-auto grid w-full max-w-340 gap-x-8 px-6 xl:grid-cols-[11rem_minmax(0,52rem)_14rem] xl:justify-center">
       <aside className="hidden xl:block">
         <nav
           aria-label="Writeups"
