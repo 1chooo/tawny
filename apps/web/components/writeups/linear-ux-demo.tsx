@@ -199,8 +199,23 @@ function Chip({ children }: { children: string }) {
   );
 }
 
-export function LinearUxDemo() {
-  const [step, setStep] = useState(0);
+const STAGE_INDEX = {
+  before: 0,
+  density: 1,
+  borders: 2,
+  "one-color": 3,
+  keyboard: 4,
+  alignment: 5,
+} as const;
+
+type StageName = keyof typeof STAGE_INDEX;
+
+export function LinearUxStage({ stage }: { stage: StageName }) {
+  return <LinearUxDemo lockedStage={stage} />;
+}
+
+export function LinearUxDemo({ lockedStage }: { lockedStage?: StageName } = {}) {
+  const [step, setStep] = useState(lockedStage ? STAGE_INDEX[lockedStage] : 0);
   const [selectedId, setSelectedId] = useState("NOR-142");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [paletteOpen, setPaletteOpen] = useState(false);
@@ -271,29 +286,33 @@ export function LinearUxDemo() {
           </div>
         </div>
 
-        <div role="group" aria-label="Apply decisions" className="mb-1 flex flex-wrap justify-center gap-1.5">
-          {STEPS.map((item) => {
-            const active = item.id === step;
-            return (
-              <button
-                key={item.id}
-                type="button"
-                aria-pressed={active}
-                onClick={() => setStep(item.id)}
-                className="rounded-full px-2.5 py-1 text-[12px] font-medium motion-reduce:transition-none"
-                style={{
-                  background: active ? ACCENT : "transparent",
-                  color: active ? "var(--tawny-foreground)" : "var(--muted-foreground)",
-                  border: active ? "1px solid transparent" : "1px solid var(--border)",
-                  transition: `background-color ${moveMs}ms ${SNAP}, color ${moveMs}ms ${SNAP}`,
-                }}
-              >
-                {item.label}
-              </button>
-            );
-          })}
-        </div>
-        <p className="mb-3 text-center text-[11px] text-muted-foreground">Each step keeps the decisions before it.</p>
+        {lockedStage ? null : (
+          <>
+            <div role="group" aria-label="Apply decisions" className="mb-1 flex flex-wrap justify-center gap-1.5">
+              {STEPS.map((item) => {
+                const active = item.id === step;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    aria-pressed={active}
+                    onClick={() => setStep(item.id)}
+                    className="rounded-full px-2.5 py-1 text-[12px] font-medium motion-reduce:transition-none"
+                    style={{
+                      background: active ? ACCENT : "transparent",
+                      color: active ? "var(--tawny-foreground)" : "var(--muted-foreground)",
+                      border: active ? "1px solid transparent" : "1px solid var(--border)",
+                      transition: `background-color ${moveMs}ms ${SNAP}, color ${moveMs}ms ${SNAP}`,
+                    }}
+                  >
+                    {item.label}
+                  </button>
+                );
+              })}
+            </div>
+            <p className="mb-3 text-center text-[11px] text-muted-foreground">Each step keeps the decisions before it.</p>
+          </>
+        )}
 
         <div
           className="overflow-hidden rounded-xl motion-reduce:transition-none"
