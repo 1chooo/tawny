@@ -7,6 +7,7 @@
   --muted-foreground: #78716c;
   --border: #e7e2da;
   --accent: #efeae3;
+  --popover: #fbfaf7;
   --tawny: #c45c26;
   --tawny-foreground: #fffaf5;
 }
@@ -18,6 +19,7 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
   --color-accent: var(--accent);
+  --color-popover: var(--popover);
   --color-tawny: var(--tawny);
   --color-tawny-foreground: var(--tawny-foreground);
   --font-sans: var(--font-board-sans), ui-sans-serif, system-ui, sans-serif;

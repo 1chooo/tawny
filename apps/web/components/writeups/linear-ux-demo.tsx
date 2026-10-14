@@ -11,6 +11,8 @@ import {
   Search,
 } from "lucide-react";
 
+import { BoardDashboard } from "@/components/board/dashboard"
+
 /**
  * Cumulative replica of the five decisions in Design Motion's
  * "Reverse-Engineered Linear" walkthrough.
@@ -215,11 +217,16 @@ export function LinearUxStage({
   presentation = "lesson",
 }: {
   stage: StageName;
-  /** `product` locks the finished alignment dashboard and drops the lesson chrome. */
+  /** `product` is the clickable Board app. Lesson stages stay the writeup. */
   presentation?: "lesson" | "product";
 }) {
-  const product = presentation === "product";
-  const step = product ? STAGE_INDEX.alignment : STAGE_INDEX[stage];
+  if (presentation === "product") return <BoardDashboard />
+  return <LinearUxLesson stage={stage} />
+}
+
+function LinearUxLesson({ stage }: { stage: StageName }) {
+  const product = false
+  const step = STAGE_INDEX[stage]
   const [selectedId, setSelectedId] = useState("NOR-142");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [paletteOpen, setPaletteOpen] = useState(step === 4);

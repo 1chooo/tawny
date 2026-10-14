@@ -113,8 +113,8 @@ export const designs: Design[] = [
     description:
       'An issue dashboard on a 4px grid — 16px icons, labels and ids on the left, numbers and dates on the right.',
     longDescription: [
-      'Board is a single-page issue dashboard. The sidebar, toolbar, and list follow one alignment: a 4px grid, 16px icons centered on the text line, labels and ids on the left, numbers and dates on the right.',
-      'Open the live demo to select a row and try the command palette. Scaffold a copy with the create command below, then replace the sample issues with your own.',
+      'Board is a single-page issue dashboard you can use. Sidebar views filter the list, Filter narrows by status, and Display switches between the aligned list and a three-column board.',
+      'Select a row to change its status, or create an issue from the button and the command palette. Scaffold a copy with the create command below, then replace the sample issues with your own.',
     ],
     category: 'Dashboard',
     price: 'free',
