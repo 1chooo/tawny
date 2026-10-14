@@ -1,10 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import {
-  DesignPreview,
-  designPreviewBg,
-} from '@/components/landing/design-preview'
-import { DemoWindow } from '@/components/landing/demo-window'
+import { DesignPreviewFrame } from '@/components/designs/design-preview-frame'
 import type { Design } from '@/lib/data'
 import { cn } from '@tawny/ui/lib/utils'
 
@@ -31,16 +27,7 @@ export function DesignPinCard({
         className,
       )}
     >
-      <div className="relative aspect-video overflow-hidden bg-muted">
-        <DemoWindow
-          title={`designs/${design.id}`}
-          active
-          className="h-full w-full rounded-none border-0 shadow-none ring-0"
-          contentClassName={designPreviewBg(design.id)}
-        >
-          <DesignPreview id={design.id} className="h-full" />
-        </DemoWindow>
-      </div>
+      <DesignPreviewFrame id={design.id} />
 
       <div
         className={cn(
