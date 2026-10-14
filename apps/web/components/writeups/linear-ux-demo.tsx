@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import {
   Bell,
   CircleUser,
@@ -211,14 +211,10 @@ const STAGE_INDEX = {
 type StageName = keyof typeof STAGE_INDEX;
 
 export function LinearUxStage({ stage }: { stage: StageName }) {
-  return <LinearUxDemo lockedStage={stage} />;
-}
-
-export function LinearUxDemo({ lockedStage }: { lockedStage?: StageName } = {}) {
-  const [step, setStep] = useState(lockedStage ? STAGE_INDEX[lockedStage] : 0);
+  const step = STAGE_INDEX[stage];
   const [selectedId, setSelectedId] = useState("NOR-142");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [paletteOpen, setPaletteOpen] = useState(false);
+  const [paletteOpen, setPaletteOpen] = useState(step === 4);
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -230,15 +226,6 @@ export function LinearUxDemo({ lockedStage }: { lockedStage?: StageName } = {}) 
   const meta = STEPS[step] ?? STEPS[0];
   const hoverMs = keys ? 80 : 300;
   const moveMs = keys ? 150 : 300;
-
-  useEffect(() => {
-    setPaletteOpen(step === 4);
-    if (step !== 4) setQuery("");
-  }, [step]);
-
-  useEffect(() => {
-    if (paletteOpen) inputRef.current?.focus({ preventScroll: true });
-  }, [paletteOpen]);
 
   const filtered = COMMANDS.filter((command) =>
     command.name.toLowerCase().includes(query.trim().toLowerCase()),
@@ -285,34 +272,6 @@ export function LinearUxDemo({ lockedStage }: { lockedStage?: StageName } = {}) 
             {meta.title}
           </div>
         </div>
-
-        {lockedStage ? null : (
-          <>
-            <div role="group" aria-label="Apply decisions" className="mb-1 flex flex-wrap justify-center gap-1.5">
-              {STEPS.map((item) => {
-                const active = item.id === step;
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    aria-pressed={active}
-                    onClick={() => setStep(item.id)}
-                    className="rounded-full px-2.5 py-1 text-[12px] font-medium motion-reduce:transition-none"
-                    style={{
-                      background: active ? ACCENT : "transparent",
-                      color: active ? "var(--tawny-foreground)" : "var(--muted-foreground)",
-                      border: active ? "1px solid transparent" : "1px solid var(--border)",
-                      transition: `background-color ${moveMs}ms ${SNAP}, color ${moveMs}ms ${SNAP}`,
-                    }}
-                  >
-                    {item.label}
-                  </button>
-                );
-              })}
-            </div>
-            <p className="mb-3 text-center text-[11px] text-muted-foreground">Each step keeps the decisions before it.</p>
-          </>
-        )}
 
         <div
           className="overflow-hidden rounded-xl motion-reduce:transition-none"
