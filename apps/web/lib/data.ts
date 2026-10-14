@@ -107,6 +107,23 @@ export const designs: Design[] = [
     ],
     thumbnail: '/thumbnails/designs/ocean.webp',
   },
+  {
+    id: 'board',
+    title: 'Board',
+    description:
+      'An issue dashboard on a 4px grid — 16px icons, labels and ids on the left, numbers and dates on the right.',
+    longDescription: [
+      'Board is a single-page issue dashboard. The sidebar, toolbar, and list follow one alignment: a 4px grid, 16px icons centered on the text line, labels and ids on the left, numbers and dates on the right.',
+      'Open the live demo to select a row and try the command palette. Scaffold a copy with the create command below, then replace the sample issues with your own.',
+    ],
+    category: 'Dashboard',
+    price: 'free',
+    tags: ['Next.js', 'Dashboard', 'Issues'],
+    demoPath: '/designs/board',
+    viewPath: '/view/board',
+    packageName: 'create-tawny',
+    sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
+  },
 ]
 
 export const designCategories = [
@@ -115,6 +132,7 @@ export const designCategories = [
   'Blog',
   'Links',
   'Landing',
+  'Dashboard',
 ] as const
 
 export function getDesign(id: string) {

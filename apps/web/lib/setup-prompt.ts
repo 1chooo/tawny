@@ -4,6 +4,7 @@ export const DEFAULT_PROJECT_NAMES: Record<string, string> = {
   dev: 'my-blog',
   link: 'my-links',
   ocean: 'my-ocean-studio',
+  board: 'my-board',
 }
 
 const SETUP_BLURBS: Record<string, string> = {
@@ -11,6 +12,7 @@ const SETUP_BLURBS: Record<string, string> = {
   dev: 'the minimal mono developer blog',
   link: 'the personal link-in-bio page',
   ocean: 'the scroll-driven WebGL particle landing page',
+  board: 'the issue dashboard',
 }
 
 export type SetupPromptInput = {

@@ -10,6 +10,7 @@ import { ArtPreviewMock } from '@/components/landing/art-preview-mock'
 import { DevPreviewMock } from '@/components/landing/dev-preview-mock'
 import { LinkPreviewMock } from '@/components/landing/link-preview-mock'
 import { OceanPreviewMock } from '@/components/landing/ocean-preview-mock'
+import { IssueListDemo } from '@/components/landing/showcases/issue-list-demo'
 import { cn } from '@tawny/ui/lib/utils'
 
 const artDisplay = Playfair_Display({
@@ -127,6 +128,14 @@ export function DesignPreview({ id, className }: DesignPreviewProps) {
     )
   }
 
+  if (id === 'board') {
+    return (
+      <div className={cn('h-full bg-background', className)}>
+        <IssueListDemo />
+      </div>
+    )
+  }
+
   return null
 }
 
@@ -140,5 +149,6 @@ export function designPreviewBg(id: string) {
   if (id === 'dev') return 'bg-(--dev-background,#09090b)'
   if (id === 'link') return 'bg-[#fcfcfc]'
   if (id === 'ocean') return 'bg-[#020a14]'
+  if (id === 'board') return 'bg-background'
   return 'bg-background'
 }

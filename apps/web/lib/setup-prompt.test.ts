@@ -29,6 +29,9 @@ describe('setupCommand', () => {
     expect(setupCommand('ocean')).toBe(
       'npx create-tawny@latest ocean my-ocean-studio --yes',
     )
+    expect(setupCommand('board')).toBe(
+      'npx create-tawny@latest board my-board --yes',
+    )
   })
 
   it('keeps default names aligned with the CLI', () => {
@@ -37,6 +40,7 @@ describe('setupCommand', () => {
       dev: 'my-blog',
       link: 'my-links',
       ocean: 'my-ocean-studio',
+      board: 'my-board',
     })
   })
 })
