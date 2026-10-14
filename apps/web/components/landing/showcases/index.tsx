@@ -10,13 +10,17 @@ import {
   EffectsDemo,
   MotionPrimitivesDemo,
 } from '@/components/landing/showcases/primitive-demos'
+import {
+  IssueListDemo,
+  IssueListDetail,
+} from '@/components/landing/showcases/issue-list-demo'
 import { TawnyHeaderDemo } from '@/components/landing/showcases/tawny-header-demo'
 
 export type ComponentDemo = {
   id: string
   title: string
   description: string
-  category: 'Navigation' | 'Motion' | 'Effects' | 'Maps' | 'Embed'
+  category: 'Navigation' | 'Motion' | 'Effects' | 'Maps' | 'Embed' | 'Dashboard'
   frameTitle: string
   contentClassName?: string
   /** ProductFrame content classes on the detail page; defaults to aspect-video */
@@ -124,6 +128,19 @@ export const componentDemos: ComponentDemo[] = [
     render: () => <EmbedCardGalleryPreview />,
     detailRender: () => <EmbedCardDemo />,
     detailContentClassName: 'overflow-hidden',
+  },
+  {
+    id: 'issue-list',
+    title: 'Issue list',
+    description:
+      'A 4px grid, 16px icons on the text line, labels and ids on the left, numbers and dates on the right.',
+    category: 'Dashboard',
+    frameTitle: 'components/issue-list',
+    contentClassName: 'bg-background',
+    detailContentClassName: 'h-[36rem] overflow-hidden bg-background',
+    sourceFiles: ['apps/web/components/writeups/linear-ux-demo.tsx'],
+    render: () => <IssueListDemo />,
+    detailRender: () => <IssueListDetail />,
   },
 ]
 
