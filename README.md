@@ -11,7 +11,7 @@ apps/
 packages/
   ui/          # @tawny/ui — shared UI primitives used by apps/web
   embed-card/  # embed-card — URL embed cards, published to npm
-templates/     # art / dev / link / ocean starter templates, scaffolded by apps/cli and browsed on /designs/<id>
+templates/     # art / dev / link / ocean / board starter templates, scaffolded by apps/cli and browsed on /designs/<id>
 ```
 
 Managed as a [pnpm workspace](https://pnpm.io/workspaces) (see `pnpm-workspace.yaml`). Run everything from the repo root — `pnpm install` links workspace packages together.

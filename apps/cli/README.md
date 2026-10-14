@@ -9,6 +9,7 @@ npx create-tawny@latest dev my-blog
 npx create-tawny@latest art my-journal
 npx create-tawny@latest link my-links
 npx create-tawny@latest ocean my-ocean-studio
+npx create-tawny@latest board my-board
 
 # skip prompts (coding agents) — uses placeholder author details
 npx create-tawny@latest art my-journal --yes
@@ -25,6 +26,7 @@ Available templates:
 | `art` | Bilingual bento journal — MDX notes, projects, i18n     | [`templates/art`](../../templates/art)     |
 | `link` | Personal link-in-bio page — profile + social links      | [`templates/link`](../../templates/link)   |
 | `ocean` | WebGL particle landing page — scroll-morphing sea creatures | [`templates/ocean`](../../templates/ocean) |
+| `board` | Issue dashboard — sidebar, toolbar, and a 4px list | [`templates/board`](../../templates/board) |
 
 Under the hood it downloads the `templates/<id>` subdirectory straight from the [`1chooo/tawny`](https://github.com/1chooo/tawny) GitHub tarball (no `create-next-app`/`npx` involved, so there's no interactive "ok to install" prompt to hang on), sets the `package.json` name, replaces the `{{AUTHOR_NAME}}` / `{{AUTHOR_EMAIL}}` / `{{GITHUB_USERNAME}}` / `{{CITY_NAME}}` placeholders, and runs any template-specific setup (e.g. `art` strips the Chinese locale and seeds `.env` when you opt into English-only).
 

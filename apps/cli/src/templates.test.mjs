@@ -2,10 +2,11 @@ import { describe, expect, it } from 'vitest'
 import { getTemplate, templateList, templates } from './templates.mjs'
 
 describe('templates registry', () => {
-  it('exposes art, dev, link, and ocean templates', () => {
-    expect(Object.keys(templates).sort()).toEqual(['art', 'dev', 'link', 'ocean'])
+  it('exposes art, dev, link, ocean, and board templates', () => {
+    expect(Object.keys(templates).sort()).toEqual(['art', 'board', 'dev', 'link', 'ocean'])
     expect(templateList.map((t) => t.id).sort()).toEqual([
       'art',
+      'board',
       'dev',
       'link',
       'ocean',
@@ -18,6 +19,8 @@ describe('templates registry', () => {
     expect(getTemplate('link')?.defaultProjectName).toBe('my-links')
     expect(getTemplate('ocean')?.path).toBe('templates/ocean')
     expect(getTemplate('ocean')?.defaultProjectName).toBe('my-ocean-studio')
+    expect(getTemplate('board')?.path).toBe('templates/board')
+    expect(getTemplate('board')?.defaultProjectName).toBe('my-board')
   })
 
   it('keeps bilingual locales as the Art --yes default', () => {
@@ -25,6 +28,7 @@ describe('templates registry', () => {
     expect(getTemplate('dev')?.extraDefaults).toEqual({})
     expect(getTemplate('link')?.extraDefaults).toEqual({})
     expect(getTemplate('ocean')?.extraDefaults).toEqual({})
+    expect(getTemplate('board')?.extraDefaults).toEqual({})
   })
 
   it('returns undefined for unknown ids', () => {
