@@ -84,9 +84,38 @@ export const designs: Design[] = [
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
     thumbnail: '/thumbnails/designs/link.webp',
   },
+  {
+    id: 'ocean',
+    title: 'Ocean',
+    description:
+      'A scroll-driven WebGL landing page where a particle whale, sea turtle, jellyfish, and manta ray morph into one another — open the live showcase.',
+    longDescription: [
+      'Ocean is a single-page studio landing built around a Three.js particle field. Each creature is a glTF model sampled into the same number of points, and a custom shader morphs between them as you scroll, with ocean currents, bioluminescent shimmer, and a cursor ripple layered on top.',
+      'Scroll the live demo above to dive through all four creatures. Scaffold your own copy with the create command below, then swap in your studio copy — or drop in your own glTF models and tune their pose in lib/content.ts.',
+    ],
+    category: 'Landing',
+    price: 'free',
+    tags: ['Next.js', 'Three.js', 'GSAP', 'WebGL'],
+    demoPath: '/designs/ocean',
+    viewPath: '/view/ocean',
+    packageName: 'create-tawny',
+    sourceFiles: [
+      'package.json',
+      'README.md',
+      'lib/particles/scene.ts',
+      'lib/particles/shaders.ts',
+    ],
+    thumbnail: '/thumbnails/designs/ocean.webp',
+  },
 ]
 
-export const designCategories = ['All', 'Journal', 'Blog', 'Links'] as const
+export const designCategories = [
+  'All',
+  'Journal',
+  'Blog',
+  'Links',
+  'Landing',
+] as const
 
 export function getDesign(id: string) {
   return designs.find((d) => d.id === id)

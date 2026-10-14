@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getDesign, designs } from './data'
+import { getDesign, designCategories, designs } from './data'
 
 describe('getDesign', () => {
   it('returns a known design by id', () => {
@@ -15,6 +15,14 @@ describe('getDesign', () => {
     expect(link?.demoPath).toBe('/designs/link')
     expect(link?.viewPath).toBe('/view/link')
     expect(link?.category).toBe('Links')
+  })
+
+  it('includes the ocean design under Landing', () => {
+    const ocean = getDesign('ocean')
+    expect(ocean?.demoPath).toBe('/designs/ocean')
+    expect(ocean?.viewPath).toBe('/view/ocean')
+    expect(ocean?.category).toBe('Landing')
+    expect(designCategories).toContain('Landing')
   })
 
   it('returns undefined for unknown ids', () => {

@@ -3,11 +3,13 @@ import {
   Inter,
   JetBrains_Mono,
   Lora,
+  Oswald,
   Playfair_Display,
 } from 'next/font/google'
 import { ArtPreviewMock } from '@/components/landing/art-preview-mock'
 import { DevPreviewMock } from '@/components/landing/dev-preview-mock'
 import { LinkPreviewMock } from '@/components/landing/link-preview-mock'
+import { OceanPreviewMock } from '@/components/landing/ocean-preview-mock'
 import { cn } from '@tawny/ui/lib/utils'
 
 const artDisplay = Playfair_Display({
@@ -39,6 +41,17 @@ const linkSerif = Lora({
   subsets: ['latin'],
   style: ['italic'],
   variable: '--font-link-serif',
+})
+
+const oceanDisplay = Oswald({
+  subsets: ['latin'],
+  weight: ['500', '600'],
+  variable: '--font-ocean-display',
+})
+
+const oceanSans = Inter({
+  subsets: ['latin'],
+  variable: '--font-ocean-sans',
 })
 
 type DesignPreviewProps = {
@@ -99,6 +112,21 @@ export function DesignPreview({ id, className }: DesignPreviewProps) {
     )
   }
 
+  if (id === 'ocean') {
+    return (
+      <div
+        className={cn(
+          oceanDisplay.variable,
+          oceanSans.variable,
+          'h-full',
+          className,
+        )}
+      >
+        <OceanPreviewMock className="h-full" />
+      </div>
+    )
+  }
+
   return null
 }
 
@@ -111,5 +139,6 @@ export function designPreviewBg(id: string) {
   if (id === 'art') return 'bg-black'
   if (id === 'dev') return 'bg-(--dev-background,#09090b)'
   if (id === 'link') return 'bg-[#fcfcfc]'
+  if (id === 'ocean') return 'bg-[#020a14]'
   return 'bg-background'
 }

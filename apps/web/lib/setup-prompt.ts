@@ -3,12 +3,14 @@ export const DEFAULT_PROJECT_NAMES: Record<string, string> = {
   art: 'my-journal',
   dev: 'my-blog',
   link: 'my-links',
+  ocean: 'my-ocean-studio',
 }
 
 const SETUP_BLURBS: Record<string, string> = {
   art: 'the bilingual bento journal',
   dev: 'the minimal mono developer blog',
   link: 'the personal link-in-bio page',
+  ocean: 'the scroll-driven WebGL particle landing page',
 }
 
 export type SetupPromptInput = {

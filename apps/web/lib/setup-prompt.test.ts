@@ -26,6 +26,9 @@ describe('setupCommand', () => {
     expect(setupCommand('link')).toBe(
       'npx create-tawny@latest link my-links --yes',
     )
+    expect(setupCommand('ocean')).toBe(
+      'npx create-tawny@latest ocean my-ocean-studio --yes',
+    )
   })
 
   it('keeps default names aligned with the CLI', () => {
@@ -33,6 +36,7 @@ describe('setupCommand', () => {
       art: 'my-journal',
       dev: 'my-blog',
       link: 'my-links',
+      ocean: 'my-ocean-studio',
     })
   })
 })
