@@ -210,8 +210,16 @@ const STAGE_INDEX = {
 
 type StageName = keyof typeof STAGE_INDEX;
 
-export function LinearUxStage({ stage }: { stage: StageName }) {
-  const step = STAGE_INDEX[stage];
+export function LinearUxStage({
+  stage,
+  presentation = "lesson",
+}: {
+  stage: StageName;
+  /** `product` locks the finished alignment dashboard and drops the lesson chrome. */
+  presentation?: "lesson" | "product";
+}) {
+  const product = presentation === "product";
+  const step = product ? STAGE_INDEX.alignment : STAGE_INDEX[stage];
   const [selectedId, setSelectedId] = useState("NOR-142");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [paletteOpen, setPaletteOpen] = useState(step === 4);
@@ -244,15 +252,20 @@ export function LinearUxStage({ stage }: { stage: StageName }) {
   return (
     <div
       data-testid="linear-ux-demo"
-      data-writeup-stage=""
+      data-writeup-stage={product ? undefined : ""}
       data-step={step}
-      className="my-8 w-full overflow-hidden rounded-xl border border-border bg-background font-sans text-foreground antialiased"
+      className={
+        product
+          ? "flex h-full min-h-0 w-full flex-col overflow-hidden bg-background font-sans text-foreground antialiased"
+          : "my-8 w-full overflow-hidden rounded-xl border border-border bg-background font-sans text-foreground antialiased"
+      }
       style={{
         fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif",
         lineHeight: 1.35,
-        backgroundImage:
-          "linear-gradient(color-mix(in srgb, var(--foreground) 6%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--foreground) 6%, transparent) 1px, transparent 1px)",
-        backgroundSize: "22px 22px",
+        backgroundImage: product
+          ? undefined
+          : "linear-gradient(color-mix(in srgb, var(--foreground) 6%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--foreground) 6%, transparent) 1px, transparent 1px)",
+        backgroundSize: product ? undefined : "22px 22px",
       }}
       onKeyDown={(event) => {
         if (!keys) return;
@@ -263,28 +276,38 @@ export function LinearUxStage({ stage }: { stage: StageName }) {
         if (event.key === "Escape") setPaletteOpen(false);
       }}
     >
-      <div className="px-3 py-4 sm:px-4">
-        <div className="mb-3 text-center">
-          <div className="mx-auto mb-2 w-fit rounded-full border border-tawny/35 bg-tawny/12 px-2.5 py-1 text-[10px] font-semibold tracking-[0.14em] text-tawny">
-            {meta.kicker}
+      <div className={product ? "flex h-full min-h-0 flex-col" : "px-3 py-4 sm:px-4"}>
+        {product ? null : (
+          <div className="mb-3 text-center">
+            <div className="mx-auto mb-2 w-fit rounded-full border border-tawny/35 bg-tawny/12 px-2.5 py-1 text-[10px] font-semibold tracking-[0.14em] text-tawny">
+              {meta.kicker}
+            </div>
+            <div className="text-[20px] font-semibold tracking-[-0.03em] text-foreground sm:text-[22px]" aria-live="polite">
+              {meta.title}
+            </div>
           </div>
-          <div className="text-[20px] font-semibold tracking-[-0.03em] text-foreground sm:text-[22px]" aria-live="polite">
-            {meta.title}
-          </div>
-        </div>
+        )}
 
         <div
-          className="overflow-hidden rounded-xl motion-reduce:transition-none"
+          className={
+            product
+              ? "flex min-h-0 flex-1 overflow-hidden"
+              : "overflow-hidden rounded-xl motion-reduce:transition-none"
+          }
           style={{
             background: flat ? CANVAS : SURFACE,
-            border: `1px solid ${HAIRLINE}`,
-            boxShadow: flat ? "none" : "0 22px 48px color-mix(in srgb, var(--foreground) 16%, transparent)",
+            border: product ? undefined : `1px solid ${HAIRLINE}`,
+            boxShadow: product || flat ? "none" : "0 22px 48px color-mix(in srgb, var(--foreground) 16%, transparent)",
             transition: `background-color ${moveMs}ms ${SNAP}, box-shadow ${moveMs}ms ${SNAP}, border-color ${moveMs}ms ${SNAP}`,
           }}
         >
-          <div className="flex items-stretch">
+          <div className="flex min-h-0 flex-1 items-stretch">
             <aside
-              className="hidden w-[118px] shrink-0 flex-col sm:flex"
+              className={
+                product
+                  ? "flex w-[180px] shrink-0 flex-col"
+                  : "hidden w-[118px] shrink-0 flex-col sm:flex"
+              }
               style={{ borderRight: `1px solid ${HAIRLINE}` }}
             >
               <div className="flex items-center gap-2 px-2.5 py-2.5">
@@ -502,8 +525,12 @@ export function LinearUxStage({ stage }: { stage: StageName }) {
           </div>
         </div>
 
-        <Annotation step={step} dense={dense} />
-        <Chip>{meta.chip}</Chip>
+        {product ? null : (
+          <>
+            <Annotation step={step} dense={dense} />
+            <Chip>{meta.chip}</Chip>
+          </>
+        )}
       </div>
     </div>
   );
