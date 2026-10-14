@@ -8,7 +8,8 @@ import { NoiseTexture } from '@tawny/ui/components/noise-texture'
 import { designs, designCategories } from '@/lib/data'
 import { cn } from '@tawny/ui/lib/utils'
 
-const PIN_COUNT = 3
+/** Large card, then the two compact slots. Independent of the homepage `featured` flag. */
+const PIN_IDS = ['art', 'ocean', 'link'] as const
 
 type SearchParams = Promise<{
   category?: string
@@ -54,7 +55,10 @@ export default async function DesignsPage(props: {
   })
 
   const currentQ = qParam?.trim() ?? ''
-  const pinned = filtered.filter((design) => design.featured).slice(0, PIN_COUNT)
+  const pinned = PIN_IDS.flatMap((id) => {
+    const design = designs.find((entry) => entry.id === id)
+    return design ? [design] : []
+  })
 
   return (
     <div className="relative min-h-screen pt-28 pb-24">
@@ -75,6 +79,8 @@ export default async function DesignsPage(props: {
             </p>
           </div>
         </BlurFade>
+
+        <DesignPins designs={pinned} />
 
         <BlurFade delay={0.1}>
           <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -141,15 +147,11 @@ export default async function DesignsPage(props: {
             </Link>
           </p>
         ) : (
-          <>
-            <DesignPins designs={pinned} />
-
-            <ul className="list-none">
-              {filtered.map((design) => (
-                <DesignPostRow key={design.id} design={design} />
-              ))}
-            </ul>
-          </>
+          <ul className="list-none">
+            {filtered.map((design) => (
+              <DesignPostRow key={design.id} design={design} />
+            ))}
+          </ul>
         )}
       </div>
     </div>
