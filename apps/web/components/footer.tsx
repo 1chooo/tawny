@@ -5,6 +5,7 @@ const links = {
   Product: [
     { label: 'Designs', href: '/designs' },
     { label: 'Components', href: '/components' },
+    { label: 'Writeups', href: '/writeups' },
     { label: 'Changelog', href: '/changelog' },
   ],
   Resources: [
