@@ -1,0 +1,85 @@
+---
+title: "Five decisions. None need a designer."
+date: "2026-10-14"
+description: "Why Linear feels expensive. Density reads as competence, depth comes from value, one color is used twice, every action shows its shortcut, and a 4px grid does the rest."
+---
+
+Why does Linear feel expensive? Five decisions. None of them need a new component, a new font, or a designer in the room. This is that walkthrough, told on Tawny's own surfaces. The same fourteen issues return in every frame. Each frame keeps the decisions that came before it.
+
+The pattern is [Reverse-Engineered Linear](https://designmotionhq.com/patterns/reverse-engineered-linear) by Design Motion.
+
+## Before
+
+The same list, before the decisions. Rows are 56px. Status is a colored pill. The panel sits on a drop shadow. Eight issues fit. Six sit below the fold.
+
+<LinearUxStage stage="before" />
+
+## Density
+
+Density reads as competence. 13px text, 32px rows, letter-spacing pulled in by 1% (`-0.01em`). The same viewport shows fourteen issues instead of eight, with no scroll. One row height, all the way down, so the scan line stays even.
+
+<LinearUxStage stage="density" />
+
+## Borders
+
+Depth comes from value, not blur. Kill the shadow. Stack three backgrounds — canvas, list, hover — and split them with the theme border. Hover changes the surface, not the elevation. Flat surfaces look engineered. A shadow looks decorated.
+
+| Token | Role |
+| --- | --- |
+| `background` | Canvas |
+| `card` | List |
+| `accent` | Hover |
+| `border` | Hairline |
+| `tawny` | The one color |
+
+```css
+box-shadow: none;
+background: var(--card);
+border: 1px solid var(--border);
+```
+
+<LinearUxStage stage="borders" />
+
+## One color
+
+One color, used twice. `tawny` on the selected row and the primary button, nowhere else. Status is a grey icon: an open circle, a half-filled circle, or a check. Priority and labels are grey text. Seven hues collapse to one, and the list looks deliberate.
+
+<LinearUxStage stage="one-color" />
+
+## Keyboard
+
+Every action shows its shortcut. Filter is `F`, Display is `D`, New issue is `C`, search is `⌘K`. Hover lands in about 80ms. Everything else stays under 150ms, ease-out, no bounce and no overshoot. The UI answers before the gesture finishes.
+
+```css
+transition: background-color 80ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+```
+
+The palette lists the rest: `P` sets priority, `I` assigns the issue to you, `⌘B` toggles the sidebar. If an action has a shortcut, the shortcut is part of the label.
+
+<LinearUxStage stage="keyboard" />
+
+## Alignment
+
+A 4px grid does the rest. Icons are 16px and centered on the text line. Labels and ids sit on the left. Numbers and dates sit on the right. Nothing is centered. Alignment is invisible when it is right, and loud when a date drifts.
+
+```css
+grid-template-columns: 16px 3.5rem minmax(0, 1fr) auto auto auto;
+gap: 8px;
+padding-inline: 8px;
+```
+
+<LinearUxStage stage="alignment" />
+
+## Do and don't
+
+Do:
+
+- Build depth from three background values plus a hairline border, and change the surface on hover.
+- Print the shortcut next to every action. Keep hover near 80ms and other transitions under 150ms.
+- Left-align labels and ids, right-align numbers and dates, and center 16px icons on the text line.
+
+Don't:
+
+- Use a drop shadow to separate rows, panels, or the sidebar.
+- Encode status or priority with a colored pill when a grey icon says the same thing.
+- Let a transition bounce, overshoot, or run past 150ms.
