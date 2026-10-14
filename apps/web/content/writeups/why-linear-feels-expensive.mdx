@@ -22,22 +22,23 @@ Separate the screen with three backgrounds and a 1px line of white at 8% opacity
 
 | Token | Value |
 | --- | --- |
-| Canvas | `#0B0D10` |
-| List surface | `#13161B` |
-| Hover surface | `#1A1E25` |
-| Border | `1px solid rgba(255, 255, 255, 0.08)` |
+| Canvas | `background` |
+| List surface | `card` |
+| Hover surface | `accent` |
+| Border | `border` |
+| Accent | `tawny` |
 
 ```css
 box-shadow: none;
-background: #13161b;
-border: 1px solid rgba(255, 255, 255, 0.08);
+background: var(--card);
+border: 1px solid var(--border);
 ```
 
-Hover sets the row to `#1A1E25`. Treat elevation as a background step in the same ramp, including the sidebar and the panel around the list.
+Hover sets the row to `accent`. Treat elevation as a background step in the same ramp, including the sidebar and the panel around the list.
 
 ## One color
 
-Spend indigo `#5E6AD2` in two places: the selected row and the primary button. Status is a grey icon — an open circle, a half-filled circle, or a check. Priority and labels are grey text in the same neutral.
+Spend `tawny` in two places: the selected row and the primary button. Status is a grey icon — an open circle, a half-filled circle, or a check. Priority and labels are grey text in the same neutral.
 
 A list still has to show state. It can do that with a shape. Write down the one chrome color and the two components allowed to use it, and keep status hues out of the row.
 

@@ -54,12 +54,11 @@ const DENSE_ROW = 32;
 const LOOSE_ROW = 56;
 const VIEWPORT = DENSE_ROW * ISSUES.length;
 
-const CANVAS = "#0B0D10";
-const SURFACE = "#13161B";
-const HOVER = "#1A1E25";
-const INDIGO = "#5E6AD2";
-const HAIRLINE = "rgba(255,255,255,0.08)";
-const MINT = "#3EE0A0";
+const CANVAS = "var(--background)";
+const SURFACE = "var(--card)";
+const HOVER = "var(--accent)";
+const ACCENT = "var(--tawny)";
+const HAIRLINE = "var(--border)";
 const SNAP = "cubic-bezier(.25,.46,.45,.94)";
 const BOUNCE = "cubic-bezier(.34,1.56,.64,1)";
 
@@ -145,14 +144,14 @@ const COLLAPSED_HUES = ["#3B82F6", "#EAB308", "#22C55E", "#EF4444", "#F97316", "
 
 function Kbd({ children }: { children: string }) {
   return (
-    <kbd className="ml-1 inline-flex h-4 min-w-4 items-center justify-center rounded border border-white/15 bg-white/10 px-1 font-sans text-[10px] leading-none text-white/80">
+    <kbd className="ml-1 inline-flex h-4 min-w-4 items-center justify-center rounded border border-border bg-foreground/5 px-1 font-sans text-[10px] leading-none text-muted-foreground">
       {children}
     </kbd>
   );
 }
 
 function StatusIcon({ status, size }: { status: Status; size: number }) {
-  const color = "#9AA1AB";
+  const color = "var(--muted-foreground)";
   if (status === "done") {
     return (
       <svg width={size} height={size} viewBox="0 0 16 16" aria-hidden="true">
@@ -194,10 +193,7 @@ function Pill({ color, dense, children }: { color: string; dense: boolean; child
 
 function Chip({ children }: { children: string }) {
   return (
-    <div
-      className="mx-auto mt-3 w-fit rounded-full px-3 py-1 text-center text-[11px] font-medium"
-      style={{ color: MINT, background: "rgba(62,224,160,0.12)", border: "1px solid rgba(62,224,160,0.35)" }}
-    >
+    <div className="mx-auto mt-3 w-fit rounded-full border border-tawny/35 bg-tawny/12 px-3 py-1 text-center text-[11px] font-medium text-tawny">
       {children}
     </div>
   );
@@ -236,10 +232,10 @@ export function LinearUxDemo() {
   function rowBackground(id: string) {
     const selected = id === selectedId;
     const hot = id === hoveredId && !selected;
-    if (selected && mono) return "rgba(94,106,210,0.22)";
-    if (selected) return "rgba(59,130,246,0.2)";
+    if (selected && mono) return "color-mix(in srgb, var(--tawny) 28%, transparent)";
+    if (selected) return "color-mix(in srgb, #3B82F6 22%, transparent)";
     if (hot && flat) return HOVER;
-    if (hot) return "rgba(255,255,255,0.07)";
+    if (hot) return "color-mix(in srgb, var(--foreground) 6%, transparent)";
     return "transparent";
   }
 
@@ -248,14 +244,12 @@ export function LinearUxDemo() {
       data-testid="linear-ux-demo"
       data-writeup-stage=""
       data-step={step}
-      className="my-8 w-full overflow-hidden rounded-xl font-sans antialiased"
+      className="my-8 w-full overflow-hidden rounded-xl border border-border bg-background font-sans text-foreground antialiased"
       style={{
         fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif",
-        color: "#E8EAED",
         lineHeight: 1.35,
-        backgroundColor: "#07090C",
         backgroundImage:
-          "linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)",
+          "linear-gradient(color-mix(in srgb, var(--foreground) 6%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--foreground) 6%, transparent) 1px, transparent 1px)",
         backgroundSize: "22px 22px",
       }}
       onKeyDown={(event) => {
@@ -269,13 +263,10 @@ export function LinearUxDemo() {
     >
       <div className="px-3 py-4 sm:px-4">
         <div className="mb-3 text-center">
-          <div
-            className="mx-auto mb-2 w-fit rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-[0.14em]"
-            style={{ color: MINT, background: "rgba(62,224,160,0.12)", border: "1px solid rgba(62,224,160,0.35)" }}
-          >
+          <div className="mx-auto mb-2 w-fit rounded-full border border-tawny/35 bg-tawny/12 px-2.5 py-1 text-[10px] font-semibold tracking-[0.14em] text-tawny">
             {meta.kicker}
           </div>
-          <div className="text-[20px] font-semibold tracking-[-0.03em] text-white sm:text-[22px]" aria-live="polite">
+          <div className="text-[20px] font-semibold tracking-[-0.03em] text-foreground sm:text-[22px]" aria-live="polite">
             {meta.title}
           </div>
         </div>
@@ -291,9 +282,9 @@ export function LinearUxDemo() {
                 onClick={() => setStep(item.id)}
                 className="rounded-full px-2.5 py-1 text-[12px] font-medium motion-reduce:transition-none"
                 style={{
-                  background: active ? MINT : "transparent",
-                  color: active ? "#06281A" : "#D5D8DE",
-                  border: active ? "1px solid transparent" : "1px solid rgba(255,255,255,0.14)",
+                  background: active ? ACCENT : "transparent",
+                  color: active ? "var(--tawny-foreground)" : "var(--muted-foreground)",
+                  border: active ? "1px solid transparent" : "1px solid var(--border)",
                   transition: `background-color ${moveMs}ms ${SNAP}, color ${moveMs}ms ${SNAP}`,
                 }}
               >
@@ -302,45 +293,45 @@ export function LinearUxDemo() {
             );
           })}
         </div>
-        <p className="mb-3 text-center text-[11px] text-white/45">Each step keeps the decisions before it.</p>
+        <p className="mb-3 text-center text-[11px] text-muted-foreground">Each step keeps the decisions before it.</p>
 
         <div
           className="overflow-hidden rounded-xl motion-reduce:transition-none"
           style={{
-            background: flat ? CANVAS : "#1B1F2C",
-            border: `1px solid ${flat ? HAIRLINE : "rgba(255,255,255,0.16)"}`,
-            boxShadow: flat ? "none" : "0 22px 48px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.35)",
+            background: flat ? CANVAS : SURFACE,
+            border: `1px solid ${HAIRLINE}`,
+            boxShadow: flat ? "none" : "0 22px 48px color-mix(in srgb, var(--foreground) 16%, transparent)",
             transition: `background-color ${moveMs}ms ${SNAP}, box-shadow ${moveMs}ms ${SNAP}, border-color ${moveMs}ms ${SNAP}`,
           }}
         >
           <div className="flex items-stretch">
             <aside
               className="hidden w-[118px] shrink-0 flex-col sm:flex"
-              style={{ borderRight: `1px solid ${flat ? HAIRLINE : "rgba(255,255,255,0.14)"}` }}
+              style={{ borderRight: `1px solid ${HAIRLINE}` }}
             >
               <div className="flex items-center gap-2 px-2.5 py-2.5">
-                <span className="flex size-5 items-center justify-center rounded bg-white/10 text-[10px] font-semibold text-white">
+                <span className="flex size-5 items-center justify-center rounded bg-foreground/8 text-[10px] font-semibold text-foreground">
                   N
                 </span>
-                <span className="truncate text-[12px] text-white">Northstar</span>
+                <span className="truncate text-[12px] text-foreground">Northstar</span>
               </div>
-              <div className="flex flex-col gap-0.5 px-1.5 text-[12px] text-white/70">
+              <div className="flex flex-col gap-0.5 px-1.5 text-[12px] text-muted-foreground">
                 <SideLink icon={<Inbox size={13} />} label="Inbox" count="3" />
                 <SideLink icon={<CircleUser size={13} />} label="My issues" />
                 <SideLink icon={<LayoutGrid size={13} />} label="Views" />
                 <SideLink icon={<FolderKanban size={13} />} label="Projects" />
                 <SideLink icon={<Repeat size={13} />} label="Cycles" />
               </div>
-              <div className="mt-3 px-2.5 text-[10px] font-medium tracking-[0.12em] text-white/35">TEAMS</div>
+              <div className="mt-3 px-2.5 text-[10px] font-medium tracking-[0.12em] text-muted-foreground">TEAMS</div>
               <div className="mt-1 flex flex-col gap-0.5 px-1.5 pb-2 text-[12px]">
-                <div className="px-1.5 py-1 text-white/55">Frontend</div>
-                <div className="rounded-md px-1.5 py-1 text-white" style={{ background: flat ? HOVER : "rgba(255,255,255,0.08)" }}>
+                <div className="px-1.5 py-1 text-muted-foreground">Frontend</div>
+                <div className="rounded-md bg-accent px-1.5 py-1 text-foreground">
                   Issues
                 </div>
-                <div className="px-1.5 py-1 text-white/55">Backlog</div>
+                <div className="px-1.5 py-1 text-muted-foreground">Backlog</div>
               </div>
-              <div className="mt-auto flex items-center gap-2 px-2.5 py-2.5 text-[11px] text-white/60">
-                <span className="flex size-5 items-center justify-center rounded-full bg-white/10 text-[9px] text-white">SC</span>
+              <div className="mt-auto flex items-center gap-2 px-2.5 py-2.5 text-[11px] text-muted-foreground">
+                <span className="flex size-5 items-center justify-center rounded-full bg-foreground/8 text-[9px] text-foreground">SC</span>
                 <span className="truncate">Sarah Chen</span>
               </div>
             </aside>
@@ -348,13 +339,13 @@ export function LinearUxDemo() {
             <div className="relative min-w-0 flex-1" style={{ background: flat ? SURFACE : "transparent" }}>
               <div
                 className="flex items-center justify-between gap-2 px-2.5 py-2"
-                style={{ borderBottom: `1px solid ${flat ? HAIRLINE : "rgba(255,255,255,0.12)"}` }}
+                style={{ borderBottom: `1px solid ${HAIRLINE}` }}
               >
-                <div className="flex items-center gap-2 text-[13px] text-white">
+                <div className="flex items-center gap-2 text-[13px] text-foreground">
                   Active issues
-                  <span className="rounded bg-white/10 px-1.5 text-[11px] text-white/70">{ISSUES.length}</span>
+                  <span className="rounded bg-foreground/8 px-1.5 text-[11px] text-muted-foreground">{ISSUES.length}</span>
                 </div>
-                <div className="flex items-center gap-1.5 text-white/45">
+                <div className="flex items-center gap-1.5 text-muted-foreground">
                   {keys ? (
                     <button
                       type="button"
@@ -364,7 +355,7 @@ export function LinearUxDemo() {
                         setQuery("");
                         setPaletteOpen((open) => !open);
                       }}
-                      className="inline-flex items-center rounded-md px-1.5 py-1 text-[11px] text-white/75"
+                      className="inline-flex items-center rounded-md px-1.5 py-1 text-[11px] text-foreground/80"
                       style={{ border: `1px solid ${HAIRLINE}` }}
                     >
                       <Search size={12} />
@@ -379,15 +370,15 @@ export function LinearUxDemo() {
               <div className="flex flex-wrap items-center justify-between gap-2 px-2.5 py-2">
                 <div className="flex items-center gap-1.5">
                   <span
-                    className="inline-flex items-center rounded-md px-2 py-1 text-[12px] text-white/75"
-                    style={{ border: `1px solid ${flat ? HAIRLINE : "rgba(255,255,255,0.14)"}` }}
+                    className="inline-flex items-center rounded-md px-2 py-1 text-[12px] text-foreground/80"
+                    style={{ border: `1px solid ${HAIRLINE}` }}
                   >
                     Filter
                     {keys ? <Kbd>F</Kbd> : null}
                   </span>
                   <span
-                    className="inline-flex items-center rounded-md px-2 py-1 text-[12px] text-white/75"
-                    style={{ border: `1px solid ${flat ? HAIRLINE : "rgba(255,255,255,0.14)"}` }}
+                    className="inline-flex items-center rounded-md px-2 py-1 text-[12px] text-foreground/80"
+                    style={{ border: `1px solid ${HAIRLINE}` }}
                   >
                     Display
                     {keys ? <Kbd>D</Kbd> : null}
@@ -400,10 +391,11 @@ export function LinearUxDemo() {
                     setQuery("Create");
                     setPaletteOpen(true);
                   }}
-                  className="inline-flex items-center rounded-md px-2.5 py-1 text-[12px] font-medium text-white motion-reduce:transition-none motion-reduce:hover:transform-none"
+                  className="inline-flex items-center rounded-md px-2.5 py-1 text-[12px] font-medium motion-reduce:transition-none motion-reduce:hover:transform-none"
                   style={{
-                    background: mono ? INDIGO : "#3B82F6",
-                    boxShadow: flat ? "none" : "0 8px 18px rgba(37,99,235,0.45)",
+                    background: mono ? ACCENT : "#3B82F6",
+                    color: mono ? "var(--tawny-foreground)" : "#fff",
+                    boxShadow: flat ? "none" : "0 8px 18px color-mix(in srgb, #3B82F6 40%, transparent)",
                     transition: keys
                       ? `background-color ${hoverMs}ms ${SNAP}, box-shadow ${moveMs}ms ${SNAP}, transform ${moveMs}ms ${SNAP}`
                       : `background-color 300ms ${BOUNCE}, box-shadow 300ms ease, transform 300ms ${BOUNCE}`,
@@ -440,8 +432,8 @@ export function LinearUxDemo() {
                           fontSize: dense ? 13 : 15,
                           letterSpacing: dense ? "-0.01em" : "0em",
                           background: rowBackground(issue.id),
-                          boxShadow: selected && mono ? `inset 2px 0 0 ${INDIGO}` : undefined,
-                          color: "#F4F5F7",
+                          boxShadow: selected && mono ? `inset 2px 0 0 ${ACCENT}` : undefined,
+                          color: "var(--foreground)",
                           gap: aligned ? 8 : 6,
                           padding: aligned ? "0 8px" : "0 13px",
                           alignItems: "center",
@@ -469,21 +461,21 @@ export function LinearUxDemo() {
                             {issue.priority[0].toUpperCase() + issue.priority.slice(1)}
                           </Pill>
                         )}
-                        <span className={aligned ? "w-14 shrink-0 text-white/45" : "shrink-0 text-white/50"}>{issue.id}</span>
+                        <span className={aligned ? "w-14 shrink-0 text-muted-foreground" : "shrink-0 text-muted-foreground"}>{issue.id}</span>
                         <span className={aligned ? "min-w-0 flex-1 truncate" : "min-w-0 max-w-[24%] truncate sm:max-w-[32%]"}>
                           {issue.title}
                         </span>
                         {mono ? (
-                          <span className={aligned ? "w-14 shrink-0 text-right text-white/45" : "shrink-0 text-white/50"}>{issue.label}</span>
+                          <span className={aligned ? "w-14 shrink-0 text-right text-muted-foreground" : "shrink-0 text-muted-foreground"}>{issue.label}</span>
                         ) : (
                           <Pill color={LABEL_COLOR[issue.label]} dense={dense}>
                             {issue.label}
                           </Pill>
                         )}
-                        <span className={aligned ? "w-6 shrink-0 text-right text-white/55" : "shrink-0 text-white/55"}>
+                        <span className={aligned ? "w-6 shrink-0 text-right text-muted-foreground" : "shrink-0 text-muted-foreground"}>
                           {issue.assignee}
                         </span>
-                        <span className={aligned ? "w-10 shrink-0 text-right text-white/45 tabular-nums" : "shrink-0 text-white/50"}>
+                        <span className={aligned ? "w-10 shrink-0 text-right text-muted-foreground tabular-nums" : "shrink-0 text-muted-foreground"}>
                           {issue.date}
                         </span>
                       </button>
@@ -496,28 +488,28 @@ export function LinearUxDemo() {
                 <div
                   data-testid="command-palette"
                   className="absolute inset-x-2 top-12 z-10 overflow-hidden rounded-lg"
-                  style={{ background: "#1A1E25", border: `1px solid ${HAIRLINE}` }}
+                  style={{ background: "var(--popover)", border: `1px solid ${HAIRLINE}` }}
                 >
                   <div className="flex items-center gap-2 px-3" style={{ borderBottom: `1px solid ${HAIRLINE}` }}>
-                    <Search size={14} className="text-white/40" />
+                    <Search size={14} className="text-muted-foreground" />
                     <input
                       ref={inputRef}
                       value={query}
                       onChange={(event) => setQuery(event.target.value)}
                       placeholder="Type a command"
                       aria-label="Command palette"
-                      className="h-9 w-full bg-transparent text-[13px] text-white outline-none placeholder:text-white/35"
+                      className="h-9 w-full bg-transparent text-[13px] text-foreground outline-none placeholder:text-muted-foreground"
                     />
                   </div>
                   <ul className="py-1">
                     {filtered.length === 0 ? (
-                      <li className="px-3 py-2 text-[13px] text-white/45">No matches</li>
+                      <li className="px-3 py-2 text-[13px] text-muted-foreground">No matches</li>
                     ) : (
                       filtered.map((command, index) => (
                         <li key={command.name}>
                           <div
                             className="flex items-center justify-between px-3 py-1.5 text-[13px]"
-                            style={{ background: index === 0 ? "rgba(255,255,255,0.06)" : "transparent" }}
+                            style={{ background: index === 0 ? "var(--accent)" : "transparent" }}
                           >
                             <span>{command.name}</span>
                             <Kbd>{command.shortcut}</Kbd>
@@ -542,9 +534,9 @@ export function LinearUxDemo() {
 function SideLink({ icon, label, count }: { icon: ReactNode; label: string; count?: string }) {
   return (
     <div className="flex items-center gap-1.5 rounded-md px-1.5 py-1">
-      <span className="text-white/40">{icon}</span>
+      <span className="text-muted-foreground">{icon}</span>
       <span className="truncate">{label}</span>
-      {count ? <span className="ml-auto text-[10px] text-white/40">{count}</span> : null}
+      {count ? <span className="ml-auto text-[10px] text-muted-foreground">{count}</span> : null}
     </div>
   );
 }
@@ -552,7 +544,7 @@ function SideLink({ icon, label, count }: { icon: ReactNode; label: string; coun
 function Annotation({ step, dense }: { step: number; dense: boolean }) {
   if (step === 0) {
     return (
-      <p className="mt-3 text-center text-[12px] text-white/55">
+      <p className="mt-3 text-center text-[12px] text-muted-foreground">
         Eight of fourteen rows fit. The other six sit below this viewport.
       </p>
     );
@@ -567,12 +559,12 @@ function Annotation({ step, dense }: { step: number; dense: boolean }) {
           style={{ background: SURFACE, border: `1px solid ${HAIRLINE}` }}
         >
           <div>
-            <div className="text-[10px] tracking-[0.12em] text-white/40">LETTER SPACING</div>
-            <div className="text-[14px] text-white" style={{ letterSpacing: dense ? "-0.01em" : "0em" }}>
+            <div className="text-[10px] tracking-[0.12em] text-muted-foreground">LETTER SPACING</div>
+            <div className="text-[14px] text-foreground" style={{ letterSpacing: dense ? "-0.01em" : "0em" }}>
               Migrate billing webhooks to v2
             </div>
           </div>
-          <span className="text-[12px] text-white/55">-0.01em</span>
+          <span className="text-[12px] text-muted-foreground">-0.01em</span>
         </div>
       </div>
     );
@@ -580,20 +572,20 @@ function Annotation({ step, dense }: { step: number; dense: boolean }) {
 
   if (step === 2) {
     const rows = [
-      ["canvas · background", CANVAS],
-      ["list · surface", SURFACE],
-      ["hover · surface", HOVER],
+      ["canvas · background", CANVAS, "background"],
+      ["list · card", SURFACE, "card"],
+      ["hover · accent", HOVER, "accent"],
     ] as const;
     return (
       <div className="mt-3 space-y-1.5">
-        {rows.map(([label, value]) => (
+        {rows.map(([label, value, token]) => (
           <div
             key={label}
             className="flex items-center justify-between rounded-md px-3 py-1.5 text-[12px]"
             style={{ background: value, border: `1px solid ${HAIRLINE}` }}
           >
-            <span className="text-white/70">{label}</span>
-            <span className="font-mono text-[11px] text-white/80">{value}</span>
+            <span className="text-muted-foreground">{label}</span>
+            <span className="font-mono text-[11px] text-foreground">{token}</span>
           </div>
         ))}
       </div>
@@ -606,13 +598,13 @@ function Annotation({ step, dense }: { step: number; dense: boolean }) {
         <div className="grid grid-cols-8 gap-1.5">
           {COLLAPSED_HUES.map((hue) => (
             <div key={hue} className="text-center">
-              <div className="mx-auto size-5 rounded-md" style={{ background: "#3A3F48" }} title={hue} />
-              <div className="mt-1 text-[9px] text-white/35">grey</div>
+              <div className="mx-auto size-5 rounded-md bg-muted" title={hue} />
+              <div className="mt-1 text-[9px] text-muted-foreground">grey</div>
             </div>
           ))}
           <div className="text-center">
-            <div className="mx-auto size-5 rounded-md" style={{ background: INDIGO }} />
-            <div className="mt-1 text-[9px] text-white/70">indigo</div>
+            <div className="mx-auto size-5 rounded-md bg-tawny" />
+            <div className="mt-1 text-[9px] text-foreground">tawny</div>
           </div>
         </div>
       </div>
@@ -626,8 +618,8 @@ function Annotation({ step, dense }: { step: number; dense: boolean }) {
         <Meter label="transition" ms={150} max={300} />
         <Meter label="generic" ms={300} max={300} muted />
         <div className="flex justify-end gap-3 pt-1 text-[11px]">
-          <span className="text-[#F07178]">bouncy</span>
-          <span style={{ color: MINT }}>snappy</span>
+          <span className="text-destructive">bouncy</span>
+          <span className="text-tawny">snappy</span>
         </div>
       </div>
     );
@@ -635,19 +627,19 @@ function Annotation({ step, dense }: { step: number; dense: boolean }) {
 
   return (
     <div className="mt-3 rounded-lg px-3 py-2.5" style={{ background: SURFACE, border: `1px solid ${HAIRLINE}` }}>
-      <div className="mb-2 flex items-center justify-between text-[10px] tracking-[0.12em]" style={{ color: MINT }}>
+      <div className="mb-2 flex items-center justify-between text-[10px] tracking-[0.12em] text-tawny">
         <span>×2 · ONE ROW</span>
         <span>aligned</span>
       </div>
-      <div className="flex items-center gap-2 text-[13px] text-white">
+      <div className="flex items-center gap-2 text-[13px] text-foreground">
         <StatusIcon status="todo" size={16} />
-        <span className="text-white/45">NOR-147</span>
+        <span className="text-muted-foreground">NOR-147</span>
         <span className="min-w-0 flex-1 truncate">Bulk edit for labels</span>
-        <span className="text-white/45">Feature</span>
-        <span className="text-white/55">AL</span>
-        <span className="text-white/45">Sep 4</span>
+        <span className="text-muted-foreground">Feature</span>
+        <span className="text-muted-foreground">AL</span>
+        <span className="text-muted-foreground">Sep 4</span>
       </div>
-      <div className="mt-2 flex justify-between text-[10px]" style={{ color: MINT }}>
+      <div className="mt-2 flex justify-between text-[10px] text-tawny">
         <span>16 px · centered</span>
         <span>left</span>
         <span>right</span>
@@ -659,14 +651,14 @@ function Annotation({ step, dense }: { step: number; dense: boolean }) {
 function Meter({ label, ms, max, muted }: { label: string; ms: number; max: number; muted?: boolean }) {
   return (
     <div className="grid grid-cols-[76px_1fr_48px] items-center gap-2 text-[11px]">
-      <span className="text-white/50">{label}</span>
-      <span className="h-1.5 overflow-hidden rounded-full bg-white/10">
+      <span className="text-muted-foreground">{label}</span>
+      <span className="h-1.5 overflow-hidden rounded-full bg-foreground/10">
         <span
           className="block h-full rounded-full"
-          style={{ width: `${(ms / max) * 100}%`, background: muted ? "#F07178" : MINT }}
+          style={{ width: `${(ms / max) * 100}%`, background: muted ? "var(--destructive)" : ACCENT }}
         />
       </span>
-      <span className={muted ? "text-right text-[#F07178] line-through" : "text-right text-white/70"}>{ms} ms</span>
+      <span className={muted ? "text-right text-destructive line-through" : "text-right text-muted-foreground"}>{ms} ms</span>
     </div>
   );
 }
