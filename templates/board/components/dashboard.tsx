@@ -45,9 +45,11 @@ const STATUSES: { id: Status; label: string }[] = [
   { id: 'done', label: 'Done' },
 ]
 
-const NOTICES = [
-  'MK mentioned you on NOR-141',
-  'NOR-146 moved to Done',
+type Notice = { id: string; text: string; read: boolean }
+
+const STARTER_NOTICES: Notice[] = [
+  { id: 'mention', text: 'MK mentioned you on NOR-141', read: false },
+  { id: 'done', text: 'NOR-146 moved to Done', read: false },
 ]
 
 const ME = 'SC'
@@ -106,6 +108,7 @@ export function Dashboard() {
   const [filterOpen, setFilterOpen] = useState(false)
   const [displayOpen, setDisplayOpen] = useState(false)
   const [bellOpen, setBellOpen] = useState(false)
+  const [notices, setNotices] = useState(STARTER_NOTICES)
   const [creating, setCreating] = useState(false)
   const [statusMenu, setStatusMenu] = useState(false)
   const [draft, setDraft] = useState('')
@@ -125,6 +128,13 @@ export function Dashboard() {
   }, [issues, view, statusFilter, query])
 
   const selected = issues.find((issue) => issue.id === selectedId) ?? null
+  const unread = notices.filter((notice) => !notice.read).length
+
+  function markNoticeRead(id: string) {
+    setNotices((current) =>
+      current.map((notice) => (notice.id === id ? { ...notice, read: true } : notice)),
+    )
+  }
 
   function updateSelected(patch: Partial<Issue>) {
     if (!selectedId) return
@@ -256,15 +266,24 @@ export function Dashboard() {
             </button>
             <button
               type="button"
+              aria-label={unread > 0 ? `Notices, ${unread} unread` : 'Notices'}
               aria-expanded={bellOpen}
               onClick={() => {
                 setBellOpen((open) => !open)
                 setFilterOpen(false)
                 setDisplayOpen(false)
               }}
-              className="rounded-md border border-border px-2 py-1 text-[11px] text-muted-foreground"
+              className="relative inline-flex size-7 items-center justify-center rounded-md border border-border text-muted-foreground"
             >
-              Bell
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+              </svg>
+              {unread > 0 ? (
+                <span className="absolute -top-1.5 -right-1.5 flex h-3.5 min-w-3.5 items-center justify-center rounded-full bg-tawny px-0.5 text-[9px] font-medium leading-none text-tawny-foreground">
+                  {unread}
+                </span>
+              ) : null}
             </button>
           </div>
         </div>
@@ -512,12 +531,32 @@ export function Dashboard() {
         ) : null}
 
         {bellOpen ? (
-          <div className="absolute top-12 right-3 z-10 w-56 rounded-lg border border-border bg-popover p-2">
-            <p className="px-1 pb-1 text-[11px] text-muted-foreground">Notices</p>
+          <div className="absolute top-12 right-3 z-10 w-64 rounded-lg border border-border bg-popover p-2">
+            <p className="px-1 pb-1 text-[11px] text-muted-foreground">
+              {unread > 0 ? `${unread} unread` : 'All read'}
+            </p>
             <ul>
-              {NOTICES.map((notice) => (
-                <li key={notice} className="rounded-md px-1 py-1.5">
-                  {notice}
+              {notices.map((notice) => (
+                <li key={notice.id}>
+                  <button
+                    type="button"
+                    onClick={() => markNoticeRead(notice.id)}
+                    className={
+                      notice.read
+                        ? 'flex w-full items-start gap-2 rounded-md px-1 py-1.5 text-left text-muted-foreground'
+                        : 'flex w-full items-start gap-2 rounded-md px-1 py-1.5 text-left text-foreground hover:bg-accent'
+                    }
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={
+                        notice.read
+                          ? 'mt-1.5 size-1.5 shrink-0 rounded-full bg-transparent'
+                          : 'mt-1.5 size-1.5 shrink-0 rounded-full bg-tawny'
+                      }
+                    />
+                    <span>{notice.text}</span>
+                  </button>
                 </li>
               ))}
             </ul>
