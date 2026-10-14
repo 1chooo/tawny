@@ -1,0 +1,149 @@
+.ocean-root {
+  --ocean-bg: #020a14;
+  --ocean-ink: #e8fbff;
+  --ocean-muted: rgb(200 236 245 / 0.62);
+  --ocean-faint: rgb(200 236 245 / 0.16);
+  --ocean-accent: #5eead4;
+  --ocean-vh: 100dvh;
+
+  color-scheme: only dark;
+  position: relative;
+  container-type: inline-size;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 70% at 50% -10%, #0e3a5c 0%, transparent 60%),
+    radial-gradient(90% 60% at 80% 110%, #062a3a 0%, transparent 70%),
+    linear-gradient(180deg, #03182b 0%, var(--ocean-bg) 55%, #01050b 100%);
+  color: var(--ocean-ink);
+  font-family: var(--font-ocean-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ocean-root[data-mode='frame'] {
+  --ocean-vh: min(calc(100dvh - 8rem), 56rem);
+}
+
+.ocean-scroller {
+  position: relative;
+}
+
+.ocean-root[data-mode='frame'] .ocean-scroller {
+  height: var(--ocean-vh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.ocean-stage {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  height: var(--ocean-vh);
+  margin-bottom: calc(-1 * var(--ocean-vh));
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ocean-stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Sunlight shafts filtering down from the surface */
+.ocean-rays {
+  position: absolute;
+  inset: -20% -10% auto;
+  height: 90%;
+  background: repeating-linear-gradient(
+    100deg,
+    transparent 0 6%,
+    rgb(120 220 255 / 0.05) 7% 9%,
+    transparent 10% 16%
+  );
+  filter: blur(18px);
+  mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+  animation: ocean-rays 18s ease-in-out infinite alternate;
+}
+
+.ocean-display {
+  font-family: var(--font-ocean-display), 'Oswald', Impact, sans-serif;
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.ocean-section {
+  position: relative;
+  z-index: 1;
+  min-height: var(--ocean-vh);
+  margin-bottom: calc(var(--ocean-vh) * 0.5);
+}
+
+.ocean-text-shadow {
+  text-shadow: 0 2px 24px rgb(2 10 20 / 0.85);
+}
+
+.ocean-marquee {
+  display: flex;
+  width: max-content;
+  animation: ocean-marquee var(--ocean-marquee-duration, 40s) linear infinite;
+}
+
+.ocean-marquee[data-direction='reverse'] {
+  animation-direction: reverse;
+}
+
+.ocean-scroller > :not(.ocean-stage) {
+  transition: opacity 0.9s ease;
+}
+
+.ocean-root:not([data-ready='true']) .ocean-scroller > :not(.ocean-stage) {
+  opacity: 0;
+}
+
+.ocean-loader {
+  transition:
+    opacity 0.9s ease,
+    visibility 0.9s;
+}
+
+.ocean-loader[data-ready='true'] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.ocean-bob {
+  animation: ocean-bob 7s ease-in-out infinite;
+}
+
+@keyframes ocean-bob {
+  50% {
+    transform: translateY(-3%) rotate(-1.5deg);
+  }
+}
+
+@keyframes ocean-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ocean-rays {
+  from {
+    transform: translateX(-3%) skewX(-4deg);
+    opacity: 0.7;
+  }
+  to {
+    transform: translateX(3%) skewX(4deg);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ocean-marquee,
+  .ocean-rays,
+  .ocean-bob {
+    animation: none;
+  }
+}
