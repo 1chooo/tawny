@@ -107,6 +107,7 @@ export function BoardDashboard() {
   const [displayOpen, setDisplayOpen] = useState(false)
   const [bellOpen, setBellOpen] = useState(false)
   const [creating, setCreating] = useState(false)
+  const [statusMenu, setStatusMenu] = useState(false)
   const [draft, setDraft] = useState('')
 
   const visible = useMemo(() => {
@@ -200,6 +201,7 @@ export function BoardDashboard() {
           setFilterOpen(false)
           setDisplayOpen(false)
           setBellOpen(false)
+          setStatusMenu(false)
           setCreating(false)
         }
       }}
@@ -432,20 +434,53 @@ export function BoardDashboard() {
             <aside className="w-56 shrink-0 border-l border-border p-3">
               <p className="text-[11px] text-muted-foreground">{selected.id}</p>
               <h2 className="mt-1 text-base font-semibold tracking-tight">{selected.title}</h2>
-              <label className="mt-4 block text-[11px] text-muted-foreground">
-                Status
-                <select
-                  value={selected.status}
-                  onChange={(event) => updateSelected({ status: event.target.value as Status })}
-                  className="mt-1 h-8 w-full rounded-md border border-border bg-background px-2 text-[13px] text-foreground"
+              <div className="relative mt-4">
+                <p className="text-[11px] text-muted-foreground">Status</p>
+                <button
+                  type="button"
+                  aria-expanded={statusMenu}
+                  aria-haspopup="listbox"
+                  onClick={() => setStatusMenu((open) => !open)}
+                  className="mt-1 flex h-8 w-full items-center gap-2 rounded-md border border-border bg-background px-2 text-left text-[13px] text-foreground"
                 >
-                  {STATUSES.map((status) => (
-                    <option key={status.id} value={status.id}>
-                      {status.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
+                  <StatusIcon status={selected.status} />
+                  <span className="min-w-0 flex-1 truncate">
+                    {STATUSES.find((status) => status.id === selected.status)?.label}
+                  </span>
+                </button>
+                {statusMenu ? (
+                  <ul
+                    role="listbox"
+                    aria-label="Status"
+                    className="absolute bottom-full z-10 mb-1 w-full overflow-hidden rounded-md border border-border bg-popover py-1 shadow-sm"
+                  >
+                    {STATUSES.map((status) => {
+                      const active = status.id === selected.status
+                      return (
+                        <li key={status.id}>
+                          <button
+                            type="button"
+                            role="option"
+                            aria-selected={active}
+                            onClick={() => {
+                              updateSelected({ status: status.id })
+                              setStatusMenu(false)
+                            }}
+                            className={
+                              active
+                                ? 'flex w-full items-center gap-2 bg-tawny/15 px-2 py-1.5 text-left text-foreground'
+                                : 'flex w-full items-center gap-2 px-2 py-1.5 text-left text-foreground hover:bg-accent'
+                            }
+                          >
+                            <StatusIcon status={status.id} />
+                            {status.label}
+                          </button>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                ) : null}
+              </div>
               <p className="mt-3 text-[12px] text-muted-foreground">Label · {selected.label}</p>
               <p className="mt-1 text-[12px] text-muted-foreground">Assignee · {selected.assignee}</p>
               <p className="mt-1 text-[12px] text-muted-foreground">Date · {selected.date}</p>
