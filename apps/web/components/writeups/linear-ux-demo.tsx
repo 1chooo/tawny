@@ -246,8 +246,9 @@ export function LinearUxDemo() {
   return (
     <div
       data-testid="linear-ux-demo"
+      data-writeup-stage=""
       data-step={step}
-      className="my-8 overflow-hidden rounded-xl font-sans antialiased"
+      className="my-8 w-full overflow-hidden rounded-xl font-sans antialiased"
       style={{
         fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif",
         color: "#E8EAED",

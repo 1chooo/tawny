@@ -7,9 +7,12 @@ import type { TocItem } from '@/lib/docs/toc'
 export function DocsToc({
   items,
   label = 'On this page',
+  sticky = true,
 }: {
   items: TocItem[]
   label?: string
+  /** When false, the parent rail owns stickiness. Changelog keeps the default. */
+  sticky?: boolean
 }) {
   const [activeId, setActiveId] = useState<string | null>(items[0]?.id ?? null)
 
@@ -48,8 +51,13 @@ export function DocsToc({
   if (items.length === 0) return null
 
   return (
-    <aside className="hidden w-48 shrink-0 xl:block">
-      <div className="sticky top-16 max-h-[calc(100vh-5rem)] overflow-y-auto py-2 pl-4">
+    <aside className={cn('w-48 shrink-0', sticky && 'hidden xl:block')}>
+      <div
+        className={cn(
+          'max-h-[calc(100vh-6.5rem)] overflow-y-auto py-2',
+          sticky ? 'sticky top-16 pl-4' : 'pl-0',
+        )}
+      >
         <p className="mb-3 text-[0.65rem] font-medium uppercase tracking-[0.15em] text-muted-foreground">
           {label}
         </p>

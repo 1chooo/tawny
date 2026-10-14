@@ -4,8 +4,9 @@ import { DocsToc } from '@/components/docs/docs-toc'
 import type { TocItem } from '@/lib/docs/toc'
 
 /**
- * Writeup chrome: same content width as the navbar. The date sits on the
- * left content edge; the article stays centered; the TOC sits to the right.
+ * Writeup chrome. Date and contents are full-height columns so they can
+ * stick for the whole article. Prose stays at 42rem; a figure marked
+ * `data-writeup-stage` uses the wider center column.
  */
 export function WriteupsShell({
   date,
@@ -17,29 +18,30 @@ export function WriteupsShell({
   children: ReactNode
 }) {
   return (
-    <div className="mx-auto w-full max-w-340 px-6">
-      <div className="relative">
-        <aside className="absolute top-0 left-0 hidden w-52 xl:block">
-          <nav
-            aria-label="Writeups"
-            className="sticky top-24 text-left text-lg text-muted-foreground"
+    <div className="mx-auto grid w-full max-w-340 items-start gap-x-8 px-6 xl:grid-cols-[11rem_minmax(0,52rem)_14rem] xl:justify-center">
+      <aside className="hidden xl:block">
+        <nav
+          aria-label="Writeups"
+          className="sticky top-24 text-left text-lg text-muted-foreground"
+        >
+          <Link
+            href="/writeups"
+            className="font-medium transition-colors hover:text-foreground"
           >
-            <Link
-              href="/writeups"
-              className="font-medium transition-colors hover:text-foreground"
-            >
-              {date}
-            </Link>
-          </nav>
-        </aside>
+            {date}
+          </Link>
+        </nav>
+      </aside>
 
-        <div className="relative mx-auto w-full min-w-0 max-w-2xl">
-          <article className="py-2 pb-16">{children}</article>
-          <div className="absolute top-0 left-full ml-8 hidden w-60 xl:block">
-            <DocsToc items={toc} label="On this page" />
-          </div>
+      <article className="min-w-0 py-2 pb-16 [&>*:not([data-writeup-stage])]:mx-auto [&>*:not([data-writeup-stage])]:max-w-2xl">
+        {children}
+      </article>
+
+      <aside className="hidden xl:block">
+        <div className="sticky top-24">
+          <DocsToc items={toc} label="On this page" sticky={false} />
         </div>
-      </div>
+      </aside>
     </div>
   )
 }
