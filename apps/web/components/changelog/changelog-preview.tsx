@@ -7,7 +7,7 @@ import { getComponentDemo } from '@/components/landing/showcases'
 import { ProductFrame } from '@/components/product-frame'
 import { cn } from '@tawny/ui/lib/utils'
 
-const DESIGN_IDS = new Set(['art', 'dev', 'link'])
+const DESIGN_IDS = new Set(['art', 'dev', 'link', 'ocean'])
 
 type ChangelogPreviewProps = {
   id: string
