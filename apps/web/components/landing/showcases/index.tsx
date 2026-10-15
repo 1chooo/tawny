@@ -29,6 +29,10 @@ import {
   StatusSelectDemo,
   StatusSelectDetail,
 } from '@/components/landing/showcases/status-select-demo'
+import {
+  HeadersDemo,
+  HeadersDetail,
+} from '@/components/landing/showcases/headers-demo'
 import { TawnyHeaderDemo, TawnyHeaderDetail } from '@/components/landing/showcases/tawny-header-demo'
 
 export type ComponentDemo = {
@@ -55,13 +59,31 @@ export type ComponentDemo = {
  */
 export const componentDemos: ComponentDemo[] = [
   {
+    id: 'headers',
+    title: 'Headers',
+    description:
+      'Tawny, Art, and Dev in one frame. Open a header in the sidebar for its own source.',
+    category: 'Navigation',
+    frameTitle: 'components/headers',
+    contentClassName: 'bg-background',
+    detailContentClassName: 'h-[36rem] overflow-hidden bg-background',
+    featured: true,
+    sourceFiles: [
+      'apps/web/components/landing/showcases/headers-demo.tsx',
+      'apps/web/components/landing/showcases/tawny-header-demo.tsx',
+      'apps/web/components/landing/showcases/art-header-demo.tsx',
+      'apps/web/components/landing/showcases/dev-header-demo.tsx',
+    ],
+    render: () => <HeadersDemo />,
+    detailRender: () => <HeadersDetail />,
+  },
+  {
     id: 'tawny-header',
     title: 'Tawny Navbar',
     description:
       'Scroll-aware site chrome with brand mark, desktop links, and mobile menu.',
     category: 'Navigation',
     frameTitle: 'components/navbar',
-    featured: true,
     sourceFiles: ['apps/web/components/navbar.tsx', 'apps/web/components/logo.tsx'],
     render: () => <TawnyHeaderDemo />,
     detailRender: () => <TawnyHeaderDetail />,
@@ -74,7 +96,6 @@ export const componentDemos: ComponentDemo[] = [
     category: 'Navigation',
     frameTitle: 'components/art/site-header',
     contentClassName: 'bg-art-bento-bg',
-    featured: true,
     sourceFiles: [
       'apps/web/components/art/site-header.tsx',
       'apps/web/components/art/nav-links.tsx',
@@ -91,7 +112,6 @@ export const componentDemos: ComponentDemo[] = [
     category: 'Navigation',
     frameTitle: 'components/dev/site-header',
     contentClassName: 'bg-[#09090b]',
-    featured: true,
     sourceFiles: ['apps/web/components/dev/site-header.tsx'],
     render: () => <DevHeaderDemo />,
     detailRender: () => <DevHeaderDetail />,

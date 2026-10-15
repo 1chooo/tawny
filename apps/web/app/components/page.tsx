@@ -1,12 +1,45 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { ComponentDemoCard } from '@/components/landing/showcases/component-demo-card'
-import { componentDemos } from '@/components/landing/showcases'
+import {
+  componentDemos,
+  type ComponentDemo,
+} from '@/components/landing/showcases'
 import { BlurFade } from '@tawny/ui/components/blur-fade'
 import { BorderBeam } from '@tawny/ui/components/border-beam'
 import { NoiseTexture } from '@tawny/ui/components/noise-texture'
 
+/** The three headers share one gallery card. Each still has its own page. */
+const GALLERY_HIDDEN = new Set(['tawny-header', 'art-header', 'dev-header'])
+
+const CATEGORY_ORDER: ComponentDemo['category'][] = [
+  'Dashboard',
+  'Maps',
+  'People',
+  'Navigation',
+  'Motion',
+  'Effects',
+  'Embed',
+]
+
+function galleryGroups(demos: ComponentDemo[]) {
+  const groups = new Map<ComponentDemo['category'], ComponentDemo[]>()
+  for (const demo of demos) {
+    if (GALLERY_HIDDEN.has(demo.id)) continue
+    const list = groups.get(demo.category)
+    if (list) list.push(demo)
+    else groups.set(demo.category, [demo])
+  }
+  return CATEGORY_ORDER.flatMap((category) => {
+    const list = groups.get(category)
+    return list ? [{ category, demos: list }] : []
+  })
+}
+
 export default function ComponentsPage() {
+  const groups = galleryGroups(componentDemos)
+  let cardIndex = 0
+
   return (
     <div className="min-w-0 flex-1 py-2 pb-16">
       <BlurFade delay={0.05}>
@@ -15,19 +48,33 @@ export default function ComponentsPage() {
             UI Components
           </p>
           <h1 className="text-balance text-4xl font-semibold tracking-[-0.03em] text-foreground md:text-5xl">
-            Headers and building blocks
+            Components
           </h1>
           <p className="mt-3 max-w-lg text-pretty leading-relaxed text-muted-foreground">
-            Live demos of navigation patterns and motion primitives. Pick any
-            entry in the sidebar, or open a card below, to preview and copy
-            the source.
+            Live previews, grouped by what they do. The three headers share
+            one card. Open any card for the source, or pick a single header
+            in the sidebar.
           </p>
         </div>
       </BlurFade>
 
-      <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-        {componentDemos.map((demo, i) => (
-          <ComponentDemoCard key={demo.id} demo={demo} index={i} />
+      <div className="flex flex-col gap-14">
+        {groups.map((group) => (
+          <section key={group.category} aria-labelledby={`components-${group.category}`}>
+            <h2
+              id={`components-${group.category}`}
+              className="mb-5 text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground"
+            >
+              {group.category}
+            </h2>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+              {group.demos.map((demo) => {
+                const index = cardIndex
+                cardIndex += 1
+                return <ComponentDemoCard key={demo.id} demo={demo} index={index} />
+              })}
+            </div>
+          </section>
         ))}
       </div>
 

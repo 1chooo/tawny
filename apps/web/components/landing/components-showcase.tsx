@@ -13,9 +13,7 @@ const HOME_IDS = [
   'route-sheet',
   'social-post',
   'status-select',
-  'tawny-header',
-  'art-header',
-  'dev-header',
+  'headers',
   'motion',
   'effects',
 ] as const
@@ -47,9 +45,9 @@ export function ComponentsShowcase() {
                 Desktop previews
               </h2>
               <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">
-                Lists, routes, the status select, and the headers. Every card
-                is a desktop canvas scaled into a 16:9 frame. Open one for the
-                source.
+                Lists, routes, controls, and the three headers in one frame.
+                Every card is a desktop canvas scaled into a 16:9 frame. Open
+                one for the source.
               </p>
             </div>
             <Link
