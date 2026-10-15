@@ -87,7 +87,7 @@ export function UpcomingCarousel({ slides, prevLabel, nextLabel, label }: Props)
       {/* Content */}
       <div
         key={safeIndex}
-        className="flex min-h-[200px] flex-1 flex-col justify-center px-5 py-4 md:min-h-0 md:px-8 md:py-6"
+        className="flex min-h-50 flex-1 flex-col justify-center px-5 py-4 md:min-h-0 md:px-8 md:py-6"
         style={{ animation: "art-bento-tag-in 0.35s ease-out" }}
       >
         {slide.href ? (

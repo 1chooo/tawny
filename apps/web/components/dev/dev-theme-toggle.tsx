@@ -19,8 +19,8 @@ function ThemeOption({
       className={clsx(
         'px-2 py-0.5 text-sm transition-colors',
         active
-          ? 'font-extrabold text-[var(--foreground)]'
-          : 'font-normal text-[var(--muted)] hover:text-[var(--foreground)]',
+          ? 'font-extrabold text-foreground'
+          : 'font-normal text-muted hover:text-foreground',
       )}
       aria-pressed={active}
     >
@@ -41,7 +41,7 @@ export function DevThemeToggle() {
       <ThemeOption value="light" active={theme === 'light'} onSelect={setTheme} />
       <span
         aria-hidden="true"
-        className="select-none text-[var(--muted)]"
+        className="select-none text-muted"
       >
         |
       </span>

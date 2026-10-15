@@ -34,7 +34,7 @@ function DevRootInner({
         'dev-root',
         mono.variable,
         mono.className,
-        'bg-[var(--background)] font-mono text-[var(--foreground)] antialiased',
+        'bg-background font-mono text-foreground antialiased',
         className,
       )}
     >

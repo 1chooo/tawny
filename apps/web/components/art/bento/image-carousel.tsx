@@ -38,7 +38,7 @@ export function ImageCarousel({ images, prevLabel, nextLabel }: Props) {
 
   return (
     <div
-      className="relative flex aspect-4/3 min-h-[240px] items-center justify-center md:aspect-auto md:h-full md:min-h-[320px]"
+      className="relative flex aspect-4/3 min-h-60 items-center justify-center md:aspect-auto md:h-full md:min-h-80"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onTouchStart={() => setPaused(true)}
