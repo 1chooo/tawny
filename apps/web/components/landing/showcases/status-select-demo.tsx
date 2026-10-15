@@ -27,7 +27,7 @@ export function StatusSelect({
   const current = STATUSES.find((entry) => entry.id === status) ?? STATUSES[0]
 
   return (
-    <div className="w-56 tracking-[-0.01em]">
+    <div className="w-72 tracking-[-0.01em]">
       <p className="text-[11px] text-muted-foreground">NOR-142</p>
       <h2 className="mt-1 text-[15px] font-semibold leading-5 tracking-tight text-foreground">
         Empty state for archived projects
@@ -106,33 +106,43 @@ function StatusIcon({ status }: { status: Status }) {
   )
 }
 
+/**
+ * Open menu, centered on both axes. The dropdown is out of flow, so the
+ * padding below the card is the menu's height and keeps the pair centered.
+ */
 function SelectStage() {
   return (
-    <div className="flex h-full items-start justify-center bg-background pt-16">
-      <div className="rounded-xl border border-border bg-card p-4">
-        <StatusSelect defaultOpen />
+    <div className="flex h-full items-center justify-center bg-background">
+      <div className="pb-[5.5rem]">
+        <div className="rounded-xl border border-border bg-card p-5">
+          <StatusSelect defaultOpen />
+        </div>
       </div>
     </div>
   )
 }
 
-/** Gallery card: menu open, desktop canvas scaled into the 16:9 frame. */
+/** Gallery card: tighter canvas so the menu fills the 16:9 crop, like Motion Primitives. */
 export function StatusSelectDemo() {
   return (
     <div className="h-full">
-      <ScaledDesignCanvas>
+      <ScaledDesignCanvas width={560} height={315}>
         <SelectStage />
       </ScaledDesignCanvas>
     </div>
   )
 }
 
-/** Detail page: the same control, open, and clickable. */
+/** Detail page: the same control, larger, centered, and clickable. */
 export function StatusSelectDetail() {
   return (
-    <div className="flex h-full items-start justify-center bg-background pt-16">
-      <div className="rounded-xl border border-border bg-card p-4">
-        <StatusSelect defaultOpen />
+    <div className="flex h-full items-center justify-center bg-background">
+      <div className="origin-center scale-150">
+        <div className="pb-[5.5rem]">
+          <div className="rounded-xl border border-border bg-card p-5">
+            <StatusSelect defaultOpen />
+          </div>
+        </div>
       </div>
     </div>
   )
