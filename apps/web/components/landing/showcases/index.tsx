@@ -22,9 +22,9 @@ import {
   RouteSheetDetail,
 } from '@/components/landing/showcases/route-sheet-demo'
 import {
-  TalentDropDemo,
-  TalentDropDetail,
-} from '@/components/landing/showcases/talent-drop-demo'
+  SocialPostDemo,
+  SocialPostDetail,
+} from '@/components/landing/showcases/social-post-demo'
 import {
   StatusSelectDemo,
   StatusSelectDetail,
@@ -179,18 +179,18 @@ export const componentDemos: ComponentDemo[] = [
     detailRender: () => <RouteSheetDetail />,
   },
   {
-    id: 'talent-drop',
-    title: 'Talent drop',
+    id: 'social-post',
+    title: 'Social post',
     description:
-      'A founder list with one summary open. Hairline cards, grey tags, and tawny on the drop index and the summary mark.',
+      'Two posts. A feed post carries the sentence, tags, and actions. A profile post carries the person, place, and education.',
     category: 'People',
-    frameTitle: 'components/talent-drop',
+    frameTitle: 'components/social-post',
     contentClassName: 'bg-background',
     detailContentClassName: 'h-[36rem] overflow-auto bg-background',
     featured: true,
-    sourceFiles: ['apps/web/components/landing/showcases/talent-drop-demo.tsx'],
-    render: () => <TalentDropDemo />,
-    detailRender: () => <TalentDropDetail />,
+    sourceFiles: ['apps/web/components/landing/showcases/social-post-demo.tsx'],
+    render: () => <SocialPostDemo />,
+    detailRender: () => <SocialPostDetail />,
   },
   {
     id: 'status-select',

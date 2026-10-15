@@ -21,14 +21,9 @@ type Person = {
   tags: string[]
   more: number
   location: string
+  posted: string
   note?: string
   education: Education
-}
-
-const DROP = {
-  index: '07',
-  title: 'Talent drop',
-  range: '5 Jun 23 – 19 Jun 23',
 }
 
 const PEOPLE: Person[] = [
@@ -42,6 +37,7 @@ const PEOPLE: Person[] = [
     tags: ['United Kingdom', 'Energytech', 'Climate'],
     more: 2,
     location: 'United Kingdom',
+    posted: '5 Jun',
     education: {
       years: 'PhD',
       degree: 'Naming Layers',
@@ -58,6 +54,7 @@ const PEOPLE: Person[] = [
     tags: ['Ex-Unicorn', 'Switzerland', 'Technical founder'],
     more: 2,
     location: 'Switzerland',
+    posted: '19 Jun',
     note: "Building a Stealth Startup from scratch—it's fun :)",
     education: {
       years: '2009–2014',
@@ -70,20 +67,19 @@ const PEOPLE: Person[] = [
 const ICON_BUTTON =
   'inline-flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors duration-[80ms] ease-out hover:bg-accent hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tawny'
 
-/** Announcement feed beside one profile. The header spans both. */
-export function TalentDrop() {
+/** A feed of posts beside one profile post. */
+export function SocialPosts() {
   const profile = PEOPLE.find((person) => person.id === 'xingyu')
 
   return (
     <section
-      aria-label="Talent drop"
+      aria-label="Social posts"
       className="@container w-full max-w-4xl tracking-[-0.01em]"
     >
-      <DropHeader />
       <div className="flex flex-col gap-3 @min-[40rem]:flex-row @min-[40rem]:items-start">
         <ul className="flex min-w-0 flex-1 flex-col gap-2">
           {PEOPLE.map((person) => (
-            <AnnouncementPost key={person.id} person={person} />
+            <FeedPost key={person.id} person={person} />
           ))}
         </ul>
         {profile ? (
@@ -96,19 +92,7 @@ export function TalentDrop() {
   )
 }
 
-function DropHeader() {
-  return (
-    <div className="mb-3 flex items-baseline justify-between gap-3 px-1">
-      <h2 className="flex items-baseline gap-2 text-[15px] font-semibold leading-5 text-foreground">
-        <span className="text-[13px] font-medium text-tawny tabular-nums">{DROP.index}</span>
-        {DROP.title}
-      </h2>
-      <p className="text-[12px] leading-4 text-muted-foreground tabular-nums">{DROP.range}</p>
-    </div>
-  )
-}
-
-function AnnouncementPost({ person }: { person: Person }) {
+function FeedPost({ person }: { person: Person }) {
   const [seen, setSeen] = useState(false)
   const [saved, setSaved] = useState(false)
   const [liked, setLiked] = useState(false)
@@ -117,45 +101,21 @@ function AnnouncementPost({ person }: { person: Person }) {
     <li className="rounded-xl border border-border bg-card">
       <div className="flex items-start gap-2 p-3">
         <Avatar initials={person.initials} />
-        <p className="min-w-0 flex-1 text-[13px] leading-5 text-muted-foreground">
-          <span className="font-medium text-foreground">{person.name}</span> who did{' '}
-          {person.credential} just became a{' '}
-          <span className="font-medium text-foreground">
-            {person.role} at {person.company}
-          </span>
-        </p>
-        <div className="flex shrink-0 items-center">
-          <button
-            type="button"
-            aria-pressed={seen}
-            aria-label={seen ? `Mark ${person.name} as unseen` : `Mark ${person.name} as seen`}
-            onClick={() => setSeen((value) => !value)}
-            className={cn(ICON_BUTTON, seen && 'text-foreground')}
-          >
-            <Eye className="size-4" aria-hidden="true" />
-          </button>
-          <button
-            type="button"
-            aria-pressed={saved}
-            aria-label={saved ? `Unsave ${person.name}` : `Save ${person.name}`}
-            onClick={() => setSaved((value) => !value)}
-            className={cn(ICON_BUTTON, saved && 'text-foreground')}
-          >
-            <Bookmark className={cn('size-4', saved && 'fill-current')} aria-hidden="true" />
-          </button>
-          <button
-            type="button"
-            aria-pressed={liked}
-            aria-label={liked ? `Unlike ${person.name}` : `Like ${person.name}`}
-            onClick={() => setLiked((value) => !value)}
-            className={cn(ICON_BUTTON, liked && 'text-foreground')}
-          >
-            <Heart className={cn('size-4', liked && 'fill-current')} aria-hidden="true" />
-          </button>
+        <div className="min-w-0 flex-1">
+          <div className="flex items-baseline justify-between gap-2">
+            <p className="truncate text-[13px] font-medium leading-5 text-foreground">{person.name}</p>
+            <p className="shrink-0 text-[12px] leading-4 text-muted-foreground tabular-nums">{person.posted}</p>
+          </div>
+          <p className="text-[13px] leading-5 text-muted-foreground">
+            Did {person.credential} and just became a{' '}
+            <span className="font-medium text-foreground">
+              {person.role} at {person.company}
+            </span>
+          </p>
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-1 px-3 pb-3">
+      <div className="flex flex-wrap gap-1 px-3">
         {person.tags.map((tag) => (
           <span
             key={tag}
@@ -165,6 +125,36 @@ function AnnouncementPost({ person }: { person: Person }) {
           </span>
         ))}
         <span className="px-1 py-0.5 text-[11px] leading-4 text-muted-foreground">+{person.more} more</span>
+      </div>
+
+      <div className="mt-2 flex items-center border-t border-border px-1.5 py-1">
+        <button
+          type="button"
+          aria-pressed={seen}
+          aria-label={seen ? `Mark ${person.name} as unseen` : `Mark ${person.name} as seen`}
+          onClick={() => setSeen((value) => !value)}
+          className={cn(ICON_BUTTON, seen && 'text-foreground')}
+        >
+          <Eye className="size-4" aria-hidden="true" />
+        </button>
+        <button
+          type="button"
+          aria-pressed={saved}
+          aria-label={saved ? `Unsave ${person.name}` : `Save ${person.name}`}
+          onClick={() => setSaved((value) => !value)}
+          className={cn(ICON_BUTTON, saved && 'text-foreground')}
+        >
+          <Bookmark className={cn('size-4', saved && 'fill-current')} aria-hidden="true" />
+        </button>
+        <button
+          type="button"
+          aria-pressed={liked}
+          aria-label={liked ? `Unlike ${person.name}` : `Like ${person.name}`}
+          onClick={() => setLiked((value) => !value)}
+          className={cn(ICON_BUTTON, liked && 'text-foreground')}
+        >
+          <Heart className={cn('size-4', liked && 'fill-current')} aria-hidden="true" />
+        </button>
       </div>
     </li>
   )
@@ -238,13 +228,13 @@ function Avatar({ initials, size = 'sm' }: { initials: string; size?: 'sm' | 'lg
   )
 }
 
-/** Gallery card: the drop at desktop ratio, centered on the canvas. */
-export function TalentDropDemo() {
+/** Gallery card: both post styles, centered on the desktop canvas. */
+export function SocialPostDemo() {
   return (
     <div className="h-full">
       <ScaledDesignCanvas>
         <div className="flex h-full items-center justify-center bg-background px-16">
-          <TalentDrop />
+          <SocialPosts />
         </div>
       </ScaledDesignCanvas>
     </div>
@@ -252,10 +242,10 @@ export function TalentDropDemo() {
 }
 
 /** Detail page: natural size, centered in the frame. */
-export function TalentDropDetail() {
+export function SocialPostDetail() {
   return (
     <div className="flex h-full items-start justify-center overflow-auto bg-background p-6">
-      <TalentDrop />
+      <SocialPosts />
     </div>
   )
 }

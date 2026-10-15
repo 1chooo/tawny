@@ -11,7 +11,7 @@ import { BlurFade } from '@tawny/ui/components/blur-fade'
 const HOME_IDS = [
   'issue-list',
   'route-sheet',
-  'talent-drop',
+  'social-post',
   'status-select',
   'tawny-header',
   'art-header',
