@@ -25,6 +25,10 @@ import {
   TalentDropDemo,
   TalentDropDetail,
 } from '@/components/landing/showcases/talent-drop-demo'
+import {
+  StatusSelectDemo,
+  StatusSelectDetail,
+} from '@/components/landing/showcases/status-select-demo'
 import { TawnyHeaderDemo, TawnyHeaderDetail } from '@/components/landing/showcases/tawny-header-demo'
 
 export type ComponentDemo = {
@@ -186,6 +190,20 @@ export const componentDemos: ComponentDemo[] = [
     sourceFiles: ['apps/web/components/landing/showcases/talent-drop-demo.tsx'],
     render: () => <TalentDropDemo />,
     detailRender: () => <TalentDropDetail />,
+  },
+  {
+    id: 'status-select',
+    title: 'Status select',
+    description:
+      'The Board status menu. A 32px trigger, grey status icons, and the open row in tawny.',
+    category: 'Dashboard',
+    frameTitle: 'components/status-select',
+    contentClassName: 'bg-background',
+    detailContentClassName: 'h-[28rem] overflow-hidden bg-background',
+    featured: true,
+    sourceFiles: ['apps/web/components/landing/showcases/status-select-demo.tsx'],
+    render: () => <StatusSelectDemo />,
+    detailRender: () => <StatusSelectDetail />,
   },
 ]
 
