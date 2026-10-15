@@ -17,6 +17,10 @@ import {
   IssueListDemo,
   IssueListDetail,
 } from '@/components/landing/showcases/issue-list-demo'
+import {
+  RouteSheetDemo,
+  RouteSheetDetail,
+} from '@/components/landing/showcases/route-sheet-demo'
 import { TawnyHeaderDemo, TawnyHeaderDetail } from '@/components/landing/showcases/tawny-header-demo'
 
 export type ComponentDemo = {
@@ -150,6 +154,20 @@ export const componentDemos: ComponentDemo[] = [
     sourceFiles: ['apps/web/components/writeups/linear-ux-demo.tsx'],
     render: () => <IssueListDemo />,
     detailRender: () => <IssueListDetail />,
+  },
+  {
+    id: 'route-sheet',
+    title: 'Route sheet',
+    description:
+      'A timeline for bike, drive, and transit. One accent, a hairline border, and a 4px grid.',
+    category: 'Maps',
+    frameTitle: 'components/route-sheet',
+    contentClassName: 'bg-background',
+    detailContentClassName: 'h-[36rem] overflow-hidden bg-background',
+    featured: true,
+    sourceFiles: ['apps/web/components/landing/showcases/route-sheet-demo.tsx'],
+    render: () => <RouteSheetDemo />,
+    detailRender: () => <RouteSheetDetail />,
   },
 ]
 
