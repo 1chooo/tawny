@@ -70,26 +70,28 @@ const PEOPLE: Person[] = [
 const ICON_BUTTON =
   'inline-flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors duration-[80ms] ease-out hover:bg-accent hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tawny'
 
-/** Announcements, then one profile under the feed. */
+/** Announcement feed beside one profile. The header spans both. */
 export function TalentDrop() {
   const profile = PEOPLE.find((person) => person.id === 'xingyu')
 
   return (
     <section
       aria-label="Talent drop"
-      className="w-full max-w-md tracking-[-0.01em]"
+      className="@container w-full max-w-4xl tracking-[-0.01em]"
     >
       <DropHeader />
-      <ul className="flex flex-col gap-2">
-        {PEOPLE.map((person) => (
-          <AnnouncementPost key={person.id} person={person} />
-        ))}
-      </ul>
-      {profile ? (
-        <div className="mt-2">
-          <ProfilePost person={profile} />
-        </div>
-      ) : null}
+      <div className="flex flex-col gap-3 @min-[40rem]:flex-row @min-[40rem]:items-start">
+        <ul className="flex min-w-0 flex-1 flex-col gap-2">
+          {PEOPLE.map((person) => (
+            <AnnouncementPost key={person.id} person={person} />
+          ))}
+        </ul>
+        {profile ? (
+          <div className="min-w-0 flex-1">
+            <ProfilePost person={profile} />
+          </div>
+        ) : null}
+      </div>
     </section>
   )
 }
