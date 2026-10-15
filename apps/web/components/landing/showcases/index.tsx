@@ -21,13 +21,17 @@ import {
   RouteSheetDemo,
   RouteSheetDetail,
 } from '@/components/landing/showcases/route-sheet-demo'
+import {
+  TalentDropDemo,
+  TalentDropDetail,
+} from '@/components/landing/showcases/talent-drop-demo'
 import { TawnyHeaderDemo, TawnyHeaderDetail } from '@/components/landing/showcases/tawny-header-demo'
 
 export type ComponentDemo = {
   id: string
   title: string
   description: string
-  category: 'Navigation' | 'Motion' | 'Effects' | 'Maps' | 'Embed' | 'Dashboard'
+  category: 'Navigation' | 'Motion' | 'Effects' | 'Maps' | 'Embed' | 'Dashboard' | 'People'
   frameTitle: string
   contentClassName?: string
   /** ProductFrame content classes on the detail page; defaults to aspect-video */
@@ -168,6 +172,20 @@ export const componentDemos: ComponentDemo[] = [
     sourceFiles: ['apps/web/components/landing/showcases/route-sheet-demo.tsx'],
     render: () => <RouteSheetDemo />,
     detailRender: () => <RouteSheetDetail />,
+  },
+  {
+    id: 'talent-drop',
+    title: 'Talent drop',
+    description:
+      'A founder list with one summary open. Hairline cards, grey tags, and tawny on the drop index and the summary mark.',
+    category: 'People',
+    frameTitle: 'components/talent-drop',
+    contentClassName: 'bg-background',
+    detailContentClassName: 'h-[36rem] overflow-auto bg-background',
+    featured: true,
+    sourceFiles: ['apps/web/components/landing/showcases/talent-drop-demo.tsx'],
+    render: () => <TalentDropDemo />,
+    detailRender: () => <TalentDropDetail />,
   },
 ]
 
