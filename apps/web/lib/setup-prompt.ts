@@ -5,6 +5,7 @@ export const DEFAULT_PROJECT_NAMES: Record<string, string> = {
   link: 'my-links',
   ocean: 'my-ocean-studio',
   board: 'my-board',
+  vcard: 'my-vcard',
 }
 
 const SETUP_BLURBS: Record<string, string> = {
@@ -13,6 +14,7 @@ const SETUP_BLURBS: Record<string, string> = {
   link: 'the personal link-in-bio page',
   ocean: 'the scroll-driven WebGL particle landing page',
   board: 'the issue dashboard',
+  vcard: 'the personal vcard with a profile sidebar',
 }
 
 export type SetupPromptInput = {

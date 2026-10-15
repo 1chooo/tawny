@@ -5,11 +5,14 @@ import {
   Lora,
   Oswald,
   Playfair_Display,
+  Roboto,
+  Roboto_Mono,
 } from 'next/font/google'
 import { ArtPreviewMock } from '@/components/landing/art-preview-mock'
 import { DevPreviewMock } from '@/components/landing/dev-preview-mock'
 import { LinkPreviewMock } from '@/components/landing/link-preview-mock'
 import { OceanPreviewMock } from '@/components/landing/ocean-preview-mock'
+import { VcardPreviewMock } from '@/components/landing/vcard-preview-mock'
 import { IssueListDemo } from '@/components/landing/showcases/issue-list-demo'
 import { cn } from '@tawny/ui/lib/utils'
 
@@ -53,6 +56,20 @@ const oceanDisplay = Oswald({
 const oceanSans = Inter({
   subsets: ['latin'],
   variable: '--font-ocean-sans',
+})
+
+const vcardSans = Roboto({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+  variable: '--font-vcard-sans',
+  display: 'swap',
+})
+
+const vcardMono = Roboto_Mono({
+  subsets: ['latin'],
+  weight: ['500', '700'],
+  variable: '--font-vcard-mono',
+  display: 'swap',
 })
 
 type DesignPreviewProps = {
@@ -136,6 +153,22 @@ export function DesignPreview({ id, className }: DesignPreviewProps) {
     )
   }
 
+  if (id === 'vcard') {
+    return (
+      <div
+        className={cn(
+          vcardSans.variable,
+          vcardMono.variable,
+          vcardSans.className,
+          'h-full',
+          className,
+        )}
+      >
+        <VcardPreviewMock className="h-full" />
+      </div>
+    )
+  }
+
   return null
 }
 
@@ -150,5 +183,6 @@ export function designPreviewBg(id: string) {
   if (id === 'link') return 'bg-[#fcfcfc]'
   if (id === 'ocean') return 'bg-[#020a14]'
   if (id === 'board') return 'bg-background'
+  if (id === 'vcard') return 'bg-[#121212]'
   return 'bg-background'
 }

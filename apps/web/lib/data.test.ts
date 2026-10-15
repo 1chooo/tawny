@@ -34,6 +34,15 @@ describe('getDesign', () => {
     expect(designCategories).toContain('Dashboard')
   })
 
+  it('includes the vcard design under Portfolio', () => {
+    const vcard = getDesign('vcard')
+    expect(vcard?.demoPath).toBe('/designs/vcard')
+    expect(vcard?.viewPath).toBe('/view/vcard')
+    expect(vcard?.category).toBe('Portfolio')
+    expect(vcard?.featured).toBeUndefined()
+    expect(designCategories).toContain('Portfolio')
+  })
+
   it('returns undefined for unknown ids', () => {
     expect(getDesign('missing')).toBeUndefined()
   })

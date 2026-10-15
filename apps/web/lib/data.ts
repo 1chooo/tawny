@@ -124,6 +124,23 @@ export const designs: Design[] = [
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
   },
+  {
+    id: 'vcard',
+    title: 'VCard',
+    description:
+      'A dark personal vcard with a profile sidebar, selected work, and short notes — open the live showcase.',
+    longDescription: [
+      'VCard is a single-page personal site: a sticky profile card, an about article, three project covers, and two writing notes. The dark sidebar and gold accent follow the classic vcard portfolio layout.',
+      'Use the live demo above to move between About, Work, and Writing. Scaffold a copy with the create command below, then replace the name, contacts, and cover images in lib/profile.ts.',
+    ],
+    category: 'Portfolio',
+    price: 'free',
+    tags: ['Next.js', 'Portfolio', 'Sidebar'],
+    demoPath: '/designs/vcard',
+    viewPath: '/view/vcard',
+    packageName: 'create-tawny',
+    sourceFiles: ['package.json', 'README.md', 'app/page.tsx', 'lib/profile.ts'],
+  },
 ]
 
 export const designCategories = [
@@ -133,6 +150,7 @@ export const designCategories = [
   'Links',
   'Landing',
   'Dashboard',
+  'Portfolio',
 ] as const
 
 export function getDesign(id: string) {

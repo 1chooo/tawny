@@ -5,6 +5,7 @@
 @import './designs/dev/dev.css';
 @import './designs/link/link.css';
 @import './designs/ocean/ocean.css';
+@import './designs/vcard/vcard.css';
 
 @custom-variant dark (&:is(.dark *));
 

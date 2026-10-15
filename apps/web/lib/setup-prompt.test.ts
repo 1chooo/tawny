@@ -32,6 +32,9 @@ describe('setupCommand', () => {
     expect(setupCommand('board')).toBe(
       'npx create-tawny@latest board my-board --yes',
     )
+    expect(setupCommand('vcard')).toBe(
+      'npx create-tawny@latest vcard my-vcard --yes',
+    )
   })
 
   it('keeps default names aligned with the CLI', () => {
@@ -41,6 +44,7 @@ describe('setupCommand', () => {
       link: 'my-links',
       ocean: 'my-ocean-studio',
       board: 'my-board',
+      vcard: 'my-vcard',
     })
   })
 })
