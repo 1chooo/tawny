@@ -41,7 +41,7 @@ export function DocsShell({
       <div className="relative min-h-screen px-6 pb-8 pt-20">
         <NoiseTexture opacity={0.025} />
 
-        <div className="relative z-10 mx-auto w-full max-w-7xl">
+        <div className="relative z-10 w-full">
           <div className="sticky top-14 z-40 -mx-6 mb-4 border-b border-border/60 bg-background/80 px-6 py-3 backdrop-blur-xl lg:hidden">
             <div className="flex items-center gap-3">
               <button

@@ -80,7 +80,7 @@ async function ComponentDemoDetail({
         ]}
       />
 
-      <div className="max-w-4xl">
+      <div className="min-w-0">
         <p className="mb-2 text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
           {demo.category}
         </p>
