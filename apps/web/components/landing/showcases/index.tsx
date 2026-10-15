@@ -159,6 +159,7 @@ export const componentDemos: ComponentDemo[] = [
     frameTitle: 'components/issue-list',
     contentClassName: 'bg-background',
     detailContentClassName: 'h-[36rem] overflow-hidden bg-background',
+    featured: true,
     sourceFiles: ['apps/web/components/writeups/linear-ux-demo.tsx'],
     render: () => <IssueListDemo />,
     detailRender: () => <IssueListDetail />,
