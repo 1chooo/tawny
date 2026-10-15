@@ -1,0 +1,878 @@
+@import "tailwindcss";
+
+html,
+body {
+  min-height: 100%;
+  background: hsl(0, 0%, 7%);
+}
+
+/*
+  VCard tokens and chrome. Selectors stay under .vcard-root so this
+  document owns the dark sidebar palette.
+*/
+
+.vcard-root {
+  --vcard-jet: hsl(0, 0%, 22%);
+  --vcard-onyx: hsl(240, 1%, 17%);
+  --vcard-eerie: hsl(240, 2%, 12%);
+  --vcard-smoky: hsl(0, 0%, 7%);
+  --vcard-white: hsl(0, 0%, 98%);
+  --vcard-white-1: hsl(0, 0%, 100%);
+  --vcard-gold: hsl(45, 100%, 72%);
+  --vcard-gray: hsl(0, 0%, 84%);
+  --vcard-gray-70: hsla(0, 0%, 84%, 0.7);
+  --vcard-muted: #888888;
+  --vcard-shadow: -4px 8px 24px hsla(0, 0%, 0%, 0.25);
+  --vcard-shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.25);
+  --vcard-shadow-5: 0 24px 80px hsla(0, 0%, 0%, 0.25);
+  --vcard-gradient-onyx: linear-gradient(
+    to bottom right,
+    hsl(240, 1%, 25%) 3%,
+    hsl(0, 0%, 19%) 97%
+  );
+  --vcard-gradient-jet:
+    linear-gradient(
+      to bottom right,
+      hsla(240, 1%, 18%, 0.251) 0%,
+      hsla(240, 2%, 11%, 0) 100%
+    ),
+    hsl(240, 2%, 13%);
+  --vcard-border-gradient: linear-gradient(
+    to bottom right,
+    hsl(0, 0%, 25%) 0%,
+    hsla(0, 0%, 25%, 0) 50%
+  );
+  --vcard-text-gradient: linear-gradient(
+    to right,
+    hsl(45, 100%, 72%),
+    hsl(35, 100%, 68%)
+  );
+  --vcard-ease: 0.25s ease;
+
+  container: vcard / inline-size;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--vcard-smoky);
+  color: var(--vcard-gray);
+  color-scheme: dark;
+  font-family: var(--font-vcard-sans), Roboto, ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.vcard-root ::selection {
+  background: var(--vcard-gold);
+  color: var(--vcard-smoky);
+}
+
+.vcard-root :focus-visible {
+  outline: 2px solid var(--vcard-gold);
+  outline-offset: 2px;
+}
+
+.vcard-root a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.vcard-root button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.vcard-root ul {
+  list-style: none;
+}
+
+.vcard-main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 12px;
+}
+
+.vcard-sidebar,
+.vcard-article,
+.vcard-mobile-contacts {
+  background: var(--vcard-eerie);
+  border: 1px solid var(--vcard-jet);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: var(--vcard-shadow);
+}
+
+.vcard-article {
+  position: relative;
+  animation: vcard-fade 0.5s ease backwards;
+}
+
+.vcard-content {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.vcard-identity {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.vcard-avatar {
+  width: 80px;
+  height: 80px;
+  flex: none;
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--vcard-gradient-onyx);
+}
+
+.vcard-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vcard-name {
+  margin-bottom: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  background: linear-gradient(180deg, #fff, #adadad);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.vcard-status {
+  display: inline-block;
+  width: max-content;
+  padding: 3px 12px;
+  border-radius: 8px;
+  background: var(--vcard-onyx);
+  color: var(--vcard-white-1);
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.vcard-sidebar-more {
+  display: none;
+}
+
+.vcard-separator {
+  height: 1px;
+  margin: 16px 0;
+  background: var(--vcard-jet);
+}
+
+.vcard-contacts {
+  display: grid;
+  gap: 16px;
+}
+
+.vcard-contact {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.vcard-icon-box {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: none;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--vcard-gradient-onyx);
+  color: var(--vcard-gold);
+  box-shadow: var(--vcard-shadow);
+}
+
+.vcard-contact-copy {
+  min-width: 0;
+}
+
+.vcard-contact-label {
+  margin-bottom: 2px;
+  color: var(--vcard-gray-70);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.vcard-contact-value {
+  display: block;
+  overflow: hidden;
+  color: var(--vcard-white);
+  font-size: 14px;
+  font-weight: 300;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vcard-root a.vcard-contact-value:hover {
+  color: var(--vcard-gold);
+}
+
+.vcard-nav {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 18px;
+  border: 1px solid var(--vcard-jet);
+  border-radius: 16px;
+  background: hsla(240, 1%, 17%, 0.75);
+  backdrop-filter: blur(10px);
+}
+
+.vcard-nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 8px;
+}
+
+.vcard-nav a,
+.vcard-nav-link {
+  position: relative;
+  display: block;
+  padding: 8px 12px;
+  color: var(--vcard-muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.vcard-nav a.is-active,
+.vcard-nav-link.is-active {
+  color: var(--vcard-white-1);
+  font-weight: 700;
+}
+
+.vcard-nav a:hover,
+.vcard-nav-link:hover {
+  color: var(--vcard-gold);
+}
+
+.vcard-nav-hover {
+  position: absolute;
+  inset: 2px 0;
+  z-index: -1;
+  border-radius: 12px;
+  background: hsla(0, 0%, 100%, 0.08);
+}
+
+.vcard-nav-line,
+.vcard-nav-hover-line {
+  position: absolute;
+  right: 10px;
+  bottom: 4px;
+  left: 10px;
+  height: 2px;
+  border-radius: 2px;
+}
+
+.vcard-nav-line {
+  background: var(--vcard-gold);
+}
+
+.vcard-nav-hover-line {
+  background: var(--vcard-white-1);
+}
+
+.vcard-page-title,
+.vcard-section-title {
+  color: var(--vcard-white);
+  font-weight: 600;
+}
+
+.vcard-page-title {
+  position: relative;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  font-size: 24px;
+}
+
+.vcard-page-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 4px;
+  border-radius: 3px;
+  background: var(--vcard-text-gradient);
+}
+
+.vcard-section-title {
+  margin: 32px 0 16px;
+  font-size: 18px;
+}
+
+.vcard-bio p {
+  color: var(--vcard-gray);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.vcard-bio p + p {
+  margin-top: 12px;
+}
+
+.vcard-projects {
+  display: grid;
+  gap: 20px;
+}
+
+.vcard-project-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  margin-bottom: 12px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--vcard-onyx);
+}
+
+.vcard-project-media img {
+  object-fit: cover;
+  transition: transform var(--vcard-ease);
+}
+
+.vcard-project-shade {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  transition: background var(--vcard-ease);
+}
+
+.vcard-project-eye {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--vcard-jet);
+  color: var(--vcard-gold);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+  transition:
+    opacity var(--vcard-ease),
+    transform var(--vcard-ease);
+}
+
+.vcard-project:hover .vcard-project-media img {
+  transform: scale(1.08);
+}
+
+.vcard-project:hover .vcard-project-shade {
+  background: hsla(0, 0%, 0%, 0.5);
+}
+
+.vcard-project:hover .vcard-project-eye {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.vcard-project-title {
+  color: var(--vcard-white);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  transition: color var(--vcard-ease);
+}
+
+.vcard-project:hover .vcard-project-title {
+  color: var(--vcard-gold);
+  font-weight: 600;
+}
+
+.vcard-writings {
+  display: grid;
+  gap: 16px;
+}
+
+.vcard-gradient-card {
+  position: relative;
+  z-index: 0;
+  border-radius: 16px;
+  padding: 20px;
+  background: var(--vcard-border-gradient);
+  box-shadow: var(--vcard-shadow-2);
+}
+
+.vcard-gradient-card::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--vcard-gradient-jet);
+}
+
+.vcard-writing-body {
+  transition: transform 0.3s ease;
+}
+
+.vcard-writing:hover .vcard-writing-body {
+  transform: translate(-4px, -4px);
+}
+
+.vcard-writing-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  color: var(--vcard-white-1);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.vcard-writing-arrow {
+  flex: none;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition:
+    opacity var(--vcard-ease),
+    transform var(--vcard-ease);
+}
+
+.vcard-writing:hover .vcard-writing-arrow {
+  opacity: 1;
+  transform: none;
+}
+
+.vcard-writing-excerpt {
+  color: var(--vcard-gray-70);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.vcard-writing-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  color: var(--vcard-gray);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.vcard-writing-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.vcard-lifestyles {
+  display: grid;
+  gap: 20px;
+}
+
+.vcard-lifestyle-title {
+  margin-bottom: 6px;
+  color: var(--vcard-white);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.vcard-lifestyle-text {
+  color: var(--vcard-gray);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.vcard-lifestyle-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  place-items: center;
+  margin-bottom: 10px;
+  color: var(--vcard-gold);
+}
+
+.vcard-photos {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  padding: 18px 8px 24px;
+  scrollbar-width: none;
+}
+
+.vcard-photos::-webkit-scrollbar {
+  display: none;
+}
+
+.vcard-photo {
+  position: relative;
+  width: 11rem;
+  flex: none;
+  aspect-ratio: 9 / 10;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--vcard-onyx);
+  transform: rotate(var(--vcard-tilt, 1.3deg));
+  transition: transform 0.2s ease;
+}
+
+.vcard-photo:nth-child(even) {
+  --vcard-tilt: -1.3deg;
+}
+
+.vcard-photo:nth-child(odd) {
+  --vcard-tilt: 1.3deg;
+}
+
+.vcard-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vcard-photo:hover {
+  z-index: 1;
+  transform: rotate(0deg) scale(1.08);
+}
+
+.vcard-photo-caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 28px 12px 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+  color: var(--vcard-white-1);
+  font-family: var(--font-vcard-mono), ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.vcard-photo:hover .vcard-photo-caption {
+  opacity: 1;
+}
+
+.vcard-testimonials {
+  position: relative;
+  min-height: 100%;
+}
+
+.vcard-quotes {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 32px 4px 16px;
+  scroll-snap-type: x mandatory;
+}
+
+.vcard-quote {
+  position: relative;
+  width: min(100%, 20rem);
+  flex: none;
+  padding: 40px 16px 16px;
+  scroll-snap-align: start;
+  text-align: left;
+  cursor: pointer;
+}
+
+.vcard-quote-avatar {
+  position: absolute;
+  top: 0;
+  left: 16px;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--vcard-gradient-onyx);
+  box-shadow: var(--vcard-shadow);
+  transform: translateY(-22px);
+}
+
+.vcard-quote-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vcard-quote-name {
+  margin-bottom: 8px;
+  color: var(--vcard-white);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.vcard-quote-text {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--vcard-gray);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.vcard-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.vcard-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: hsla(0, 0%, 5%, 0.8);
+  cursor: pointer;
+}
+
+.vcard-modal-card {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 640px);
+  max-height: 100%;
+  overflow: auto;
+  padding: 20px;
+  border: 1px solid var(--vcard-jet);
+  border-radius: 16px;
+  background: var(--vcard-eerie);
+  box-shadow: var(--vcard-shadow-5);
+}
+
+.vcard-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--vcard-onyx);
+  color: var(--vcard-white);
+  opacity: 0.75;
+}
+
+.vcard-modal-close:hover {
+  opacity: 1;
+}
+
+.vcard-modal-portrait {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.vcard-modal-avatar {
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--vcard-gradient-onyx);
+  box-shadow: var(--vcard-shadow-2);
+}
+
+.vcard-modal-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vcard-modal-quote-icon {
+  color: var(--vcard-gold);
+}
+
+.vcard-modal-name {
+  margin-bottom: 4px;
+  padding-right: 28px;
+  color: var(--vcard-white);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.vcard-modal-date {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--vcard-gray-70);
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.vcard-modal-text {
+  color: var(--vcard-gray);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.vcard-anchor {
+  scroll-margin-top: 12px;
+}
+
+@container vcard (min-width: 580px) {
+  .vcard-sidebar,
+  .vcard-content {
+    width: min(100%, 700px);
+    margin-inline: auto;
+  }
+
+  .vcard-sidebar,
+  .vcard-article,
+  .vcard-mobile-contacts {
+    padding: 28px;
+  }
+
+  .vcard-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 30px;
+  }
+
+  .vcard-identity {
+    gap: 22px;
+  }
+}
+
+@container vcard (min-width: 720px) {
+  .vcard-lifestyles {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .vcard-lifestyle {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .vcard-lifestyle-icon {
+    margin-bottom: 0;
+  }
+
+  .vcard-modal-card {
+    display: flex;
+    gap: 24px;
+    padding: 28px;
+  }
+
+  .vcard-modal-portrait {
+    margin-bottom: 0;
+  }
+
+  .vcard-quote {
+    width: calc(50% - 8px);
+  }
+}
+
+@container vcard (min-width: 960px) {
+  .vcard-main {
+    flex-direction: row;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 28px auto;
+    gap: 25px;
+  }
+
+  .vcard-sidebar {
+    position: sticky;
+    top: 16px;
+    width: 280px;
+    flex: none;
+    margin: 0;
+    padding-top: 36px;
+  }
+
+  .vcard-content {
+    width: auto;
+    flex: 1;
+    margin: 0;
+  }
+
+  .vcard-sidebar-more {
+    display: block;
+  }
+
+  .vcard-mobile-contacts {
+    display: none;
+  }
+
+  .vcard-identity {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .vcard-status {
+    margin-inline: auto;
+  }
+
+  .vcard-avatar {
+    width: 150px;
+    height: 150px;
+  }
+
+  .vcard-nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: max-content;
+    margin: 0;
+    border: 0;
+    border-radius: 0 20px;
+    background: transparent;
+    backdrop-filter: none;
+  }
+
+  .vcard-page-title {
+    padding-right: 220px;
+  }
+
+  .vcard-projects {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@keyframes vcard-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vcard-article,
+  .vcard-project-media img,
+  .vcard-project-shade,
+  .vcard-project-eye,
+  .vcard-writing-body,
+  .vcard-writing-arrow,
+  .vcard-photo,
+  .vcard-photo-caption {
+    animation: none;
+    transition: none;
+  }
+}

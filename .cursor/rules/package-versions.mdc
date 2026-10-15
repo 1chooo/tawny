@@ -20,6 +20,7 @@ When bumping a version (release, publish, or new package), update **every** `pac
 | Art template | `templates/art/package.json` |
 | Dev template | `templates/dev/package.json` |
 | Link template | `templates/link/package.json` |
+| VCard template | `templates/vcard/package.json` |
 
 Do not leave packages on older versions (e.g. `0.1.0` / `0.0.0`) after a bump.
 
