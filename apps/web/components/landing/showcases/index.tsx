@@ -34,12 +34,24 @@ import {
   HeadersDetail,
 } from '@/components/landing/showcases/headers-demo'
 import { TawnyHeaderDemo, TawnyHeaderDetail } from '@/components/landing/showcases/tawny-header-demo'
+import {
+  VcardLifestylesDemo,
+  VcardLifestylesDetail,
+} from '@/components/landing/showcases/vcard-lifestyles-demo'
+import {
+  VcardPhotosDemo,
+  VcardPhotosDetail,
+} from '@/components/landing/showcases/vcard-photos-demo'
+import {
+  VcardTestimonialsDemo,
+  VcardTestimonialsDetail,
+} from '@/components/landing/showcases/vcard-testimonials-demo'
 
 export type ComponentDemo = {
   id: string
   title: string
   description: string
-  category: 'Navigation' | 'Motion' | 'Effects' | 'Maps' | 'Embed' | 'Dashboard' | 'People'
+  category: 'Navigation' | 'Motion' | 'Effects' | 'Maps' | 'Embed' | 'Dashboard' | 'People' | 'Portfolio'
   frameTitle: string
   contentClassName?: string
   /** ProductFrame content classes on the detail page; defaults to aspect-video */
@@ -225,6 +237,44 @@ export const componentDemos: ComponentDemo[] = [
     sourceFiles: ['apps/web/components/landing/showcases/status-select-demo.tsx'],
     render: () => <StatusSelectDemo />,
     detailRender: () => <StatusSelectDetail />,
+  },
+  {
+    id: 'vcard-testimonials',
+    title: 'Testimonials',
+    description:
+      'Horizontal quote cards from the vcard. Click a card to open the full note.',
+    category: 'Portfolio',
+    frameTitle: 'components/vcard/testimonials',
+    contentClassName: 'bg-[#121212]',
+    detailContentClassName: 'relative h-[36rem] overflow-hidden bg-[#121212]',
+    sourceFiles: ['apps/web/components/vcard/testimonials.tsx'],
+    render: () => <VcardTestimonialsDemo />,
+    detailRender: () => <VcardTestimonialsDetail />,
+  },
+  {
+    id: 'vcard-photos',
+    title: 'Tilted photos',
+    description:
+      'A sideways strip of tilted covers. Hover straightens a card and shows its title.',
+    category: 'Portfolio',
+    frameTitle: 'components/vcard/photos',
+    contentClassName: 'bg-[#121212]',
+    detailContentClassName: 'overflow-hidden bg-[#121212]',
+    sourceFiles: ['apps/web/components/vcard/photos.tsx'],
+    render: () => <VcardPhotosDemo />,
+    detailRender: () => <VcardPhotosDetail />,
+  },
+  {
+    id: 'vcard-lifestyles',
+    title: 'Lifestyle cards',
+    description: 'Gradient icon cards for short personal notes.',
+    category: 'Portfolio',
+    frameTitle: 'components/vcard/lifestyles',
+    contentClassName: 'bg-[#121212]',
+    detailContentClassName: 'overflow-hidden bg-[#121212]',
+    sourceFiles: ['apps/web/components/vcard/lifestyles.tsx'],
+    render: () => <VcardLifestylesDemo />,
+    detailRender: () => <VcardLifestylesDetail />,
   },
 ]
 

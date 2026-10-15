@@ -16,6 +16,7 @@ const CATEGORY_ORDER: ComponentDemo['category'][] = [
   'Dashboard',
   'Maps',
   'People',
+  'Portfolio',
   'Navigation',
   'Motion',
   'Effects',
