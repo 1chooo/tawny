@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { DesignPins } from '@/components/designs/design-pins'
+import { DesignShowcaseRow } from '@/components/landing/design-showcase-row'
 import { BlurFade } from '@tawny/ui/components/blur-fade'
 import { pinnedDesigns } from '@/lib/data'
 
 /**
- * Landing “Web Designs” teaser — section header plus the same pin band as
- * the designs catalog.
+ * Landing “Web Designs” teaser — section header plus feature bands for the
+ * same designs the catalog pins.
  */
 export function DesignsShowcase() {
   const pinned = pinnedDesigns()
@@ -35,11 +35,20 @@ export function DesignsShowcase() {
           </div>
         </BlurFade>
 
-        <BlurFade delay={0.08} inView>
-          <DesignPins designs={pinned} />
-        </BlurFade>
+        <div className="flex flex-col gap-10 md:gap-14">
+          {pinned.map((design, index) => (
+            <BlurFade
+              key={design.id}
+              delay={0.05 + index * 0.04}
+              inView
+              className="w-full"
+            >
+              <DesignShowcaseRow design={design} index={index} />
+            </BlurFade>
+          ))}
+        </div>
 
-        <BlurFade delay={0.1} inView className="sm:hidden">
+        <BlurFade delay={0.1} inView className="mt-10 sm:hidden">
           <Link
             href="/designs"
             className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"

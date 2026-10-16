@@ -18,7 +18,7 @@ Add to `designs` in [`apps/web/lib/data.ts`](apps/web/lib/data.ts):
 - `demoPath` — always `/designs/<id>` (ProductFrame + docs)
 - `viewPath` — always `/view/<id>` (full-site new-tab preview, no Tawny chrome)
 - `title`, `description`, `tags`, `price`, `category`
-- add the id to `pinnedDesignIds` only when it should sit in the home and catalog pin band (max 3: one large, two compact)
+- add the id to `pinnedDesignIds` only when it should appear in both the home feature bands and the catalog pin band (max 3)
 - optional `hasThemeSwitch: true` when the design has its own in-demo theme toggle (independent of Tawny)
 
 ## 2. Live demo at `/designs/<id>`
@@ -65,15 +65,17 @@ Every design needs a scaled mock used on **both** the landing showcase and the `
 2. **Wire into `DesignPreview`** — extend [`apps/web/components/landing/design-preview.tsx`](apps/web/components/landing/design-preview.tsx) so fonts + mock render for the new `id`
 3. **Landing showcase** — [`DesignsShowcase`](apps/web/components/landing/designs-showcase.tsx):
    - Independent **Web Designs** section header (not an eyebrow on the first design row)
-   - The same pin band as the catalog: `pinnedDesignIds` (max 3), rendered with [`DesignPins`](apps/web/components/designs/design-pins.tsx)
-   - Copy from `lib/data.ts`; no thumbnail images on these cards
-4. **Catalog** — [`/designs`](apps/web/app/designs/page.tsx) uses that same `DesignPins` band, then a list of every design
+   - Feature bands for `pinnedDesignIds` (the same designs the catalog pins, max 3)
+   - Each row is a JustHold Holdings/Chat–style **feature band** ([`DesignShowcaseRow`](apps/web/components/landing/design-showcase-row.tsx)): bordered `md:aspect-16/10` card, 1/3 copy + 2/3 muted panel, scaled `DemoWindow` + `DesignPreview`
+   - Even index = Holdings (copy left, oversized window crop right); odd = Chat mirror (window left height-fit, copy right); mobile always stacks copy then window
+   - Copy from `lib/data.ts`; no thumbnail images on these rows
+4. **Catalog** — [`/designs`](apps/web/app/designs/page.tsx) pins that same `pinnedDesignIds` list with [`DesignPins`](apps/web/components/designs/design-pins.tsx), then lists every design
 
-Only pin and list CTAs (“Open live demo”) navigate (`demoPath`).
+Only row, pin, and list CTAs (“Open live demo”) navigate (`demoPath`).
 
 ### Optional thumbnail image layer
 
-Thumbnails are **not** used on design pins or component gallery cards. Both use scaled live demos (`ScaledDesignCanvas` into an `aspect-video` crop). Screenshots remain optional tooling only:
+Thumbnails are **not** used on design feature bands, pins, or component gallery cards. Both use scaled live demos (`ScaledDesignCanvas` into an `aspect-video` crop). Screenshots remain optional tooling only:
 
 - Generate via the dev-only **Generate screenshot** button next to “Copy page” on `apps/web/app/designs/<id>/layout.tsx` (and on `apps/web/app/components/[...slug]/page.tsx`, the component detail branch). It posts to `apps/web/app/api/dev/screenshot/route.ts`, which is disabled in production.
 - The route captures the live `/view/<id>` (or a component’s `ProductFrame` via selector) with Playwright, compresses it under 500KB with `sharp`, and writes it to `apps/web/public/thumbnails/{designs,components}/<id>.webp`.
@@ -85,11 +87,11 @@ Thumbnails are **not** used on design pins or component gallery cards. Both use 
 ```text
 ✅ Live app at /designs/<id> inside ProductFrame + Open in new tab → /view/<id>
 ✅ Full-site /view/<id> without Tawny chrome
-✅ Landing: Web Designs section header + the same pin band as `/designs` (`pinnedDesignIds`)
+✅ Landing: Web Designs section header + feature bands for `pinnedDesignIds` (same designs as the catalog pins)
 ✅ Catalog /designs cards use the same scaled DesignPreview mocks
 ✅ Mocks use ScaledDesignCanvas (real desktop ratio); hover/autoplay OK, no in-preview nav
 
-❌ Preferring thumbnail screenshots over the scaled mock on design pins and catalog rows
+❌ Preferring thumbnail screenshots over the scaled mock on design feature bands, pins, or catalog rows
 ❌ Landing or catalog OG/static cards as the only “showcase” (a live demo + mock must still exist)
 ❌ Embedding the live route via iframe on the home page
 ❌ Importing live HomeBento / SiteHeader (or equivalents) into the landing mock
