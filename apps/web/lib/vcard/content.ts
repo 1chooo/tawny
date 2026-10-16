@@ -166,6 +166,11 @@ export const posts: VcardPost[] = [
 
 export const writings = posts.slice(0, 2)
 
+export const techStacks = [
+  { title: 'Frontend', items: ['TypeScript', 'React', 'Next.js'] },
+  { title: 'Tools', items: ['Python', 'Docker'] },
+]
+
 export const resume: VcardResume[] = [
   {
     slug: 'reed-college',

@@ -1,8 +1,8 @@
 import Image from 'next/image'
-import { ArrowUpRight, Eye } from 'lucide-react'
+import { ArrowUpRight, Eye, Zap } from 'lucide-react'
 import { VcardLink } from '@/components/link'
 import { VcardShell } from '@/components/shell'
-import { posts, profile, projects } from '@/lib/profile'
+import { posts, profile, projects, techStacks } from '@/lib/profile'
 
 export function VcardAbout() {
   return (
@@ -39,37 +39,62 @@ export function VcardAbout() {
             </li>
           ))}
         </ul>
+        <p className="vcard-see-more">
+          <VcardLink href="/project" className="vcard-see-more-pill">
+            See More Projects
+            <ArrowUpRight size={14} aria-hidden="true" />
+          </VcardLink>
+        </p>
       </section>
 
       <section>
         <h2 className="vcard-section-title">Writing</h2>
-        <ul className="vcard-writings">
-          {posts.slice(0, 2).map((post) => (
-            <li key={post.slug}>
-              <VcardLink
-                href={`/blog/${post.slug}`}
-                className="vcard-writing vcard-gradient-card"
-              >
-                <div className="vcard-writing-body">
-                  <h3 className="vcard-writing-title">
-                    {post.title}
-                    <ArrowUpRight
-                      className="vcard-writing-arrow"
-                      size={14}
-                      aria-hidden="true"
-                    />
-                  </h3>
-                  <p className="vcard-writing-excerpt">{post.excerpt}</p>
-                  <p className="vcard-writing-meta">
-                    <span>{post.date}</span>
-                    <span className="vcard-writing-dot" aria-hidden="true" />
-                    <span>{post.readingTime}</span>
-                  </p>
+        <div className="vcard-writings-row">
+          <ul className="vcard-writings">
+            {posts.slice(0, 2).map((post) => (
+              <li key={post.slug}>
+                <VcardLink
+                  href={`/blog/${post.slug}`}
+                  className="vcard-writing vcard-gradient-card"
+                >
+                  <div className="vcard-writing-body">
+                    <h3 className="vcard-writing-title">
+                      {post.title}
+                      <ArrowUpRight
+                        className="vcard-writing-arrow"
+                        size={14}
+                        aria-hidden="true"
+                      />
+                    </h3>
+                    <p className="vcard-writing-excerpt">{post.excerpt}</p>
+                    <p className="vcard-writing-meta">
+                      <span>{post.date}</span>
+                      <span className="vcard-writing-dot" aria-hidden="true" />
+                      <span>{post.readingTime}</span>
+                    </p>
+                  </div>
+                </VcardLink>
+              </li>
+            ))}
+          </ul>
+          <ul className="vcard-stacks">
+            {techStacks.map((group) => (
+              <li key={group.title} className="vcard-gradient-card">
+                <h3 className="vcard-stack-title">
+                  <Zap size={16} aria-hidden="true" />
+                  {group.title}
+                </h3>
+                <div className="vcard-tech">
+                  {group.items.map((item) => (
+                    <span key={item} className="vcard-tag">
+                      {item}
+                    </span>
+                  ))}
                 </div>
-              </VcardLink>
-            </li>
-          ))}
-        </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
     </VcardShell>
   )

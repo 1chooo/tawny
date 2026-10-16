@@ -318,8 +318,21 @@
 }
 
 .vcard-section-title {
-  margin: 32px 0 16px;
+  position: relative;
+  margin: 32px 0 20px;
+  padding-bottom: 12px;
   font-size: 18px;
+}
+
+.vcard-section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--vcard-text-gradient);
 }
 
 .vcard-bio p {
@@ -404,9 +417,58 @@
   font-weight: 600;
 }
 
+.vcard-see-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.vcard-see-more-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--vcard-jet);
+  border-radius: 999px;
+  padding: 6px 14px;
+  background: var(--vcard-onyx);
+  color: var(--vcard-white);
+  font-size: 14px;
+}
+
+.vcard-root a.vcard-see-more-pill:hover {
+  color: var(--vcard-gold);
+}
+
+.vcard-writings-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+}
+
 .vcard-writings {
   display: grid;
+  flex: 2;
   gap: 16px;
+  min-width: 0;
+}
+
+.vcard-stacks {
+  display: grid;
+  flex: 1;
+  gap: 16px;
+  min-width: 0;
+  margin: 0;
+}
+
+.vcard-stack-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: var(--vcard-white);
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .vcard-gradient-card {
@@ -782,6 +844,11 @@
 
   .vcard-quote {
     width: calc(50% - 8px);
+  }
+
+  .vcard-writings-row {
+    flex-direction: row;
+    align-items: flex-start;
   }
 }
 

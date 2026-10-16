@@ -154,6 +154,11 @@ export const posts: VcardPost[] = [
   },
 ];
 
+export const techStacks = [
+  { title: "Frontend", items: ["TypeScript", "React", "Next.js"] },
+  { title: "Tools", items: ["Python", "Docker"] },
+];
+
 export const resume: VcardResume[] = [
   {
     slug: "reed-college",
