@@ -12,6 +12,7 @@ const NAV = ['About', 'Resume', 'Project', 'Blog']
 /**
  * Desktop crop of the vcard home. Same chrome as the live page, with no
  * links, so the landing and catalog previews cannot navigate away.
+ * The canvas is wider than 1200px so the centered page margin stays visible.
  */
 function VcardPreviewSurface() {
   return (
@@ -136,7 +137,7 @@ export function VcardPreviewMock({ className }: VcardPreviewMockProps) {
       onClick={(event) => event.preventDefault()}
       onKeyDown={(event) => event.preventDefault()}
     >
-      <ScaledDesignCanvas>
+      <ScaledDesignCanvas width={1440} height={810}>
         <VcardPreviewSurface />
       </ScaledDesignCanvas>
     </div>
