@@ -1,0 +1,29 @@
+---
+title: VCard joins the design catalog
+date: 2026-10-15
+category: VCard
+summary: A dark personal page with a profile sidebar, resume timeline, projects, and notes.
+---
+
+VCard is a dark personal site. A sticky profile card sits beside an article, and the frosted nav opens About, Resume, Project, and Blog.
+
+<ChangelogPreview id="vcard" />
+
+## Open the pages
+
+About keeps selected work, a see-more pill, and writing cards beside a tech-stack column. Resume is a timeline: a gold dot and a hairline connect each institution card. Project and Blog filter in place, and each card opens a detail page.
+
+Scaffold a copy, then replace the name, contacts, and sample pages in `lib/profile.ts`.
+
+```bash
+npx create-tawny@latest vcard my-vcard
+```
+
+### Improvements
+
+- Added the VCard template to `create-tawny`
+- Added a live demo at `/designs/vcard` and a full preview at `/view/vcard`
+- About, Resume, Project, and Blog share one article width, including each detail page
+- Writing on the home page is gradient cards plus a tech-stack column
+- Resume uses the dotted timeline list
+- Testimonials, tilted photos, and lifestyle cards are in the component gallery
