@@ -7,7 +7,7 @@ import { GithubIcon } from '@/components/vcard/github-icon'
 import { profile, projects } from '@/lib/vcard/content'
 import { cn } from '@tawny/ui/lib/utils'
 
-const NAV = ['About', 'Work', 'Writing']
+const NAV = ['About', 'Resume', 'Project', 'Blog']
 
 /**
  * Desktop crop of the vcard home. Same chrome as the live page, with no

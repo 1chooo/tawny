@@ -131,7 +131,7 @@ export const designs: Design[] = [
       'A dark personal vcard with a profile sidebar, selected work, and short notes — open the live showcase.',
     longDescription: [
       'VCard is a single-page personal site: a sticky profile card, an about article, three project covers, and two writing notes. The dark sidebar and gold accent follow the classic vcard portfolio layout.',
-      'Use the live demo above to move between About, Work, and Writing. Scaffold a copy with the create command below, then replace the name, contacts, and cover images in lib/profile.ts.',
+      'Use the live demo above to open Resume, Project, and Blog, then a detail page from a card. Scaffold a copy with the create command below, then replace the name, contacts, and sample pages in lib/profile.ts.',
     ],
     category: 'Portfolio',
     price: 'free',
