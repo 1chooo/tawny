@@ -34,7 +34,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 | File | What to change |
 |------|----------------|
-| `lib/profile.ts` | Name, city, email, GitHub, bio, projects, and notes |
+| `lib/profile.ts` | Name, city, email, GitHub, bio, resume, projects, and notes |
 | `public/images/` | Avatar and project covers |
 | `app/layout.tsx` | Site title and metadata |
 | `app/page.tsx` | Page composition (usually leave as-is) |

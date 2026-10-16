@@ -1,42 +1,35 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { VcardLink } from "@/components/link";
 
 const LINKS = [
-  { href: "#about", label: "About" },
-  { href: "#work", label: "Work" },
-  { href: "#writing", label: "Writing" },
+  { href: "/", label: "About", match: "exact" },
+  { href: "/resume", label: "Resume", match: "prefix" },
+  { href: "/project", label: "Project", match: "prefix" },
+  { href: "/blog", label: "Blog", match: "prefix" },
 ] as const;
 
 export function VcardNav() {
-  const [active, setActive] = useState<(typeof LINKS)[number]["href"]>("#about");
+  const pathname = usePathname();
   const [hovered, setHovered] = useState<string | null>(null);
-
-  useEffect(() => {
-    const sync = () => {
-      const hash = window.location.hash;
-      if (LINKS.some((link) => link.href === hash)) {
-        setActive(hash as (typeof LINKS)[number]["href"]);
-      }
-    };
-    sync();
-    window.addEventListener("hashchange", sync);
-    return () => window.removeEventListener("hashchange", sync);
-  }, []);
 
   return (
     <nav className="vcard-nav" aria-label="Sections">
       <ul className="vcard-nav-list">
         {LINKS.map((link) => {
-          const isActive = active === link.href;
+          const isActive =
+            link.match === "exact"
+              ? pathname === "/"
+              : pathname === link.href || pathname.startsWith(`${link.href}/`);
           const isHovered = hovered === link.href;
           return (
             <li key={link.href}>
-              <a
+              <VcardLink
                 href={link.href}
                 className={isActive ? "is-active" : undefined}
-                aria-current={isActive ? "location" : undefined}
-                onClick={() => setActive(link.href)}
+                aria-current={isActive ? "page" : undefined}
                 onMouseEnter={() => setHovered(link.href)}
                 onMouseLeave={() => setHovered(null)}
               >
@@ -50,7 +43,7 @@ export function VcardNav() {
                 {isHovered && !isActive ? (
                   <span className="vcard-nav-hover-line" aria-hidden="true" />
                 ) : null}
-              </a>
+              </VcardLink>
             </li>
           );
         })}
