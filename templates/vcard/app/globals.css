@@ -95,12 +95,17 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin: 12px;
+  box-sizing: border-box;
+  width: min(100%, 1200px);
+  margin: 12px auto;
 }
 
 .vcard-sidebar,
 .vcard-article,
 .vcard-mobile-contacts {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
   background: var(--vcard-eerie);
   border: 1px solid var(--vcard-jet);
   border-radius: 20px;
@@ -110,12 +115,17 @@ body {
 
 .vcard-article {
   position: relative;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
   animation: vcard-fade 0.5s ease backwards;
 }
 
 .vcard-content {
   display: flex;
+  width: 100%;
   min-width: 0;
+  max-width: 100%;
   flex-direction: column;
   gap: 16px;
 }
@@ -298,6 +308,7 @@ body {
   position: relative;
   margin-bottom: 20px;
   padding-bottom: 12px;
+  overflow-wrap: break-word;
   font-size: 24px;
 }
 
@@ -734,12 +745,6 @@ body {
 
 @container vcard (min-width: 580px) {
   .vcard-sidebar,
-  .vcard-content {
-    width: min(100%, 700px);
-    margin-inline: auto;
-  }
-
-  .vcard-sidebar,
   .vcard-article,
   .vcard-mobile-contacts {
     padding: 28px;
@@ -790,8 +795,7 @@ body {
   .vcard-main {
     flex-direction: row;
     align-items: flex-start;
-    max-width: 1200px;
-    margin: 28px auto;
+    margin-block: 28px;
     gap: 25px;
   }
 
@@ -804,8 +808,11 @@ body {
     padding-top: 36px;
   }
 
-  .vcard-content {
-    width: auto;
+  .vcard-content,
+  .vcard-article {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
     flex: 1;
     margin: 0;
   }
@@ -945,6 +952,7 @@ body {
 
 .vcard-list-title {
   color: var(--vcard-white);
+  overflow-wrap: break-word;
   font-size: 18px;
   font-weight: 600;
   line-height: 1.3;
@@ -1063,6 +1071,7 @@ body {
 .vcard-detail-title {
   margin-bottom: 16px;
   color: var(--vcard-white);
+  overflow-wrap: break-word;
   font-size: 32px;
   font-weight: 600;
   line-height: 1.2;
