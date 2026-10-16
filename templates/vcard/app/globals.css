@@ -236,10 +236,12 @@ body {
 .vcard-nav {
   position: relative;
   z-index: 2;
+  width: 100%;
   margin-bottom: 18px;
   border: 1px solid var(--vcard-jet);
-  border-radius: 16px;
+  border-radius: 12px;
   background: hsla(240, 1%, 17%, 0.75);
+  box-shadow: var(--vcard-shadow-2);
   backdrop-filter: blur(10px);
 }
 
@@ -845,14 +847,14 @@ body {
     right: 0;
     width: max-content;
     margin: 0;
-    border: 0;
     border-radius: 0 20px;
-    background: transparent;
-    backdrop-filter: none;
+    box-shadow: none;
   }
 
   .vcard-nav-list {
     flex-wrap: nowrap;
+    gap: 12px;
+    padding: 0 12px;
   }
 
   .vcard-page-title {
