@@ -5,11 +5,8 @@ import { DesignPostRow } from '@/components/designs/design-post-row'
 import { DesignsSearch } from '@/components/designs/designs-search'
 import { BlurFade } from '@tawny/ui/components/blur-fade'
 import { NoiseTexture } from '@tawny/ui/components/noise-texture'
-import { designs, designCategories } from '@/lib/data'
+import { designs, designCategories, pinnedDesigns } from '@/lib/data'
 import { cn } from '@tawny/ui/lib/utils'
-
-/** Large card, then the two compact slots. Independent of the homepage `featured` flag. */
-const PIN_IDS = ['art', 'ocean', 'board'] as const
 
 type SearchParams = Promise<{
   category?: string
@@ -55,10 +52,7 @@ export default async function DesignsPage(props: {
   })
 
   const currentQ = qParam?.trim() ?? ''
-  const pinned = PIN_IDS.flatMap((id) => {
-    const design = designs.find((entry) => entry.id === id)
-    return design ? [design] : []
-  })
+  const pinned = pinnedDesigns()
 
   return (
     <div className="relative min-h-screen pt-28 pb-24">

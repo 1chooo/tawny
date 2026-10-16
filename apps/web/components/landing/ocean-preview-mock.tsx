@@ -20,7 +20,7 @@ type OceanPreviewMockProps = {
 
 /**
  * Desktop-fidelity Ocean hero mock — fixed 1120×630 canvas scaled into the
- * browser frame supplied by `DesignShowcaseRow`. The particle whale is a
+ * browser frame supplied by the design pin and catalog covers. The particle whale is a
  * pre-projected dot path from the same glTF model the live WebGL scene samples.
  */
 export function OceanPreviewMock({ className }: OceanPreviewMockProps) {

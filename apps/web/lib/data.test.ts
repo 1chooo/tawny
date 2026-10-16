@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getDesign, designCategories, designs } from './data'
+import { getDesign, designCategories, designs, pinnedDesignIds } from './data'
 
 describe('getDesign', () => {
   it('returns a known design by id', () => {
@@ -30,7 +30,7 @@ describe('getDesign', () => {
     expect(board?.demoPath).toBe('/designs/board')
     expect(board?.viewPath).toBe('/view/board')
     expect(board?.category).toBe('Dashboard')
-    expect(board?.featured).toBeUndefined()
+    expect(pinnedDesignIds).not.toContain('board')
     expect(designCategories).toContain('Dashboard')
   })
 
@@ -39,7 +39,7 @@ describe('getDesign', () => {
     expect(vcard?.demoPath).toBe('/designs/vcard')
     expect(vcard?.viewPath).toBe('/view/vcard')
     expect(vcard?.category).toBe('Portfolio')
-    expect(vcard?.featured).toBeUndefined()
+    expect(pinnedDesignIds).toEqual(['art', 'ocean', 'vcard'])
     expect(designCategories).toContain('Portfolio')
   })
 

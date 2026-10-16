@@ -7,7 +7,6 @@ export interface Design {
   category: string
   price: number | 'free'
   tags: string[]
-  featured?: boolean
   /** Live demo path inside Tawny (ProductFrame + docs) */
   demoPath: string
   /** Full-site preview path (new tab, no Tawny chrome) */
@@ -37,7 +36,6 @@ export const designs: Design[] = [
     category: 'Journal',
     price: 'free',
     tags: ['Next.js', 'MDX', 'Bento', 'i18n'],
-    featured: true,
     demoPath: '/designs/art',
     viewPath: '/view/art',
     screenshotPath: '/view/art/en',
@@ -57,7 +55,6 @@ export const designs: Design[] = [
     category: 'Blog',
     price: 'free',
     tags: ['Next.js', 'MDX', 'Mono', 'Demos'],
-    featured: true,
     demoPath: '/designs/dev',
     viewPath: '/view/dev',
     packageName: 'create-tawny',
@@ -77,7 +74,6 @@ export const designs: Design[] = [
     category: 'Links',
     price: 'free',
     tags: ['Next.js', 'Linktree', 'Minimal'],
-    featured: true,
     demoPath: '/designs/link',
     viewPath: '/view/link',
     packageName: 'create-tawny',
@@ -142,6 +138,16 @@ export const designs: Design[] = [
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx', 'lib/profile.ts'],
   },
 ]
+
+/** Large pin, then the two compact slots. Home and `/designs` share this list. */
+export const pinnedDesignIds = ['art', 'ocean', 'vcard'] as const
+
+export function pinnedDesigns() {
+  return pinnedDesignIds.flatMap((id) => {
+    const design = designs.find((entry) => entry.id === id)
+    return design ? [design] : []
+  })
+}
 
 export const designCategories = [
   'All',

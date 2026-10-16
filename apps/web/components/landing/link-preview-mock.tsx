@@ -89,7 +89,7 @@ type LinkPreviewMockProps = {
 
 /**
  * Desktop-fidelity Link home mock — fixed 1120×630 canvas scaled into the
- * browser frame supplied by `DesignShowcaseRow` (same treatment as Art/Dev),
+ * browser frame supplied by the design pin and catalog covers (same treatment as Art/Dev),
  * with a small phone mockup overlapping the bottom-left corner for the
  * mobile view. Hover affordances only; no navigation / no remote avatar image.
  */
