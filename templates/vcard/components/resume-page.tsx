@@ -30,7 +30,7 @@ export function VcardResumePage() {
               </div>
               <ol className="vcard-timeline-list">
                 {section.items.map((item) => (
-                  <li key={item.slug}>
+                  <li key={item.slug} className="vcard-timeline-item">
                     <ResumeCard item={item} />
                   </li>
                 ))}

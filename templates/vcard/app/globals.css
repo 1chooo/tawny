@@ -1098,16 +1098,64 @@ body {
 }
 
 .vcard-timeline-list {
-  display: grid;
-  gap: 14px;
-  margin: 0;
-  padding: 0 0 0 18px;
-  border-left: 1px solid var(--vcard-jet);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 8px 45px;
+  padding: 0;
+  border: 0;
+  list-style: none;
+}
+
+.vcard-timeline-item {
+  position: relative;
+}
+
+.vcard-timeline-item:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.vcard-timeline-item:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: -30px;
+  width: 1px;
+  height: calc(100% + 50px);
+  background: var(--vcard-jet);
+}
+
+.vcard-timeline-item::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: -33px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--vcard-text-gradient);
+  box-shadow: 0 0 0 4px var(--vcard-jet);
+}
+
+@container vcard (min-width: 580px) {
+  .vcard-timeline-list {
+    margin-left: 65px;
+  }
+
+  .vcard-timeline-item:not(:last-child)::before {
+    left: -40px;
+  }
+
+  .vcard-timeline-item::after {
+    width: 8px;
+    height: 8px;
+    left: -43px;
+  }
 }
 
 .vcard-resume-card {
   display: block;
-  margin-left: 12px;
+  margin-left: 0;
   border-radius: 14px;
   background: var(--vcard-border-gradient);
   box-shadow: var(--vcard-shadow-2);
@@ -1116,7 +1164,7 @@ body {
 }
 
 .vcard-resume-card:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 .vcard-resume-card-inner {
