@@ -451,21 +451,21 @@ body {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 16px;
+  gap: 28px;
 }
 
 .vcard-writings {
   display: grid;
-  flex: 2;
-  gap: 16px;
+  gap: 24px;
   min-width: 0;
+  width: 100%;
 }
 
 .vcard-stacks {
   display: grid;
-  flex: 1;
   gap: 16px;
   min-width: 0;
+  width: 100%;
   margin: 0;
 }
 
@@ -497,7 +497,13 @@ body {
   background: var(--vcard-gradient-jet);
 }
 
+.vcard-writing {
+  display: block;
+}
+
 .vcard-writing-body {
+  position: relative;
+  z-index: 1;
   transition: transform 0.3s ease;
 }
 
@@ -508,8 +514,8 @@ body {
 .vcard-writing-title {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 8px;
+  gap: 4px;
+  margin-bottom: 12px;
   color: var(--vcard-white-1);
   font-size: 16px;
   font-weight: 700;
@@ -518,14 +524,25 @@ body {
 
 .vcard-writing-arrow {
   flex: none;
-  opacity: 0;
-  transform: translateX(-4px);
-  transition:
-    opacity var(--vcard-ease),
-    transform var(--vcard-ease);
+  width: 10px;
+  height: 12px;
+  margin-left: 4px;
+  color: var(--vcard-gray);
+  transform: translate(-4px, 2px);
 }
 
-.vcard-writing:hover .vcard-writing-arrow {
+.vcard-writing-arrow-head,
+.vcard-writing-arrow-line {
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.vcard-writing-arrow-line {
+  transform: translateX(-4px);
+}
+
+.vcard-writing:hover .vcard-writing-arrow-head,
+.vcard-writing:hover .vcard-writing-arrow-line {
   opacity: 1;
   transform: none;
 }
@@ -823,6 +840,10 @@ body {
   .vcard-identity {
     gap: 22px;
   }
+
+  .vcard-gradient-card {
+    padding: 30px;
+  }
 }
 
 @container vcard (min-width: 720px) {
@@ -857,6 +878,17 @@ body {
   .vcard-writings-row {
     flex-direction: row;
     align-items: flex-start;
+    gap: 28px;
+  }
+
+  .vcard-writings-column {
+    width: calc(66.666% - 14px);
+    min-width: 0;
+  }
+
+  .vcard-stacks {
+    width: calc(33.333% - 14px);
+    margin-top: 0;
   }
 }
 
