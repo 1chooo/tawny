@@ -50,7 +50,8 @@ export function VcardAbout() {
       <section>
         <h2 className="vcard-section-title">Writing</h2>
         <div className="vcard-writings-row">
-          <ul className="vcard-writings">
+          <div className="vcard-writings-column">
+            <ul className="vcard-writings">
             {posts.slice(0, 2).map((post) => (
               <li key={post.slug}>
                 <VcardLink
@@ -60,11 +61,31 @@ export function VcardAbout() {
                   <div className="vcard-writing-body">
                     <h3 className="vcard-writing-title">
                       {post.title}
-                      <ArrowUpRight
+                      <svg
                         className="vcard-writing-arrow"
-                        size={14}
+                        viewBox="0 0 13 15"
                         aria-hidden="true"
-                      />
+                      >
+                        <g
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline
+                            className="vcard-writing-arrow-head"
+                            points="6 2.3 11.5 7.8 6 13.3"
+                          />
+                          <line
+                            className="vcard-writing-arrow-line"
+                            x1="11.5"
+                            y1="7.8"
+                            x2="1.5"
+                            y2="7.5"
+                          />
+                        </g>
+                      </svg>
                     </h3>
                     <p className="vcard-writing-excerpt">{post.excerpt}</p>
                     <p className="vcard-writing-meta">
@@ -77,6 +98,13 @@ export function VcardAbout() {
               </li>
             ))}
           </ul>
+          <p className="vcard-see-more">
+            <VcardLink href="/blog" className="vcard-see-more-pill">
+              ✨ View All My Writings
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </VcardLink>
+          </p>
+          </div>
           <ul className="vcard-stacks">
             {techStacks.map((group) => (
               <li key={group.title} className="vcard-gradient-card">
