@@ -138,55 +138,21 @@ export const designs: Design[] = [
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx', 'lib/profile.ts'],
   },
   {
-    id: 'landing',
-    title: 'Landing',
+    id: 'mug',
+    title: 'Mug',
     description:
-      'A ceramics studio home for Jane Mug — hero, latest firing, and a studio note. Open the live showcase.',
+      'A ceramics studio for Jane Mug — home, sign-in, and a sales dashboard. Open the live showcase.',
     longDescription: [
-      'Landing is a small-batch ceramics home page. A round hero, three pieces from the latest firing, the four-step process, and a studio note introduce Jane.',
-      'Open the bag to change the sample pieces. Scaffold a copy with the create command below, then replace the photos and the studio copy.',
+      'Mug is a small-batch ceramics studio. The home introduces Jane, the sign-in keeps the kiln photograph, and the sales board shows revenue, restock, and customers.',
+      'Open the bag, sign in, or visit the studio admin from the page. Scaffold a copy with the create command below, then replace the photos and the sample sales.',
     ],
     category: 'Shop',
     price: 'free',
-    tags: ['Next.js', 'Landing', 'Shop'],
-    demoPath: '/designs/landing',
-    viewPath: '/view/landing',
+    tags: ['Next.js', 'Shop', 'Dashboard'],
+    demoPath: '/designs/mug',
+    viewPath: '/view/mug',
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
-  },
-  {
-    id: 'login',
-    title: 'Login',
-    description:
-      'A split sign-in for Jane Mug — kiln photograph on the left, email and password on the right.',
-    longDescription: [
-      'Login is the ceramics studio sign-in. The left half holds the firing photograph and a short promise. The right half is the wordmark, email, and password.',
-      'Submitting the form stays on the page. Scaffold a copy with the create command below, then connect it to your own auth.',
-    ],
-    category: 'Shop',
-    price: 'free',
-    tags: ['Next.js', 'Sign-in', 'Shop'],
-    demoPath: '/designs/login',
-    viewPath: '/view/login',
-    packageName: 'create-tawny',
-    sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
-  },
-  {
-    id: 'admin',
-    title: 'Admin',
-    description:
-      'A sales dashboard for Jane Mug — revenue, restock, coupons, and customers.',
-    longDescription: [
-      'Admin is the studio sales view. A radar and rank bars, a 30-day revenue chart, restock, coupon use, and a short customer list. Jane is already signed in.',
-      'The numbers are sample data. Scaffold a copy with the create command below, then replace lib/sales.ts.',
-    ],
-    category: 'Shop',
-    price: 'free',
-    tags: ['Next.js', 'Dashboard', 'Shop'],
-    demoPath: '/designs/admin',
-    viewPath: '/view/admin',
-    packageName: 'create-tawny',
-    sourceFiles: ['package.json', 'README.md', 'lib/sales.ts'],
   },
 ]
 

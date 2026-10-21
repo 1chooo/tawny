@@ -43,29 +43,13 @@ describe('getDesign', () => {
     expect(designCategories).toContain('Portfolio')
   })
 
-  it('includes the landing design under Shop', () => {
-    const landing = getDesign('landing')
-    expect(landing?.demoPath).toBe('/designs/landing')
-    expect(landing?.viewPath).toBe('/view/landing')
-    expect(landing?.category).toBe('Shop')
-    expect(pinnedDesignIds).not.toContain('landing')
+  it('includes the mug design under Shop', () => {
+    const mug = getDesign('mug')
+    expect(mug?.demoPath).toBe('/designs/mug')
+    expect(mug?.viewPath).toBe('/view/mug')
+    expect(mug?.category).toBe('Shop')
+    expect(pinnedDesignIds).not.toContain('mug')
     expect(designCategories).toContain('Shop')
-  })
-
-  it('includes the login design under Shop', () => {
-    const login = getDesign('login')
-    expect(login?.demoPath).toBe('/designs/login')
-    expect(login?.viewPath).toBe('/view/login')
-    expect(login?.category).toBe('Shop')
-    expect(pinnedDesignIds).not.toContain('login')
-  })
-
-  it('includes the admin design under Shop', () => {
-    const admin = getDesign('admin')
-    expect(admin?.demoPath).toBe('/designs/admin')
-    expect(admin?.viewPath).toBe('/view/admin')
-    expect(admin?.category).toBe('Shop')
-    expect(pinnedDesignIds).not.toContain('admin')
   })
 
   it('returns undefined for unknown ids', () => {

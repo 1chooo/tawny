@@ -6,9 +6,7 @@ export const DEFAULT_PROJECT_NAMES: Record<string, string> = {
   ocean: 'my-ocean-studio',
   board: 'my-board',
   vcard: 'my-vcard',
-  landing: 'my-landing',
-  login: 'my-login',
-  admin: 'my-admin',
+  mug: 'my-mug',
 }
 
 const SETUP_BLURBS: Record<string, string> = {
@@ -18,9 +16,7 @@ const SETUP_BLURBS: Record<string, string> = {
   ocean: 'the scroll-driven WebGL particle landing page',
   board: 'the issue dashboard',
   vcard: 'the personal vcard with a profile sidebar',
-  landing: 'the ceramics studio home page',
-  login: 'the ceramics studio sign-in page',
-  admin: 'the ceramics studio sales dashboard',
+  mug: 'the ceramics studio with a home, sign-in, and sales dashboard',
 }
 
 export type SetupPromptInput = {

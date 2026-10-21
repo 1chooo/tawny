@@ -35,14 +35,8 @@ describe('setupCommand', () => {
     expect(setupCommand('vcard')).toBe(
       'npx create-tawny@latest vcard my-vcard --yes',
     )
-    expect(setupCommand('landing')).toBe(
-      'npx create-tawny@latest landing my-landing --yes',
-    )
-    expect(setupCommand('login')).toBe(
-      'npx create-tawny@latest login my-login --yes',
-    )
-    expect(setupCommand('admin')).toBe(
-      'npx create-tawny@latest admin my-admin --yes',
+    expect(setupCommand('mug')).toBe(
+      'npx create-tawny@latest mug my-mug --yes',
     )
   })
 
@@ -54,9 +48,7 @@ describe('setupCommand', () => {
       ocean: 'my-ocean-studio',
       board: 'my-board',
       vcard: 'my-vcard',
-      landing: 'my-landing',
-      login: 'my-login',
-      admin: 'my-admin',
+      mug: 'my-mug',
     })
   })
 })

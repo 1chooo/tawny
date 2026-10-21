@@ -6,7 +6,7 @@
 @import './designs/link/link.css';
 @import './designs/ocean/ocean.css';
 @import './designs/vcard/vcard.css';
-@import './designs/jane.css';
+@import './designs/mug.css';
 
 @custom-variant dark (&:is(.dark *));
 
