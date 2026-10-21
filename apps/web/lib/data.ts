@@ -171,6 +171,23 @@ export const designs: Design[] = [
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
   },
+  {
+    id: 'admin',
+    title: 'Admin',
+    description:
+      'A sales dashboard for Jane Mug — revenue, restock, coupons, and customers.',
+    longDescription: [
+      'Admin is the studio sales view. A radar and rank bars, a 30-day revenue chart, restock, coupon use, and a short customer list. Jane is already signed in.',
+      'The numbers are sample data. Scaffold a copy with the create command below, then replace lib/sales.ts.',
+    ],
+    category: 'Shop',
+    price: 'free',
+    tags: ['Next.js', 'Dashboard', 'Shop'],
+    demoPath: '/designs/admin',
+    viewPath: '/view/admin',
+    packageName: 'create-tawny',
+    sourceFiles: ['package.json', 'README.md', 'lib/sales.ts'],
+  },
 ]
 
 /** Large pin, then the two compact slots. Home and `/designs` share this list. */

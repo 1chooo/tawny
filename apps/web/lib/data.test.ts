@@ -60,6 +60,14 @@ describe('getDesign', () => {
     expect(pinnedDesignIds).not.toContain('login')
   })
 
+  it('includes the admin design under Shop', () => {
+    const admin = getDesign('admin')
+    expect(admin?.demoPath).toBe('/designs/admin')
+    expect(admin?.viewPath).toBe('/view/admin')
+    expect(admin?.category).toBe('Shop')
+    expect(pinnedDesignIds).not.toContain('admin')
+  })
+
   it('returns undefined for unknown ids', () => {
     expect(getDesign('missing')).toBeUndefined()
   })

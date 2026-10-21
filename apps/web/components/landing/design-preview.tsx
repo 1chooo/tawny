@@ -16,6 +16,7 @@ import { OceanPreviewMock } from '@/components/landing/ocean-preview-mock'
 import { VcardPreviewMock } from '@/components/landing/vcard-preview-mock'
 import { LandingPreviewMock } from '@/components/landing/landing-preview-mock'
 import { LoginPreviewMock } from '@/components/landing/login-preview-mock'
+import { AdminPreviewMock } from '@/components/landing/admin-preview-mock'
 import { IssueListDemo } from '@/components/landing/showcases/issue-list-demo'
 import { cn } from '@tawny/ui/lib/utils'
 
@@ -208,6 +209,21 @@ export function DesignPreview({ id, className }: DesignPreviewProps) {
     )
   }
 
+  if (id === 'admin') {
+    return (
+      <div
+        className={cn(
+          janeDisplay.variable,
+          janeDisplay.className,
+          'h-full',
+          className,
+        )}
+      >
+        <AdminPreviewMock className="h-full" />
+      </div>
+    )
+  }
+
   return null
 }
 
@@ -225,5 +241,6 @@ export function designPreviewBg(id: string) {
   if (id === 'vcard') return 'bg-[#121212]'
   if (id === 'landing') return 'bg-[#efede8]'
   if (id === 'login') return 'bg-[#efede8]'
+  if (id === 'admin') return 'bg-[#efede8]'
   return 'bg-background'
 }

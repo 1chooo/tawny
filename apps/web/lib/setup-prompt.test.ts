@@ -41,6 +41,9 @@ describe('setupCommand', () => {
     expect(setupCommand('login')).toBe(
       'npx create-tawny@latest login my-login --yes',
     )
+    expect(setupCommand('admin')).toBe(
+      'npx create-tawny@latest admin my-admin --yes',
+    )
   })
 
   it('keeps default names aligned with the CLI', () => {
@@ -53,6 +56,7 @@ describe('setupCommand', () => {
       vcard: 'my-vcard',
       landing: 'my-landing',
       login: 'my-login',
+      admin: 'my-admin',
     })
   })
 })
