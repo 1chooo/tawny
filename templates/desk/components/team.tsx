@@ -1,7 +1,7 @@
 'use client'
 
 import { Plus } from 'lucide-react'
-import { cn } from '@tawny/ui/lib/utils'
+import { cn } from '@/lib/utils'
 import { DeskLink } from '@/components/desk-link'
 import { EmptyNote } from '@/components/empty-note'
 import { useDesk } from '@/components/desk-store'

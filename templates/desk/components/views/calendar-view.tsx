@@ -7,7 +7,7 @@ import { EmptyNote } from '@/components/empty-note'
 import { useDesk } from '@/components/desk-store'
 import { PageHeading, primaryButton, quietButton } from '@/components/views/page-heading'
 import { DEMO_TODAY, matches, projectById } from '@/lib/model'
-import { cn } from '@tawny/ui/lib/utils'
+import { cn } from '@/lib/utils'
 
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 

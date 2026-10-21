@@ -2,6 +2,12 @@
 
 import { useMemo, useState, type FormEvent } from 'react'
 import { DeskDialog, Field, fieldClass } from '@/components/desk-dialog'
+import {
+  DeskSelect,
+  PRIORITY_OPTIONS,
+  PROJECT_STATUS_OPTIONS,
+  TASK_STATUS_OPTIONS,
+} from '@/components/desk-select'
 import { useDesk } from '@/components/desk-store'
 import { IMPORT_GUIDE, SAMPLE_CSV, parseImport, type ImportRow } from '@/lib/import-data'
 import {
@@ -57,21 +63,21 @@ export function ProjectForm() {
             <input className={fieldClass} type="date" value={due} onChange={(event) => setDue(event.target.value)} />
           </Field>
           <Field label="Status">
-            <select className={fieldClass} value={status} onChange={(event) => setStatus(event.target.value as ProjectStatus)}>
-              <option value="running">Running</option>
-              <option value="pending">Pending</option>
-              <option value="ended">Ended</option>
-            </select>
+            <DeskSelect
+              ariaLabel="Status"
+              value={status}
+              options={PROJECT_STATUS_OPTIONS}
+              onChange={(next) => setStatus(next as ProjectStatus)}
+            />
           </Field>
         </div>
         <Field label="Owner">
-          <select className={fieldClass} value={ownerId} onChange={(event) => setOwnerId(event.target.value)}>
-            {members.map((member) => (
-              <option key={member.id} value={member.id}>
-                {member.name}
-              </option>
-            ))}
-          </select>
+          <DeskSelect
+            ariaLabel="Owner"
+            value={ownerId}
+            options={members.map((member) => ({ value: member.id, label: member.name }))}
+            onChange={setOwnerId}
+          />
         </Field>
         {error ? <p className="text-sm text-foreground">{error}</p> : null}
         <div className="flex justify-end gap-2 pt-2">
@@ -272,34 +278,38 @@ export function TaskForm() {
           <input className={fieldClass} value={title} onChange={(event) => setTitle(event.target.value)} autoFocus />
         </Field>
         <Field label="Project">
-          <select className={fieldClass} value={projectId} onChange={(event) => setProjectId(event.target.value)}>
-            {projects.map((project) => (
-              <option key={project.id} value={project.id}>{project.name}</option>
-            ))}
-          </select>
+          <DeskSelect
+            ariaLabel="Project"
+            value={projectId}
+            options={projects.map((project) => ({ value: project.id, label: project.name }))}
+            onChange={setProjectId}
+          />
         </Field>
         <div className="grid grid-cols-2 gap-3">
           <Field label="Status">
-            <select className={fieldClass} value={status} onChange={(event) => setStatus(event.target.value as TaskStatus)}>
-              <option value="todo">To do</option>
-              <option value="progress">In progress</option>
-              <option value="done">Done</option>
-            </select>
+            <DeskSelect
+              ariaLabel="Status"
+              value={status}
+              options={TASK_STATUS_OPTIONS}
+              onChange={(next) => setStatus(next as TaskStatus)}
+            />
           </Field>
           <Field label="Priority">
-            <select className={fieldClass} value={priority} onChange={(event) => setPriority(event.target.value as Priority)}>
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-            </select>
+            <DeskSelect
+              ariaLabel="Priority"
+              value={priority}
+              options={PRIORITY_OPTIONS}
+              onChange={(next) => setPriority(next as Priority)}
+            />
           </Field>
         </div>
         <Field label="Assignee">
-          <select className={fieldClass} value={assigneeId} onChange={(event) => setAssigneeId(event.target.value)}>
-            {members.map((member) => (
-              <option key={member.id} value={member.id}>{member.name}</option>
-            ))}
-          </select>
+          <DeskSelect
+            ariaLabel="Assignee"
+            value={assigneeId}
+            options={members.map((member) => ({ value: member.id, label: member.name }))}
+            onChange={setAssigneeId}
+          />
         </Field>
         <Field label="Due">
           <input className={fieldClass} type="date" value={due} onChange={(event) => setDue(event.target.value)} />
@@ -365,12 +375,12 @@ export function EventForm() {
           <input className={fieldClass} value={duration} onChange={(event) => setDuration(event.target.value)} />
         </Field>
         <Field label="Project">
-          <select className={fieldClass} value={projectId} onChange={(event) => setProjectId(event.target.value)}>
-            <option value="">None</option>
-            {projectOptions.map((project) => (
-              <option key={project.id} value={project.id}>{project.name}</option>
-            ))}
-          </select>
+          <DeskSelect
+            ariaLabel="Project"
+            value={projectId}
+            options={[{ value: '', label: 'None' }, ...projectOptions.map((project) => ({ value: project.id, label: project.name }))]}
+            onChange={setProjectId}
+          />
         </Field>
         {error ? <p className="text-sm">{error}</p> : null}
         <div className="flex justify-end gap-2 pt-2">

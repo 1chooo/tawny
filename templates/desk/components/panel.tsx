@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { cn } from '@tawny/ui/lib/utils'
+import { cn } from '@/lib/utils'
 
 export function Panel({
   className,

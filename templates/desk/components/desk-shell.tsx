@@ -55,7 +55,7 @@ export function DeskAppShell({ children }: { children: ReactNode }) {
   }
 
   return (
-    <div ref={rootRef} className="@container relative flex min-h-0 flex-1 bg-background text-foreground">
+    <div ref={rootRef} data-desk-root="" className="@container relative flex min-h-0 flex-1 bg-background text-foreground">
       {menuOpen ? (
         <button
           type="button"
