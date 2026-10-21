@@ -11,6 +11,9 @@ npx create-tawny@latest link my-links
 npx create-tawny@latest ocean my-ocean-studio
 npx create-tawny@latest board my-board
 npx create-tawny@latest vcard my-vcard
+npx create-tawny@latest landing my-landing
+npx create-tawny@latest login my-login
+npx create-tawny@latest admin my-admin
 
 # skip prompts (coding agents) — uses placeholder author details
 npx create-tawny@latest art my-journal --yes
@@ -29,6 +32,9 @@ Available templates:
 | `ocean` | WebGL particle landing page — scroll-morphing sea creatures | [`templates/ocean`](../../templates/ocean) |
 | `board` | Issue dashboard — sidebar, toolbar, and a 4px list | [`templates/board`](../../templates/board) |
 | `vcard` | Personal vcard — profile sidebar, work, and notes | [`templates/vcard`](../../templates/vcard) |
+| `landing` | Ceramics studio home — hero, firing, and a studio note | [`templates/landing`](../../templates/landing) |
+| `login` | Ceramics studio sign-in — split screen and a form | [`templates/login`](../../templates/login) |
+| `admin` | Ceramics studio dashboard — revenue, restock, and customers | [`templates/admin`](../../templates/admin) |
 
 Under the hood it downloads the `templates/<id>` subdirectory straight from the [`1chooo/tawny`](https://github.com/1chooo/tawny) GitHub tarball (no `create-next-app`/`npx` involved, so there's no interactive "ok to install" prompt to hang on), sets the `package.json` name, replaces the `{{AUTHOR_NAME}}` / `{{AUTHOR_EMAIL}}` / `{{GITHUB_USERNAME}}` / `{{CITY_NAME}}` placeholders, and runs any template-specific setup (e.g. `art` strips the Chinese locale and seeds `.env` when you opt into English-only).
 

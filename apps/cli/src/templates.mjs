@@ -4,8 +4,11 @@ import { link } from "./link.mjs";
 import { ocean } from "./ocean.mjs";
 import { board } from "./board.mjs";
 import { vcard } from "./vcard.mjs";
+import { landing } from "./landing.mjs";
+import { login } from "./login.mjs";
+import { admin } from "./admin.mjs";
 
-export const templates = { dev, art, link, ocean, board, vcard };
+export const templates = { dev, art, link, ocean, board, vcard, landing, login, admin };
 
 export const templateList = Object.values(templates);
 

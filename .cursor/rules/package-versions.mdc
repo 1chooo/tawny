@@ -21,6 +21,9 @@ When bumping a version (release, publish, or new package), update **every** `pac
 | Dev template | `templates/dev/package.json` |
 | Link template | `templates/link/package.json` |
 | VCard template | `templates/vcard/package.json` |
+| Landing template | `templates/landing/package.json` |
+| Login template | `templates/login/package.json` |
+| Admin template | `templates/admin/package.json` |
 
 Do not leave packages on older versions (e.g. `0.1.0` / `0.0.0`) after a bump.
 
