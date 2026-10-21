@@ -44,8 +44,8 @@ describe('setupCommand', () => {
     expect(setupCommand('desk')).toBe(
       'npx create-tawny@latest desk my-desk --yes',
     )
-    expect(setupCommand('faculty')).toBe(
-      'npx create-tawny@latest faculty my-faculty --yes',
+    expect(setupCommand('usc')).toBe(
+      'npx create-tawny@latest usc my-usc --yes',
     )
   })
 
@@ -60,7 +60,7 @@ describe('setupCommand', () => {
       mug: 'my-mug',
       admin: 'my-admin',
       desk: 'my-desk',
-      faculty: 'my-faculty',
+      usc: 'my-usc',
     })
   })
 })

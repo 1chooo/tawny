@@ -7,9 +7,9 @@ import { vcard } from "./vcard.mjs";
 import { mug } from "./mug.mjs";
 import { admin } from "./admin.mjs";
 import { desk } from "./desk.mjs";
-import { faculty } from "./faculty.mjs";
+import { usc } from "./usc.mjs";
 
-export const templates = { dev, art, link, ocean, board, vcard, mug, admin, desk, faculty };
+export const templates = { dev, art, link, ocean, board, vcard, mug, admin, desk, usc };
 
 export const templateList = Object.values(templates);
 

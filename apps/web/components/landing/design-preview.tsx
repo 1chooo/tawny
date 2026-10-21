@@ -18,7 +18,7 @@ import { VcardPreviewMock } from '@/components/landing/vcard-preview-mock'
 import { MugPreviewMock } from '@/components/landing/mug-preview-mock'
 import { AdminPreviewMock } from '@/components/landing/admin-preview-mock'
 import { DeskPreviewMock } from '@/components/landing/desk-preview-mock'
-import { FacultyPreviewMock } from '@/components/landing/faculty-preview-mock'
+import { USCPreviewMock } from '@/components/landing/usc-preview-mock'
 import { IssueListDemo } from '@/components/landing/showcases/issue-list-demo'
 import { cn } from '@tawny/ui/lib/utils'
 
@@ -77,10 +77,10 @@ const mugDisplay = Space_Grotesk({
   display: 'swap',
 })
 
-const facultySans = Source_Sans_3({
+const uscSans = Source_Sans_3({
   subsets: ['latin'],
   weight: ['400', '600', '700'],
-  variable: '--font-faculty-sans',
+  variable: '--font-usc-sans',
 })
 
 const vcardMono = Roboto_Mono({
@@ -210,10 +210,10 @@ export function DesignPreview({ id, className }: DesignPreviewProps) {
     return <DeskPreviewMock className={cn('h-full', className)} />
   }
 
-  if (id === 'faculty') {
+  if (id === 'usc') {
     return (
-      <div className={cn(facultySans.variable, facultySans.className, 'h-full', className)}>
-        <FacultyPreviewMock className="h-full" />
+      <div className={cn(uscSans.variable, uscSans.className, 'h-full', className)}>
+        <USCPreviewMock className="h-full" />
       </div>
     )
   }
@@ -236,6 +236,6 @@ export function designPreviewBg(id: string) {
   if (id === 'mug') return 'bg-[#efede8]'
   if (id === 'admin') return 'bg-[#efede8]'
   if (id === 'desk') return 'bg-[#f7f6f3]'
-  if (id === 'faculty') return 'bg-[#333333]'
+  if (id === 'usc') return 'bg-[#333333]'
   return 'bg-background'
 }

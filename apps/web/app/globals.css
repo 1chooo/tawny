@@ -8,7 +8,7 @@
 @import './designs/vcard/vcard.css';
 @import './designs/mug.css';
 @import './designs/desk/desk.css';
-@import './designs/faculty/faculty.css';
+@import './designs/usc/usc.css';
 
 @custom-variant dark (&:is(.dark *));
 
