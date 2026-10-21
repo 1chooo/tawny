@@ -48,6 +48,12 @@
   font-family: var(--font-desk-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
+.desk-num {
+  font-family: var(--font-desk-sans), ui-sans-serif, system-ui, sans-serif;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

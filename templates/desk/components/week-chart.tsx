@@ -48,13 +48,13 @@ export function WeekChart() {
               dataKey="day"
               axisLine={false}
               tickLine={false}
-              tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
+              tick={{ fill: 'var(--muted-foreground)', fontSize: 12, fontFamily: 'var(--font-desk-sans), sans-serif' }}
             />
             <YAxis
               axisLine={false}
               tickLine={false}
               ticks={[0, 25, 50, 75, 100]}
-              tick={{ fill: 'var(--muted-foreground)', fontSize: 11 }}
+              tick={{ fill: 'var(--muted-foreground)', fontSize: 11, fontFamily: 'var(--font-desk-sans), sans-serif' }}
             />
             <Tooltip content={<WeekTooltip />} cursor={{ fill: 'transparent' }} />
             <Bar dataKey="value" radius={[4, 4, 0, 0]} maxBarSize={36} isAnimationActive={false}>
@@ -70,10 +70,10 @@ export function WeekChart() {
       </div>
       <div className="mt-4 flex items-center justify-between border-t border-border pt-3 text-sm">
         <p className="text-muted-foreground">
-          Average <span className="font-medium text-foreground">{average}%</span>
+          Average <span className="desk-num font-medium text-foreground">{average}%</span>
         </p>
         <p className="text-muted-foreground">
-          Peak <span className="font-medium text-foreground">{peak}%</span>
+          Peak <span className="desk-num font-medium text-foreground">{peak}%</span>
         </p>
       </div>
     </Panel>

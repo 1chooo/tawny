@@ -32,7 +32,7 @@ export function ProgressRing() {
             />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="desk-serif text-4xl leading-none">{progress}%</span>
+            <span className="desk-num text-4xl leading-none">{progress}%</span>
             <span className="mt-1 text-xs text-muted-foreground">Ended</span>
           </div>
         </div>

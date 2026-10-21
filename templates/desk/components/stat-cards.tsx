@@ -2,7 +2,7 @@
 
 import { ArrowUpRight, TrendingUp } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
-import { cn } from '@tawny/ui/lib/utils'
+import { cn } from '@/lib/utils'
 import { useDesk } from '@/components/desk-store'
 import { projectStats, type ProjectStatus } from '@/lib/model'
 import { deskHref } from '@/lib/routing'
@@ -50,7 +50,7 @@ export function StatCards() {
                 <ArrowUpRight className="size-3.5" aria-hidden="true" />
               </span>
             </span>
-            <span className="desk-serif text-4xl leading-none tracking-tight">{stat.value}</span>
+            <span className="desk-num text-4xl leading-none tracking-tight">{stat.value}</span>
             <span
               className={cn(
                 'flex items-center gap-1.5 text-xs',
