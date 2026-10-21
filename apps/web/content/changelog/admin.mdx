@@ -1,0 +1,24 @@
+---
+title: Admin joins the design catalog
+date: 2026-10-20
+category: Admin
+summary: A sales dashboard for Jane Mug, with revenue, restock, coupons, and customers.
+---
+
+Admin is the studio sales view. A radar and rank bars, a 30-day revenue chart, a restock queue, coupon use, and a short customer list. Jane is already signed in.
+
+<ChangelogPreview id="admin" />
+
+## Sample numbers
+
+Products, orders, coupons, and the shop stay labels in the nav. This page is the sales view, filled from `lib/sales.ts`.
+
+```bash
+npx create-tawny@latest admin my-admin
+```
+
+### Improvements
+
+- Added the Admin template to `create-tawny`
+- Added a live demo at `/designs/admin` and a full preview at `/view/admin`
+- Revenue, restock, and customers render from sample data
