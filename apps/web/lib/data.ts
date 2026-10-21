@@ -171,6 +171,23 @@ export const designs: Design[] = [
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'lib/sales.ts'],
   },
+  {
+    id: 'desk',
+    title: 'Desk',
+    description:
+      'A project desk with a sidebar, stat row, weekly chart, and a running timer. Open the live showcase.',
+    longDescription: [
+      'Desk is a project dashboard you can use. The sidebar opens tasks, the calendar, analytics, the team, settings, and help. Add a project or import a CSV and it shows up in the lists.',
+      'Search filters the desk, and edits stay in this browser tab. Scaffold a copy with the create command below, then replace the sample work in lib/model.ts.',
+    ],
+    category: 'Dashboard',
+    price: 'free',
+    tags: ['Next.js', 'Dashboard', 'Projects'],
+    demoPath: '/designs/desk',
+    viewPath: '/view/desk',
+    packageName: 'create-tawny',
+    sourceFiles: ['package.json', 'README.md', 'app/page.tsx', 'lib/model.ts'],
+  },
 ]
 
 /** Large pin, then the two compact slots. Home and `/designs` share this list. */

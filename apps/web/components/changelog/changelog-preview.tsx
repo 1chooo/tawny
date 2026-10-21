@@ -15,6 +15,7 @@ const DESIGN_IDS = new Set([
   'vcard',
   'mug',
   'admin',
+  'desk',
 ])
 
 type ChangelogPreviewProps = {

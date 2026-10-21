@@ -61,6 +61,14 @@ describe('getDesign', () => {
     expect(designCategories).toContain('Dashboard')
   })
 
+  it('includes the desk design under Dashboard', () => {
+    const desk = getDesign('desk')
+    expect(desk?.demoPath).toBe('/designs/desk')
+    expect(desk?.viewPath).toBe('/view/desk')
+    expect(desk?.category).toBe('Dashboard')
+    expect(pinnedDesignIds).not.toContain('desk')
+  })
+
   it('returns undefined for unknown ids', () => {
     expect(getDesign('missing')).toBeUndefined()
   })

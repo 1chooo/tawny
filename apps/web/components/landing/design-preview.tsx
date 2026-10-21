@@ -16,6 +16,7 @@ import { OceanPreviewMock } from '@/components/landing/ocean-preview-mock'
 import { VcardPreviewMock } from '@/components/landing/vcard-preview-mock'
 import { MugPreviewMock } from '@/components/landing/mug-preview-mock'
 import { AdminPreviewMock } from '@/components/landing/admin-preview-mock'
+import { DeskPreviewMock } from '@/components/landing/desk-preview-mock'
 import { IssueListDemo } from '@/components/landing/showcases/issue-list-demo'
 import { cn } from '@tawny/ui/lib/utils'
 
@@ -197,6 +198,10 @@ export function DesignPreview({ id, className }: DesignPreviewProps) {
     return <AdminPreviewMock className={cn('h-full', className)} />
   }
 
+  if (id === 'desk') {
+    return <DeskPreviewMock className={cn('h-full', className)} />
+  }
+
   return null
 }
 
@@ -214,5 +219,6 @@ export function designPreviewBg(id: string) {
   if (id === 'vcard') return 'bg-[#121212]'
   if (id === 'mug') return 'bg-[#efede8]'
   if (id === 'admin') return 'bg-[#efede8]'
+  if (id === 'desk') return 'bg-[#f7f6f3]'
   return 'bg-background'
 }

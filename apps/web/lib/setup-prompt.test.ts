@@ -41,6 +41,9 @@ describe('setupCommand', () => {
     expect(setupCommand('admin')).toBe(
       'npx create-tawny@latest admin my-admin --yes',
     )
+    expect(setupCommand('desk')).toBe(
+      'npx create-tawny@latest desk my-desk --yes',
+    )
   })
 
   it('keeps default names aligned with the CLI', () => {
@@ -53,6 +56,7 @@ describe('setupCommand', () => {
       vcard: 'my-vcard',
       mug: 'my-mug',
       admin: 'my-admin',
+      desk: 'my-desk',
     })
   })
 })

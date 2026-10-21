@@ -8,6 +8,7 @@ export const DEFAULT_PROJECT_NAMES: Record<string, string> = {
   vcard: 'my-vcard',
   mug: 'my-mug',
   admin: 'my-admin',
+  desk: 'my-desk',
 }
 
 const SETUP_BLURBS: Record<string, string> = {
@@ -19,6 +20,7 @@ const SETUP_BLURBS: Record<string, string> = {
   vcard: 'the personal vcard with a profile sidebar',
   mug: 'the ceramics studio with a home, sign-in, and sales dashboard',
   admin: 'the ceramics studio sales dashboard',
+  desk: 'the project desk dashboard',
 }
 
 export type SetupPromptInput = {
