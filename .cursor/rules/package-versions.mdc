@@ -24,6 +24,7 @@ When bumping a version (release, publish, or new package), update **every** `pac
 | Mug template | `templates/mug/package.json` |
 | Admin template | `templates/admin/package.json` |
 | Desk template | `templates/desk/package.json` |
+| Faculty template | `templates/faculty/package.json` |
 
 Do not leave packages on older versions (e.g. `0.1.0` / `0.0.0`) after a bump.
 
