@@ -7,12 +7,14 @@ import {
   Playfair_Display,
   Roboto,
   Roboto_Mono,
+  Space_Grotesk,
 } from 'next/font/google'
 import { ArtPreviewMock } from '@/components/landing/art-preview-mock'
 import { DevPreviewMock } from '@/components/landing/dev-preview-mock'
 import { LinkPreviewMock } from '@/components/landing/link-preview-mock'
 import { OceanPreviewMock } from '@/components/landing/ocean-preview-mock'
 import { VcardPreviewMock } from '@/components/landing/vcard-preview-mock'
+import { LandingPreviewMock } from '@/components/landing/landing-preview-mock'
 import { IssueListDemo } from '@/components/landing/showcases/issue-list-demo'
 import { cn } from '@tawny/ui/lib/utils'
 
@@ -62,6 +64,12 @@ const vcardSans = Roboto({
   subsets: ['latin'],
   weight: ['300', '400', '500', '700'],
   variable: '--font-vcard-sans',
+  display: 'swap',
+})
+
+const janeDisplay = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-jane-display',
   display: 'swap',
 })
 
@@ -169,6 +177,21 @@ export function DesignPreview({ id, className }: DesignPreviewProps) {
     )
   }
 
+  if (id === 'landing') {
+    return (
+      <div
+        className={cn(
+          janeDisplay.variable,
+          janeDisplay.className,
+          'h-full',
+          className,
+        )}
+      >
+        <LandingPreviewMock className="h-full" />
+      </div>
+    )
+  }
+
   return null
 }
 
@@ -184,5 +207,6 @@ export function designPreviewBg(id: string) {
   if (id === 'ocean') return 'bg-[#020a14]'
   if (id === 'board') return 'bg-background'
   if (id === 'vcard') return 'bg-[#121212]'
+  if (id === 'landing') return 'bg-[#efede8]'
   return 'bg-background'
 }

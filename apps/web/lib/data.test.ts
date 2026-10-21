@@ -43,6 +43,15 @@ describe('getDesign', () => {
     expect(designCategories).toContain('Portfolio')
   })
 
+  it('includes the landing design under Shop', () => {
+    const landing = getDesign('landing')
+    expect(landing?.demoPath).toBe('/designs/landing')
+    expect(landing?.viewPath).toBe('/view/landing')
+    expect(landing?.category).toBe('Shop')
+    expect(pinnedDesignIds).not.toContain('landing')
+    expect(designCategories).toContain('Shop')
+  })
+
   it('returns undefined for unknown ids', () => {
     expect(getDesign('missing')).toBeUndefined()
   })

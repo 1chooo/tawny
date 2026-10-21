@@ -35,6 +35,9 @@ describe('setupCommand', () => {
     expect(setupCommand('vcard')).toBe(
       'npx create-tawny@latest vcard my-vcard --yes',
     )
+    expect(setupCommand('landing')).toBe(
+      'npx create-tawny@latest landing my-landing --yes',
+    )
   })
 
   it('keeps default names aligned with the CLI', () => {
@@ -45,6 +48,7 @@ describe('setupCommand', () => {
       ocean: 'my-ocean-studio',
       board: 'my-board',
       vcard: 'my-vcard',
+      landing: 'my-landing',
     })
   })
 })

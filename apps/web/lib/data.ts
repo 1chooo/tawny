@@ -137,6 +137,23 @@ export const designs: Design[] = [
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx', 'lib/profile.ts'],
   },
+  {
+    id: 'landing',
+    title: 'Landing',
+    description:
+      'A ceramics studio home for Jane Mug — hero, latest firing, and a studio note. Open the live showcase.',
+    longDescription: [
+      'Landing is a small-batch ceramics home page. A round hero, three pieces from the latest firing, the four-step process, and a studio note introduce Jane.',
+      'Open the bag to change the sample pieces. Scaffold a copy with the create command below, then replace the photos and the studio copy.',
+    ],
+    category: 'Shop',
+    price: 'free',
+    tags: ['Next.js', 'Landing', 'Shop'],
+    demoPath: '/designs/landing',
+    viewPath: '/view/landing',
+    packageName: 'create-tawny',
+    sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
+  },
 ]
 
 /** Large pin, then the two compact slots. Home and `/designs` share this list. */
@@ -157,6 +174,7 @@ export const designCategories = [
   'Landing',
   'Dashboard',
   'Portfolio',
+  'Shop',
 ] as const
 
 export function getDesign(id: string) {
