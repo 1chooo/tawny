@@ -10,9 +10,9 @@ export function USCPreviewMock({ className }: { className?: string }) {
         inert
         role="img"
         aria-label="USC design preview"
-        className="h-full w-full bg-[#333333] font-(family-name:--font-usc-sans) text-black"
+        className="flex h-full w-full flex-col bg-[#333333] font-(family-name:--font-usc-sans) text-black"
       >
-        <div className="mx-auto mt-3 w-[min(1040px,calc(100%-1.5rem))] border border-black bg-[#EEEEEE]">
+        <div className="mx-auto mt-3 mb-3 flex w-[min(1040px,calc(100%-1.5rem))] flex-1 flex-col border border-black bg-[#EEEEEE]">
           <header className="border-b border-black bg-[#990000] px-6 pt-4 pb-4">
             <div className="flex items-center justify-between">
               <p className="text-sm font-bold text-[#FFCC00]">University of Southern California</p>

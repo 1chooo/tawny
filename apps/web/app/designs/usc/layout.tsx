@@ -64,7 +64,7 @@ export default function USCShowcaseLayout({ children }: { children: ReactNode })
           title="designs/usc"
           contentClassName="flex h-[min(56rem,calc(100dvh-8rem))] min-h-144 flex-col overflow-hidden bg-[#333333]"
         >
-          <USCRootShell className="min-h-0 flex-1 overflow-y-auto">{children}</USCRootShell>
+          <USCRootShell className="flex h-full min-h-0 flex-1 flex-col overflow-y-auto">{children}</USCRootShell>
         </ProductFrame>
 
         <DesignTemplateDocs design={design} />

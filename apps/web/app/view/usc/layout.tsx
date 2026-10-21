@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function USCViewLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <USCRootShell className="min-h-dvh">
+      <USCRootShell className="flex min-h-dvh flex-col">
         <SiteFrame>{children}</SiteFrame>
       </USCRootShell>
       <ViewBackLink href={design.demoPath} />

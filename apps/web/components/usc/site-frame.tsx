@@ -68,9 +68,9 @@ export function SiteFrame({ children }: { children: ReactNode }) {
   }
 
   return (
-    <div className="min-h-full bg-[#333333] text-black">
-      <div className="mx-auto mt-[5px] mb-4 w-[min(1100px,calc(100%-1rem))] border border-black bg-[#EEEEEE]">
-        <header className="border-b border-black bg-[#990000] pb-2">
+    <div className="flex min-h-full flex-1 flex-col bg-[#333333] text-black">
+      <div className="mx-auto mt-[5px] mb-4 flex w-[min(1100px,calc(100%-1rem))] flex-1 flex-col border border-black bg-[#EEEEEE]">
+        <header className="shrink-0 border-b border-black bg-[#990000] pb-2">
           <div className="flex items-center justify-between gap-4 px-4 pt-4">
             <p className="text-sm font-bold text-[#FFCC00] sm:text-base">
               University of Southern California
@@ -100,8 +100,8 @@ export function SiteFrame({ children }: { children: ReactNode }) {
             <SiteNav label="Primary" />
           </div>
         </header>
-        <main className="px-4 py-6 md:px-8 md:py-8">{children}</main>
-        <footer className="border-t border-black bg-[#990000] px-4 py-2">
+        <main className="flex-1 px-4 py-6 md:px-8 md:py-8">{children}</main>
+        <footer className="mt-auto shrink-0 border-t border-black bg-[#990000] px-4 py-2">
           <SiteNav label="Footer" />
         </footer>
       </div>

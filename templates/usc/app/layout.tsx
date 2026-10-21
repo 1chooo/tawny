@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sourceSans.className} antialiased`}>
+      <body className={`${sourceSans.className} flex min-h-dvh flex-col antialiased`}>
         <SiteFrame>{children}</SiteFrame>
       </body>
     </html>
