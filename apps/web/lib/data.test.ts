@@ -25,13 +25,13 @@ describe('getDesign', () => {
     expect(designCategories).toContain('Landing')
   })
 
-  it('includes the board design under Board', () => {
+  it('includes the board design under Dashboard', () => {
     const board = getDesign('board')
     expect(board?.demoPath).toBe('/designs/board')
     expect(board?.viewPath).toBe('/view/board')
-    expect(board?.category).toBe('Board')
+    expect(board?.category).toBe('Dashboard')
     expect(pinnedDesignIds).not.toContain('board')
-    expect(designCategories).toContain('Board')
+    expect(designCategories).toContain('Dashboard')
   })
 
   it('includes the vcard design under Portfolio', () => {

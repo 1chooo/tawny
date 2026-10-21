@@ -112,7 +112,7 @@ export const designs: Design[] = [
       'Board is a single-page issue dashboard you can use. Sidebar views filter the list, Filter narrows by status, and Display switches between the aligned list and a three-column board.',
       'Select a row to change its status, or create an issue from the button and the command palette. Scaffold a copy with the create command below, then replace the sample issues with your own.',
     ],
-    category: 'Board',
+    category: 'Dashboard',
     price: 'free',
     tags: ['Next.js', 'Dashboard', 'Issues'],
     demoPath: '/designs/board',
@@ -189,10 +189,9 @@ export const designCategories = [
   'Blog',
   'Links',
   'Landing',
-  'Board',
+  'Dashboard',
   'Portfolio',
   'Shop',
-  'Dashboard',
 ] as const
 
 export function getDesign(id: string) {
