@@ -24,15 +24,15 @@ export function AnalyticsView() {
       <div className="grid grid-cols-1 gap-3 @md:grid-cols-3">
         <article className="rounded-lg border border-primary bg-primary p-4 text-primary-foreground">
           <p className="text-xs">Open tasks</p>
-          <p className="desk-serif mt-2 text-4xl">{openTaskCount(tasks)}</p>
+          <p className="desk-num mt-2 text-4xl">{openTaskCount(tasks)}</p>
         </article>
         <article className="rounded-lg border border-border bg-card p-4">
           <p className="text-xs text-muted-foreground">Tasks done</p>
-          <p className="desk-serif mt-2 text-4xl">{done}</p>
+          <p className="desk-num mt-2 text-4xl">{done}</p>
         </article>
         <article className="rounded-lg border border-border bg-card p-4">
           <p className="text-xs text-muted-foreground">Projects ended</p>
-          <p className="desk-serif mt-2 text-4xl">{endedShare(projects)}%</p>
+          <p className="desk-num mt-2 text-4xl">{endedShare(projects)}%</p>
         </article>
       </div>
       <section className="rounded-lg border border-border bg-card p-4">

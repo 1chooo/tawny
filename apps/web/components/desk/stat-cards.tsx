@@ -50,7 +50,7 @@ export function StatCards() {
                 <ArrowUpRight className="size-3.5" aria-hidden="true" />
               </span>
             </span>
-            <span className="desk-serif text-4xl leading-none tracking-tight">{stat.value}</span>
+            <span className="desk-num text-4xl leading-none tracking-tight">{stat.value}</span>
             <span
               className={cn(
                 'flex items-center gap-1.5 text-xs',
