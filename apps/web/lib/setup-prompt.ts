@@ -7,6 +7,7 @@ export const DEFAULT_PROJECT_NAMES: Record<string, string> = {
   board: 'my-board',
   vcard: 'my-vcard',
   mug: 'my-mug',
+  admin: 'my-admin',
 }
 
 const SETUP_BLURBS: Record<string, string> = {
@@ -17,6 +18,7 @@ const SETUP_BLURBS: Record<string, string> = {
   board: 'the issue dashboard',
   vcard: 'the personal vcard with a profile sidebar',
   mug: 'the ceramics studio with a home, sign-in, and sales dashboard',
+  admin: 'the ceramics studio sales dashboard',
 }
 
 export type SetupPromptInput = {

@@ -38,6 +38,9 @@ describe('setupCommand', () => {
     expect(setupCommand('mug')).toBe(
       'npx create-tawny@latest mug my-mug --yes',
     )
+    expect(setupCommand('admin')).toBe(
+      'npx create-tawny@latest admin my-admin --yes',
+    )
   })
 
   it('keeps default names aligned with the CLI', () => {
@@ -49,6 +52,7 @@ describe('setupCommand', () => {
       board: 'my-board',
       vcard: 'my-vcard',
       mug: 'my-mug',
+      admin: 'my-admin',
     })
   })
 })

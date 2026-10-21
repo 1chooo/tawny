@@ -144,7 +144,7 @@ export const designs: Design[] = [
       'A ceramics studio for Jane Mug — home, sign-in, and a sales dashboard. Open the live showcase.',
     longDescription: [
       'Mug is a small-batch ceramics studio. The home introduces Jane, the sign-in keeps the kiln photograph, and the sales board shows revenue, restock, and customers.',
-      'Open the bag, sign in, or visit the studio admin from the page. Scaffold a copy with the create command below, then replace the photos and the sample sales.',
+      'Open the bag, sign in, or visit the studio admin from the page. The same dashboard is also listed on its own as Admin. Scaffold a copy with the create command below, then replace the photos and the sample sales.',
     ],
     category: 'Shop',
     price: 'free',
@@ -153,6 +153,23 @@ export const designs: Design[] = [
     viewPath: '/view/mug',
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
+  },
+  {
+    id: 'admin',
+    title: 'Admin',
+    description:
+      'The Jane Mug sales dashboard — revenue, restock, coupons, and customers. Open the live showcase.',
+    longDescription: [
+      'Admin is the studio sales view from Mug, listed on its own so it is easy to find. Jane is already signed in. The charts stay still, and the page scrolls through restock, coupons, and customers.',
+      'Mug still includes this screen at /admin. Scaffold a copy of just the dashboard with the create command below, then replace the sample numbers in lib/sales.ts.',
+    ],
+    category: 'Shop',
+    price: 'free',
+    tags: ['Next.js', 'Dashboard', 'Shop'],
+    demoPath: '/designs/admin',
+    viewPath: '/view/admin',
+    packageName: 'create-tawny',
+    sourceFiles: ['package.json', 'README.md', 'lib/sales.ts'],
   },
 ]
 

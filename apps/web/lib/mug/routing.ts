@@ -16,3 +16,14 @@ export function mugHref(pathname: string, href: string): string {
   if (href === '/') return base
   return `${base}${href}`
 }
+
+/** Wordmark and Sales targets for Mug's admin page, or the standalone Admin design. */
+export function studioHrefs(pathname: string): { home: string; sales: string } {
+  if (pathname === '/view/admin' || pathname.startsWith('/view/admin/')) {
+    return { home: '/view/admin', sales: '/view/admin' }
+  }
+  if (pathname === '/designs/admin' || pathname.startsWith('/designs/admin/')) {
+    return { home: '/designs/admin', sales: '/designs/admin' }
+  }
+  return { home: mugHref(pathname, '/'), sales: mugHref(pathname, '/admin') }
+}
