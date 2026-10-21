@@ -1,0 +1,24 @@
+---
+title: Login joins the design catalog
+date: 2026-10-20
+category: Login
+summary: A split sign-in for Jane Mug, with a kiln photograph beside email and password.
+---
+
+Login is the ceramics studio sign-in. The left half holds the firing photograph. The right half is the wordmark, email, and password.
+
+<ChangelogPreview id="login" />
+
+## Stay on the page
+
+Submitting the form does not open a session. Add `?next=/admin` to switch the heading to the studio account. The sample studio is Jane Mug.
+
+```bash
+npx create-tawny@latest login my-login
+```
+
+### Improvements
+
+- Added the Login template to `create-tawny`
+- Added a live demo at `/designs/login` and a full preview at `/view/login`
+- The form stays on the page until you connect your own auth
