@@ -2,11 +2,12 @@ import { describe, expect, it } from 'vitest'
 import { getTemplate, templateList, templates } from './templates.mjs'
 
 describe('templates registry', () => {
-  it('exposes art, dev, link, ocean, board, vcard, mug, and admin templates', () => {
+  it('exposes art, dev, link, ocean, board, vcard, mug, admin, and desk templates', () => {
     expect(Object.keys(templates).sort()).toEqual([
       'admin',
       'art',
       'board',
+      'desk',
       'dev',
       'link',
       'mug',
@@ -17,6 +18,7 @@ describe('templates registry', () => {
       'admin',
       'art',
       'board',
+      'desk',
       'dev',
       'link',
       'mug',
@@ -39,6 +41,8 @@ describe('templates registry', () => {
     expect(getTemplate('mug')?.defaultProjectName).toBe('my-mug')
     expect(getTemplate('admin')?.path).toBe('templates/admin')
     expect(getTemplate('admin')?.defaultProjectName).toBe('my-admin')
+    expect(getTemplate('desk')?.path).toBe('templates/desk')
+    expect(getTemplate('desk')?.defaultProjectName).toBe('my-desk')
   })
 
   it('keeps bilingual locales as the Art --yes default', () => {
@@ -50,6 +54,7 @@ describe('templates registry', () => {
     expect(getTemplate('vcard')?.extraDefaults).toEqual({})
     expect(getTemplate('mug')?.extraDefaults).toEqual({})
     expect(getTemplate('admin')?.extraDefaults).toEqual({})
+    expect(getTemplate('desk')?.extraDefaults).toEqual({})
   })
 
   it('returns undefined for unknown ids', () => {
