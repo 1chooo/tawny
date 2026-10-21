@@ -1,0 +1,25 @@
+---
+title: Desk joins the design catalog
+date: 2026-10-21
+category: Dashboard
+summary: A project desk you can click through — sidebar pages, add project, and CSV import.
+---
+
+Desk is a project dashboard. The sidebar opens tasks, the calendar, analytics, the team, settings, and help. Stats, the week chart, and the progress ring use the same sans figures as the rest of the page.
+
+<ChangelogPreview id="desk" />
+
+## Use the desk
+
++ Add project asks for a name, due date, status, and owner, then the row shows up in the sidebar and the lists. Import data takes a CSV or JSON file, shows a preview, and reports what landed. Search matches projects, tasks, and people. Status and owner use the paper menu, not the browser's dropdown. Edits stay in the browser tab.
+
+```bash
+npx create-tawny@latest desk my-desk
+```
+
+### Improvements
+
+- Added the Desk template to `create-tawny`
+- Added a live demo at `/designs/desk` and a full preview at `/view/desk`
+- Sidebar pages, add-project, and import share one session
+- Menus match the paper cards, and dashboard figures are lining numbers
