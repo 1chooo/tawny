@@ -188,6 +188,23 @@ export const designs: Design[] = [
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx', 'lib/model.ts'],
   },
+  {
+    id: 'faculty',
+    title: 'Faculty',
+    description:
+      'A responsive USC faculty page — cardinal banner, charcoal page, and a publications list. Open the live showcase.',
+    longDescription: [
+      'Faculty is a professor homepage in the USC palette. Cardinal and gold stay on the banner, the page behind the panel is charcoal, and the panel itself is light gray. Home, research, students, teaching, and publications all share that frame.',
+      'Open a publication to copy its BibTeX. On a phone the portrait stacks above the bio and the navigation wraps under the name. Scaffold a copy with the create command below, then replace the name, contact details, and sample papers.',
+    ],
+    category: 'Portfolio',
+    price: 'free',
+    tags: ['Next.js', 'Portfolio', 'USC'],
+    demoPath: '/designs/faculty',
+    viewPath: '/view/faculty',
+    packageName: 'create-tawny',
+    sourceFiles: ['package.json', 'README.md', 'app/page.tsx', 'lib/publications.ts'],
+  },
 ]
 
 /** Large pin, then the two compact slots. Home and `/designs` share this list. */

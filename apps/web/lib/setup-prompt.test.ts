@@ -44,6 +44,9 @@ describe('setupCommand', () => {
     expect(setupCommand('desk')).toBe(
       'npx create-tawny@latest desk my-desk --yes',
     )
+    expect(setupCommand('faculty')).toBe(
+      'npx create-tawny@latest faculty my-faculty --yes',
+    )
   })
 
   it('keeps default names aligned with the CLI', () => {
@@ -57,6 +60,7 @@ describe('setupCommand', () => {
       mug: 'my-mug',
       admin: 'my-admin',
       desk: 'my-desk',
+      faculty: 'my-faculty',
     })
   })
 })

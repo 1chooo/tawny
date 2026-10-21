@@ -9,6 +9,7 @@ export const DEFAULT_PROJECT_NAMES: Record<string, string> = {
   mug: 'my-mug',
   admin: 'my-admin',
   desk: 'my-desk',
+  faculty: 'my-faculty',
 }
 
 const SETUP_BLURBS: Record<string, string> = {
@@ -21,6 +22,7 @@ const SETUP_BLURBS: Record<string, string> = {
   mug: 'the ceramics studio with a home, sign-in, and sales dashboard',
   admin: 'the ceramics studio sales dashboard',
   desk: 'the project desk dashboard',
+  faculty: 'the USC faculty page',
 }
 
 export type SetupPromptInput = {

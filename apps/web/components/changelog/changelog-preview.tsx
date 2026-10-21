@@ -16,6 +16,7 @@ const DESIGN_IDS = new Set([
   'mug',
   'admin',
   'desk',
+  'faculty',
 ])
 
 type ChangelogPreviewProps = {

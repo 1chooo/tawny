@@ -69,6 +69,14 @@ describe('getDesign', () => {
     expect(pinnedDesignIds).not.toContain('desk')
   })
 
+  it('includes the faculty design under Portfolio', () => {
+    const faculty = getDesign('faculty')
+    expect(faculty?.demoPath).toBe('/designs/faculty')
+    expect(faculty?.viewPath).toBe('/view/faculty')
+    expect(faculty?.category).toBe('Portfolio')
+    expect(pinnedDesignIds).not.toContain('faculty')
+  })
+
   it('returns undefined for unknown ids', () => {
     expect(getDesign('missing')).toBeUndefined()
   })
