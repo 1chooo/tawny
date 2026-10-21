@@ -2,7 +2,7 @@
 
 A ceramics studio in three pages: the home, a split sign-in, and a sales dashboard. The bag keeps a few sample pieces in the browser. The dashboard numbers are sample data.
 
-The studio name in the sample copy is Jane.
+The studio name in the sample copy is Jane. Studio admin lives at `/admin`, and the same dashboard is also its own template, `admin`.
 
 Design by [Hugo Lin](https://1chooo.com).
 
