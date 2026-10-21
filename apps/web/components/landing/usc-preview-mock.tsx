@@ -12,8 +12,8 @@ export function USCPreviewMock({ className }: { className?: string }) {
         aria-label="USC design preview"
         className="flex h-full w-full flex-col bg-[#990000] font-(family-name:--font-usc-sans) text-black"
       >
-        <div className="mx-auto mt-3 mb-3 w-[min(1040px,calc(100%-1.5rem))] border border-black bg-[#EEEEEE]">
-          <header className="border-b border-black bg-[#990000] px-6 pt-4 pb-4">
+        <div className="w-full bg-[#EEEEEE]">
+          <header className="bg-[#990000] px-6 pt-4 pb-4">
             <div className="flex items-center justify-between">
               <p className="text-sm font-bold text-[#FFCC00]">University of Southern California</p>
               <svg viewBox="0 0 88 36" aria-hidden="true" className="h-8 w-auto">

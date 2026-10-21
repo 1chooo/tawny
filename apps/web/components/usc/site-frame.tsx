@@ -69,9 +69,9 @@ export function SiteFrame({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex min-h-full flex-1 flex-col bg-[#990000] text-black">
-      <div className="mx-auto mt-[5px] mb-4 w-[min(1100px,calc(100%-1rem))] border border-black bg-[#EEEEEE]">
-        <header className="border-b border-black bg-[#990000] pb-2">
-          <div className="flex items-center justify-between gap-4 px-4 pt-4">
+      <div className="w-full bg-[#EEEEEE]">
+        <header className="bg-[#990000] pb-2">
+          <div className="flex items-center justify-between gap-4 px-4 pt-4 md:px-8">
             <p className="text-sm font-bold text-[#FFCC00] sm:text-base">
               University of Southern California
             </p>
@@ -83,7 +83,7 @@ export function SiteFrame({ children }: { children: ReactNode }) {
               <UscWordmark />
             </a>
           </div>
-          <div className="mt-3 flex flex-col gap-2 px-4 pb-2 md:flex-row md:items-end md:justify-between">
+          <div className="mt-3 flex flex-col gap-2 px-4 pb-2 md:flex-row md:items-end md:justify-between md:px-8">
             <div className="min-w-0">
               <h1 className="text-3xl leading-tight font-bold text-white md:text-4xl">
                 {page.title}
@@ -101,7 +101,7 @@ export function SiteFrame({ children }: { children: ReactNode }) {
           </div>
         </header>
         <main className="px-4 py-6 md:px-8 md:py-8">{children}</main>
-        <footer className="border-t border-black bg-[#990000] px-4 py-2">
+        <footer className="bg-[#990000] px-4 py-2 md:px-8">
           <SiteNav label="Footer" />
         </footer>
       </div>
