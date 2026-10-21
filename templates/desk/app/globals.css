@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f6f3;
+  --foreground: #1a1816;
+  --card: #efece7;
+  --card-foreground: #1a1816;
+  --primary: #1a1816;
+  --primary-foreground: #f7f6f3;
+  --muted: #e4e2dc;
+  --muted-foreground: #6a6458;
+  --border: #ddd9cf;
+  --ring: #1a1816;
+  --tawny: #c6905c;
+  --tawny-foreground: #2b1a0f;
+  --radius: 0.5rem;
+  color-scheme: light;
+}
+
+@theme inline {
+  --font-sans: var(--font-desk-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-desk-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-tawny: var(--tawny);
+  --color-tawny-foreground: var(--tawny-foreground);
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+}
+
+.desk-serif {
+  font-family: var(--font-desk-serif), Georgia, "Times New Roman", serif;
+}
+
+.desk-mono {
+  font-family: var(--font-desk-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  button:not(:disabled),
+  [role="button"] {
+    cursor: pointer;
+  }
+
+  html,
+  body {
+    height: 100%;
+    background: var(--background);
+    color: var(--foreground);
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button,
+  input {
+    font: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--foreground);
+    outline-offset: 2px;
+  }
+}

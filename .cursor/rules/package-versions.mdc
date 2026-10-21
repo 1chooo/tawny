@@ -23,6 +23,7 @@ When bumping a version (release, publish, or new package), update **every** `pac
 | VCard template | `templates/vcard/package.json` |
 | Mug template | `templates/mug/package.json` |
 | Admin template | `templates/admin/package.json` |
+| Desk template | `templates/desk/package.json` |
 
 Do not leave packages on older versions (e.g. `0.1.0` / `0.0.0`) after a bump.
 
