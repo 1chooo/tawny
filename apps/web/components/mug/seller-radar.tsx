@@ -1,14 +1,8 @@
 "use client";
 
-import {
-  PolarAngleAxis,
-  PolarGrid,
-  Radar,
-  RadarChart,
-  ResponsiveContainer,
-  Tooltip,
-} from "recharts";
+import { PolarAngleAxis, PolarGrid, Radar, RadarChart, Tooltip } from "recharts";
 import { formatCents } from "@/components/mug/sales";
+import { useLayoutSize } from "@/components/mug/use-layout-size";
 
 type Point = { label: string; name: string; revenue: number };
 
@@ -30,14 +24,19 @@ function RadarTooltip({
 }
 
 export function SellerRadar({ data }: { data: Point[] }) {
+  const [ref, size] = useLayoutSize<HTMLDivElement>();
+
   return (
-    <div className="h-64 w-full min-w-0 overflow-hidden" aria-hidden>
-      <ResponsiveContainer
-        width="100%"
-        height="100%"
-        initialDimension={{ width: 320, height: 256 }}
-      >
-        <RadarChart data={data} cx="50%" cy="50%" outerRadius="68%">
+    <div ref={ref} className="h-64 w-full min-w-0 overflow-hidden" aria-hidden>
+      {size.width > 0 && size.height > 0 ? (
+        <RadarChart
+          data={data}
+          width={size.width}
+          height={size.height}
+          cx="50%"
+          cy="50%"
+          outerRadius="68%"
+        >
           <PolarGrid stroke="var(--border)" />
           <PolarAngleAxis
             dataKey="label"
@@ -53,7 +52,7 @@ export function SellerRadar({ data }: { data: Point[] }) {
           />
           <Tooltip content={<RadarTooltip />} />
         </RadarChart>
-      </ResponsiveContainer>
+      ) : null}
     </div>
   );
 }
