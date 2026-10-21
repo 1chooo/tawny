@@ -194,18 +194,7 @@ export function DesignPreview({ id, className }: DesignPreviewProps) {
   }
 
   if (id === 'admin') {
-    return (
-      <div
-        className={cn(
-          mugDisplay.variable,
-          mugDisplay.className,
-          'h-full',
-          className,
-        )}
-      >
-        <AdminPreviewMock className="h-full" />
-      </div>
-    )
+    return <AdminPreviewMock className={cn('h-full', className)} />
   }
 
   return null
