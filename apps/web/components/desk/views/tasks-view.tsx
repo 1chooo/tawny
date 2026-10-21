@@ -1,6 +1,7 @@
 'use client'
 
 import { DeskLink } from '@/components/desk/desk-link'
+import { DeskSelect, TASK_STATUS_OPTIONS } from '@/components/desk/desk-select'
 import { EmptyNote } from '@/components/desk/empty-note'
 import { useDesk } from '@/components/desk/desk-store'
 import { PageHeading, primaryButton } from '@/components/desk/views/page-heading'
@@ -60,21 +61,20 @@ export function TasksView() {
             {filter.label}
           </button>
         ))}
-        <label className="ml-auto flex items-center gap-2 text-xs text-muted-foreground">
+        <div className="ml-auto flex items-center gap-2 text-xs text-muted-foreground">
           Project
-          <select
-            className="h-8 rounded-lg border border-border bg-card px-2 text-sm text-foreground"
+          <DeskSelect
+            ariaLabel="Project"
+            size="sm"
+            className="w-44"
             value={desk.taskProjectId}
-            onChange={(event) => desk.setTaskProjectId(event.target.value)}
-          >
-            <option value="all">All projects</option>
-            {desk.projects.map((project) => (
-              <option key={project.id} value={project.id}>
-                {project.name}
-              </option>
-            ))}
-          </select>
-        </label>
+            onChange={desk.setTaskProjectId}
+            options={[
+              { value: 'all', label: 'All projects' },
+              ...desk.projects.map((project) => ({ value: project.id, label: project.name })),
+            ]}
+          />
+        </div>
       </div>
       {visible.length === 0 ? (
         <EmptyNote
@@ -88,16 +88,14 @@ export function TasksView() {
             const owner = memberById(desk.members, task.assigneeId)
             return (
               <li key={task.id} className="flex items-center gap-3 px-3 py-3">
-                <select
-                  aria-label={`Status for ${task.title}`}
-                  className="h-8 rounded-lg border border-border bg-background px-2 text-xs"
+                <DeskSelect
+                  ariaLabel={`Status for ${task.title}`}
+                  size="sm"
+                  className="w-32 shrink-0"
                   value={task.status}
-                  onChange={(event) => desk.updateTask(task.id, { status: event.target.value as TaskStatus })}
-                >
-                  <option value="todo">To do</option>
-                  <option value="progress">In progress</option>
-                  <option value="done">Done</option>
-                </select>
+                  onChange={(next) => desk.updateTask(task.id, { status: next as TaskStatus })}
+                  options={TASK_STATUS_OPTIONS}
+                />
                 <DeskLink href={`/tasks/${task.id}`} className="min-w-0 flex-1">
                   <span className="block truncate text-sm font-medium">{task.title}</span>
                   <span className="block truncate text-xs text-muted-foreground">

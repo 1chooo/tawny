@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { DeskLink } from '@/components/desk/desk-link'
 import { fieldClass } from '@/components/desk/desk-dialog'
+import { DeskSelect, PRIORITY_OPTIONS, TASK_STATUS_OPTIONS } from '@/components/desk/desk-select'
 import { EmptyNote } from '@/components/desk/empty-note'
 import { useDesk } from '@/components/desk/desk-store'
 import { PageHeading, primaryButton, quietButton } from '@/components/desk/views/page-heading'
@@ -43,37 +44,41 @@ export function TaskDetail({ id }: { id: string }) {
         </label>
         <label className="block text-sm">
           <span className="mb-1 block text-xs text-muted-foreground">Project</span>
-          <select className={fieldClass} value={projectId} onChange={(event) => setProjectId(event.target.value)}>
-            {desk.projects.map((project) => (
-              <option key={project.id} value={project.id}>{project.name}</option>
-            ))}
-          </select>
+          <DeskSelect
+            ariaLabel="Project"
+            value={projectId}
+            options={desk.projects.map((project) => ({ value: project.id, label: project.name }))}
+            onChange={setProjectId}
+          />
         </label>
         <div className="grid grid-cols-2 gap-3">
           <label className="block text-sm">
             <span className="mb-1 block text-xs text-muted-foreground">Status</span>
-            <select className={fieldClass} value={status} onChange={(event) => setStatus(event.target.value as TaskStatus)}>
-              <option value="todo">To do</option>
-              <option value="progress">In progress</option>
-              <option value="done">Done</option>
-            </select>
+            <DeskSelect
+              ariaLabel="Status"
+              value={status}
+              options={TASK_STATUS_OPTIONS}
+              onChange={(next) => setStatus(next as TaskStatus)}
+            />
           </label>
           <label className="block text-sm">
             <span className="mb-1 block text-xs text-muted-foreground">Priority</span>
-            <select className={fieldClass} value={priority} onChange={(event) => setPriority(event.target.value as Priority)}>
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-            </select>
+            <DeskSelect
+              ariaLabel="Priority"
+              value={priority}
+              options={PRIORITY_OPTIONS}
+              onChange={(next) => setPriority(next as Priority)}
+            />
           </label>
         </div>
         <label className="block text-sm">
           <span className="mb-1 block text-xs text-muted-foreground">Assignee</span>
-          <select className={fieldClass} value={assigneeId} onChange={(event) => setAssigneeId(event.target.value)}>
-            {desk.members.map((member) => (
-              <option key={member.id} value={member.id}>{member.name}</option>
-            ))}
-          </select>
+          <DeskSelect
+            ariaLabel="Assignee"
+            value={assigneeId}
+            options={desk.members.map((member) => ({ value: member.id, label: member.name }))}
+            onChange={setAssigneeId}
+          />
         </label>
         <label className="block text-sm">
           <span className="mb-1 block text-xs text-muted-foreground">Due</span>

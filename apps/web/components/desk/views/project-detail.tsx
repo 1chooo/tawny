@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { DeskLink } from '@/components/desk/desk-link'
 import { fieldClass } from '@/components/desk/desk-dialog'
+import { DeskSelect, PROJECT_STATUS_OPTIONS } from '@/components/desk/desk-select'
 import { EmptyNote } from '@/components/desk/empty-note'
 import { useDesk } from '@/components/desk/desk-store'
 import { PageHeading, primaryButton, quietButton } from '@/components/desk/views/page-heading'
@@ -52,20 +53,22 @@ export function ProjectDetail({ id }: { id: string }) {
           </label>
           <label className="block text-sm">
             <span className="mb-1 block text-xs text-muted-foreground">Status</span>
-            <select className={fieldClass} value={status} onChange={(event) => setStatus(event.target.value as ProjectStatus)}>
-              <option value="running">Running</option>
-              <option value="pending">Pending</option>
-              <option value="ended">Ended</option>
-            </select>
+            <DeskSelect
+              ariaLabel="Status"
+              value={status}
+              options={PROJECT_STATUS_OPTIONS}
+              onChange={(next) => setStatus(next as ProjectStatus)}
+            />
           </label>
         </div>
         <label className="block text-sm">
           <span className="mb-1 block text-xs text-muted-foreground">Owner</span>
-          <select className={fieldClass} value={ownerId} onChange={(event) => setOwnerId(event.target.value)}>
-            {desk.members.map((member) => (
-              <option key={member.id} value={member.id}>{member.name}</option>
-            ))}
-          </select>
+          <DeskSelect
+            ariaLabel="Owner"
+            value={ownerId}
+            options={desk.members.map((member) => ({ value: member.id, label: member.name }))}
+            onChange={setOwnerId}
+          />
         </label>
         <div className="flex flex-wrap gap-2 pt-2">
           <button type="submit" className={primaryButton}>Save project</button>
