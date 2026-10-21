@@ -42,8 +42,12 @@ export function RevenueChart({
   className?: string;
 }) {
   return (
-    <div className={cn("h-64 w-full", className)}>
-      <ResponsiveContainer width="100%" height="100%">
+    <div className={cn("h-64 w-full min-w-0 overflow-hidden", className)}>
+      <ResponsiveContainer
+        width="100%"
+        height="100%"
+        initialDimension={{ width: 480, height: 256 }}
+      >
         <AreaChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
           <CartesianGrid vertical={false} stroke="var(--border)" />
           <XAxis

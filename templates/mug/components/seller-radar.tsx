@@ -31,8 +31,12 @@ function RadarTooltip({
 
 export function SellerRadar({ data }: { data: Point[] }) {
   return (
-    <div className="h-64 w-full" aria-hidden>
-      <ResponsiveContainer width="100%" height="100%">
+    <div className="h-64 w-full min-w-0 overflow-hidden" aria-hidden>
+      <ResponsiveContainer
+        width="100%"
+        height="100%"
+        initialDimension={{ width: 320, height: 256 }}
+      >
         <RadarChart data={data} cx="50%" cy="50%" outerRadius="68%">
           <PolarGrid stroke="var(--border)" />
           <PolarAngleAxis

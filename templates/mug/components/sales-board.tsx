@@ -168,7 +168,7 @@ export function SalesBoard() {
         Sales
       </h1>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
-        <div className="flex flex-col gap-4 lg:col-span-4">
+        <div className="flex min-w-0 flex-col gap-4 lg:col-span-4">
           <BoardCard title="Overview" note="by revenue">
             <SellerRadar
               data={TOP_PIECES.map((piece) => ({
@@ -200,7 +200,7 @@ export function SalesBoard() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 lg:col-span-5">
+        <div className="flex min-w-0 flex-col gap-4 lg:col-span-5">
           <BoardCard title="Revenue by day" note="Last 30 days · net of discounts">
             <RevenueChart data={SERIES} className="h-80" />
           </BoardCard>
@@ -211,7 +211,7 @@ export function SalesBoard() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 lg:col-span-3">
+        <div className="flex min-w-0 flex-col gap-4 lg:col-span-3">
           <StatCard
             label="Revenue"
             value={formatCents(REVENUE_CENTS)}
