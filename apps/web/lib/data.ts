@@ -192,9 +192,9 @@ export const designs: Design[] = [
     id: 'usc',
     title: 'USC',
     description:
-      'A USC researcher page — cardinal banner, charcoal page, and a publications list. Open the live showcase.',
+      'A USC researcher page — cardinal page, light panel, and a publications list. Open the live showcase.',
     longDescription: [
-      'USC is a researcher homepage in the university palette. Cardinal and gold stay on the banner, the page behind the panel is charcoal, and the panel itself is light gray. Home, research, students, teaching, and publications all share that frame.',
+      'USC is a researcher homepage in the university palette. The page behind the panel is cardinal, and the panel itself is light gray. Home, research, students, teaching, and publications all share that frame.',
       'Open a publication to copy its BibTeX. On a phone the portrait stacks above the bio and the navigation wraps under the name. Scaffold a copy with the create command below, then replace the name, contact details, and sample papers.',
     ],
     category: 'Portfolio',

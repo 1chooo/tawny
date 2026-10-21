@@ -13,7 +13,7 @@ const sourceSans = Source_Sans_3({
 export const uscFontClassName = cn(sourceSans.variable, sourceSans.className)
 
 /**
- * Charcoal page and Source Sans 3 for the USC researcher site. Tokens stay on this
+ * Cardinal page and Source Sans 3 for the USC researcher site. Tokens stay on this
  * root so the demo does not follow Tawny's theme.
  */
 export function USCRootShell({

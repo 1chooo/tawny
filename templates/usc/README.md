@@ -1,6 +1,6 @@
 # USC
 
-A responsive USC researcher page: charcoal page, light panel, cardinal banner, and a publications list with BibTeX. The sample researcher is Dr. Alexandra J. Martinez.
+A responsive USC researcher page: cardinal page, light panel, and a publications list with BibTeX. The sample researcher is Dr. Alexandra J. Martinez.
 
 Design by [Hugo Lin](https://1chooo.com).
 

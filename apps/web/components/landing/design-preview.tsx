@@ -236,6 +236,6 @@ export function designPreviewBg(id: string) {
   if (id === 'mug') return 'bg-[#efede8]'
   if (id === 'admin') return 'bg-[#efede8]'
   if (id === 'desk') return 'bg-[#f7f6f3]'
-  if (id === 'usc') return 'bg-[#333333]'
+  if (id === 'usc') return 'bg-[#990000]'
   return 'bg-background'
 }
