@@ -25,13 +25,13 @@ describe('getDesign', () => {
     expect(designCategories).toContain('Landing')
   })
 
-  it('includes the board design under Dashboard', () => {
+  it('includes the board design under Board', () => {
     const board = getDesign('board')
     expect(board?.demoPath).toBe('/designs/board')
     expect(board?.viewPath).toBe('/view/board')
-    expect(board?.category).toBe('Dashboard')
+    expect(board?.category).toBe('Board')
     expect(pinnedDesignIds).not.toContain('board')
-    expect(designCategories).toContain('Dashboard')
+    expect(designCategories).toContain('Board')
   })
 
   it('includes the vcard design under Portfolio', () => {
@@ -52,12 +52,13 @@ describe('getDesign', () => {
     expect(designCategories).toContain('Shop')
   })
 
-  it('includes the admin design under Shop', () => {
+  it('includes the admin design under Dashboard', () => {
     const admin = getDesign('admin')
     expect(admin?.demoPath).toBe('/designs/admin')
     expect(admin?.viewPath).toBe('/view/admin')
-    expect(admin?.category).toBe('Shop')
+    expect(admin?.category).toBe('Dashboard')
     expect(pinnedDesignIds).not.toContain('admin')
+    expect(designCategories).toContain('Dashboard')
   })
 
   it('returns undefined for unknown ids', () => {

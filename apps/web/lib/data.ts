@@ -112,7 +112,7 @@ export const designs: Design[] = [
       'Board is a single-page issue dashboard you can use. Sidebar views filter the list, Filter narrows by status, and Display switches between the aligned list and a three-column board.',
       'Select a row to change its status, or create an issue from the button and the command palette. Scaffold a copy with the create command below, then replace the sample issues with your own.',
     ],
-    category: 'Dashboard',
+    category: 'Board',
     price: 'free',
     tags: ['Next.js', 'Dashboard', 'Issues'],
     demoPath: '/designs/board',
@@ -163,7 +163,7 @@ export const designs: Design[] = [
       'Admin is the studio sales view from Mug, listed on its own so it is easy to find. Jane is already signed in. The charts stay still, and the page scrolls through restock, coupons, and customers.',
       'Mug still includes this screen at /admin. Scaffold a copy of just the dashboard with the create command below, then replace the sample numbers in lib/sales.ts.',
     ],
-    category: 'Shop',
+    category: 'Dashboard',
     price: 'free',
     tags: ['Next.js', 'Dashboard', 'Shop'],
     demoPath: '/designs/admin',
@@ -189,9 +189,10 @@ export const designCategories = [
   'Blog',
   'Links',
   'Landing',
-  'Dashboard',
+  'Board',
   'Portfolio',
   'Shop',
+  'Dashboard',
 ] as const
 
 export function getDesign(id: string) {
