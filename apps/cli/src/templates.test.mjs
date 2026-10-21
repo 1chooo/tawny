@@ -2,26 +2,22 @@ import { describe, expect, it } from 'vitest'
 import { getTemplate, templateList, templates } from './templates.mjs'
 
 describe('templates registry', () => {
-  it('exposes art, dev, link, ocean, board, vcard, landing, login, and admin templates', () => {
+  it('exposes art, dev, link, ocean, board, vcard, and mug templates', () => {
     expect(Object.keys(templates).sort()).toEqual([
-      'admin',
       'art',
       'board',
       'dev',
-      'landing',
       'link',
-      'login',
+      'mug',
       'ocean',
       'vcard',
     ])
     expect(templateList.map((t) => t.id).sort()).toEqual([
-      'admin',
       'art',
       'board',
       'dev',
-      'landing',
       'link',
-      'login',
+      'mug',
       'ocean',
       'vcard',
     ])
@@ -37,12 +33,8 @@ describe('templates registry', () => {
     expect(getTemplate('board')?.defaultProjectName).toBe('my-board')
     expect(getTemplate('vcard')?.path).toBe('templates/vcard')
     expect(getTemplate('vcard')?.defaultProjectName).toBe('my-vcard')
-    expect(getTemplate('landing')?.path).toBe('templates/landing')
-    expect(getTemplate('landing')?.defaultProjectName).toBe('my-landing')
-    expect(getTemplate('login')?.path).toBe('templates/login')
-    expect(getTemplate('login')?.defaultProjectName).toBe('my-login')
-    expect(getTemplate('admin')?.path).toBe('templates/admin')
-    expect(getTemplate('admin')?.defaultProjectName).toBe('my-admin')
+    expect(getTemplate('mug')?.path).toBe('templates/mug')
+    expect(getTemplate('mug')?.defaultProjectName).toBe('my-mug')
   })
 
   it('keeps bilingual locales as the Art --yes default', () => {
@@ -52,9 +44,7 @@ describe('templates registry', () => {
     expect(getTemplate('ocean')?.extraDefaults).toEqual({})
     expect(getTemplate('board')?.extraDefaults).toEqual({})
     expect(getTemplate('vcard')?.extraDefaults).toEqual({})
-    expect(getTemplate('landing')?.extraDefaults).toEqual({})
-    expect(getTemplate('login')?.extraDefaults).toEqual({})
-    expect(getTemplate('admin')?.extraDefaults).toEqual({})
+    expect(getTemplate('mug')?.extraDefaults).toEqual({})
   })
 
   it('returns undefined for unknown ids', () => {
