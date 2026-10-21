@@ -40,7 +40,7 @@ function BoardCard({
     <section
       id={id}
       className={cn(
-        "flex scroll-mt-6 flex-col gap-4 border border-border bg-background p-4 sm:p-5",
+        "flex scroll-mt-6 flex-col gap-4 border border-border bg-background p-4 @sm:p-5",
         className,
       )}
     >
@@ -65,7 +65,7 @@ function StatCard({
   flag?: string;
 }) {
   return (
-    <section className="flex flex-col gap-2 border border-border bg-background p-4 sm:p-5">
+    <section className="flex flex-col gap-2 border border-border bg-background p-4 @sm:p-5">
       <div className="flex items-center justify-between gap-3">
         <p className="font-mono text-xs tracking-widest text-muted-foreground uppercase">
           {label}
@@ -96,12 +96,12 @@ function Shortcut({
   return (
     <a
       href={href}
-      className="flex flex-col gap-2 border border-border bg-background p-3 hover:border-foreground sm:p-4"
+      className="flex flex-col gap-2 border border-border bg-background p-3 hover:border-foreground @sm:p-4"
     >
-      <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase sm:text-xs">
+      <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase @sm:text-xs">
         {label}
       </span>
-      <span className="font-display text-2xl font-semibold tracking-tight tabular-nums sm:text-3xl">
+      <span className="font-display text-2xl font-semibold tracking-tight tabular-nums @sm:text-3xl">
         {value}
       </span>
     </a>
@@ -167,8 +167,8 @@ export function SalesBoard() {
       <h1 id="sales" className="sr-only">
         Sales
       </h1>
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
-        <div className="flex min-w-0 flex-col gap-4 lg:col-span-4">
+      <div className="grid grid-cols-1 gap-4 @lg:grid-cols-12">
+        <div className="flex min-w-0 flex-col gap-4 @lg:col-span-4">
           <BoardCard title="Overview" note="by revenue">
             <SellerRadar
               data={TOP_PIECES.map((piece) => ({
@@ -200,7 +200,7 @@ export function SalesBoard() {
           </div>
         </div>
 
-        <div className="flex min-w-0 flex-col gap-4 lg:col-span-5">
+        <div className="flex min-w-0 flex-col gap-4 @lg:col-span-5">
           <BoardCard title="Revenue by day" note="Last 30 days · net of discounts">
             <RevenueChart data={SERIES} className="h-80" />
           </BoardCard>
@@ -211,7 +211,7 @@ export function SalesBoard() {
           </div>
         </div>
 
-        <div className="flex min-w-0 flex-col gap-4 lg:col-span-3">
+        <div className="flex min-w-0 flex-col gap-4 @lg:col-span-3">
           <StatCard
             label="Revenue"
             value={formatCents(REVENUE_CENTS)}
@@ -240,7 +240,7 @@ export function SalesBoard() {
         </div>
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[1fr_1.4fr]">
+      <div className="grid gap-4 @xl:grid-cols-[1fr_1.4fr]">
         <BoardCard
           title="Coupon performance"
           note={`${formatCents(DISCOUNT_CENTS)} given`}
