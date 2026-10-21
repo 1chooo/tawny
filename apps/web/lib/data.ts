@@ -154,6 +154,23 @@ export const designs: Design[] = [
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
   },
+  {
+    id: 'login',
+    title: 'Login',
+    description:
+      'A split sign-in for Jane Mug — kiln photograph on the left, email and password on the right.',
+    longDescription: [
+      'Login is the ceramics studio sign-in. The left half holds the firing photograph and a short promise. The right half is the wordmark, email, and password.',
+      'Submitting the form stays on the page. Scaffold a copy with the create command below, then connect it to your own auth.',
+    ],
+    category: 'Shop',
+    price: 'free',
+    tags: ['Next.js', 'Sign-in', 'Shop'],
+    demoPath: '/designs/login',
+    viewPath: '/view/login',
+    packageName: 'create-tawny',
+    sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
+  },
 ]
 
 /** Large pin, then the two compact slots. Home and `/designs` share this list. */

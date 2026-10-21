@@ -7,6 +7,7 @@ export const DEFAULT_PROJECT_NAMES: Record<string, string> = {
   board: 'my-board',
   vcard: 'my-vcard',
   landing: 'my-landing',
+  login: 'my-login',
 }
 
 const SETUP_BLURBS: Record<string, string> = {
@@ -17,6 +18,7 @@ const SETUP_BLURBS: Record<string, string> = {
   board: 'the issue dashboard',
   vcard: 'the personal vcard with a profile sidebar',
   landing: 'the ceramics studio home page',
+  login: 'the ceramics studio sign-in page',
 }
 
 export type SetupPromptInput = {

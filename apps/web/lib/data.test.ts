@@ -52,6 +52,14 @@ describe('getDesign', () => {
     expect(designCategories).toContain('Shop')
   })
 
+  it('includes the login design under Shop', () => {
+    const login = getDesign('login')
+    expect(login?.demoPath).toBe('/designs/login')
+    expect(login?.viewPath).toBe('/view/login')
+    expect(login?.category).toBe('Shop')
+    expect(pinnedDesignIds).not.toContain('login')
+  })
+
   it('returns undefined for unknown ids', () => {
     expect(getDesign('missing')).toBeUndefined()
   })

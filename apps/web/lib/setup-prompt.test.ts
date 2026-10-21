@@ -38,6 +38,9 @@ describe('setupCommand', () => {
     expect(setupCommand('landing')).toBe(
       'npx create-tawny@latest landing my-landing --yes',
     )
+    expect(setupCommand('login')).toBe(
+      'npx create-tawny@latest login my-login --yes',
+    )
   })
 
   it('keeps default names aligned with the CLI', () => {
@@ -49,6 +52,7 @@ describe('setupCommand', () => {
       board: 'my-board',
       vcard: 'my-vcard',
       landing: 'my-landing',
+      login: 'my-login',
     })
   })
 })
