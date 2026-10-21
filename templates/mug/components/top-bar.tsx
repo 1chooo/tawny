@@ -1,9 +1,10 @@
+import Link from "next/link";
 import { AdminNav } from "./admin-nav";
 
 export function TopBar({ email }: { email: string }) {
   return (
     <header className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-3 border-b border-foreground px-4 py-4 md:px-6 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:gap-x-6">
-      <a href="#sales" className="col-start-1 flex shrink-0 items-center gap-2.5">
+      <Link href="/" className="col-start-1 flex shrink-0 items-center gap-2.5">
         <span
           aria-hidden
           className="flex size-7 items-center justify-center rounded-full bg-primary"
@@ -13,7 +14,7 @@ export function TopBar({ email }: { email: string }) {
         <span className="font-display text-lg font-semibold tracking-tight">
           Jane Mug
         </span>
-      </a>
+      </Link>
       <div className="col-span-2 min-w-0 lg:col-span-1 lg:col-start-2">
         <AdminNav />
       </div>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export function SplitShell({ children }: { children: React.ReactNode }) {
   return (
@@ -22,7 +23,7 @@ export function SplitShell({ children }: { children: React.ReactNode }) {
         </div>
       </aside>
       <main className="flex flex-col px-6 py-8 md:px-12">
-        <a href="#sign-in" className="flex w-fit items-center gap-2.5" aria-label="Jane Mug">
+        <Link href="/" className="flex w-fit items-center gap-2.5" aria-label="Jane Mug home">
           <span
             aria-hidden
             className="flex size-7 items-center justify-center rounded-full bg-primary"
@@ -32,7 +33,7 @@ export function SplitShell({ children }: { children: React.ReactNode }) {
           <span className="font-display text-lg font-semibold tracking-tight">
             Jane Mug
           </span>
-        </a>
+        </Link>
         <div className="flex flex-1 items-center justify-center py-12">
           <div id="sign-in" className="w-full max-w-sm">
             {children}

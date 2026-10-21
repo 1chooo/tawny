@@ -10,8 +10,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Sign in — Jane Mug",
-  description: "Sign in to your Jane Mug account.",
+  title: "Jane Mug — Handmade mugs & pottery",
+  description:
+    "Wheel-thrown mugs, cups, and vessels made in small batches. Shop the current kiln.",
 };
 
 export default function RootLayout({

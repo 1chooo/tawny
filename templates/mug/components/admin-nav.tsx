@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BarChart3, Package, Receipt, Store, TicketPercent } from "lucide-react";
 
 const NAV = [
@@ -13,15 +14,15 @@ export function AdminNav() {
     <nav aria-label="Admin" className="flex gap-1 overflow-x-auto">
       {NAV.map(({ label, icon: Icon, current }) =>
         current ? (
-          <a
+          <Link
             key={label}
-            href="#sales"
+            href="/admin"
             aria-current="page"
             className="flex shrink-0 items-center gap-2 bg-foreground px-3 py-2 text-sm text-background"
           >
             <Icon className="size-4" aria-hidden />
             {label}
-          </a>
+          </Link>
         ) : (
           <span
             key={label}

@@ -71,6 +71,7 @@ export function RevenueChart({
             strokeWidth={2}
             fill="var(--primary)"
             fillOpacity={0.15}
+            isAnimationActive={false}
           />
         </AreaChart>
       </ResponsiveContainer>

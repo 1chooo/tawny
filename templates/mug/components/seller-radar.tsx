@@ -45,6 +45,7 @@ export function SellerRadar({ data }: { data: Point[] }) {
             strokeWidth={2}
             fill="var(--primary)"
             fillOpacity={0.15}
+            isAnimationActive={false}
           />
           <Tooltip content={<RadarTooltip />} />
         </RadarChart>

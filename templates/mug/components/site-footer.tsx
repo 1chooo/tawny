@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function SiteFooter() {
   return (
     <footer className="border-t border-foreground bg-foreground text-background">
@@ -15,12 +17,12 @@ export function SiteFooter() {
           <a href="#work" className="hover:underline">
             Shop
           </a>
-          <button type="button" className="hover:underline">
+          <Link href="/login" className="hover:underline">
             Account
-          </button>
-          <button type="button" className="hover:underline">
+          </Link>
+          <Link href="/admin" className="hover:underline">
             Studio admin
-          </button>
+          </Link>
         </nav>
       </div>
       <div className="mx-auto flex max-w-7xl justify-between px-5 pb-8 font-mono text-xs opacity-50 md:px-8">

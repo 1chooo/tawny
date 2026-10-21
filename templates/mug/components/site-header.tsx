@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ShoppingBag, User } from "lucide-react";
 import { CartSheet } from "./cart-sheet";
 import { useCart } from "./cart-provider";
@@ -17,7 +18,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-5 md:px-8">
-        <a href="#top" className="flex items-center gap-2.5" aria-label="Jane Mug home">
+        <Link href="/" className="flex items-center gap-2.5" aria-label="Jane Mug home">
           <span
             aria-hidden
             className="flex size-7 items-center justify-center rounded-full bg-primary"
@@ -27,7 +28,7 @@ export function SiteHeader() {
           <span className="font-display text-lg font-semibold tracking-tight">
             Jane Mug
           </span>
-        </a>
+        </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
           {NAV.map((item) => (
@@ -42,13 +43,13 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-1">
-          <button
-            type="button"
+          <Link
+            href="/login"
             className="flex h-9 items-center gap-2 px-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <User className="size-4" aria-hidden />
             <span className="hidden sm:inline">Sign in</span>
-          </button>
+          </Link>
           <button
             type="button"
             onClick={() => setOpen(true)}

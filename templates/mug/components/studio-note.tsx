@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export function StudioNote() {
   return (
@@ -25,12 +26,12 @@ export function StudioNote() {
             you love might not come back exactly the same. That&apos;s the
             point — every mug carries the marks of the day it was made.
           </p>
-          <button
-            type="button"
+          <Link
+            href="/login"
             className="flex h-12 w-fit items-center bg-primary px-6 text-sm font-medium text-primary-foreground hover:opacity-90"
           >
             Create an account for kiln drops
-          </button>
+          </Link>
         </div>
       </div>
     </section>

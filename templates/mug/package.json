@@ -1,5 +1,5 @@
 {
-  "name": "my-admin",
+  "name": "my-mug",
   "version": "0.4.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.15",
     "clsx": "^2.1.1",
     "geist": "^1.7.0",
     "lucide-react": "^1.16.0",
