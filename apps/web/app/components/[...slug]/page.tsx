@@ -81,13 +81,11 @@ async function ComponentDemoDetail({
       />
 
       <div className="min-w-0">
-        <p className="mb-2 text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
-          {demo.category}
-        </p>
-        <h1 className="text-balance text-3xl font-semibold tracking-[-0.03em] text-foreground md:text-4xl">
+        <h1 className="max-w-xl text-balance text-4xl font-medium leading-[1.1] tracking-tight text-foreground">
           {demo.title}
         </h1>
-        <p className="mt-3 max-w-2xl text-pretty leading-relaxed text-muted-foreground">
+        <p className="mt-2 font-mono text-xs text-foreground/60">{demo.category}</p>
+        <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-foreground">
           {demo.description}
         </p>
 
@@ -118,11 +116,11 @@ async function ComponentDemoDetail({
           </ProductFrame>
         </div>
 
-        <div className="mt-12">
-          <h2 className="text-lg font-semibold tracking-tight text-foreground">
+        <div id="source" className="mt-12 scroll-mt-28">
+          <h2 className="text-2xl font-medium tracking-tight text-foreground">
             Source
           </h2>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-2 text-sm leading-relaxed text-foreground/70">
             Copy the files below into your project.
           </p>
 
