@@ -204,16 +204,16 @@ export function DocsSearchTrigger({
       type="button"
       onClick={() => setOpen(true)}
       className={cn(
-        'inline-flex min-w-0 items-center gap-2 border border-white/8 bg-white/3 text-sm text-muted-foreground transition-colors',
-        'hover:border-white/15 hover:bg-white/5 hover:text-foreground',
-        variant === 'sidebar' && 'h-10 w-full rounded-lg px-3',
-        variant === 'toolbar' && 'h-9 min-w-0 flex-1 rounded-lg px-3',
+        'inline-flex min-w-0 items-center gap-2 rounded-[10px] border border-border bg-card text-[13px] font-medium text-muted-foreground transition-colors',
+        'hover:bg-accent hover:text-foreground',
+        variant === 'sidebar' && 'h-9 w-full px-2.5',
+        variant === 'toolbar' && 'h-9 min-w-0 flex-1 px-2.5',
       )}
       aria-label="Search docs"
     >
       <Search className="size-3.5 shrink-0" aria-hidden />
       <span className="min-w-0 flex-1 truncate text-left">Search docs…</span>
-      <kbd className="pointer-events-none hidden h-5 shrink-0 items-center rounded border border-white/10 bg-white/5 px-1.5 font-mono text-[0.65rem] font-medium text-muted-foreground sm:inline-flex">
+      <kbd className="pointer-events-none hidden h-5 shrink-0 items-center rounded-md border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground sm:inline-flex">
         {shortcutLabel}
       </kbd>
     </button>

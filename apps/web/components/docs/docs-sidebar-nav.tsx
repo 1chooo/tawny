@@ -14,10 +14,10 @@ export function DocsSidebarNav({
   onNavigate?: () => void
 }) {
   return (
-    <nav aria-label="Docs" className="flex flex-col gap-6">
+    <nav aria-label="Docs" className="flex flex-col gap-1">
       {groups.map((group) => (
-        <div key={group.id} className="flex flex-col gap-1">
-          <p className="px-2 text-[0.65rem] font-medium uppercase tracking-[0.15em] text-muted-foreground">
+        <div key={group.id} className="flex flex-col gap-0.5 pt-3 first:pt-0">
+          <p className="flex h-8 items-center px-2 text-[13px] font-medium text-foreground">
             {group.title}
           </p>
           <ul className="flex flex-col gap-0.5">
@@ -30,13 +30,13 @@ export function DocsSidebarNav({
                     aria-current={isActive ? 'page' : undefined}
                     onClick={onNavigate}
                     className={cn(
-                      'block rounded-md px-2 py-1.5 text-sm transition-colors',
+                      'flex h-8 items-center rounded-[10px] px-2 text-[13px] font-medium transition-colors duration-200',
                       isActive
-                        ? 'bg-white/8 font-medium text-foreground'
-                        : 'text-muted-foreground hover:bg-white/5 hover:text-foreground',
+                        ? 'bg-accent text-foreground'
+                        : 'text-muted-foreground hover:bg-accent/70 hover:text-foreground',
                     )}
                   >
-                    {item.title}
+                    <span className="min-w-0 truncate">{item.title}</span>
                   </Link>
                 </li>
               )

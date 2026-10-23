@@ -5,7 +5,7 @@ import { cn } from '@tawny/ui/lib/utils'
 const calloutConfig = {
   note: {
     icon: Info,
-    className: 'border-white/10 bg-white/3',
+    className: 'border-border bg-muted/60',
     iconClassName: 'text-muted-foreground',
   },
   tip: {

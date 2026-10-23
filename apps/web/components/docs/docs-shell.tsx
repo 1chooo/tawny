@@ -46,7 +46,7 @@ export function DocsShell({
             <div className="flex items-center gap-3">
               <button
                 type="button"
-                className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-white/8 bg-white/3 text-muted-foreground transition-colors hover:border-white/15 hover:bg-white/5 hover:text-foreground"
+                className="inline-flex size-9 shrink-0 items-center justify-center rounded-[10px] border border-border bg-card text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                 aria-label={
                   mobileOpen ? 'Close docs navigation' : 'Open docs navigation'
                 }

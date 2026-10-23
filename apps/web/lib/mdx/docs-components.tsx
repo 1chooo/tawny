@@ -79,7 +79,7 @@ async function DocsPre({
     return (
       <div
         className={cn(
-          'docs-code mt-6 overflow-x-auto rounded-lg border border-white/8 bg-white/3 [&_pre]:m-0 [&_pre]:bg-transparent! [&_pre]:p-4 [&_pre]:text-sm [&_pre]:leading-relaxed',
+          'docs-code mt-6 overflow-x-auto rounded-2xl bg-[#141311] text-white/85 [&_pre]:m-0 [&_pre]:bg-transparent! [&_pre]:p-4 [&_pre]:text-[13px] [&_pre]:leading-5',
           className,
         )}
         dangerouslySetInnerHTML={{ __html: html }}
@@ -89,7 +89,7 @@ async function DocsPre({
     return (
       <pre
         className={cn(
-          'mt-6 overflow-x-auto rounded-lg border border-white/8 bg-white/3 p-4 font-mono text-sm leading-relaxed',
+          'mt-6 overflow-x-auto rounded-2xl bg-[#141311] p-4 font-mono text-[13px] leading-5 text-white/85',
           '[&_code]:bg-transparent [&_code]:p-0 [&_code]:text-inherit',
           className,
         )}
@@ -166,37 +166,37 @@ export const docsMdxComponents: MDXComponents = {
   ),
   blockquote: (props: ComponentPropsWithoutRef<'blockquote'>) => (
     <blockquote
-      className="mt-6 border-l-2 border-tawny/50 bg-white/3 py-3 pl-5 pr-4 text-lg italic text-foreground/90"
+      className="mt-6 border-l-4 border-tawny bg-transparent py-0 pl-4 text-base italic text-foreground/65"
       {...props}
     />
   ),
   hr: (props: ComponentPropsWithoutRef<'hr'>) => (
-    <hr className="my-10 border-white/8" {...props} />
+    <hr className="my-10 border-border" {...props} />
   ),
   strong: (props: ComponentPropsWithoutRef<'strong'>) => (
     <strong className="font-semibold text-foreground" {...props} />
   ),
   code: (props: ComponentPropsWithoutRef<'code'>) => (
     <code
-      className="rounded bg-white/8 px-1.5 py-0.5 font-mono text-sm text-foreground"
+      className="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.9em] text-tawny"
       {...props}
     />
   ),
   pre: DocsPre,
   table: (props: ComponentPropsWithoutRef<'table'>) => (
-    <div className="mt-6 overflow-x-auto rounded-lg border border-white/8">
+    <div className="mt-6 overflow-x-auto rounded-xl border border-border">
       <table className="w-full border-collapse text-left text-sm" {...props} />
     </div>
   ),
   th: (props: ComponentPropsWithoutRef<'th'>) => (
     <th
-      className="border-b border-white/8 bg-white/3 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+      className="border-b border-border bg-muted/50 px-4 py-3 text-xs font-medium text-foreground/60"
       {...props}
     />
   ),
   td: (props: ComponentPropsWithoutRef<'td'>) => (
     <td
-      className="border-b border-white/8 px-4 py-3 text-muted-foreground"
+      className="border-b border-border px-4 py-3 text-foreground/80"
       {...props}
     />
   ),

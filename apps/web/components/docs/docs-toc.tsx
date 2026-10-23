@@ -58,9 +58,7 @@ export function DocsToc({
           sticky ? 'sticky top-16 pl-4' : 'pl-0',
         )}
       >
-        <p className="mb-3 text-[0.65rem] font-medium uppercase tracking-[0.15em] text-muted-foreground">
-          {label}
-        </p>
+        <p className="mb-3 text-[13px] font-medium text-foreground">{label}</p>
         <ul className="flex flex-col gap-1 border-l border-border">
           {items.map((item) => {
             const isActive = item.id === activeId
