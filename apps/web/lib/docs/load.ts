@@ -98,6 +98,15 @@ export function getDocsSidebar(): DocsSidebarGroup[] {
     }),
   }))
 
+  const start = mdxGroups.find((group) => group.id === 'start')
+  if (start) {
+    start.items.unshift({
+      slug: '',
+      href: '/components',
+      title: 'Overview',
+    })
+  }
+
   return [
     ...mdxGroups,
     {

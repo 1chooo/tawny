@@ -36,7 +36,19 @@ function groupTitleForSlug(slug: string): string {
  * plus one entry per live component demo).
  */
 export function getDocsSearchIndex(): DocsSearchEntry[] {
-  const entries: DocsSearchEntry[] = []
+  const entries: DocsSearchEntry[] = [
+    {
+      id: 'page:overview',
+      slug: '',
+      href: '/components',
+      title: 'Overview',
+      description:
+        'Live UI components for Next.js. Preview them, then copy the source.',
+      groupTitle: 'Get started',
+      keywords: 'overview components gallery live preview',
+      kind: 'page',
+    },
+  ]
 
   for (const slug of getAllDocSlugs()) {
     const doc = loadDoc(slug)
