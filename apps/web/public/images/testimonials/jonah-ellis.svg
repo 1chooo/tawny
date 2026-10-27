@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <title>Placeholder portrait of Jonah Ellis</title>
+  <rect width="80" height="80" fill="#3E4C59"/>
+  <path d="M12 80c3-18 14-28 28-28s25 10 28 28H12Z" fill="#243140"/>
+  <circle cx="40" cy="36" r="16" fill="#E8C4A6"/>
+  <path d="M25 34c.4-13 6.5-20 15-20s14.6 7 15 20c-3-6-8-10-15-10s-12 4-15 10Z" fill="#1B2430"/>
+  <path d="M29 48c2.2 6 6 9 11 9s8.8-3 11-9c-2.6 2.4-6.4 3.6-11 3.6S31.6 50.4 29 48Z" fill="#1B2430"/>
+  <circle cx="34" cy="36" r="1.7" fill="#1B2430"/>
+  <circle cx="46" cy="36" r="1.7" fill="#1B2430"/>
+</svg>

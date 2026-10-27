@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <title>Placeholder portrait of Amira Solano</title>
+  <rect width="80" height="80" fill="#6E5A82"/>
+  <path d="M12 80c3-18 14-28 28-28s25 10 28 28H12Z" fill="#F7F4EF"/>
+  <path d="M18 42c0-18 8-28 22-28s22 10 22 28v14c-2 3-8 6-14 6H32c-6 0-12-3-14-6V42Z" fill="#2A2438"/>
+  <circle cx="40" cy="38" r="14" fill="#F3D2C2"/>
+  <path d="M26 36c1-10 6-16 14-16s13 6 14 16c-3-6-8-9-14-9s-11 3-14 9Z" fill="#2A2438"/>
+  <circle cx="34.5" cy="39" r="1.7" fill="#2A2438"/>
+  <circle cx="45.5" cy="39" r="1.7" fill="#2A2438"/>
+</svg>

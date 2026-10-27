@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <title>Fieldnote placeholder mark</title>
+  <path fill="#131211" d="M6 3.5h9.2L19.5 8v12.5a1.5 1.5 0 0 1-1.5 1.5H6A1.5 1.5 0 0 1 4.5 20.5v-15.5A1.5 1.5 0 0 1 6 3.5Zm8.2 1.6v3.2h3.1"/>
+  <path stroke="#131211" stroke-width="1.4" stroke-linecap="round" d="M8 12.2h8M8 15.4h6"/>
+</svg>

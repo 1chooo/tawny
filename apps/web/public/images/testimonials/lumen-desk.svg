@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <title>Lumen Desk placeholder mark</title>
+  <circle cx="12" cy="12" r="4.2" fill="#131211"/>
+  <path fill="#131211" d="M11 2.4h2v3.1h-2zM11 18.5h2V21.6h-2zM2.4 11h3.1v2H2.4zM18.5 11H21.6v2H18.5zM5.1 4.4l1.5-1.5 2.2 2.2-1.5 1.5zM15.2 18.9l1.5-1.5 2.2 2.2-1.5 1.5zM18.9 5.1l-1.5-1.5-2.2 2.2 1.5 1.5zM8.8 16.7 7.3 18.2 5.1 16l1.5-1.5z"/>
+</svg>
