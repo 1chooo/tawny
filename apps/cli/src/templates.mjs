@@ -9,6 +9,7 @@ import { atelier } from "./atelier.mjs";
 import { admin } from "./admin.mjs";
 import { desk } from "./desk.mjs";
 import { usc } from "./usc.mjs";
+import { seal } from "./seal.mjs";
 
 export const templates = {
   dev,
@@ -22,6 +23,7 @@ export const templates = {
   admin,
   desk,
   usc,
+  seal,
 };
 
 export const templateList = Object.values(templates);

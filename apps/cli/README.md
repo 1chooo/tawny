@@ -16,6 +16,7 @@ npx create-tawny@latest atelier my-atelier
 npx create-tawny@latest admin my-admin
 npx create-tawny@latest desk my-desk
 npx create-tawny@latest usc my-usc
+npx create-tawny@latest seal my-seal
 
 # skip prompts (coding agents) — uses placeholder author details
 npx create-tawny@latest art my-journal --yes
@@ -39,6 +40,7 @@ Available templates:
 | `admin` | Ceramics studio dashboard — revenue, restock, and customers | [`templates/admin`](../../templates/admin) |
 | `desk` | Project desk — sidebar, weekly chart, and a timer | [`templates/desk`](../../templates/desk) |
 | `usc` | USC researcher page — cardinal banner and publications | [`templates/usc`](../../templates/usc) |
+| `seal` | Seal — paper editorial portfolio with vertical Chinese titles | [`templates/seal`](../../templates/seal) |
 
 Under the hood it downloads the `templates/<id>` subdirectory straight from the [`1chooo/tawny`](https://github.com/1chooo/tawny) GitHub tarball (no `create-next-app`/`npx` involved, so there's no interactive "ok to install" prompt to hang on), sets the `package.json` name, replaces the `{{AUTHOR_NAME}}` / `{{AUTHOR_EMAIL}}` / `{{GITHUB_USERNAME}}` / `{{CITY_NAME}}` placeholders, and runs any template-specific setup (e.g. `art` strips the Chinese locale and seeds `.env` when you opt into English-only).
 
