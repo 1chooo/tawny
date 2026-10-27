@@ -37,6 +37,9 @@ const IGNORED_EXTENSIONS = new Set([
   '.woff2',
   '.ttf',
   '.eot',
+  '.glb',
+  '.gltf',
+  '.bin',
   '.lock',
 ])
 
@@ -80,6 +83,17 @@ function flattenFilePaths(nodes: TemplateFileNode[]): string[] {
   )
 }
 
+/** Absolute path to `templates/<designId>` from the web app. */
+export function templateRoot(designId: string) {
+  return path.join(process.cwd(), '..', '..', 'templates', designId)
+}
+
+/** Text files in a template, using the same ignore rules as the source viewer. */
+export async function listTemplateFilePaths(designId: string) {
+  const tree = await walkDir(templateRoot(designId), '')
+  return flattenFilePaths(tree)
+}
+
 /**
  * Walks `templates/<designId>` and highlights every text file in it, for the
  * shadcn/ui-blocks-style file tree + code viewer on the design demo pages.
@@ -87,7 +101,7 @@ function flattenFilePaths(nodes: TemplateFileNode[]): string[] {
 export async function loadTemplateExplorer(
   designId: string,
 ): Promise<TemplateExplorerData> {
-  const root = path.join(process.cwd(), '..', '..', 'templates', designId)
+  const root = templateRoot(designId)
   const tree = await walkDir(root, '')
   const filePaths = flattenFilePaths(tree)
 

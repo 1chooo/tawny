@@ -19,6 +19,11 @@ const nextConfig = {
     unoptimized: true,
   },
   transpilePackages: ['@tawny/ui', 'embed-card'],
+  // v0 fetches /r/[name] at runtime. Trace the monorepo templates into that
+  // function when the Next root is apps/web.
+  outputFileTracingIncludes: {
+    '/r/[name]': ['../../templates/**/*'],
+  },
   async redirects() {
     return [
       {
