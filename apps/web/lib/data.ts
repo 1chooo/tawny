@@ -138,7 +138,7 @@ export const designs: Design[] = [
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx', 'lib/profile.ts'],
   },
   {
-    id: 'mug',
+    id: 'cobalt',
     title: 'Cobalt',
     description:
       'Cobalt is a ceramics studio for Jane Mug — home, sign-in, and a sales dashboard. Open the live showcase.',
@@ -149,13 +149,13 @@ export const designs: Design[] = [
     category: 'Shop',
     price: 'free',
     tags: ['Next.js', 'Shop', 'Dashboard'],
-    demoPath: '/designs/mug',
-    viewPath: '/view/mug',
+    demoPath: '/designs/cobalt',
+    viewPath: '/view/cobalt',
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
   },
   {
-    id: 'mug-v2',
+    id: 'atelier',
     title: 'Atelier',
     description:
       'Atelier is a white editorial home for Jane Mug — photography, a shop, and the same bag. Open the live showcase.',
@@ -166,8 +166,8 @@ export const designs: Design[] = [
     category: 'Shop',
     price: 'free',
     tags: ['Next.js', 'Shop', 'Editorial'],
-    demoPath: '/designs/mug-v2',
-    viewPath: '/view/mug-v2',
+    demoPath: '/designs/atelier',
+    viewPath: '/view/atelier',
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx', 'lib/content.ts'],
   },

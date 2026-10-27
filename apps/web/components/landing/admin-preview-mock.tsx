@@ -1,6 +1,6 @@
 import { ScaledDesignCanvas } from '@/components/landing/scaled-design-canvas'
-import { AdminFrame } from '@/components/mug/admin-frame'
-import { MugRootShell } from '@/components/mug/mug-root-shell'
+import { AdminFrame } from '@/components/cobalt/admin-frame'
+import { CobaltRootShell } from '@/components/cobalt/cobalt-root-shell'
 
 /**
  * Desktop crop of the sales dashboard — the same frame as the live admin
@@ -16,9 +16,9 @@ export function AdminPreviewMock({ className }: { className?: string }) {
         aria-label="Admin design preview"
         className="h-full w-full"
       >
-        <MugRootShell className="h-full">
+        <CobaltRootShell className="h-full">
           <AdminFrame />
-        </MugRootShell>
+        </CobaltRootShell>
       </div>
     </ScaledDesignCanvas>
   )

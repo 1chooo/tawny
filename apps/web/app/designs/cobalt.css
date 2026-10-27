@@ -1,0 +1,32 @@
+.cobalt {
+  --background: #efede8;
+  --foreground: #1b1c1e;
+  --card: #f8f7f4;
+  --card-foreground: #1b1c1e;
+  --primary: #2741a8;
+  --primary-foreground: #f8f7f4;
+  --muted: #e3dfd7;
+  --muted-foreground: #6b6a66;
+  --border: #d6d1c7;
+  --ring: #2741a8;
+  --destructive: #a8322a;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  color-scheme: light;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-cobalt-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+.cobalt button:not(:disabled),
+.cobalt [role='button'] {
+  cursor: pointer;
+}
+
+@theme inline {
+  --font-display: var(--font-cobalt-display), var(--font-cobalt-sans), ui-sans-serif,
+    system-ui, sans-serif;
+}

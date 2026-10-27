@@ -4,8 +4,8 @@ import { link } from "./link.mjs";
 import { ocean } from "./ocean.mjs";
 import { board } from "./board.mjs";
 import { vcard } from "./vcard.mjs";
-import { mug } from "./mug.mjs";
-import { mugV2 } from "./mug-v2.mjs";
+import { cobalt } from "./cobalt.mjs";
+import { atelier } from "./atelier.mjs";
 import { admin } from "./admin.mjs";
 import { desk } from "./desk.mjs";
 import { usc } from "./usc.mjs";
@@ -17,8 +17,8 @@ export const templates = {
   ocean,
   board,
   vcard,
-  mug,
-  "mug-v2": mugV2,
+  cobalt,
+  "atelier": atelier,
   admin,
   desk,
   usc,

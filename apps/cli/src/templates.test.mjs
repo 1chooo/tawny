@@ -2,16 +2,16 @@ import { describe, expect, it } from 'vitest'
 import { getTemplate, templateList, templates } from './templates.mjs'
 
 describe('templates registry', () => {
-  it('exposes art, dev, link, ocean, board, vcard, mug, mug-v2, admin, desk, and usc templates', () => {
+  it('exposes art, dev, link, ocean, board, vcard, cobalt, atelier, admin, desk, and usc templates', () => {
     expect(Object.keys(templates).sort()).toEqual([
       'admin',
       'art',
+      'atelier',
       'board',
+      'cobalt',
       'desk',
       'dev',
       'link',
-      'mug',
-      'mug-v2',
       'ocean',
       'usc',
       'vcard',
@@ -19,12 +19,12 @@ describe('templates registry', () => {
     expect(templateList.map((t) => t.id).sort()).toEqual([
       'admin',
       'art',
+      'atelier',
       'board',
+      'cobalt',
       'desk',
       'dev',
       'link',
-      'mug',
-      'mug-v2',
       'ocean',
       'usc',
       'vcard',
@@ -41,10 +41,10 @@ describe('templates registry', () => {
     expect(getTemplate('board')?.defaultProjectName).toBe('my-board')
     expect(getTemplate('vcard')?.path).toBe('templates/vcard')
     expect(getTemplate('vcard')?.defaultProjectName).toBe('my-vcard')
-    expect(getTemplate('mug')?.path).toBe('templates/mug')
-    expect(getTemplate('mug')?.defaultProjectName).toBe('my-mug')
-    expect(getTemplate('mug-v2')?.path).toBe('templates/mug-v2')
-    expect(getTemplate('mug-v2')?.defaultProjectName).toBe('my-mug-v2')
+    expect(getTemplate('cobalt')?.path).toBe('templates/cobalt')
+    expect(getTemplate('cobalt')?.defaultProjectName).toBe('my-cobalt')
+    expect(getTemplate('atelier')?.path).toBe('templates/atelier')
+    expect(getTemplate('atelier')?.defaultProjectName).toBe('my-atelier')
     expect(getTemplate('admin')?.path).toBe('templates/admin')
     expect(getTemplate('admin')?.defaultProjectName).toBe('my-admin')
     expect(getTemplate('desk')?.path).toBe('templates/desk')
@@ -60,8 +60,8 @@ describe('templates registry', () => {
     expect(getTemplate('ocean')?.extraDefaults).toEqual({})
     expect(getTemplate('board')?.extraDefaults).toEqual({})
     expect(getTemplate('vcard')?.extraDefaults).toEqual({})
-    expect(getTemplate('mug')?.extraDefaults).toEqual({})
-    expect(getTemplate('mug-v2')?.extraDefaults).toEqual({})
+    expect(getTemplate('cobalt')?.extraDefaults).toEqual({})
+    expect(getTemplate('atelier')?.extraDefaults).toEqual({})
     expect(getTemplate('admin')?.extraDefaults).toEqual({})
     expect(getTemplate('desk')?.extraDefaults).toEqual({})
     expect(getTemplate('usc')?.extraDefaults).toEqual({})

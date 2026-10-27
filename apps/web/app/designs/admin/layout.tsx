@@ -1,15 +1,15 @@
 import type { ReactNode } from 'react'
 import {
-  MugShowcaseLayout,
-  mugDesignMetadata,
-} from '@/components/mug/mug-showcase-layout'
+  CobaltShowcaseLayout,
+  cobaltDesignMetadata,
+} from '@/components/cobalt/cobalt-showcase-layout'
 
-export const metadata = mugDesignMetadata('admin')
+export const metadata = cobaltDesignMetadata('admin')
 
 export default function AdminShowcaseLayout({
   children,
 }: {
   children: ReactNode
 }) {
-  return <MugShowcaseLayout id="admin">{children}</MugShowcaseLayout>
+  return <CobaltShowcaseLayout id="admin">{children}</CobaltShowcaseLayout>
 }

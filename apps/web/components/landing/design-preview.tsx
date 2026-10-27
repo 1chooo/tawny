@@ -15,8 +15,8 @@ import { DevPreviewMock } from '@/components/landing/dev-preview-mock'
 import { LinkPreviewMock } from '@/components/landing/link-preview-mock'
 import { OceanPreviewMock } from '@/components/landing/ocean-preview-mock'
 import { VcardPreviewMock } from '@/components/landing/vcard-preview-mock'
-import { MugPreviewMock } from '@/components/landing/mug-preview-mock'
-import { MugV2PreviewMock } from '@/components/landing/mug-v2-preview-mock'
+import { CobaltPreviewMock } from '@/components/landing/cobalt-preview-mock'
+import { AtelierPreviewMock } from '@/components/landing/atelier-preview-mock'
 import { AdminPreviewMock } from '@/components/landing/admin-preview-mock'
 import { DeskPreviewMock } from '@/components/landing/desk-preview-mock'
 import { USCPreviewMock } from '@/components/landing/usc-preview-mock'
@@ -72,9 +72,9 @@ const vcardSans = Roboto({
   display: 'swap',
 })
 
-const mugDisplay = Space_Grotesk({
+const cobaltDisplay = Space_Grotesk({
   subsets: ['latin'],
-  variable: '--font-mug-display',
+  variable: '--font-cobalt-display',
   display: 'swap',
 })
 
@@ -188,25 +188,25 @@ export function DesignPreview({ id, className }: DesignPreviewProps) {
     )
   }
 
-  if (id === 'mug') {
+  if (id === 'cobalt') {
     return (
       <div
         className={cn(
-          mugDisplay.variable,
-          mugDisplay.className,
+          cobaltDisplay.variable,
+          cobaltDisplay.className,
           'h-full',
           className,
         )}
       >
-        <MugPreviewMock className="h-full" />
+        <CobaltPreviewMock className="h-full" />
       </div>
     )
   }
 
-  if (id === 'mug-v2') {
+  if (id === 'atelier') {
     return (
       <div className={cn('h-full font-sans', className)}>
-        <MugV2PreviewMock className="h-full" />
+        <AtelierPreviewMock className="h-full" />
       </div>
     )
   }
@@ -242,8 +242,8 @@ export function designPreviewBg(id: string) {
   if (id === 'ocean') return 'bg-[#020a14]'
   if (id === 'board') return 'bg-background'
   if (id === 'vcard') return 'bg-[#121212]'
-  if (id === 'mug') return 'bg-[#efede8]'
-  if (id === 'mug-v2') return 'bg-white'
+  if (id === 'cobalt') return 'bg-[#efede8]'
+  if (id === 'atelier') return 'bg-white'
   if (id === 'admin') return 'bg-[#efede8]'
   if (id === 'desk') return 'bg-[#f7f6f3]'
   if (id === 'usc') return 'bg-[#990000]'

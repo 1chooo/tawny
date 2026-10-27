@@ -1,0 +1,58 @@
+.atelier {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #1a1a1a;
+  --primary-foreground: #ffffff;
+  --secondary: #f6f6f6;
+  --secondary-foreground: #1a1a1a;
+  --muted: #f6f6f6;
+  --muted-foreground: #6b6b6b;
+  --accent: #f6f6f6;
+  --accent-foreground: #1a1a1a;
+  --destructive: #a8322a;
+  --border: #e4e4e4;
+  --input: #e4e4e4;
+  --ring: #1a1a1a;
+  --radius: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  color-scheme: light;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-atelier-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+.atelier .font-display {
+  font-family: inherit;
+}
+
+.atelier [id] {
+  scroll-margin-top: 7.5rem;
+}
+
+.atelier a:focus-visible,
+.atelier button:focus-visible,
+.atelier input:focus-visible,
+.atelier summary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atelier,
+  .atelier *,
+  .atelier *::before,
+  .atelier *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

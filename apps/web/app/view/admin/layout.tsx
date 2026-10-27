@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
-import { MugRootShell } from '@/components/mug/mug-root-shell'
+import { CobaltRootShell } from '@/components/cobalt/cobalt-root-shell'
 import { ViewBackLink } from '@/components/view-back-link'
 import { getDesign } from '@/lib/data'
 
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function AdminViewLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <MugRootShell className="min-h-dvh">{children}</MugRootShell>
+      <CobaltRootShell className="min-h-dvh">{children}</CobaltRootShell>
       <ViewBackLink href={design.demoPath} />
     </>
   )

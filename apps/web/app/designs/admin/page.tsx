@@ -1,1 +1,1 @@
-export { default } from '@/app/designs/mug/admin/page'
+export { default } from '@/app/designs/cobalt/admin/page'

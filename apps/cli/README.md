@@ -11,8 +11,8 @@ npx create-tawny@latest link my-links
 npx create-tawny@latest ocean my-ocean-studio
 npx create-tawny@latest board my-board
 npx create-tawny@latest vcard my-vcard
-npx create-tawny@latest mug my-mug
-npx create-tawny@latest mug-v2 my-mug-v2
+npx create-tawny@latest cobalt my-cobalt
+npx create-tawny@latest atelier my-atelier
 npx create-tawny@latest admin my-admin
 npx create-tawny@latest desk my-desk
 npx create-tawny@latest usc my-usc
@@ -34,8 +34,8 @@ Available templates:
 | `ocean` | WebGL particle landing page — scroll-morphing sea creatures | [`templates/ocean`](../../templates/ocean) |
 | `board` | Issue dashboard — sidebar, toolbar, and a 4px list | [`templates/board`](../../templates/board) |
 | `vcard` | Personal vcard — profile sidebar, work, and notes | [`templates/vcard`](../../templates/vcard) |
-| `mug` | Cobalt — ceramics studio with a home, sign-in, and a sales dashboard | [`templates/mug`](../../templates/mug) |
-| `mug-v2` | Atelier — white editorial ceramics studio | [`templates/mug-v2`](../../templates/mug-v2) |
+| `cobalt` | Cobalt — ceramics studio with a home, sign-in, and a sales dashboard | [`templates/cobalt`](../../templates/cobalt) |
+| `atelier` | Atelier — white editorial ceramics studio | [`templates/atelier`](../../templates/atelier) |
 | `admin` | Ceramics studio dashboard — revenue, restock, and customers | [`templates/admin`](../../templates/admin) |
 | `desk` | Project desk — sidebar, weekly chart, and a timer | [`templates/desk`](../../templates/desk) |
 | `usc` | USC researcher page — cardinal banner and publications | [`templates/usc`](../../templates/usc) |

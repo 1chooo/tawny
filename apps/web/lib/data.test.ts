@@ -43,24 +43,24 @@ describe('getDesign', () => {
     expect(designCategories).toContain('Portfolio')
   })
 
-  it('includes the mug design under Shop', () => {
-    const mug = getDesign('mug')
-    expect(mug?.demoPath).toBe('/designs/mug')
-    expect(mug?.viewPath).toBe('/view/mug')
+  it('includes the cobalt design under Shop', () => {
+    const mug = getDesign('cobalt')
+    expect(mug?.demoPath).toBe('/designs/cobalt')
+    expect(mug?.viewPath).toBe('/view/cobalt')
     expect(mug?.title).toBe('Cobalt')
     expect(mug?.category).toBe('Shop')
-    expect(pinnedDesignIds).not.toContain('mug')
+    expect(pinnedDesignIds).not.toContain('cobalt')
     expect(designCategories).toContain('Shop')
   })
 
-  it('includes mug v2 under Shop without replacing mug', () => {
-    const mug = getDesign('mug-v2')
-    expect(mug?.demoPath).toBe('/designs/mug-v2')
-    expect(mug?.viewPath).toBe('/view/mug-v2')
+  it('includes atelier under Shop without replacing cobalt', () => {
+    const mug = getDesign('atelier')
+    expect(mug?.demoPath).toBe('/designs/atelier')
+    expect(mug?.viewPath).toBe('/view/atelier')
     expect(mug?.title).toBe('Atelier')
     expect(mug?.category).toBe('Shop')
-    expect(pinnedDesignIds).not.toContain('mug-v2')
-    expect(getDesign('mug')?.demoPath).toBe('/designs/mug')
+    expect(pinnedDesignIds).not.toContain('atelier')
+    expect(getDesign('cobalt')?.demoPath).toBe('/designs/cobalt')
   })
 
   it('includes the admin design under Dashboard', () => {
