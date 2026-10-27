@@ -26,6 +26,7 @@ When bumping a version (release, publish, or new package), update **every** `pac
 | Admin template | `templates/admin/package.json` |
 | Desk template | `templates/desk/package.json` |
 | USC template | `templates/usc/package.json` |
+| Seal template | `templates/seal/package.json` |
 
 Do not leave packages on older versions (e.g. `0.1.0` / `0.0.0`) after a bump.
 
