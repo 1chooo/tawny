@@ -14,6 +14,7 @@ const DESIGN_IDS = new Set([
   'ocean',
   'vcard',
   'mug',
+  'mug-v2',
   'admin',
   'desk',
   'usc',
