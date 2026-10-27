@@ -52,6 +52,15 @@ describe('getDesign', () => {
     expect(designCategories).toContain('Shop')
   })
 
+  it('includes mug v2 under Shop without replacing mug', () => {
+    const mug = getDesign('mug-v2')
+    expect(mug?.demoPath).toBe('/designs/mug-v2')
+    expect(mug?.viewPath).toBe('/view/mug-v2')
+    expect(mug?.category).toBe('Shop')
+    expect(pinnedDesignIds).not.toContain('mug-v2')
+    expect(getDesign('mug')?.demoPath).toBe('/designs/mug')
+  })
+
   it('includes the admin design under Dashboard', () => {
     const admin = getDesign('admin')
     expect(admin?.demoPath).toBe('/designs/admin')

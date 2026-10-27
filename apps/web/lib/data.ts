@@ -155,6 +155,23 @@ export const designs: Design[] = [
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx'],
   },
   {
+    id: 'mug-v2',
+    title: 'Mug v2',
+    description:
+      'A white editorial home for Jane Mug — photography, a shop, and the same bag. Open the live showcase.',
+    longDescription: [
+      'Mug v2 is the same Jane Mug studio with a new layout: a slim contact bar, a full-width kiln photograph, a studio note, category cards, the making process, sample notes, and the current pieces.',
+      'Open a piece to read the glaze and add it to the bag. Sign in and studio admin are the same flows as Mug. Edit the sections in lib/content.ts. This preview has no phone, address, or social links, and the quotes are marked Sample.',
+    ],
+    category: 'Shop',
+    price: 'free',
+    tags: ['Next.js', 'Shop', 'Editorial'],
+    demoPath: '/designs/mug-v2',
+    viewPath: '/view/mug-v2',
+    packageName: 'create-tawny',
+    sourceFiles: ['package.json', 'README.md', 'app/page.tsx', 'lib/content.ts'],
+  },
+  {
     id: 'admin',
     title: 'Admin',
     description:

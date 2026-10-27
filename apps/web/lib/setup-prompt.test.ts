@@ -38,6 +38,9 @@ describe('setupCommand', () => {
     expect(setupCommand('mug')).toBe(
       'npx create-tawny@latest mug my-mug --yes',
     )
+    expect(setupCommand('mug-v2')).toBe(
+      'npx create-tawny@latest mug-v2 my-mug-v2 --yes',
+    )
     expect(setupCommand('admin')).toBe(
       'npx create-tawny@latest admin my-admin --yes',
     )
@@ -58,6 +61,7 @@ describe('setupCommand', () => {
       board: 'my-board',
       vcard: 'my-vcard',
       mug: 'my-mug',
+      'mug-v2': 'my-mug-v2',
       admin: 'my-admin',
       desk: 'my-desk',
       usc: 'my-usc',

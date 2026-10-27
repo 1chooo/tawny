@@ -16,6 +16,7 @@ import { LinkPreviewMock } from '@/components/landing/link-preview-mock'
 import { OceanPreviewMock } from '@/components/landing/ocean-preview-mock'
 import { VcardPreviewMock } from '@/components/landing/vcard-preview-mock'
 import { MugPreviewMock } from '@/components/landing/mug-preview-mock'
+import { MugV2PreviewMock } from '@/components/landing/mug-v2-preview-mock'
 import { AdminPreviewMock } from '@/components/landing/admin-preview-mock'
 import { DeskPreviewMock } from '@/components/landing/desk-preview-mock'
 import { USCPreviewMock } from '@/components/landing/usc-preview-mock'
@@ -202,6 +203,14 @@ export function DesignPreview({ id, className }: DesignPreviewProps) {
     )
   }
 
+  if (id === 'mug-v2') {
+    return (
+      <div className={cn('h-full font-sans', className)}>
+        <MugV2PreviewMock className="h-full" />
+      </div>
+    )
+  }
+
   if (id === 'admin') {
     return <AdminPreviewMock className={cn('h-full', className)} />
   }
@@ -234,6 +243,7 @@ export function designPreviewBg(id: string) {
   if (id === 'board') return 'bg-background'
   if (id === 'vcard') return 'bg-[#121212]'
   if (id === 'mug') return 'bg-[#efede8]'
+  if (id === 'mug-v2') return 'bg-white'
   if (id === 'admin') return 'bg-[#efede8]'
   if (id === 'desk') return 'bg-[#f7f6f3]'
   if (id === 'usc') return 'bg-[#990000]'
