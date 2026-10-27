@@ -26,6 +26,10 @@ import {
   SocialPostDetail,
 } from '@/components/landing/showcases/social-post-demo'
 import {
+  TestimonialCarouselDemo,
+  TestimonialCarouselDetail,
+} from '@/components/landing/showcases/testimonial-carousel-demo'
+import {
   StatusSelectDemo,
   StatusSelectDetail,
 } from '@/components/landing/showcases/status-select-demo'
@@ -223,6 +227,22 @@ export const componentDemos: ComponentDemo[] = [
     sourceFiles: ['apps/web/components/landing/showcases/social-post-demo.tsx'],
     render: () => <SocialPostDemo />,
     detailRender: () => <SocialPostDetail />,
+  },
+  {
+    id: 'testimonial-carousel',
+    title: 'Testimonial carousel',
+    description:
+      'A serif headline with overlapping portraits, peeking quote cards, and company marks on one index.',
+    category: 'People',
+    frameTitle: 'components/testimonial-carousel',
+    contentClassName: 'bg-white',
+    detailContentClassName: 'h-auto overflow-hidden bg-white',
+    sourceFiles: [
+      'apps/web/components/testimonial-carousel/testimonial-carousel.tsx',
+      'apps/web/lib/testimonial-carousel.ts',
+    ],
+    render: () => <TestimonialCarouselDemo />,
+    detailRender: () => <TestimonialCarouselDetail />,
   },
   {
     id: 'status-select',
