@@ -34,8 +34,8 @@ Available templates:
 | `ocean` | WebGL particle landing page — scroll-morphing sea creatures | [`templates/ocean`](../../templates/ocean) |
 | `board` | Issue dashboard — sidebar, toolbar, and a 4px list | [`templates/board`](../../templates/board) |
 | `vcard` | Personal vcard — profile sidebar, work, and notes | [`templates/vcard`](../../templates/vcard) |
-| `mug` | Ceramics studio — home, sign-in, and a sales dashboard | [`templates/mug`](../../templates/mug) |
-| `mug-v2` | Editorial ceramics studio — white home, shop, sign-in, and a sales dashboard | [`templates/mug-v2`](../../templates/mug-v2) |
+| `mug` | Cobalt — ceramics studio with a home, sign-in, and a sales dashboard | [`templates/mug`](../../templates/mug) |
+| `mug-v2` | Atelier — white editorial ceramics studio | [`templates/mug-v2`](../../templates/mug-v2) |
 | `admin` | Ceramics studio dashboard — revenue, restock, and customers | [`templates/admin`](../../templates/admin) |
 | `desk` | Project desk — sidebar, weekly chart, and a timer | [`templates/desk`](../../templates/desk) |
 | `usc` | USC researcher page — cardinal banner and publications | [`templates/usc`](../../templates/usc) |

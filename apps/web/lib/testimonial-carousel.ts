@@ -48,7 +48,7 @@ export const testimonialCarousel: Testimonial[] = [
   {
     id: 'kiln',
     quote:
-      'I wanted a shop that still felt like a studio. Mug was the closest thing to handing someone a finished storefront and saying, start here.',
+      'I wanted a shop that still felt like a studio. Cobalt was the closest thing to handing someone a finished storefront and saying, start here.',
     name: 'Leo Park',
     role: 'Creative director',
     company: 'Kiln Studio',

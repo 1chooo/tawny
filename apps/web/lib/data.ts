@@ -139,11 +139,11 @@ export const designs: Design[] = [
   },
   {
     id: 'mug',
-    title: 'Mug',
+    title: 'Cobalt',
     description:
-      'A ceramics studio for Jane Mug — home, sign-in, and a sales dashboard. Open the live showcase.',
+      'Cobalt is a ceramics studio for Jane Mug — home, sign-in, and a sales dashboard. Open the live showcase.',
     longDescription: [
-      'Mug is a small-batch ceramics studio. The home introduces Jane, the sign-in keeps the kiln photograph, and the sales board shows revenue, restock, and customers.',
+      'Cobalt is a small-batch ceramics studio. The home introduces Jane, the sign-in keeps the kiln photograph, and the sales board shows revenue, restock, and customers.',
       'Open the bag, sign in, or visit the studio admin from the page. The same dashboard is also listed on its own as Admin. Scaffold a copy with the create command below, then replace the photos and the sample sales.',
     ],
     category: 'Shop',
@@ -156,12 +156,12 @@ export const designs: Design[] = [
   },
   {
     id: 'mug-v2',
-    title: 'Mug v2',
+    title: 'Atelier',
     description:
-      'A white editorial home for Jane Mug — photography, a shop, and the same bag. Open the live showcase.',
+      'Atelier is a white editorial home for Jane Mug — photography, a shop, and the same bag. Open the live showcase.',
     longDescription: [
-      'Mug v2 is the same Jane Mug studio with a new layout: a slim contact bar, a full-width kiln photograph, a studio note, category cards, the making process, sample notes, and the current pieces.',
-      'Open a piece to read the glaze and add it to the bag. Sign in and studio admin are the same flows as Mug. Edit the sections in lib/content.ts. This preview has no phone, address, or social links, and the quotes are marked Sample.',
+      'Atelier is the same Jane Mug studio with a new layout: a slim contact bar, a full-width kiln photograph, a studio note, category cards, the making process, sample notes, and the current pieces.',
+      'Open a piece to read the glaze and add it to the bag. Sign in and studio admin are the same flows as Cobalt. Edit the sections in lib/content.ts. This preview has no phone, address, or social links, and the quotes are marked Sample.',
     ],
     category: 'Shop',
     price: 'free',
@@ -177,8 +177,8 @@ export const designs: Design[] = [
     description:
       'The Jane Mug sales dashboard — revenue, restock, coupons, and customers. Open the live showcase.',
     longDescription: [
-      'Admin is the studio sales view from Mug, listed on its own so it is easy to find. Jane is already signed in. The charts stay still, and the page scrolls through restock, coupons, and customers.',
-      'Mug still includes this screen at /admin. Scaffold a copy of just the dashboard with the create command below, then replace the sample numbers in lib/sales.ts.',
+      'Admin is the studio sales view from Cobalt, listed on its own so it is easy to find. Jane is already signed in. The charts stay still, and the page scrolls through restock, coupons, and customers.',
+      'Cobalt still includes this screen at /admin. Scaffold a copy of just the dashboard with the create command below, then replace the sample numbers in lib/sales.ts.',
     ],
     category: 'Dashboard',
     price: 'free',

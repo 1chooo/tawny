@@ -2,7 +2,7 @@
 
 A studio sales dashboard for Jane Mug: revenue, a restock queue, coupon use, and a short customer list. The numbers are sample data. The signed-in account is Jane.
 
-This screen is also included in the Mug template, at `/admin`.
+This screen is also included in the Cobalt template, at `/admin`.
 
 Design by [Hugo Lin](https://1chooo.com).
 

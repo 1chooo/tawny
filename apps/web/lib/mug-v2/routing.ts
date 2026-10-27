@@ -1,7 +1,7 @@
 export const MUG_V2_BASE = '/designs/mug-v2'
 export const MUG_V2_VIEW_BASE = '/view/mug-v2'
 
-/** Resolve which Mug v2 mount the current pathname is under. */
+/** Resolve which Atelier mount the current pathname is under. */
 export function mugV2BaseFromPathname(pathname: string): string {
   if (
     pathname === MUG_V2_VIEW_BASE ||

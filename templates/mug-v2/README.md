@@ -1,4 +1,4 @@
-# Mug v2
+# Atelier
 
 A white, editorial ceramics site for Jane Mug: home, shop, piece pages, sign-in, and the sales dashboard. The bag keeps a few sample pieces in the browser. The dashboard numbers are sample data.
 

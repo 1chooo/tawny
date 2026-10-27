@@ -7,7 +7,7 @@ import { getDesign } from '@/lib/data'
 const design = getDesign('mug')!
 
 export const metadata: Metadata = {
-  title: 'Mug — Full Preview',
+  title: 'Cobalt — Full Preview',
   description: design.description,
   robots: { index: false, follow: false },
 }

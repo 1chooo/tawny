@@ -1,4 +1,4 @@
-# Mug
+# Cobalt
 
 A ceramics studio in three pages: the home, a split sign-in, and a sales dashboard. The bag keeps a few sample pieces in the browser. The dashboard numbers are sample data.
 

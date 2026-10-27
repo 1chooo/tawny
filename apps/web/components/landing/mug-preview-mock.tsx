@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { ScaledDesignCanvas } from '@/components/landing/scaled-design-canvas'
 
 /**
- * Desktop crop of the Mug home. The kiln photo is in the round hero.
+ * Desktop crop of the Cobalt home. The kiln photo is in the round hero.
  * No links, so catalog previews cannot navigate.
  */
 export function MugPreviewMock({ className }: { className?: string }) {
@@ -10,7 +10,7 @@ export function MugPreviewMock({ className }: { className?: string }) {
     <ScaledDesignCanvas className={className}>
       <div
         role="img"
-        aria-label="Mug design preview"
+        aria-label="Cobalt design preview"
         className="mug flex h-full flex-col bg-[#efede8] text-[#1b1c1e]"
       >
         <div className="flex h-14 items-center justify-between border-b border-[#d6d1c7] px-8">

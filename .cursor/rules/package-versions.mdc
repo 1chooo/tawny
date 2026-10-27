@@ -21,8 +21,8 @@ When bumping a version (release, publish, or new package), update **every** `pac
 | Dev template | `templates/dev/package.json` |
 | Link template | `templates/link/package.json` |
 | VCard template | `templates/vcard/package.json` |
-| Mug template | `templates/mug/package.json` |
-| Mug v2 template | `templates/mug-v2/package.json` |
+| Cobalt template | `templates/mug/package.json` |
+| Atelier template | `templates/mug-v2/package.json` |
 | Admin template | `templates/admin/package.json` |
 | Desk template | `templates/desk/package.json` |
 | USC template | `templates/usc/package.json` |
