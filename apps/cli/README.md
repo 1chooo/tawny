@@ -12,6 +12,7 @@ npx create-tawny@latest ocean my-ocean-studio
 npx create-tawny@latest board my-board
 npx create-tawny@latest vcard my-vcard
 npx create-tawny@latest mug my-mug
+npx create-tawny@latest mug-v2 my-mug-v2
 npx create-tawny@latest admin my-admin
 npx create-tawny@latest desk my-desk
 npx create-tawny@latest usc my-usc
@@ -34,6 +35,7 @@ Available templates:
 | `board` | Issue dashboard — sidebar, toolbar, and a 4px list | [`templates/board`](../../templates/board) |
 | `vcard` | Personal vcard — profile sidebar, work, and notes | [`templates/vcard`](../../templates/vcard) |
 | `mug` | Ceramics studio — home, sign-in, and a sales dashboard | [`templates/mug`](../../templates/mug) |
+| `mug-v2` | Editorial ceramics studio — white home, shop, sign-in, and a sales dashboard | [`templates/mug-v2`](../../templates/mug-v2) |
 | `admin` | Ceramics studio dashboard — revenue, restock, and customers | [`templates/admin`](../../templates/admin) |
 | `desk` | Project desk — sidebar, weekly chart, and a timer | [`templates/desk`](../../templates/desk) |
 | `usc` | USC researcher page — cardinal banner and publications | [`templates/usc`](../../templates/usc) |
