@@ -50,6 +50,9 @@ describe('setupCommand', () => {
     expect(setupCommand('usc')).toBe(
       'npx create-tawny@latest usc my-usc --yes',
     )
+    expect(setupCommand('seal')).toBe(
+      'npx create-tawny@latest seal my-seal --yes',
+    )
   })
 
   it('keeps default names aligned with the CLI', () => {
@@ -65,6 +68,7 @@ describe('setupCommand', () => {
       admin: 'my-admin',
       desk: 'my-desk',
       usc: 'my-usc',
+      seal: 'my-seal',
     })
   })
 })

@@ -20,8 +20,10 @@ import { AtelierPreviewMock } from '@/components/landing/atelier-preview-mock'
 import { AdminPreviewMock } from '@/components/landing/admin-preview-mock'
 import { DeskPreviewMock } from '@/components/landing/desk-preview-mock'
 import { USCPreviewMock } from '@/components/landing/usc-preview-mock'
+import { SealPreviewMock } from '@/components/landing/seal-preview-mock'
 import { IssueListDemo } from '@/components/landing/showcases/issue-list-demo'
 import { cn } from '@tawny/ui/lib/utils'
+import { sealBody, sealDisplay } from '@/lib/seal/fonts'
 
 const artDisplay = Playfair_Display({
   subsets: ['latin'],
@@ -227,6 +229,22 @@ export function DesignPreview({ id, className }: DesignPreviewProps) {
     )
   }
 
+  if (id === 'seal') {
+    return (
+      <div
+        className={cn(
+          sealDisplay.variable,
+          sealBody.variable,
+          sealBody.className,
+          'h-full',
+          className,
+        )}
+      >
+        <SealPreviewMock className="h-full" />
+      </div>
+    )
+  }
+
   return null
 }
 
@@ -247,5 +265,6 @@ export function designPreviewBg(id: string) {
   if (id === 'admin') return 'bg-[#efede8]'
   if (id === 'desk') return 'bg-[#f7f6f3]'
   if (id === 'usc') return 'bg-[#990000]'
+  if (id === 'seal') return 'bg-[#f3efe6]'
   return 'bg-background'
 }

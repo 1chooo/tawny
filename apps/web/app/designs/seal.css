@@ -1,0 +1,615 @@
+.seal {
+  --seal-paper: #f3efe6;
+  --seal-ink: #2c2825;
+  --seal-muted: #6f695f;
+  --seal-vermilion-text: #9c2f24;
+  --seal-disc: #c44536;
+  --seal-line: rgba(44, 40, 37, 0.18);
+  --seal-gutter: clamp(1.25rem, 4.5vw, 4.75rem);
+  --seal-section: clamp(4.75rem, 12vh, 8.75rem);
+  --seal-measure: 36rem;
+  --background: var(--seal-paper);
+  --foreground: var(--seal-ink);
+  --card: var(--seal-paper);
+  --card-foreground: var(--seal-ink);
+  --popover: var(--seal-paper);
+  --popover-foreground: var(--seal-ink);
+  --primary: var(--seal-ink);
+  --primary-foreground: var(--seal-paper);
+  --secondary: var(--seal-paper);
+  --secondary-foreground: var(--seal-ink);
+  --muted: var(--seal-paper);
+  --muted-foreground: var(--seal-muted);
+  --accent: var(--seal-paper);
+  --accent-foreground: var(--seal-ink);
+  --border: var(--seal-line);
+  --input: var(--seal-line);
+  --ring: var(--seal-ink);
+  --radius: 0px;
+  color-scheme: light;
+  position: relative;
+  isolation: isolate;
+  min-height: 100dvh;
+  background-color: var(--seal-paper);
+  color: var(--seal-ink);
+  font-family: var(--font-seal-body), 'Iowan Old Style', 'Palatino Linotype', Palatino, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+}
+
+.seal ::selection {
+  background: #e7c7c1;
+  color: var(--seal-ink);
+}
+
+.seal-header,
+.seal-main,
+.seal-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.seal ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.seal p {
+  text-wrap: pretty;
+}
+
+.seal-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: color-mix(in srgb, var(--seal-paper) 92%, transparent);
+  border-bottom: 1px solid var(--seal-line);
+  backdrop-filter: blur(10px);
+}
+
+.seal-skip {
+  position: absolute;
+  left: var(--seal-gutter);
+  top: 0.6rem;
+  transform: translateY(-140%);
+  background: var(--seal-paper);
+  color: var(--seal-ink);
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--seal-line);
+}
+
+.seal-skip:focus {
+  transform: none;
+}
+
+.seal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  min-height: 4.25rem;
+  padding: 0.4rem var(--seal-gutter);
+}
+
+.seal-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: inherit;
+  text-decoration: none;
+  font-family: var(--font-seal-display), 'Songti TC', 'PMingLiU', serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.seal-action-dot,
+.seal-nav-dot {
+  display: inline-block;
+  flex: none;
+  border-radius: 50%;
+  background: var(--seal-disc);
+}
+
+.seal-wordmark-dot {
+  display: block;
+  flex: none;
+  width: 1.35rem;
+  height: 1.35rem;
+  object-fit: contain;
+}
+
+.seal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.15rem 1.15rem;
+}
+
+.seal-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  color: var(--seal-muted);
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.seal-nav a.is-active {
+  color: var(--seal-ink);
+}
+
+.seal-nav-dot {
+  width: 0.38rem;
+  height: 0.38rem;
+  background: transparent;
+}
+
+.seal-nav a.is-active .seal-nav-dot {
+  background: var(--seal-disc);
+}
+
+.seal [id] {
+  scroll-margin-top: 5.5rem;
+}
+
+.seal-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 0.9rem;
+  color: var(--seal-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.seal-kicker-num {
+  color: var(--seal-vermilion-text);
+  letter-spacing: 0.12em;
+}
+
+.seal-title {
+  margin: 0;
+  font-family: var(--font-seal-display), 'Songti TC', 'PMingLiU', serif;
+  font-size: clamp(1.85rem, 7.2vw, 3.15rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.seal-hero .seal-title {
+  font-size: clamp(2.15rem, 9vw, 3.7rem);
+  letter-spacing: 0.2em;
+}
+
+.seal-poster {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: min(100% - (var(--seal-gutter) * 2), 38rem);
+  margin-inline: auto;
+  padding-block: var(--seal-section);
+}
+
+.seal-hero.seal-poster {
+  min-height: calc(100dvh - 4.25rem);
+  justify-content: center;
+  padding-block: clamp(2.75rem, 8vh, 5.5rem);
+}
+
+.seal-poster-title {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.15rem, 4vw, 2.5rem);
+}
+
+.seal-poster-copy {
+  width: 100%;
+  max-width: 28rem;
+  margin-top: clamp(1.75rem, 4vh, 2.75rem);
+}
+
+.seal-poster-copy p {
+  margin: 0;
+}
+
+.seal-poster-copy p + p,
+.seal-poster-copy .seal-frame,
+.seal-poster-copy .seal-form,
+.seal-poster-copy .seal-sent,
+.seal-poster-copy .seal-action {
+  margin-top: 1.15rem;
+}
+
+.seal-offerings {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+
+.seal-index {
+  margin: 0;
+  color: var(--seal-vermilion-text);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+}
+
+.seal-offerings h3,
+.seal-step h3,
+.seal-plate h3,
+.seal-project-name {
+  margin: 0.3rem 0 0;
+  font-family: var(--font-seal-display), 'Songti TC', serif;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+}
+
+.seal-offerings h3,
+.seal-step h3 {
+  font-size: 1.35rem;
+}
+
+.seal-offerings p,
+.seal-step p,
+.seal-plate p,
+.seal-muted {
+  color: var(--seal-muted);
+}
+
+.seal-offerings p,
+.seal-step p {
+  margin: 0.45rem 0 0;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.seal-steps {
+  width: 100%;
+  border-top: 1px solid var(--seal-line);
+}
+
+.seal-step {
+  display: grid;
+  grid-template-columns: 2.6rem minmax(0, 1fr);
+  gap: 0.75rem 1rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--seal-line);
+}
+
+.seal-work-list {
+  border-top: 1px solid var(--seal-line);
+}
+
+.seal-plate {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.75rem 1.35rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--seal-line);
+  color: inherit;
+  text-decoration: none;
+}
+
+.seal-plate:hover h3 {
+  color: var(--seal-vermilion-text);
+}
+
+.seal-plate-mark {
+  font-family: var(--font-seal-display), 'Songti TC', serif;
+  font-size: clamp(1.15rem, 4.5vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.seal-plate h3 {
+  margin: 0.25rem 0 0;
+  font-size: 1.45rem;
+}
+
+.seal-plate p {
+  margin: 0.4rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.seal-frame {
+  margin: 0;
+  max-width: 28rem;
+  border: 1px solid var(--seal-line);
+  padding: 1rem 1.15rem;
+  font-family: var(--font-seal-display), 'Songti TC', serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.seal-frame p {
+  margin: 0;
+  color: var(--seal-ink);
+}
+
+.seal-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 2.75rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--seal-vermilion-text);
+  font: inherit;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.seal-action-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+}
+
+.seal-action:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.28em;
+}
+
+.seal-form {
+  display: flex;
+  max-width: 32rem;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.seal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.seal-field span {
+  color: var(--seal-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.seal-field input,
+.seal-field textarea {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--seal-line);
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0.55rem 0 0.65rem;
+}
+
+.seal-field textarea {
+  min-height: 7.5rem;
+  resize: vertical;
+}
+
+.seal-sent-mark {
+  margin: 0;
+  color: var(--seal-vermilion-text);
+  font-family: var(--font-seal-display), 'Songti TC', serif;
+  font-size: 1.85rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.seal-sent p {
+  margin: 0.45rem 0 0;
+}
+
+.seal-close {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  padding: calc(var(--seal-section) * 1.15) var(--seal-gutter);
+  text-align: center;
+}
+
+.seal-close p {
+  max-width: 14rem;
+  margin: 0;
+  font-family: var(--font-seal-display), 'Songti TC', serif;
+  font-size: clamp(1.45rem, 2.4vw, 1.9rem);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.seal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding: 1.2rem var(--seal-gutter) 1.8rem;
+  border-top: 1px solid var(--seal-line);
+  color: var(--seal-muted);
+  font-size: 0.92rem;
+}
+
+.seal-footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.seal-footer a:hover {
+  color: var(--seal-ink);
+}
+
+.seal-footer-mark {
+  margin-left: 0.7rem;
+  color: var(--seal-vermilion-text);
+  font-family: var(--font-seal-display), 'Songti TC', serif;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+}
+
+.seal-detail {
+  padding-top: clamp(2rem, 6vh, 3.5rem);
+}
+
+.seal-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  margin-bottom: 1.25rem;
+  color: var(--seal-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.seal-back:hover {
+  color: var(--seal-ink);
+}
+
+.seal-project-name {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.seal-missing {
+  min-height: 70vh;
+  justify-content: center;
+}
+
+.seal-motif {
+  display: block;
+  flex: none;
+}
+
+.seal-motif svg,
+.seal-wax {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.seal-motif-hero {
+  width: clamp(7.25rem, 38vw, 12.5rem);
+}
+
+.seal-motif-side {
+  width: clamp(3.25rem, 16vw, 5.5rem);
+}
+
+.seal-motif-plate {
+  width: 3.4rem;
+}
+
+.seal-motif-close {
+  width: clamp(7.5rem, 14vw, 11rem);
+}
+
+.seal-fill {
+  fill: var(--seal-disc);
+  stroke: none;
+}
+
+.seal-stroke {
+  fill: none;
+  stroke: var(--seal-disc);
+  stroke-width: 1.35;
+}
+
+.seal-knockout {
+  fill: var(--seal-paper);
+  stroke: var(--seal-disc);
+  stroke-width: 1.35;
+}
+
+.seal-rule {
+  fill: none;
+  stroke: var(--seal-disc);
+  stroke-width: 1;
+}
+
+.seal a:focus-visible,
+.seal button:focus-visible,
+.seal input:focus-visible,
+.seal textarea:focus-visible {
+  outline: 2px solid var(--seal-ink);
+  outline-offset: 3px;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .seal-reveal {
+      animation: seal-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 28%;
+    }
+  }
+}
+
+@keyframes seal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 48rem) {
+  .seal-bar {
+    flex-wrap: wrap;
+    row-gap: 0.15rem;
+  }
+
+  .seal-nav {
+    flex: 1 1 100%;
+    justify-content: flex-start;
+    gap: 0.1rem 1rem;
+  }
+
+  .seal-nav a {
+    letter-spacing: 0.16em;
+  }
+
+  .seal-hero.seal-poster {
+    min-height: 0;
+    justify-content: flex-start;
+    padding-top: clamp(2.25rem, 8vh, 3.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seal,
+  .seal *,
+  .seal *::before,
+  .seal *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

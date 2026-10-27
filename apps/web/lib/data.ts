@@ -222,6 +222,23 @@ export const designs: Design[] = [
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx', 'lib/publications.ts'],
   },
+  {
+    id: 'seal',
+    title: 'Seal',
+    description:
+      'A paper portfolio for Seal — vertical Chinese titles, vermilion seals, and selected work. Open the live showcase.',
+    longDescription: [
+      'Seal is a one-person editorial studio. The home moves through the practice, the process, and three pieces of work. Headlines are short Traditional Chinese, set vertically. The body stays horizontal.',
+      'Open a piece to read it, or send a note from the contact form. The note stays in the browser. Scaffold a copy with the create command below, then replace the studio copy in lib/content.ts.',
+    ],
+    category: 'Portfolio',
+    price: 'free',
+    tags: ['Next.js', 'Portfolio', 'Editorial'],
+    demoPath: '/designs/seal',
+    viewPath: '/view/seal',
+    packageName: 'create-tawny',
+    sourceFiles: ['package.json', 'README.md', 'app/page.tsx', 'lib/content.ts'],
+  },
 ]
 
 /** Large pin, then the two compact slots. Home and `/designs` share this list. */

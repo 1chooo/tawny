@@ -10,6 +10,7 @@
 @import './designs/atelier.css';
 @import './designs/desk/desk.css';
 @import './designs/usc/usc.css';
+@import './designs/seal.css';
 
 @custom-variant dark (&:is(.dark *));
 
