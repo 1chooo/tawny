@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { CopyPageButton } from '@/components/landing/copy-page-button'
+import { OpenInV0Button } from '@/components/landing/open-in-v0-button'
 import { PackageManagerTabs } from '@/components/landing/package-manager-tabs'
 import { SetupWithOnePromptButton } from '@/components/landing/setup-with-one-prompt-button'
 import { TemplateFileExplorer } from '@/components/landing/template-file-explorer'
@@ -59,10 +60,13 @@ export async function DesignTemplateDocs({ design }: DesignTemplateDocsProps) {
             a prompt into a coding agent.
           </p>
           <div className="mt-5 flex flex-col gap-5">
-            <SetupWithOnePromptButton
-              designId={design.id}
-              title={design.title}
-            />
+            <div className="flex flex-wrap items-center gap-3">
+              <SetupWithOnePromptButton
+                designId={design.id}
+                title={design.title}
+              />
+              <OpenInV0Button designId={design.id} />
+            </div>
             <PackageManagerTabs
               commands={commands}
               highlightedHtml={highlightedHtml}
@@ -101,7 +105,7 @@ type DesignDemoHeaderActionsProps = {
 }
 
 /**
- * Loads source + install commands for header actions (setup prompt + Copy page).
+ * Header actions: setup prompt, Open in v0, and Copy page.
  */
 export async function DesignCopyPageAction({
   design,
@@ -124,6 +128,7 @@ export async function DesignCopyPageAction({
   return (
     <>
       <SetupWithOnePromptButton designId={design.id} title={design.title} />
+      <OpenInV0Button designId={design.id} />
       <CopyPageButton
         title={design.title}
         description={design.description}
