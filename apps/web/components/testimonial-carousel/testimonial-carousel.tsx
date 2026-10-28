@@ -1,80 +1,27 @@
 'use client'
 
-import { useEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent, type KeyboardEvent as ReactKeyboardEvent } from 'react'
+import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent, type KeyboardEvent as ReactKeyboardEvent } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import {
+  slideMotion,
+  slideOffset,
+  swipeDirection,
+  TESTIMONIAL_AUTOPLAY_MS,
+  TESTIMONIAL_EASE,
+  TESTIMONIAL_MOVE_MS,
   testimonialCarousel,
+  testimonialThemeVars,
+  wrapIndex,
   type Testimonial,
 } from '@/lib/testimonial-carousel'
 import { cn } from '@tawny/ui/lib/utils'
 
-const AUTOPLAY_MS = 7000
-
-const sectionVars = {
-  '--t-card': '#f3f3f3',
-  '--t-line': 'rgba(19, 18, 17, 0.12)',
-  '--t-fill': 'rgba(19, 18, 17, 0.58)',
-  '--t-soft': 'rgba(19, 18, 17, 0.58)',
-  '--t-body': 'rgba(19, 18, 17, 0.8)',
-  '--t-dot': 'rgba(19, 18, 17, 0.22)',
-  colorScheme: 'light',
-} as CSSProperties
+const iconButtonClass =
+  'grid size-9 place-items-center rounded-full text-foreground shadow-[inset_0_0_0_1px_var(--t-line)] transition-colors hover:bg-foreground/4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background'
 
 type MotionPreference = 'pending' | 'reduce' | 'ok'
 type ChangeSource = 'manual' | 'auto'
-
-function wrapIndex(index: number, count: number) {
-  return ((index % count) + count) % count
-}
-
-/** Signed distance from the active slide, wrapped so the short way wins. */
-function slideOffset(index: number, active: number, count: number) {
-  let offset = (index - active + count) % count
-  if (offset > count / 2) offset -= count
-  return offset
-}
-
-function slideStyle(offset: number): CSSProperties {
-  if (offset === 0) {
-    return {
-      transform: 'translateX(0) scale(1)',
-      opacity: 1,
-      zIndex: 2,
-      pointerEvents: 'auto',
-    }
-  }
-  if (offset === 1) {
-    return {
-      transform: 'translateX(102.564%) scale(0.97)',
-      opacity: 1,
-      zIndex: 1,
-      pointerEvents: 'auto',
-    }
-  }
-  if (offset === -1) {
-    return {
-      transform: 'translateX(-33.333%) scale(0.97)',
-      opacity: 0,
-      zIndex: 1,
-      pointerEvents: 'none',
-    }
-  }
-  if (offset > 1) {
-    return {
-      transform: 'translateX(133.333%) scale(0.97)',
-      opacity: 0,
-      zIndex: 0,
-      pointerEvents: 'none',
-    }
-  }
-  return {
-    transform: 'translateX(-40%) scale(0.97)',
-    opacity: 0,
-    zIndex: 0,
-    pointerEvents: 'none',
-  }
-}
 
 function useMotionPreference() {
   const [motion, setMotion] = useState<MotionPreference>('pending')
@@ -195,9 +142,10 @@ export function TestimonialCarousel({
     if (!start || start.id !== event.pointerId) return
     const dx = event.clientX - start.x
     const dy = event.clientY - start.y
-    if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy) * 1.2) return
+    const direction = swipeDirection(dx, dy)
+    if (direction === null) return
     consumedSwipe.current = true
-    select(index + (dx < 0 ? 1 : -1), 'manual')
+    select(index + direction, 'manual')
   }
 
   if (!active) return null
@@ -209,10 +157,10 @@ export function TestimonialCarousel({
       aria-roledescription="carousel"
       aria-label="Testimonials"
       className={cn(
-        'bg-white px-6 py-16 text-[#131211] md:px-8 md:py-24',
+        'bg-background px-6 py-16 text-foreground md:px-8 md:py-24',
         className,
       )}
-      style={sectionVars}
+      style={testimonialThemeVars}
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
       onFocusCapture={() => {
@@ -224,13 +172,13 @@ export function TestimonialCarousel({
       onKeyDown={onSectionKeyDown}
     >
       <div className="mx-auto w-full max-w-[1072px]">
-        <h2 className="mx-auto max-w-[18rem] text-balance text-center font-serif text-[1.75rem] leading-[1.15] tracking-[-0.02em] text-[#131211] sm:max-w-[28rem] md:max-w-[34rem] md:text-[2.5rem] md:leading-[1.12]">
+        <h2 className="mx-auto max-w-[18rem] text-balance text-center font-serif text-[1.75rem] leading-[1.15] tracking-[-0.02em] text-foreground sm:max-w-[28rem] md:max-w-[34rem] md:text-[2.5rem] md:leading-[1.12]">
           Thousands approved. Here&apos;s what{' '}
           <span className="mx-[0.18em] inline-flex translate-y-[0.08em] align-baseline">
             {items.slice(0, 3).map((item, avatarIndex) => (
               <span
                 key={item.id}
-                className="relative size-[0.92em] shrink-0 overflow-hidden rounded-full shadow-[0_0_0_0.08em_white]"
+                className="relative size-[0.92em] shrink-0 overflow-hidden rounded-full shadow-[0_0_0_0.08em_var(--background)]"
                 style={{
                   marginLeft: avatarIndex === 0 ? 0 : '-0.3em',
                   zIndex: 3 - avatarIndex,
@@ -260,7 +208,7 @@ export function TestimonialCarousel({
         >
           {items.map((item, itemIndex) => {
             const offset = slideOffset(itemIndex, index, count)
-            const motion = slideStyle(offset)
+            const motion = slideMotion(offset)
             return (
               <article
                 key={item.id}
@@ -277,7 +225,7 @@ export function TestimonialCarousel({
                   ...motion,
                   transition: reduced
                     ? 'none'
-                    : 'transform 700ms cubic-bezier(0.22, 1, 0.36, 1), opacity 700ms ease',
+                    : `transform ${TESTIMONIAL_MOVE_MS}ms ${TESTIMONIAL_EASE}, opacity ${TESTIMONIAL_MOVE_MS}ms ease`,
                 }}
                 onClick={() => {
                   if (consumedSwipe.current) {
@@ -312,7 +260,7 @@ export function TestimonialCarousel({
                     className="size-9 shrink-0 rounded-[10px] object-cover"
                   />
                   <div className="min-w-0">
-                    <p className="text-[15px] font-medium leading-tight text-[#131211]">
+                    <p className="text-[15px] font-medium leading-tight text-foreground">
                       {item.name}
                     </p>
                     <p className="mt-0.5 text-[15px] leading-tight text-[var(--t-soft)]">
@@ -341,7 +289,7 @@ export function TestimonialCarousel({
                 className="absolute inset-y-0 left-0 w-full origin-left bg-[var(--t-fill)]"
                 style={{
                   animationName: 'tawny-testimonial-progress',
-                  animationDuration: `${AUTOPLAY_MS}ms`,
+                  animationDuration: `${TESTIMONIAL_AUTOPLAY_MS}ms`,
                   animationTimingFunction: 'linear',
                   animationFillMode: 'forwards',
                   animationPlayState: paused ? 'paused' : 'running',
@@ -361,7 +309,7 @@ export function TestimonialCarousel({
           <div className="flex items-center gap-2">
             <button
               type="button"
-              className="grid size-9 place-items-center rounded-full text-[#131211] shadow-[inset_0_0_0_1px_var(--t-line)] transition-colors hover:bg-black/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#131211]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+              className={iconButtonClass}
               aria-label="Previous testimonial"
               aria-controls={`testimonial-carousel-slide-${active.id}`}
               onClick={() => select(index - 1, 'manual')}
@@ -370,7 +318,7 @@ export function TestimonialCarousel({
             </button>
             <button
               type="button"
-              className="grid size-9 place-items-center rounded-full text-[#131211] shadow-[inset_0_0_0_1px_var(--t-line)] transition-colors hover:bg-black/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#131211]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+              className={iconButtonClass}
               aria-label="Next testimonial"
               aria-controls={`testimonial-carousel-slide-${active.id}`}
               onClick={() => select(index + 1, 'manual')}
@@ -398,7 +346,7 @@ export function TestimonialCarousel({
                 aria-selected={selected}
                 aria-controls={`testimonial-carousel-slide-${item.id}`}
                 tabIndex={selected ? 0 : -1}
-                className="relative flex h-9 shrink-0 items-center justify-center rounded-full px-3 text-[#131211] outline-none focus-visible:ring-2 focus-visible:ring-[#131211]/40 focus-visible:ring-inset"
+                className="relative flex h-9 shrink-0 items-center justify-center rounded-full px-3 text-foreground outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-inset"
                 onClick={() => select(itemIndex, 'manual')}
               >
                 <span
@@ -419,7 +367,7 @@ export function TestimonialCarousel({
                     alt=""
                     width={16}
                     height={16}
-                    className="size-4 shrink-0"
+                    className="size-4 shrink-0 dark:invert"
                   />
                   <span className="text-sm font-medium tracking-[-0.01em] whitespace-nowrap md:text-[15px]">
                     {item.company}

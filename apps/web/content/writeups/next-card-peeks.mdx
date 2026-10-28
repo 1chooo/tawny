@@ -1,0 +1,113 @@
+---
+title: "The next card peeks. The bar keeps time."
+date: "2026-10-27"
+description: "How the testimonial carousel stacks six quotes in one cell, wraps the short way, and lets a progress bar advance the index."
+---
+
+The [testimonial carousel](/components/testimonial-carousel) keeps one index. The quote, the progress bar, the arrows, and the company marks all read it. Six cards share one grid cell. The next card peeks from the right, and a bar of seven seconds advances the index.
+
+<TestimonialStage stage="piece" />
+
+## A strip runs out
+
+A flex row can peek. Each card is 78% of the viewport, with a 2% gap, and the row steps by 80%. The next quote shows at the right edge. On the last step the row has no neighbor, and that edge is empty.
+
+<TestimonialStage stage="track" />
+
+## One cell, four poses
+
+Every card is `col-start-1 row-start-1`. The cell is as tall as the longest quote, so a short line leaves the band where it was, and a parked quote still counts toward the height. Place comes from the signed offset between a card and the active index.
+
+| Offset | Transform | Opacity |
+| --- | --- | --- |
+| 0 | `translateX(0) scale(1)` | 1 |
+| +1 | `translateX(102.564%) scale(0.97)` | 1 |
+| −1 | `translateX(-33.333%) scale(0.97)` | 0 |
+| +2 and further | `translateX(133.333%) scale(0.97)` | 0 |
+| −2 and further | `translateX(-40%) scale(0.97)` | 0 |
+
+`102.564%` is `80 / 78`. The card is 78% of the track wide, and a transform percentage is a percentage of the card. That shift lands the next card at 80% of the track. The active card ends at 78%. Two percent of air, then about a quarter of the next quote. The peek is clickable. The card that just left sits a third of its own width to the left, at opacity 0, so the way back is a short fade.
+
+On a narrow screen the card is 88% wide. The same percentage then leaves a thinner sliver.
+
+The move takes 700ms. Transform uses `cubic-bezier(0.22, 1, 0.36, 1)`. Opacity uses `ease`. It arrives and settles. `prefers-reduced-motion` sets the transition to `none`.
+
+```css
+transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), opacity 700ms ease;
+```
+
+<TestimonialStage stage="poses" />
+
+## The short way
+
+`index - active` keeps the long distance. From the last quote to the first is −5, and no card has offset +1, so the peek is gone.
+
+```ts
+function slideOffset(index: number, active: number, count: number) {
+  let offset = (index - active + count) % count
+  if (offset > count / 2) offset -= count
+  return offset
+}
+```
+
+The remainder folds once it passes half the set. From the last quote, the first quote is +1. It is already waiting on the right.
+
+<TestimonialStage stage="wrap" />
+
+## The bar is the clock
+
+The fill is the clock. The animation `tawny-testimonial-progress` runs 7000ms, linear, from `scaleX(0)` to `scaleX(1)`. `animationend` advances the index. The fill's key is the index, so choosing a quote remounts it and the seven seconds start over.
+
+Pause is `animation-play-state: paused`. The pointer over the section pauses the clock. Keyboard focus pauses it when the ring is showing (`:focus-visible`), so a click leaves the clock running. Moving away resumes the same animation. The elapsed time stays where it was.
+
+The animation stays unmounted until `prefers-reduced-motion` has been read. Reduced motion draws a static width, `(index + 1) / count`. That mark is how far through the set you are. The running bar is how long until the next quote.
+
+Autoplay stays quiet. A polite live region speaks the name, the role, and the quote when someone uses a mark, an arrow, a key, or a swipe.
+
+<TestimonialStage stage="clock" />
+
+## A sideways drag
+
+The card waits. The gesture is read on pointer up.
+
+```ts
+if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy) * 1.2) return
+```
+
+Under 48px, the index stays. A drag steeper than the horizontal is a scroll. The band sets `touch-action: pan-y`, so the page can move. A swipe that qualifies sets a flag before the click that follows. The peek is a control. A swipe that ends on it would also fire that click, and the click would open the peek even when the swipe meant previous.
+
+<TestimonialStage stage="gesture" />
+
+## One tab stop
+
+The companies are a tablist. The selected mark is `tabIndex={0}`. The others are `tabIndex={-1}`. Arrow keys, Home, and End change the index, then focus moves to the new mark on the next paint. During the key handler that mark was still `tabIndex={-1}`. Arrow keys elsewhere on the section also move the quote. A key that starts inside the tablist is handled there, once.
+
+When the row overflows, the selected mark scrolls to the center.
+
+<TestimonialStage stage="marks" />
+
+## The faces stay in the type
+
+The headline is Instrument Serif. Three portraits sit in the sentence, between "what" and "they're saying." They are `0.92em` tall, overlapped by `0.3em`, with a white ring of `0.08em`. They are the first three people. The index leaves them where they are. Sizing in `em` keeps them on the baseline when the type goes from `1.75rem` to `2.5rem`. The image alt is empty. The names live on the cards.
+
+<TestimonialStage stage="type" />
+
+The band takes its ink, hairline, and progress fill from the page foreground, so the same layout follows light and dark. A dot grid sits on the right of each card and fades out before the words.
+
+## Do and don't
+
+Do:
+
+- Stack every slide in one grid cell and place it with a signed offset.
+- Land the next card at 80% of the track, and keep that card clickable.
+- Fold the offset so the short way wins. The first quote peeks on the last slide.
+- Advance on `animationend` of a 7000ms bar. Pause with `animation-play-state`, and resume the same run.
+- Ignore a drag under 48px, and a drag steeper than the horizontal. Drop the click that follows a swipe.
+- Keep a single tab stop in the company row. Move focus after the index changes.
+
+Don't:
+
+- Step a flex strip by one card and expect the last slide to have a neighbor.
+- Keep the clock with `setInterval`. A paused interval loses the time already counted.
+- Announce autoplay in the live region. Speak when someone chooses a slide.
+- Mount the animation before `prefers-reduced-motion` has been read.

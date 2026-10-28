@@ -235,8 +235,8 @@ export const componentDemos: ComponentDemo[] = [
       'A serif headline with overlapping portraits, peeking quote cards, and company marks on one index.',
     category: 'People',
     frameTitle: 'components/testimonial-carousel',
-    contentClassName: 'bg-white',
-    detailContentClassName: 'h-auto overflow-hidden bg-white',
+    contentClassName: 'bg-background',
+    detailContentClassName: 'h-auto overflow-hidden bg-background',
     sourceFiles: [
       'apps/web/components/testimonial-carousel/testimonial-carousel.tsx',
       'apps/web/lib/testimonial-carousel.ts',

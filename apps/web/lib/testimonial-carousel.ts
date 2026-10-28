@@ -76,3 +76,88 @@ export const testimonialCarousel: Testimonial[] = [
     companyLogo: '/images/testimonials/lumen-desk.svg',
   },
 ]
+
+export const TESTIMONIAL_AUTOPLAY_MS = 7000
+export const TESTIMONIAL_MOVE_MS = 700
+export const TESTIMONIAL_EASE = 'cubic-bezier(0.22, 1, 0.36, 1)'
+
+/** Card, hairline, and ink. Resolved on the element so light and dark both apply. */
+export const testimonialThemeVars = {
+  '--t-card': 'var(--accent)',
+  '--t-line': 'color-mix(in srgb, var(--foreground) 12%, transparent)',
+  '--t-fill': 'color-mix(in srgb, var(--foreground) 58%, transparent)',
+  '--t-soft': 'color-mix(in srgb, var(--foreground) 58%, transparent)',
+  '--t-body': 'color-mix(in srgb, var(--foreground) 80%, transparent)',
+  '--t-dot': 'color-mix(in srgb, var(--foreground) 22%, transparent)',
+} as const
+
+export function wrapIndex(index: number, count: number) {
+  return ((index % count) + count) % count
+}
+
+/** Signed distance from the active slide, wrapped so the short way wins. */
+export function slideOffset(index: number, active: number, count: number) {
+  let offset = (index - active + count) % count
+  if (offset > count / 2) offset -= count
+  return offset
+}
+
+/** Signed distance, unwrapped. The ends stay on the long side of zero. */
+export function rawOffset(index: number, active: number) {
+  return index - active
+}
+
+export type SlideMotion = {
+  transform: string
+  opacity: number
+  zIndex: number
+  pointerEvents: 'auto' | 'none'
+}
+
+/** Where a card sits for a signed offset. The live carousel uses these poses. */
+export function slideMotion(offset: number): SlideMotion {
+  if (offset === 0) {
+    return {
+      transform: 'translateX(0) scale(1)',
+      opacity: 1,
+      zIndex: 2,
+      pointerEvents: 'auto',
+    }
+  }
+  if (offset === 1) {
+    return {
+      transform: 'translateX(102.564%) scale(0.97)',
+      opacity: 1,
+      zIndex: 1,
+      pointerEvents: 'auto',
+    }
+  }
+  if (offset === -1) {
+    return {
+      transform: 'translateX(-33.333%) scale(0.97)',
+      opacity: 0,
+      zIndex: 1,
+      pointerEvents: 'none',
+    }
+  }
+  if (offset > 1) {
+    return {
+      transform: 'translateX(133.333%) scale(0.97)',
+      opacity: 0,
+      zIndex: 0,
+      pointerEvents: 'none',
+    }
+  }
+  return {
+    transform: 'translateX(-40%) scale(0.97)',
+    opacity: 0,
+    zIndex: 0,
+    pointerEvents: 'none',
+  }
+}
+
+/** 1 moves to the next quote, −1 to the previous. Null is a scroll or a tap. */
+export function swipeDirection(dx: number, dy: number): -1 | 1 | null {
+  if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy) * 1.2) return null
+  return dx < 0 ? 1 : -1
+}
