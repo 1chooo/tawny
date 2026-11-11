@@ -11,6 +11,7 @@
 @import './designs/desk/desk.css';
 @import './designs/usc/usc.css';
 @import './designs/seal.css';
+@import './designs/vale.css';
 
 @custom-variant dark (&:is(.dark *));
 

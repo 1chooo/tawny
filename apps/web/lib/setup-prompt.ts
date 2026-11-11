@@ -12,6 +12,7 @@ export const DEFAULT_PROJECT_NAMES: Record<string, string> = {
   desk: 'my-desk',
   usc: 'my-usc',
   seal: 'my-seal',
+  vale: 'my-vale',
 }
 
 const SETUP_BLURBS: Record<string, string> = {
@@ -27,6 +28,7 @@ const SETUP_BLURBS: Record<string, string> = {
   desk: 'the project desk dashboard',
   usc: 'the USC researcher page',
   seal: 'Seal, the paper editorial portfolio',
+  vale: 'Vale, the editorial gallery storefront',
 }
 
 export type SetupPromptInput = {

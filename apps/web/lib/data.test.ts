@@ -80,6 +80,15 @@ describe('getDesign', () => {
     expect(pinnedDesignIds).not.toContain('desk')
   })
 
+  it('includes the vale design under Shop without pinning it', () => {
+    const vale = getDesign('vale')
+    expect(vale?.demoPath).toBe('/designs/vale')
+    expect(vale?.viewPath).toBe('/view/vale')
+    expect(vale?.title).toBe('Vale')
+    expect(vale?.category).toBe('Shop')
+    expect(pinnedDesignIds).not.toContain('vale')
+  })
+
   it('includes the seal design under Portfolio without pinning it', () => {
     const seal = getDesign('seal')
     expect(seal?.demoPath).toBe('/designs/seal')

@@ -239,6 +239,23 @@ export const designs: Design[] = [
     packageName: 'create-tawny',
     sourceFiles: ['package.json', 'README.md', 'app/page.tsx', 'lib/content.ts'],
   },
+  {
+    id: 'vale',
+    title: 'Vale',
+    description:
+      'A white gallery storefront for Studio Vale — ceramics, paintings, and a demo cart. Open the live showcase.',
+    longDescription: [
+      'Vale is an editorial shop with a hairline grid, condensed category names, and large product photographs. The home switches Ceramics, Paintings, and Others in place. Product pages, the catalog, and the cart share one browser cart.',
+      'Add a piece, change a quantity, or open a commission that asks for options first. Checkout and the mailing list stay in the browser. Nothing is charged and nothing is sent. Scaffold a copy with the create command below, then replace the studio copy in lib/content.ts.',
+    ],
+    category: 'Shop',
+    price: 'free',
+    tags: ['Next.js', 'Shop', 'Editorial'],
+    demoPath: '/designs/vale',
+    viewPath: '/view/vale',
+    packageName: 'create-tawny',
+    sourceFiles: ['package.json', 'README.md', 'app/page.tsx', 'lib/content.ts'],
+  },
 ]
 
 /** Large pin, then the two compact slots. Home and `/designs` share this list. */

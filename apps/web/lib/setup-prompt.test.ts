@@ -53,6 +53,9 @@ describe('setupCommand', () => {
     expect(setupCommand('seal')).toBe(
       'npx create-tawny@latest seal my-seal --yes',
     )
+    expect(setupCommand('vale')).toBe(
+      'npx create-tawny@latest vale my-vale --yes',
+    )
   })
 
   it('keeps default names aligned with the CLI', () => {
@@ -69,6 +72,7 @@ describe('setupCommand', () => {
       desk: 'my-desk',
       usc: 'my-usc',
       seal: 'my-seal',
+      vale: 'my-vale',
     })
   })
 })
