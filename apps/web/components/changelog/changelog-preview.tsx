@@ -19,6 +19,7 @@ const DESIGN_IDS = new Set([
   'desk',
   'usc',
   'seal',
+  'vale',
 ])
 
 type ChangelogPreviewProps = {
