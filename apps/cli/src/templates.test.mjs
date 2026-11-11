@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { getTemplate, templateList, templates } from './templates.mjs'
 
 describe('templates registry', () => {
-  it('exposes art, dev, link, ocean, board, vcard, cobalt, atelier, admin, desk, usc, and seal templates', () => {
+  it('exposes art, dev, link, ocean, board, vcard, cobalt, atelier, admin, desk, usc, seal, and vale templates', () => {
     expect(Object.keys(templates).sort()).toEqual([
       'admin',
       'art',
@@ -15,6 +15,7 @@ describe('templates registry', () => {
       'ocean',
       'seal',
       'usc',
+      'vale',
       'vcard',
     ])
     expect(templateList.map((t) => t.id).sort()).toEqual([
@@ -29,6 +30,7 @@ describe('templates registry', () => {
       'ocean',
       'seal',
       'usc',
+      'vale',
       'vcard',
     ])
   })
@@ -55,6 +57,8 @@ describe('templates registry', () => {
     expect(getTemplate('usc')?.defaultProjectName).toBe('my-usc')
     expect(getTemplate('seal')?.path).toBe('templates/seal')
     expect(getTemplate('seal')?.defaultProjectName).toBe('my-seal')
+    expect(getTemplate('vale')?.path).toBe('templates/vale')
+    expect(getTemplate('vale')?.defaultProjectName).toBe('my-vale')
   })
 
   it('keeps bilingual locales as the Art --yes default', () => {
@@ -70,6 +74,7 @@ describe('templates registry', () => {
     expect(getTemplate('desk')?.extraDefaults).toEqual({})
     expect(getTemplate('usc')?.extraDefaults).toEqual({})
     expect(getTemplate('seal')?.extraDefaults).toEqual({})
+    expect(getTemplate('vale')?.extraDefaults).toEqual({})
   })
 
   it('returns undefined for unknown ids', () => {

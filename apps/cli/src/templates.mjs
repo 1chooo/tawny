@@ -10,6 +10,7 @@ import { admin } from "./admin.mjs";
 import { desk } from "./desk.mjs";
 import { usc } from "./usc.mjs";
 import { seal } from "./seal.mjs";
+import { vale } from "./vale.mjs";
 
 export const templates = {
   dev,
@@ -24,6 +25,7 @@ export const templates = {
   desk,
   usc,
   seal,
+  vale,
 };
 
 export const templateList = Object.values(templates);
