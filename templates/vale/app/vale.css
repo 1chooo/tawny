@@ -1,0 +1,1579 @@
+.vale {
+  --bg: #fff;
+  --ink: #000;
+  --text: #111;
+  --muted: #6b6b6b;
+  --faded: #b5b5b5;
+  --key: #d6d6d6;
+  --tile: #f3f3f3;
+  --chip: #e8e8e8;
+  --stroke: 0.5px;
+  --margin: 20px;
+  --gap: 12px;
+  --cols: 10;
+  --header-h: 72px;
+  --buybar-h: 72px;
+  color: var(--text);
+  background: var(--bg);
+  font-family: var(--font-vale-ui), Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  min-height: 100%;
+}
+
+.vale *,
+.vale *::before,
+.vale *::after {
+  box-sizing: border-box;
+}
+
+.vale h1,
+.vale h2,
+.vale h3,
+.vale p,
+.vale figure {
+  margin: 0;
+}
+
+.vale ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vale a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.vale button,
+.vale input {
+  color: inherit;
+}
+
+.vale img {
+  display: block;
+  max-width: 100%;
+}
+
+.vale :focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.vale-site {
+  min-height: 100%;
+  background: var(--bg);
+}
+
+.vale-display {
+  font-family: var(--font-vale-heading), Archivo, sans-serif;
+  font-stretch: 72%;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.vale-ui {
+  font-family: var(--font-vale-ui), Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.vale-hero-type {
+  font-family: var(--font-vale-hero), Fraunces, "Times New Roman", serif;
+  font-weight: 300;
+  font-variation-settings: "SOFT" 0, "WONK" 0, "opsz" 144;
+  letter-spacing: -0.05em;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+.vale-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg);
+  border-bottom: var(--stroke) solid var(--key);
+}
+
+.vale-header-inner,
+.vale-intro,
+.vale-explorer,
+.vale-feature,
+.vale-statement,
+.vale-footer-inner,
+.vale-note,
+.vale-page,
+.vale-shop,
+.vale-pdp,
+.vale-info,
+.vale-rail-head {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  column-gap: var(--gap);
+  padding-inline: var(--margin);
+}
+
+.vale-header-inner {
+  min-height: var(--header-h);
+  align-items: center;
+}
+
+.vale-header-nav {
+  grid-column: 1 / 5;
+}
+
+.vale-header-nav a,
+.vale-header-actions a {
+  font-size: 12px;
+}
+
+.vale-logo {
+  grid-column: 5 / 7;
+  justify-self: center;
+  color: var(--ink);
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.vale-header-actions {
+  grid-column: 7 / 11;
+  justify-self: end;
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+}
+
+@media (hover: hover) {
+  .vale-header a:hover,
+  .vale-footer a:hover,
+  .vale-crumbs a:hover,
+  .vale-note a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+.vale-intro {
+  justify-items: center;
+  row-gap: 12px;
+  padding-block: 40px 56px;
+  text-align: center;
+}
+
+.vale-emblem {
+  grid-column: 1 / -1;
+  width: 149px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.vale-intro h1 {
+  grid-column: 1 / -1;
+  color: var(--ink);
+  font-size: clamp(56px, 9.03vw, 148px);
+}
+
+.vale-intro p {
+  grid-column: 4 / 8;
+  max-width: 28rem;
+  font-size: 16px;
+  line-height: 1.36;
+}
+
+.vale-explorer {
+  border-top: var(--stroke) solid var(--key);
+}
+
+.vale-explorer-nav {
+  grid-column: 1 / 5;
+}
+
+.vale-explorer-nav ul {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+  display: grid;
+  gap: 4px;
+  padding: 40px 0;
+}
+
+.vale-tab {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--faded);
+  font-size: clamp(40px, 5vw, 76px);
+  line-height: 0.95;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.vale-tab[aria-selected='true'] {
+  color: var(--ink);
+}
+
+.vale-tab sup,
+.vale-page-title sup,
+.vale-rail-head sup {
+  margin-left: 6px;
+  font-size: 14px;
+  vertical-align: super;
+}
+
+@media (hover: hover) {
+  .vale-tab:hover {
+    color: var(--ink);
+  }
+}
+
+.vale-explorer-body {
+  position: relative;
+  grid-column: 5 / 11;
+}
+
+.vale-explorer-body::before,
+.vale-shop-grid::before,
+.vale-pdp-info::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.vale-explorer-body::before,
+.vale-shop-grid::before {
+  left: calc(var(--gap) / -2);
+  border-left: var(--stroke) solid var(--key);
+}
+
+.vale-cards {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--gap);
+}
+
+.vale-cards::before,
+.vale-cards::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--gap) / -2);
+  right: calc(var(--gap) / -2);
+  pointer-events: none;
+}
+
+.vale-cards::before {
+  top: 0;
+  border-top: var(--stroke) solid var(--key);
+}
+
+.vale-cards::after {
+  bottom: 0;
+  border-bottom: var(--stroke) solid var(--key);
+}
+
+.vale-cards > li {
+  position: relative;
+}
+
+.vale-cards > li::before,
+.vale-cards > li::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.vale-cards > li::before {
+  top: 0;
+  bottom: 0;
+  left: calc(var(--gap) / -2);
+  border-left: var(--stroke) solid var(--key);
+  display: none;
+}
+
+.vale-cards > li:nth-child(3n + 1)::before {
+  display: block;
+}
+
+.vale-cards > li::after {
+  top: 0;
+  bottom: 0;
+  left: calc(var(--gap) / -2);
+  right: calc(var(--gap) / -2);
+  border-right: var(--stroke) solid var(--key);
+  border-bottom: var(--stroke) solid var(--key);
+}
+
+.vale-card {
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 4px;
+}
+
+.vale-card-link {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.vale-card-title {
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.vale-card-meta {
+  margin: 6px 0 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.vale-card-media {
+  position: relative;
+  aspect-ratio: 1;
+  margin-top: auto;
+  overflow: hidden;
+  background: var(--tile);
+}
+
+.vale-card-media img,
+.vale-feature-photo img,
+.vale-pdp-image img,
+.vale-shop-hero-media img,
+.vale-cart-thumb img,
+.vale-info-art img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.vale-card-media img {
+  transition: transform 0.6s;
+}
+
+@media (hover: hover) {
+  .vale-card-link:hover img {
+    transform: scale(1.03);
+  }
+
+  .vale-card:hover .vale-quick.is-live {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: #fff;
+  }
+}
+
+.vale-sold-line {
+  position: absolute;
+  inset: 0;
+  color: rgba(255, 255, 255, 0.85);
+  pointer-events: none;
+}
+
+.vale-sold-line line {
+  stroke: currentColor;
+}
+
+.vale-quick {
+  display: flex;
+  width: 100%;
+  min-height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: var(--stroke) solid var(--key);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 12px;
+  letter-spacing: 0;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.vale-quick.is-sold {
+  cursor: default;
+}
+
+.vale-quick.is-sold span {
+  text-decoration: line-through;
+}
+
+.vale-quick.is-sold span:first-child {
+  color: var(--muted);
+}
+
+.vale-quick.is-sold span:last-child {
+  color: var(--faded);
+}
+
+.vale-quick.is-paused {
+  color: var(--muted);
+  cursor: default;
+}
+
+.vale-quick:disabled {
+  cursor: not-allowed;
+}
+
+.vale-quick-note {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.vale-note {
+  align-items: end;
+  padding-block: 28px 40px;
+  column-gap: var(--gap);
+}
+
+.vale-note p {
+  grid-column: 1 / 7;
+  max-width: 38rem;
+  font-size: 16px;
+  line-height: 1.36;
+}
+
+.vale-note a {
+  grid-column: 7 / 11;
+  justify-self: end;
+  font-size: 13px;
+}
+
+.vale-feature {
+  border-block: var(--stroke) solid var(--key);
+}
+
+.vale-feature-copy {
+  grid-column: 1 / 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding-block: 40px;
+}
+
+.vale-kicker {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.vale-feature h2 {
+  font-size: clamp(40px, 4.17vw, 68px);
+}
+
+.vale-feature p {
+  font-size: 16px;
+  line-height: 1.36;
+}
+
+.vale-feature-media {
+  grid-column: 5 / 11;
+  margin-left: calc(var(--gap) / 2);
+  margin-right: calc(-1 * var(--margin));
+  border-left: var(--stroke) solid var(--key);
+  padding: 40px;
+}
+
+.vale-feature-photo {
+  position: relative;
+  aspect-ratio: 766 / 480;
+  overflow: hidden;
+  background: var(--tile);
+}
+
+.vale-feature-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vale-text-link {
+  font-size: 13px;
+}
+
+.vale-statement {
+  justify-items: center;
+  row-gap: 20px;
+  padding-block: 88px;
+  text-align: center;
+}
+
+.vale-statement > * {
+  grid-column: 1 / -1;
+}
+
+.vale-statement h2 {
+  max-width: 16ch;
+  font-size: clamp(56px, 9.03vw, 148px);
+}
+
+.vale-statement p {
+  max-width: 36rem;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.vale-footer {
+  border-top: var(--stroke) solid var(--key);
+}
+
+.vale-footer-inner {
+  row-gap: 28px;
+  padding-block: 48px 28px;
+}
+
+.vale-footer-brand {
+  grid-column: 1 / 5;
+  display: grid;
+  gap: 8px;
+}
+
+.vale-footer-name {
+  color: var(--ink);
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.vale-footer-brand p,
+.vale-footer-col a,
+.vale-footer-col p {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5;
+  text-transform: none;
+}
+
+.vale-footer-col {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.vale-footer-contact {
+  grid-column: 5 / 7;
+}
+
+.vale-footer-follow {
+  grid-column: 7 / 9;
+}
+
+.vale-footer-info {
+  grid-column: 9 / 11;
+}
+
+.vale-footer-label {
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.vale-footer-base {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.vale-footer-mail {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.vale-page {
+  padding-block: 40px 72px;
+}
+
+.vale-catalog-blurb {
+  grid-column: 1 / -1;
+  max-width: 40rem;
+  margin: -8px 0 28px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.vale-page-title {
+  grid-column: 1 / -1;
+  margin-bottom: 28px;
+  font-size: clamp(40px, 5vw, 76px);
+}
+
+.vale-pills {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.vale-pill {
+  border: var(--stroke) solid var(--ink);
+  border-radius: 999px;
+  background: var(--bg);
+  padding: 10px 20px;
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.vale-pill[aria-current='page'] {
+  background: var(--ink);
+  color: #fff;
+}
+
+@media (hover: hover) {
+  .vale-pill:hover {
+    background: var(--tile);
+  }
+
+  .vale-pill[aria-current='page']:hover {
+    background: var(--ink);
+  }
+}
+
+.vale-shop {
+  grid-column: 1 / -1;
+  margin-inline: calc(-1 * var(--margin));
+  border-block: var(--stroke) solid var(--key);
+}
+
+.vale-shop-hero {
+  grid-column: 1 / 5;
+  align-self: start;
+  display: grid;
+  gap: 16px;
+  padding: 20px 20px 28px 0;
+}
+
+.vale-shop-hero-media {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--tile);
+}
+
+.vale-shop-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s;
+}
+
+@media (hover: hover) {
+  .vale-shop-hero-media:hover img {
+    transform: scale(1.03);
+  }
+}
+
+.vale-shop-hero h2 {
+  font-size: clamp(32px, 3.3vw, 52px);
+}
+
+.vale-shop-hero h2 a {
+  color: inherit;
+}
+
+.vale-shop-hero p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.vale-shop-grid {
+  position: relative;
+  grid-column: 5 / 11;
+}
+
+.vale-pdp {
+  border-bottom: var(--stroke) solid var(--key);
+}
+
+.vale-pdp-info {
+  position: relative;
+  grid-column: 1 / 5;
+}
+
+.vale-pdp-info::after {
+  right: calc(var(--gap) / -2);
+  border-right: var(--stroke) solid var(--key);
+}
+
+.vale-pdp-sticky {
+  position: sticky;
+  top: var(--header-h);
+  display: grid;
+  align-content: start;
+  gap: 20px;
+  max-height: calc(100vh - var(--header-h));
+  margin-right: calc(var(--gap) / 2);
+  margin-left: calc(-1 * var(--margin));
+  padding: 48px var(--margin) 40px;
+  overflow-y: auto;
+}
+
+.vale-crumbs {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.vale-crumbs a + span::before,
+.vale-crumbs span + a::before,
+.vale-crumbs a + a::before {
+  content: " / ";
+  color: var(--faded);
+}
+
+.vale-pdp h1 {
+  font-size: clamp(40px, 4.2vw, 68px);
+}
+
+.vale-pdp-price {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.vale-prose {
+  display: grid;
+  gap: 12px;
+  max-width: 36rem;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.vale-prose .vale-muted {
+  color: var(--muted);
+}
+
+.vale-options {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.vale-options legend {
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.vale-option-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.vale-option {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--faded);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.vale-option[aria-pressed='true'] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.vale-purchase {
+  display: grid;
+  gap: 12px;
+  margin-top: 8px;
+  padding-top: 20px;
+  border-top: var(--stroke) solid var(--key);
+}
+
+.vale-purchase-row {
+  display: flex;
+  gap: 8px;
+}
+
+.vale-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+}
+
+.vale-stepper button {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.vale-stepper button:disabled {
+  color: var(--faded);
+  cursor: default;
+}
+
+.vale-add {
+  display: flex;
+  min-height: 48px;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: var(--stroke) solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+
+.vale-add:disabled {
+  border-color: var(--faded);
+  background: var(--faded);
+  cursor: not-allowed;
+}
+
+.vale-add.is-muted {
+  border-color: var(--key);
+  background: var(--tile);
+  color: var(--muted);
+}
+
+.vale-pdp-media {
+  grid-column: 5 / 11;
+  margin-right: calc(-1 * var(--margin));
+  margin-left: calc(var(--gap) / 2);
+}
+
+.vale-pdp-image {
+  position: relative;
+  background: var(--tile);
+}
+
+.vale-pdp-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vale-pdp-lead {
+  aspect-ratio: 4 / 3;
+  max-height: calc(100vh - var(--header-h));
+}
+
+.vale-pdp-image + .vale-pdp-image {
+  aspect-ratio: 1;
+  margin-top: 12px;
+}
+
+.vale-accordion {
+  border-bottom: var(--stroke) solid var(--key);
+}
+
+.vale-accordion summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0;
+  cursor: pointer;
+  font-size: 15px;
+  list-style: none;
+}
+
+.vale-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.vale-accordion summary::after {
+  content: "[+]";
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.vale-accordion details[open] summary::after {
+  content: "[−]";
+}
+
+.vale-accordion .vale-prose {
+  padding-bottom: 20px;
+}
+
+.vale-more,
+.vale-rail {
+  padding-top: 56px;
+}
+
+.vale-more h2,
+.vale-rail-head h2 {
+  font-size: clamp(40px, 4.2vw, 68px);
+}
+
+.vale-more {
+  padding-inline: var(--margin);
+}
+
+.vale-more h2 {
+  margin-bottom: 8px;
+}
+
+.vale-rail-head {
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.vale-rail-head h2 {
+  grid-column: 1 / 7;
+}
+
+.vale-rail-actions {
+  grid-column: 7 / 11;
+  justify-self: end;
+  display: flex;
+  gap: 10px;
+}
+
+.vale-rail-actions button {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: var(--stroke) solid var(--key);
+  background: transparent;
+  cursor: pointer;
+}
+
+.vale-rail-actions button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.vale-rail-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 2 * var(--gap) - 2 * var(--margin)) / 3);
+  column-gap: var(--gap);
+  margin: 0;
+  padding: 0 var(--margin);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--margin);
+  scrollbar-width: none;
+  border-block: var(--stroke) solid var(--key);
+}
+
+.vale-rail-track::-webkit-scrollbar {
+  display: none;
+}
+
+.vale-rail-track > li {
+  position: relative;
+  scroll-snap-align: start;
+}
+
+.vale-rail-track > li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: calc(var(--gap) / -2);
+  border-right: var(--stroke) solid var(--key);
+  pointer-events: none;
+}
+
+.vale-cart-layout,
+.vale-empty {
+  grid-column: 1 / -1;
+}
+
+.vale-cart-layout {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  column-gap: var(--gap);
+  align-items: start;
+}
+
+.vale-cart-lines {
+  grid-column: 1 / 7;
+  border-top: var(--stroke) solid var(--key);
+}
+
+.vale-cart-line {
+  display: grid;
+  grid-template-columns: minmax(72px, 1fr) 3fr auto;
+  gap: var(--gap);
+  align-items: start;
+  padding-block: 24px;
+  border-bottom: var(--stroke) solid var(--key);
+}
+
+.vale-cart-thumb {
+  position: relative;
+  aspect-ratio: 1;
+  background: var(--tile);
+}
+
+.vale-cart-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vale-cart-details {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+}
+
+.vale-cart-name {
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.vale-cart-meta,
+.vale-remove {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.vale-remove {
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.vale-cart-price {
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.vale-cart-summary {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+  grid-column: 7 / 11;
+  display: grid;
+  gap: 16px;
+  justify-items: start;
+}
+
+.vale-cart-summary p,
+.vale-empty p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.vale-subtotal {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 18px;
+}
+
+.vale-demo-note {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.vale-empty {
+  grid-column: 1 / 7;
+  display: grid;
+  gap: 16px;
+  padding-block: 12px 40px;
+}
+
+.vale-info {
+  position: relative;
+}
+
+.vale-info::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  border-left: var(--stroke) solid var(--key);
+  pointer-events: none;
+}
+
+.vale-info-text {
+  grid-column: 1 / 6;
+  padding: 56px 28px 88px 0;
+}
+
+.vale-info-text h1 {
+  margin-bottom: 28px;
+  font-size: clamp(40px, 5vw, 76px);
+}
+
+.vale-info-text .vale-prose,
+.vale-faq .vale-prose,
+.vale-doc .vale-prose {
+  max-width: 38rem;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.vale-info-art {
+  position: relative;
+  grid-column: 6 / 11;
+  min-height: calc(100svh - var(--header-h));
+  margin-right: calc(-1 * var(--margin));
+}
+
+.vale-info-art img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vale-doc,
+.vale-faq {
+  padding: 56px var(--margin) 88px;
+}
+
+.vale-doc h2,
+.vale-accordion h3 {
+  margin-top: 8px;
+  font-size: 22px;
+}
+
+.vale-doc h1,
+.vale-faq h1 {
+  max-width: 12ch;
+  margin-bottom: 32px;
+  font-size: clamp(48px, 6.5vw, 96px);
+}
+
+.vale-faq-list {
+  display: grid;
+  max-width: 40rem;
+  gap: 28px;
+}
+
+.vale-faq-list h2 {
+  margin-bottom: 8px;
+  font-size: clamp(22px, 2vw, 28px);
+}
+
+.vale-missing {
+  display: grid;
+  gap: 16px;
+  padding: 72px var(--margin);
+}
+
+.vale-missing h1 {
+  font-size: clamp(40px, 6vw, 84px);
+}
+
+.vale-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(17, 17, 17, 0.45);
+}
+
+.vale-dialog-panel {
+  position: relative;
+  width: min(560px, 100%);
+  padding: 28px 32px 32px;
+  background: #fff;
+}
+
+.vale-dialog-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.vale-dialog h2 {
+  margin: 20px 0 16px;
+  font-family: var(--font-vale-hero), Fraunces, serif;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 300;
+  font-variation-settings: "SOFT" 0, "WONK" 0, "opsz" 144;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  text-transform: none;
+}
+
+.vale-dialog p {
+  max-width: 36rem;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.vale-newsletter-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+.vale-newsletter-form input {
+  width: 100%;
+  padding: 12px 0;
+  border: 0;
+  border-bottom: var(--stroke) solid var(--ink);
+  border-radius: 0;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.vale-newsletter-form input::placeholder {
+  color: var(--faded);
+}
+
+.vale-newsletter-form input:focus {
+  outline: none;
+  box-shadow: 0 1px 0 var(--ink);
+}
+
+.vale-newsletter-form button {
+  min-height: 48px;
+  border: 0;
+  background: var(--ink);
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.vale-form-error {
+  color: #8a2e2e;
+  font-size: 13px;
+}
+
+.vale-fine {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+@media (max-width: 999px) {
+  .vale {
+    --cols: 6;
+  }
+
+  .vale-header-nav {
+    grid-column: 1 / 3;
+  }
+
+  .vale-logo {
+    grid-column: 3 / 5;
+  }
+
+  .vale-header-actions {
+    grid-column: 5 / 7;
+  }
+
+  .vale-intro p {
+    grid-column: 2 / 6;
+  }
+
+  .vale-explorer-nav,
+  .vale-explorer-body,
+  .vale-feature-copy,
+  .vale-feature-media,
+  .vale-shop-hero,
+  .vale-shop-grid,
+  .vale-pdp-info,
+  .vale-pdp-media,
+  .vale-note p,
+  .vale-note a,
+  .vale-rail-head h2,
+  .vale-rail-actions,
+  .vale-cart-lines,
+  .vale-cart-summary,
+  .vale-footer-brand,
+  .vale-info-text,
+  .vale-info-art {
+    grid-column: 1 / -1;
+  }
+
+  .vale-explorer-nav {
+    border-bottom: var(--stroke) solid var(--key);
+  }
+
+  .vale-explorer-nav ul {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 24px;
+    padding-block: 28px;
+  }
+
+  .vale-tab {
+    font-size: 36px;
+  }
+
+  .vale-explorer-body::before,
+  .vale-shop-grid::before,
+  .vale-pdp-info::after,
+  .vale-info::before {
+    display: none;
+  }
+
+  .vale-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .vale-cards > li:nth-child(n)::before {
+    display: none;
+  }
+
+  .vale-cards > li:nth-child(3n + 1)::before {
+    display: block;
+  }
+
+  .vale-feature-media {
+    margin-left: calc(-1 * var(--margin));
+    margin-right: calc(-1 * var(--margin));
+    border-top: var(--stroke) solid var(--key);
+    border-left: 0;
+  }
+
+  .vale-shop-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+    padding-right: 0;
+  }
+
+  .vale-shop-grid {
+    border-top: var(--stroke) solid var(--key);
+  }
+
+  .vale-pdp-info {
+    order: 2;
+  }
+
+  .vale-pdp-sticky {
+    position: static;
+    max-height: none;
+    margin-inline: 0;
+    padding-left: 0;
+    overflow: visible;
+  }
+
+  .vale-pdp-media {
+    order: 1;
+    margin-inline: calc(-1 * var(--margin));
+  }
+
+  .vale-pdp-lead {
+    max-height: none;
+  }
+
+  .vale-note a,
+  .vale-rail-actions {
+    justify-self: start;
+  }
+
+  .vale-cart-summary {
+    position: static;
+  }
+
+  .vale-info-text {
+    padding-right: 0;
+    padding-bottom: 32px;
+  }
+
+  .vale-info-art {
+    min-height: 0;
+    aspect-ratio: 1512 / 1020;
+    margin-inline: calc(-1 * var(--margin));
+    border-top: var(--stroke) solid var(--key);
+  }
+
+  .vale-footer-contact {
+    grid-column: 1 / 3;
+  }
+
+  .vale-footer-follow {
+    grid-column: 3 / 5;
+  }
+
+  .vale-footer-info {
+    grid-column: 5 / 7;
+  }
+
+  .vale-site:has(.vale-purchase) {
+    padding-bottom: calc(var(--buybar-h) + 28px);
+  }
+
+  .vale-purchase {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 15;
+    margin: 0;
+    padding: 12px var(--margin);
+    border-top: var(--stroke) solid var(--key);
+    background: var(--bg);
+  }
+}
+
+@media (max-width: 599px) {
+  .vale {
+    --cols: 4;
+    --header-h: 104px;
+    --buybar-h: 88px;
+  }
+
+  .vale-header-inner {
+    row-gap: 10px;
+    min-height: 0;
+    padding-block: 16px 12px;
+  }
+
+  .vale-logo {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    justify-self: start;
+    font-size: 18px;
+  }
+
+  .vale-header-nav {
+    grid-column: 1 / 3;
+    grid-row: 2;
+  }
+
+  .vale-header-actions {
+    display: contents;
+  }
+
+  .vale-cart-link {
+    grid-column: 3 / 5;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  .vale-info-link {
+    grid-column: 3 / 5;
+    grid-row: 2;
+    justify-self: end;
+  }
+
+  .vale-emblem {
+    width: 112px;
+    margin-bottom: 12px;
+  }
+
+  .vale-intro p,
+  .vale-note p,
+  .vale-note a,
+  .vale-rail-head h2,
+  .vale-rail-actions {
+    grid-column: 1 / -1;
+  }
+
+  .vale-explorer-nav ul {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .vale-tab {
+    font-size: 34px;
+  }
+
+  .vale-cards,
+  .vale-explorer .vale-cards,
+  .vale-shop .vale-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vale-cards > li:nth-child(n)::before {
+    display: none;
+  }
+
+  .vale-cards > li:nth-child(2n + 1)::before {
+    display: block;
+  }
+
+  .vale-shop-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .vale-rail-track {
+    grid-auto-columns: calc(100% - 2 * var(--margin));
+  }
+
+  .vale-cart-line {
+    grid-template-columns: 88px 1fr;
+  }
+
+  .vale-cart-price {
+    grid-column: 2;
+  }
+
+  .vale-footer-contact,
+  .vale-footer-follow,
+  .vale-footer-info {
+    grid-column: 1 / -1;
+  }
+
+  .vale-footer-base {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .vale-dialog-panel {
+    padding: 40px 20px 24px;
+  }
+}
